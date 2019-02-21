@@ -90,7 +90,7 @@ def loggingIn():
     if request.method == 'POST':
         print("PASSING TO F_LOGIN")
         reply_p = f_login(request).json()
-        print(reply_p.json())
+        print("REPLY_P = ", reply_p)
 
         reply_g = requests.get('http://localhost:3000/farer/auth/user', headers={'Authorization':reply_p.get('auth_token')})
         reply_g = reply_g.json()
@@ -109,38 +109,47 @@ def loggingIn():
 def farer_user():
 
     print("INISDE DATA FARER")
-    print("USER = ", current_user.id)
 
     if current_user.is_authenticated:
         u = requests.get('http://localhost:3000/farer/auth/user', headers={'Authorization':current_user.id})
         print(u.json())
-        return jsonify(u.json())
+        return jsonify(u.json().get('data'))
 
     return "false"
-    
+
 @farer.route('/details/')
 @login_required
 def farer_more():
-    if current_user.detailscomp is True:
+
+    u = requests.get('http://localhost:3000/farer/auth/user', headers={'Authorization':current_user.id})
+    u = u.json().get('data')
+    print(u)
+
+    if u.get('detailscomp') is True:
         return render_template('index.html', page = "/home")
     return render_template('index.html', page = "/forms/details")
 
 @farer.route('/education/')
 @login_required
 def farer_education():
-    print("DETAILS = " + str(current_user.detailscomp))
-    print("EDU = " + str(current_user.educomp))
-    if current_user.detailscomp is None:
+    
+    u = requests.get('http://localhost:3000/farer/auth/user', headers={'Authorization':current_user.id})
+    u = u.json().get('data')
+    print(u)
+
+    if u.get('detailscomp') is None:
         return render_template('index.html',
                                 page = "/forms/details",
                                 uchange="/farer/details/")
-    if current_user.educomp is True:
+    if u.get('educomp') is True:
         return render_template('index.html',
                                 page = "/home",
                                 uchange="")
+
     return render_template('index.html',
                             page = "/forms/education",
                             uchange="")
+                            
     # Rewrite to use the endpoints in Switch2 with contact to Hub
 
 @farer.route('/delete/<id>/')

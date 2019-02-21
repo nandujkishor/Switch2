@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="/static/css/education.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
 <div class ="form-container-full">
   
@@ -40,7 +39,6 @@
 
     <div class = "action-button">
       <input id="submit" type="submit" name="submit" value="Proceed">
-
       <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277BD;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
     </div>
 
@@ -96,11 +94,9 @@
         url: "/forms/details/",
         data:{ 
           csrf_token: "{{ form.csrf_token._value() }}",
-          id: id,
           fname: $('#fname').val(),
           lname: $('#lname').val(),
           sex: gender,
-          email: email,
           phno: parseInt($('#mobile').val())
         },
         success: function(data){
@@ -108,7 +104,11 @@
           $('.loading').css('visibility', 'hidden');
           // console.log("details = " + data);
 
-          if(data != "Success"){
+          console.log("Return value = " + data);
+
+          if(data != "success"){
+
+            console.log("form addition failed");
 
             if(data.hasOwnProperty('fname')){
               $('#div-fname').addClass('error-field');
@@ -136,6 +136,9 @@
           
           }
           else{
+
+            console.log("form addition successful");
+            
             $('.container').css('opacity','0');
 
             window.setTimeout(function(){

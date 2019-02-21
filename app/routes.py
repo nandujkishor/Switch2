@@ -10,7 +10,6 @@ from config import Config
 from app.forms import AddTalk, AddWorkshop, MoreData, CABegin, CAQues, test, EduData, AmrSOY
 from app.mail import farer_welcome_mail, amrsoy_reg_mail, testing_mail
 from app.more import get_user_ip
-from app.farer import Auth
 from werkzeug.utils import secure_filename
 from werkzeug.urls import url_parse
 from flask_login import login_user, current_user, logout_user, login_required
@@ -24,6 +23,12 @@ def unauthorized():
 def index():
     return render_template('index.html', page="/home?m=1", uchange="")
 
+
+@app.route('/testing/')
+def testing():
+    return render_template('testing.html')
+
+
 @app.route('/home', methods=['GET'])
 def home():
     
@@ -36,20 +41,62 @@ def home():
     else:
         return render_template('index.html', page="/home?m=1", uchange="")
 
-@app.route('/tests/ip/')
-def tests_ip():
-    return jsonify(get_user_ip(request))
+@app.route('/talks/')
+def talks():
+    return render_template('coming.html')
+
+@app.route('/concerts/')
+def concert():
+    return render_template('coming.html')
+
+@app.route('/contests/')
+def contests():
+    return render_template('contests.html', page="contests-listing")
+
+@app.route('/contests/<int:cid>/')
+def contests_single(cid):
+    mode = request.args.get('m')
+    
+    if mode is not None:
+        if mode == "1":
+            contest = Contests.query.filter_by(id=cid).first()
+            if contest is None:
+                return "404"
+            
+            support = User.query.filter_by(vid=contest.support).first()
+            dept = ['CSE', 'ECE', 'ME', 'Physics', 'Chemisty', 'English', 'Biotech', 'BUG', 'Comm.', 'Civil', 'EEE', 'Gaming', 'Maths', 'Others']
+            return render_template('individual-contests.html', page="contests-single", contest=contest, dept=dept, support=support)
+    else:
+        return render_template('contests.html', open=True,cid=cid)
 
 @app.route('/workshops/')
 def workshops():
     return render_template('workshops.html')
 
-@app.route('/workshops/individual', methods=['GET'])
-def workshop_single():
-    return render_template('individual.html');
+@app.route('/exhibitions/')
+def exhibitions():
+    return render_template('exhibitions.html')
 
-def workshops():
-    return render_template('workshops.html', page="workshops-single")
+@app.route('/sponsors/')
+def sponsors():
+    return render_template('sponsors.html')
+
+@app.route('/workshops/<wtitle>/')
+def workshop_single(wtitle):
+    mode = request.args.get('m') 
+    
+    if mode is not None:
+        if mode == "1":
+            workshop = Workshops.query.filter_by(id=wtitle).first()
+            support = User.query.filter_by(vid=workshop.support).first()
+            if workshop is None:
+                return "404"
+            dept = ['CSE', 'ECE', 'ME', 'Physics', 'Chemisty', 'English', 'Biotech','BUG', 'Comm.', 'Civil', 'EEE', 'Gaming', 'Maths', 'Others']
+            return render_template('individual-workshops.html', page="workshops-single", workshop = workshop, dept=dept, support=support)
+    else:
+        return render_template('workshops.html', open=True,wid=wtitle)
+
+# forms
 
 @app.route('/forms/details/', methods=['GET', 'POST'])
 @login_required
@@ -73,17 +120,22 @@ def forms_farer_more():
         }
 
         reply = requests.put('http://localhost:3000/farer/user/details', json=payload,  headers={'Authorization':current_user.id})
-        print(reply.json())
-        return jsonify(reply.json())
+        print("REPLY FOR DETAILS ( PUT REQUEST ) ", reply.json())
+
+        return jsonify(reply.json().get('status'))
 
     return render_template('forms/details.html', user=current_user, form=form)
 
 @app.route('/forms/education/', methods=['GET', 'POST'])
 @login_required
 def forms_farer_edu():
+    
     form = EduData(request.form)
-    colleges = requests.get('http://localhost:3000/farer/college/list')
-    colleges = colleges.json()
+    
+    #colleges missing
+
+    # colleges = requests.get('http://localhost:3000/farer/college/list')
+    # colleges = colleges.json()
 
     if request.method == 'POST':
 
@@ -102,10 +154,16 @@ def forms_farer_edu():
             'educomp': True
         }
 
-        reply = requests.post('http://localhost:3000/farer/user/education', json=payload, headers={'Authorization':current_user.id})
-        print(reply.get['message'])
+        reply = requests.put('http://localhost:3000/farer/user/education', json=payload, headers={'Authorization':current_user.id})
         
-    return render_template('forms/education.html', user=current_user, colleges=colleges, form=form)
+        print("REPLY FOR EDUCATION ( PUT REQUEST ) = ", reply.json())
+        
+        return jsonify(reply.json().get('status'))
+
+    #Add colleges
+    return render_template('forms/education.html', user=current_user, form=form)
+
+
 
 # Error handlers
 

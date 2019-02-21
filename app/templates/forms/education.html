@@ -134,7 +134,6 @@
         url: "/forms/education/",
         data:{ 
           csrf_token: "{{ form.csrf_token._value() }}",
-          id: id,
           course: degree,
           major: branch,
           year: year,
@@ -145,7 +144,9 @@
           
           $('.loading').css('visibility', 'hidden');
 
-          if(data != "Success"){
+          if(data != "success"){
+
+            console.log("form addition failed");
 
             if(data.hasOwnProperty('course')){
               $('#div-degree').addClass('error-field');
@@ -174,6 +175,8 @@
           }
           else{
 
+            console.log("Addition successful");
+
             $('.container').css('opacity','0');
             
             console.log("education = " + data);
@@ -181,30 +184,15 @@
             window.setTimeout(function(){
 
               origin = window.sessionStorage.getItem('origin');
-              if(origin == null){
+              
+              if(origin == null)
                 origin = "/home";
-                window.location.href="/home";
-              }
 
               window.setTimeout(function(){
                 $('.container').css('opacity','1');
               }, 600);
 
               window.location.href = origin;
-            
-              //   $('.container').load(origin, function(){
-            //     if(origin == "/home")
-            //       window.history.pushState('/',null, '/');
-            //     else
-            //       window.history.pushState(origin,null,origin);
-
-            //     $('.header').css('display', 'block');
-                
-            //     window.setTimeout(function(){
-            //       $('.container').css('opacity','1');
-            //     }, 600);
-              
-            //   });
 
             }, 500)
 
