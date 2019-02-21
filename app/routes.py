@@ -23,12 +23,6 @@ def unauthorized():
 def index():
     return render_template('index.html', page="/home?m=1", uchange="")
 
-
-@app.route('/testing/')
-def testing():
-    return render_template('testing.html')
-
-
 @app.route('/home', methods=['GET'])
 def home():
     
@@ -51,7 +45,7 @@ def concert():
 
 @app.route('/contests/')
 def contests():
-    return render_template('contests.html', page="contests-listing")
+    return render_template('contests.html')
 
 @app.route('/contests/<int:cid>/')
 def contests_single(cid):
