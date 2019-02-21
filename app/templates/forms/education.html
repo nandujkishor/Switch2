@@ -185,7 +185,7 @@
 
               origin = window.sessionStorage.getItem('origin');
               
-              if(origin == null)
+              if(origin == null || origin == "")
                 origin = "/home";
 
               window.setTimeout(function(){

@@ -164,7 +164,6 @@ def forms_farer_edu():
     return render_template('forms/education.html', user=current_user, form=form)
 
 
-
 # Error handlers
 
 @app.errorhandler(404)

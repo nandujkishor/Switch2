@@ -57,7 +57,7 @@ function init(){
 
       }
       else if(data['educomp'] == null){
-        
+
         console.log("Routing to education form");
         window.location.href="/farer/education/"
 
