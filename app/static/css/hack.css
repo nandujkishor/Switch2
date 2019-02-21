@@ -1,0 +1,104 @@
+.block-hack{
+  width: 100%;
+  height: 100%;
+  background: #161849;
+}
+
+.block-wrapper{
+  padding: 50px;
+}
+
+.hack-button, .desc{
+  display: block;
+}
+
+.hack-button h1{
+	line-height: 100%;
+}
+.hack-button li{
+	font-size: 14px;
+}
+
+.hack-button input[type="submit"]{
+  background: #c3088b;
+  border: 2px solid #c3088b;
+}
+
+.hack-button input[type="submit"]:hover{
+  background: transparent;
+  color: #c3088b;
+}
+
+.block-wrapper{
+  width: 100%;
+  height: 100%;
+  color: #fff;
+}
+
+.left{
+	float: left;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.right{
+	display: none;
+}
+
+.block-2{
+	background: #fff;
+	padding: 50px;
+	height: 100vh;
+}
+
+.landscape{
+	display: none;
+}
+
+@media screen and (orientation:landscape) {
+    .landscape{
+    	width: 100%;
+    	height: 100vh;
+    	background: #fff;
+    	z-index: 15;
+    	display: flex;
+    	justify-content: center;
+    	align-items: center;
+    }
+}
+
+@media only screen and (min-width: 1024px){
+	.landscape{
+		display: none;
+	}
+
+	.left, .right{
+		float: left;
+		width: 50%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.hack-button{
+		line-height: 160%;
+		max-width: 650px;
+	}
+
+	.hack-button img{
+		height: 60px
+	}
+
+	.hack-button li{
+		font-size: 18px;
+	}
+
+	.hack-button img{
+		height: 120px
+	}
+
+}

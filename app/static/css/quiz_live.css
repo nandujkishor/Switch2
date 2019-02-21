@@ -1,0 +1,35 @@
+.show{
+    display: block;
+}
+
+.subjective, .objective{
+    /* display: none; */
+}
+
+.questions{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'main';
+    align-items: center;
+    /* justify-items: center; */
+}
+
+.wrapper{
+    grid-area: main;
+    margin-left: 200px;
+}
+
+.qn {
+    width: 100%;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.meta{
+    font-size: 16px;
+    font-weight: normal;
+}

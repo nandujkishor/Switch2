@@ -1,0 +1,76 @@
+
+<link rel="stylesheet" href="/static/css/hack.css">
+<div class ="block-hack">
+  
+  <div class = "block-wrapper">
+    <style>
+    	.center{
+    		height: 100%;
+    		width: 100%;
+    		display: flex;
+    		justify-content: center;
+    		align-items: center;
+    	}
+    	#timer{
+    		font-family: 'Source Sans Pro';
+    		font-size: 6em;
+    	}
+    	.center div{
+    		display: block;
+    	}
+	</style>
+    <div class ="center"> 
+    	<div>
+        	<!-- <img src="/static/images/hack-logo.png" height="250px"><br> -->
+        </div>
+        <div>
+        	<span id="timer"></span>
+    	</div>
+    </div>
+
+  </div> 
+
+</div>
+
+<script>
+
+  $(document).ready(function(){
+
+    $.getScript("https://apis.google.com/js/client:platform.js", function () {
+      
+      $('body').removeClass('noscroll');
+
+      init();
+      $('.hack-button-test').click(function(){
+
+        origin = '/hack/start/'
+        console.log("LOADED");
+        login();
+
+      });
+
+    });
+
+    var countDownDate = new Date("Jan 15, 2019 20:30:00").getTime();
+    var x = setInterval(function() {
+
+      var now = new Date().getTime();
+
+      var distance = countDownDate - now;
+
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("timer").innerHTML = ("0" + hours).slice(-2) + " : "
+      + ("0" + minutes).slice(-2) + " : " + ("0" + seconds).slice(-2);
+
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("timer").innerHTML = "The hackathon is over.";
+      }
+    }, 1000);
+  
+  });
+
+</script>

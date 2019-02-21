@@ -1,0 +1,77 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<style>
+        .thank{
+            height: 100%;
+            width: 100%;
+            opacity: 1;
+            transition: 0.4s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h1{
+            font-size: 20px;
+        }
+        input[type="submit"]{
+            height: 40px;
+            margin-top: 10px;
+            padding: 5px;
+            width: 100px; 
+            background: #0277BD;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 2px solid #0277BD;
+      }
+      input[type="submit"]:hover{
+        background: transparent;
+        color: #0277BD;
+      }
+      @media only screen and (min-width: 768px){
+        input[type="submit"]{
+          margin-top: 20px;
+          padding: 5px; 
+          width: 100px;
+        }
+        h1{
+            font-size: 32px;
+        }
+      }
+    </style>
+    <div class = "thank">
+        <div style = "width: 50%">
+        </div>
+    </div>
+    <script>
+    
+        $(document).ready(function(){
+            $.removeCookie('origin', { path: '/' });
+            var redirect = "{{redirect}}"
+            console.log(redirect);
+            u = "{{ u }}";
+            // console.log(u);
+            if(u != "none")
+                window.history.pushState(u,null, u);
+
+            $.ajax({
+                type: "POST",
+                url: "/event/register/",
+                data: {
+                    csrf_token: "{{ form.csrf_token._value() }}",
+                    cat: 1,
+                    eid: "{{eid}}",
+                },
+                success: function(data){
+                    console.log(data);
+                    var large = '<h1>'+data+'</h1><input type="submit" id = "submit" value = "Continue">';
+                    $('.thank div').append(large);
+                    $('#submit').click(function(e){
+                        $('.thank').css('opacity', '0');
+                        window.location.href="/workshops"
+                    })
+                }
+            });
+        })
+    </script>

@@ -1,0 +1,89 @@
+
+<style>
+  
+  html, body{
+    height: 1000px;
+  }
+
+</style>
+
+<div class = "ca-ques">
+  
+  <form novalidate>
+    
+    <h1>Please share your details to proceed.</h1><br>
+    
+    <div>
+      <textarea id = "q1" placeholder = "Describe your most successful/meaningful initiative that you have taken up. You can break up the experience into Background, Execution and Outcome?"></textarea>
+    </div>
+    
+    <div>
+      <textarea id = "q2" placeholder = "What will be your first initiative to promote Vidyut?"></textarea>
+    </div>
+    
+    <div>
+      <textarea id = "q3" placeholder = "What according to you is the most sound plan to get the best outreach?"></textarea>
+    </div>
+    
+    <div>
+      <textarea id = "q4" placeholder = "How can u impact the society with the strategy you use for marketing?"></textarea>
+    </div>
+    
+    <div class = "action-button">
+      <input id="submit" type="submit" name="submit" value="Proceed">
+      
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277bd;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+    </div>
+
+  </form>
+
+</div>
+
+<script>
+  
+  $('#submit').click(function(e){
+
+    $('.loading').css('visibility', 'visible');
+
+    console.log(id);
+    
+    $.ajax({
+      type: "POST",
+      url: "/forms/ca/ques/",
+      data:{ 
+        csrf_token: "{{ form.csrf_token._value() }}",
+        id: id,
+        ans1: $('#q1').val(),
+        ans2: $('#q2').val(),
+        ans3: $('#q3').val(),
+        ans4: $('#q4').val()
+      },
+      success: function(data){
+        
+        $('.container').css('opacity','0');
+        $('.loading').css('visibility', 'hidden');
+          
+        console.log("caques = " + data);
+        
+        window.setTimeout(function(){
+
+          window.history.pushState('/ca/success',null, '/ca/success');
+
+          $('.container').load('/ca/success', function(){
+
+            window.setTimeout(function(){
+              $('.container').css('opacity','1');
+            }, 500);
+            
+          });
+        
+        }, 500)
+      }
+    
+    });
+    
+    e.preventDefault();
+  
+  });
+
+</script>

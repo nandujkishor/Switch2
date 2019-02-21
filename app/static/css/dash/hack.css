@@ -1,0 +1,26 @@
+.a {
+  display: flex;
+}
+
+.d-h-box {
+  width: 15%;
+  display: block;
+}
+
+.d-h-box2 {
+  display: block;
+}
+
+.ps {
+  padding-top: 10px;
+  max-width: 800px;
+}
+
+.ps p {
+  font-size: 20px;
+}
+
+#ct {
+  padding-top: 10px;
+  font-size: 25px;
+}

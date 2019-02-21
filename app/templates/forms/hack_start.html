@@ -1,0 +1,122 @@
+<link rel="stylesheet" href="/static/css/education.css">
+<link rel="stylesheet" href="/static/css/hack.css">
+
+<div class ="form-container-full">
+  
+  <form class="st-form hackathon" novalidate>
+    
+    <h1>Please share a few details.</h1>
+    <!-- <span>Please share a few details.</span> -->
+
+    <div id="div-tsize">
+      <div class="tsize">
+        <label style="position: static">T-Shirt size</label>
+      </div>
+      <div class="tsize-dropdown">
+        <a id="1">S</a>
+        <a id="2">M</a>
+        <a id="3">L</a>
+        <a id="3">XL</a>
+        <a id="3">XXL</a>
+        <a id="3">XXXL</a>
+      </div>
+    </div> 
+    <div class="error" id="error-tsize"></div>
+
+    <div class="float-label" style="margin-top: 20px;" id="div-gprofile">
+       <input id="gprofile" name="gprofile" required autocomplete="off" type="text">
+       <label for="gprofile">Github profile</label>
+    </div>
+    <div class="error" id="error-gprofile"></div>
+
+    <div class = "action-button hack-button">
+      <input id="submit" type="submit" name="submit" value="Proceed">
+
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#c3088b;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+    </div>
+
+  </form>
+
+</div>
+
+<script>
+  
+  $(document).ready(function(){
+
+    var tsize;
+
+    if(isMobile() == false){
+      $(".tsize-dropdown").niceScroll({
+        zindex: 9999,
+        cursorcolor:'#A9A9A9',
+        cursorborder:'none',
+        cursorborderradius:0,
+      });
+    }
+
+    $('body').click(function(e){
+      if($(e.target).closest('#div-tsize').length)
+        return;
+      $(".tsize-dropdown").removeClass("show");
+    })
+    
+    $('.tsize').click(function(){
+      $('.tsize-dropdown').addClass("show")
+    });
+
+    $('.tsize-dropdown a').click(function(){
+      tsize = $(this).attr('id');
+      $('.tsize label').html($(this).text());
+      $(".tsize-dropdown").removeClass("show");
+    });
+
+
+    $('#submit').click(function(e){
+
+      $('.loading').css('visibility', 'visible');
+      
+      $('.float-label').removeClass('error-field');
+      $('.error').css('display', 'none');
+      
+      console.log("Posting details form");
+      console.log($('#gprofile'));
+
+      $.ajax({
+        type: "POST",
+        url: "/hack/start/",
+        data:{ 
+          csrf_token: "{{ form.csrf_token._value() }}",
+          github: $('#gprofile').val(),
+          tsize: tsize,
+        },
+        success: function(data){
+
+          $('.loading').css('visibility', 'hidden');
+          console.log("details = " + data);
+
+          $('.container').css('opacity','0');
+
+          window.setTimeout(function(){
+
+            $('.container').load('/hack/success/', function(){
+              window.history.pushState('/hack/success/',null, '/hack/success/');
+              
+              window.setTimeout(function(){
+                $('.container').css('opacity','1');
+              }, 600);
+            
+            });
+
+          }, 500)
+          
+        }
+
+      });
+
+      e.preventDefault();
+    
+    });
+
+  });
+
+</script>

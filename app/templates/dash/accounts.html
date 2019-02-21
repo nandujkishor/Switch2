@@ -1,0 +1,33 @@
+{% extends "dash/dash.html" %}
+
+{% block body %}
+    
+    <div class="dash-head">
+        <h1 style="text-transform: capitalize;">Accounts</h1>
+    </div>
+
+    <div class="accounts-container three-column" style="grid-area: body">
+      <div class="listing" style="grid-area: main">
+        {% for u in users %}
+        <div class="l-user">
+          <div class="l-no">
+            <span>{{ '%04d' % u.vid }}</span>
+          </div>
+          <div class="l-details">
+            <h3>{{ u.fname }} {{ u.lname }}</h3>
+            <h4>{{ u.email }}</h4>
+          </div>
+          <div class="l-level">
+            <span>{{ u.level }}</span>
+          </div>
+          <div class="l-buttons">
+            <a class="acc-a" href="/farer/level/{{ u.vid }}/upgrade/"><i class="fas fa-plus"></i></a>
+            <a class="acc-a" href="/farer/level/{{ u.vid }}/downgrade/"><i class="fas fa-minus"></i></a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

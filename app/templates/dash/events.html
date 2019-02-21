@@ -1,0 +1,231 @@
+{% extends "dash/dash.html" %}
+
+{% block body %}
+
+    <!-- Main Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+<!-- Theme included stylesheets -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/overlays.css">
+
+        <div class="left-sidebar desktop">  
+            <ul>
+                <li> <a id="talks" class="sidebar">Talks</a> </li>
+                <li> <a id="workshops" class="sidebar">Workshops</a> </li>
+                <li> <a id="contests" class="sidebar">Contests</a> </li>
+            </ul>
+        </div>
+        <div class="drop-down mobile">
+            <ul>
+                <li><a id="talks" class="sidebar">Talks</a></li>
+                <li><a id="workshops" class="sidebar">Workshops</a></li>
+                <li><a id="contests" class="sidebar">Contests</a></li>
+            </ul>
+        </div>
+        
+        <div class="dash-head drop-down-button">
+            <h1 style="text-transform: capitalize;">{{event}}</h1>
+            <svg class="mobile" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" height="10px" viewBox="0 0 30.3333 16.8333"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:3px;}</style></defs><title>drop-down</title><line class="cls-1" x1="1.7708" y1="1.25" x2="16.2708" y2="15.75"/><line class="cls-1" x1="14.1146" y1="15.75" x2="28.6146" y2="1.25"/></svg>
+        </div>
+
+        <div class="three-column">
+            <div class="dash-main">
+                <div class="eventItems"></div>
+            </div>
+        </div>
+
+        <div class="dashAdd">
+            <button class="addButton">Add</button>
+        </div>
+    </div>
+    
+    <div class="full-page-overlay add-overlay">
+        <a class="closeAdd">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 108.4167 50.1667"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:5px;}</style></defs><title>back-arrow</title><line class="cls-1" x1="3" y1="25.0833" x2="131" y2="25.0833"/><line class="cls-1" x1="1.3177" y1="26.1823" x2="26.3177" y2="1.1823"/><line class="cls-1" x1="1.4433" y1="24.2188" x2="26.1921" y2="48.9675"/></svg>
+        </a>
+        <div class="full-page-overlay-content add-overlay-content"></div>
+    </div>
+    
+    <div class="full-page-overlay view-overlay">
+        <a class="closeAdd">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 108.4167 50.1667"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:5px;}</style></defs><title>back-arrow</title><line class="cls-1" x1="3" y1="25.0833" x2="131" y2="25.0833"/><line class="cls-1" x1="1.3177" y1="26.1823" x2="26.3177" y2="1.1823"/><line class="cls-1" x1="1.4433" y1="24.2188" x2="26.1921" y2="48.9675"/></svg>
+        </a>
+        <div class="full-page-overlay-content view-overlay-content"></div>
+    </div>
+
+</body>
+
+<script>
+    var current_page;
+    $(document).ready(function() {
+
+        $("#{{event}}").toggleClass('active');
+        var open = "{{open}}"
+        current_page = "{{event}}";
+
+        $('.addButton').click(function() {
+
+            sessionStorage.setItem('mode', 1);
+            
+            console.log("Add overlay opened");
+            $('.add-overlay').toggleClass('open');
+            
+            $('.add-overlay-content').load(
+                '/dash/events/'+current_page+'/add?m=1', 
+                function(data){
+                    window.history.pushState(
+                        '/dash/events/'+current_page+'/add', 
+                        null, 
+                        '/dash/events/'+current_page+'/add'
+                    );
+                    console.log("Recieved form for addition");
+                }
+            ); 
+        });
+
+        if(open == "True"){
+            $(".addButton")[0].click();
+            console.log($(".addButton"));
+        }
+
+        $('.closeAdd').click(function() {
+            $('.add-overlay, .view-overlay').removeClass('open');
+            $('.view-overlay-content').empty();
+            window.history.pushState(
+                '/dash/events/'+current_page, 
+                null, 
+                '/dash/events/'+current_page
+            );
+        });
+
+        $('.drop-down-button svg').click(function() {
+            $('.drop-down').toggleClass('open');
+        });
+
+        //Sidebar
+
+        function changeData(url) {
+
+            $(".eventItems").empty();
+            $('.dash-head h1').html(url);
+
+            if (url != current_page) {
+                $("#" + current_page).toggleClass('active');
+                $("#" + url).toggleClass('active');
+            }
+
+            current_page = url;
+
+            loadData(url);
+        }
+
+        $('.sidebar').click(function() {
+            pageurl = $(this).attr('id');
+            if (pageurl != current_page)
+                window.history.pushState({
+                    url: pageurl
+                }, null, pageurl);
+            changeData(pageurl);
+            if (isMobile() == true)
+                $('.drop-down').toggleClass('open');
+        });
+
+        window.onpopstate = function(e) {
+            console.log("TESTING " + e.state.url);
+            changeData(e.state.url);
+        };
+
+    });
+
+    function loadData(event) {
+        $.getJSON("/api/events/" + event + "/", function(data) {
+
+            $.each(data, function(key, value) {
+                // var large = '<div class="eventItem" id = "' + value.id + '"><div class="talkMeta"><span class="talkHead">' + value.title + '</span><br><span class="meta"> By ' + value.person + '</span></div> <a href="" class="talkEdit"><img src="/static/images/icons/edit.svg" height="25px"></a><div href="" class="talkDelete"><img src="/static/images/icons/del.svg" height="25px"></div></div>';
+                
+                var large;
+                if(current_page == "talks")
+                    large = '<div class="eventItem2" id = "' + value.id + '"><div class="eventmeta">' + value.id + ' </div><div class ="eventdata"><span class = "talkHead">' + value.title + '</span><br><span class="meta"> By ' + value.person + '</span></div><div class="eventedit"><img src="/static/images/icons/edit.svg" height="25px"></div><div class="eventdelete"><img src="/static/images/icons/del.svg" height="25px"></div></div>';
+                else if(current_page == "workshops")
+                    large = '<div class="eventItem2" id = "' + value.id + '"><div class="eventmeta">' + value.id + ' </div><div class ="eventdata"><span class = "talkHead">' + value.title + '</span><br><span class="meta"> By ' + value.org + '</span></div><div class="eventedit"><img src="/static/images/icons/edit.svg" height="25px"></div><div class="eventdelete"><img src="/static/images/icons/del.svg" height="25px"></div></div>';
+                else if(current_page == "contests")
+                large = '<div class="eventItem2" id = "' + value.id + '"><div class="eventmeta">' + value.id + ' </div><div class ="eventdata"><span class = "talkHead">' + value.title + '</span><br><span class="meta"> By ' + value.department + '</span></div><div class="eventedit"><img src="/static/images/icons/edit.svg" height="25px"></div><div class="eventdelete"><img src="/static/images/icons/del.svg" height="25px"></div></div>';
+                $(".eventItems").append(large);
+            });
+
+            $('.eventdelete').click(function(e){
+                var did = $(this).parent().attr('id');
+                $.ajax({
+                    type: "DELETE",
+                    url: "/api/events/" + current_page + "/" + did + "/",
+                    success: function(result) {
+                        $('#'+did).remove();
+                    }
+                });
+            });
+
+            $('.eventedit').click(function(e){
+                var did = $(this).parent().attr('id');
+
+                sessionStorage.setItem('mode', 2);
+                
+                $('.add-overlay').toggleClass('open');
+            
+                $('.add-overlay-content').load(
+                    '/dash/events/'+current_page+'/add?m=1', 
+                    function(data){
+                        window.history.pushState(
+                            '/dash/events/'+current_page+'/edit', 
+                            null, 
+                            '/dash/events/'+current_page+'/edit'
+                        );
+                        console.log("Recieved form for editing");
+                    }
+                );
+                console.log("TESTING");
+                sessionStorage.setItem('did', did);
+            });
+            
+            $('.talkHead').click(function(e){
+
+                console.log("View overlay opened");
+                $('.view-overlay').toggleClass('open');
+                var eid = $(this).parent().parent().attr('id');
+
+                $.getJSON('/api/events/'+current_page+'/'+eid+'/', function(data) {
+                        window.history.pushState(
+                            '/dash/events/'+current_page+'/'+eid, 
+                            null, 
+                            '/dash/events/'+current_page+'/'+eid
+                        );
+                        console.log("Recieved data for " + current_page + " ID = " + eid);
+                        console.log(data);
+                        var large;
+                        if(current_page == "workshops")
+                            large = '<div class = "v-form"><div class="v-entry"><span class="vf-label">Title</span>'+ data.title +'</div><div class="v-entry"><span class="vf-label">Short desciption</span>'+ data.short +'</div><div class="v-entry"><span class="vf-label">Department</span>'+ data.department +'</div><div class="v-entry"><span class="vf-label">Long desciption</span>'+ data.short +'</div><div class="v-entry"><span class="vf-label">Company</span>'+ data.org +'</div><div class="v-entry"><span class="vf-label">Fee</span>'+ data.fee +'</div></div>';
+                        else if(current_page == "talks")
+                            large = '<div class = "v-form"><div class="v-entry"><span class="vf-label">Title</span>'+ data.title +'</div><div class="v-entry"><span class="vf-label">Description</span>'+ data.descr +'</div><div class="v-entry"><span class="vf-label">Person</span>'+ data.person +'</div><div class="v-entry"><span class="vf-label">Fee</span>'+ data.amt +'</div></div>';
+                        else if(current_page = "contests")
+                            large = '<div class = "v-form"><div class="v-entry"><span class="vf-label">Title</span>'+ data.title +'</div><div class="v-entry"><span class="vf-label">Short description</span>'+ data.short +'</div><div class="v-entry"><span class="vf-label">Long description</span>'+ data.about +'</div><div class="v-entry"><span class="vf-label">First prize</span>'+ data.prize1 +'</div><div class="v-entry"><span class="vf-label">Second prize</span>'+ data.prize2 +'</div><div class="v-entry"><span class="vf-label">Third prize</span>'+ data.prize3 +'</div><div class="v-entry"><span class="vf-label">Total worth</span>'+ data.pworth +'</div><div class="v-entry"><span class="vf-label">Fee</span>'+ data.fee +'</div></div>';
+                        $('.view-overlay-content').append(large);
+                    }
+                );
+
+            });
+
+        });
+    }
+
+    $(window).on('load', function() {
+        window.history.pushState({
+            url: "{{event}}"
+        }, null, "{{event}}");
+        loadData("{{event}}");
+    });
+</script>
+{% endblock %}

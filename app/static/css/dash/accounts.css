@@ -1,0 +1,28 @@
+.l-user {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.l-no {
+  padding-top: 5px;
+  width: 40px;
+}
+
+.l-user {
+  width: 100%;
+}
+
+.d-j span {
+  display: block;
+  font-size: 30px;
+  padding: 10px 0 20px 0;
+}
+
+.acc-a {
+  border-bottom: none;
+  color: black;
+}
+
+.l-level {
+  padding: 0 20px;
+}

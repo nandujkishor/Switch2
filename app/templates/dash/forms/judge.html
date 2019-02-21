@@ -1,0 +1,148 @@
+<link rel="stylesheet" href="/static/css/education.css">
+
+<div class ="form-container-full">
+  
+  <form class="st-form" novalidate>
+    
+    <h1>Judge Dashboard</h1>
+    <!-- <span>Please share a few details.</span> -->
+
+    <div class="float-label" style="margin-top: 20px; margin-bottom: 0" id="div-team">
+        <div id="myDropdown" class="dropdown-content">
+          {% for team in teams %}
+          <a id="{{ team.tid }}">{{ team.name }}</a>
+          {% endfor %}
+        </div>
+       <input id="team" name="team" autocomplete="off" required type="text">
+       <label for="team">Team</label>
+    </div>
+    <div class="error" id="error-team"></div>
+
+    <div style="margin-top: 20px" id="div-crt">
+      <div class="crt">
+        <label style="position: static">Review</label>
+      </div>
+      <div class="crt-dropdown">
+        <a id="1">1st review</a>
+        <a id="2">2nd review</a>
+        <a id="3">3rd review</a>
+      </div>
+    </div> 
+    <div class="error" id="error-crt"></div>
+
+    <div class="float-label" style="margin-top: 20px">
+       <input id="score" name="score" autocomplete="off" required type="text">
+       <label for="score">Score</label>
+    </div>
+
+    <div class = "action-button">
+      <input id="submit" type="submit" name="submit" value="Proceed">
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#c3088b;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+    </div>
+
+
+  </form>
+
+</div>
+
+<script>
+  
+  $(document).ready(function(){
+
+    var crt, tid;
+
+    if(isMobile() == false){
+      $(".crt-dropdown, #myDropdown").niceScroll({
+        zindex: 9999,
+        cursorcolor:'#A9A9A9',
+        cursorborder:'none',
+        cursorborderradius:0,
+      });
+    }
+
+    $('body').click(function(e){
+      if($(e.target).closest('#div-crt').length)
+        return;
+      else
+      	$(".crt-dropdown").removeClass("show");
+      if($(e.target).closest('#div-team').length)
+        return;
+      else
+      	$("#myDropdown").removeClass("show");
+    });
+    
+    $('.crt').click(function(){
+      $('.crt-dropdown').addClass("show")
+    });
+
+    $('.crt-dropdown a').click(function(){
+      crt = $(this).attr('id');
+      $('.crt label').html($(this).text());
+      $(".crt-dropdown").removeClass("show");
+    });
+
+    $('#team').focusin(function(){
+      $("#myDropdown").addClass("show");
+      $(".crt-dropdown").removeClass("show");
+    });
+
+    $('#team').keyup(function(){
+      
+      filter = $("#team").val().toUpperCase();
+      
+      $('.myDropdown').find('a').each(function(){
+          if($(this).text().toUpperCase().indexOf(filter) > -1 || $(this).attr('id') == 0)
+            $(this).css('display','')
+          else
+            $(this).css('display','none');
+      });
+
+    });
+
+    $('#myDropdown a').click(function(){
+       tid = $(this).attr('id');
+      $('#team').val($(this).text());
+      $("#myDropdown").removeClass("show");
+    });
+
+    $('#submit').click(function(e){
+
+      $('.loading').css('visibility', 'visible');
+      
+      $('.float-label').removeClass('error-field');
+      $('.error').css('display', 'none');
+      
+      console.log("Posting details form");
+      console.log(crt);
+      $.ajax({
+        type: "POST",
+        url: "/forms/hack/judges/",
+        data:{ 
+          csrf_token: "{{ form.csrf_token._value() }}",
+          tid: tid,
+          rev: crt,
+          score: parseInt($('#score').val()),
+        },
+        success: function(data){
+
+	        $('.loading').css('visibility', 'hidden');
+	        $('.container').css('opacity','0');
+
+	        if(data != "Success"){
+	        	console.log("ERROR");
+	        }
+	        else{
+	        	window.location.href = "/hack/judges/"
+	        }  
+          
+        }
+
+      });
+
+      e.preventDefault();
+    
+    });
+
+  });
+
+</script>

@@ -1,0 +1,255 @@
+/* Navigation panel */
+@keyframes fadeIn{
+  0%{opacity: 0;}
+  45%{opacity: 50%;}
+  100%{opacity: 100%;}
+}
+@keyframes fadeOut{
+  0%{opacity: 100%;}
+  45%{opacity: 50%;}
+  100%{opacity: 0;}
+}
+
+.nav, .menuVidyut, .social{
+    animation-duration: 1s;
+}
+
+.sideNavOverlay, .nav a, .social a, .bar1, .bar2, .bar3, .menuVidyut{
+    transition: all 0.4s;
+}
+
+.sideNav {
+    position: fixed;
+    height: 100%;
+    width: 0;
+    z-index: 2;
+    background-color: #fff;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+.sideNavContents{
+    position: absolute;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    padding-left: 34px;
+    z-index: 2;
+    pointer-events:none;
+}
+.sideNavContents ul{
+    list-style: none;
+    line-height: 120%;
+    font-family:'Neue Haas Grotesk Text Pro Bold';
+    font-weight: 500;
+}
+.sideNavOverlay{
+    height: 100%;
+    width: 60%;
+    display: none;
+    background-size: cover;
+    margin-left: 100%;
+    z-index: 4;   
+}
+
+.talksBG{
+    background-image: url('../images/menu/talks.jpg');   
+}
+.concertsBG{
+    background-image: url('../images/menu/concerts.jpg');   
+}
+.masterclassBG{
+    background-image: url('../images/menu/masterclass.jpg');
+}
+.workshopsBG{
+    background-image: url('../images/menu/workshops.jpg');
+}
+.contestsBG{
+    background-image: url('../images/menu/contests.jpg');
+}
+.sponsorsBG{
+    background-image: url('../images/menu/sponsors.jpg');
+}
+
+.nav{
+    z-index: 2;
+    font-size: 34px;
+}
+.nav a{
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: #000;
+}
+.nav a span { 
+    position: absolute; 
+    display: none; 
+    z-index: 2; 
+}
+.nav a:hover span {
+    display: block;
+}
+.social i {
+  font-size: 28px;
+}
+.social {
+    position:relative;
+    display: block;
+    padding-top: 3.5em;
+    padding-left: 2.9em;
+}
+.social a{
+    text-decoration: none;
+    color: #000;
+    padding-right: 5px;
+}
+.fa-facebook-square:hover {
+  color: #3B5998;
+}
+.fa-facebook-f:hover {
+  color: #3B5998;
+}
+.fa-instagram:hover {
+  color: #bc2a8d;
+}
+.fa-twitter:hover {
+  color: #1DA1F2;
+}
+.fa-youtube:hover {
+  color: #FF0000;
+}
+.fa-globe:hover{
+    color: #29065A;
+}
+.fa-linkedin:hover{
+    color:#0077B5;
+}
+@media only screen and (min-width: 375px){
+    .sideNavContents{
+        padding-left: 48px;    
+    }
+}
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .sideNavContents{
+        padding-left: 90px;    
+    }
+    .nav{
+        font-size: 52px;
+    }
+}
+
+/* Floating sidebar */
+.header{
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    background-color: transparent;
+    z-index: 3;
+    top: 0;
+    transition: top 0.2s;
+}
+.header-up{
+    top: -80px;
+}
+.menu-button, .menuVidyut{
+    position: absolute;
+    color: #fff;
+    font-size: 24px;
+    top: 20px;
+    left: 30px;
+    cursor: pointer;
+    z-index: 2;
+}
+.menuVidyut{
+    top: 14px;
+    left: 62px;
+}
+.menuVidyut svg{
+    height: 15px;
+}
+.menuVidyut path{
+    transition: all 0.4s;
+}
+.bar1, .bar2, .bar3 {
+    cursor: pointer;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin-top: 3px;
+}
+.change .bar1, .change .bar2, .change .bar3{
+    background-color: #000;
+}
+.login{
+    position: absolute;
+    top: 20px;
+    font-weight: bold;
+    color: #fff;
+    border: 3px solid #fff;
+    right: 20px;
+    font-size: 10px;
+    padding: 2px 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.4s;
+}
+.loginDisable{
+    opacity: 0;
+    visibility: hidden;
+}
+
+.load, .load-d{
+    position: fixed;
+    height: 100vh;
+    width: 0;
+    background: #fff;
+    transition: all 0.5s;
+    z-index: 6;
+}
+.load-d{
+    z-index: 5;
+    background: #E81110;
+}
+@media only screen and (min-width: 550px) {
+    .login{
+        right: 46px;
+    }
+}
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .header{
+        height: 80px;
+    }
+    .bar1, .bar2, .bar3 {
+        height: 4px;
+        margin-top: 4px;
+    }
+    .login{
+        top: 24px;
+        right: 56px;
+        font-size: 16px;
+        padding: 4px 15px;
+    }
+    .menu-button, .menuVidyut{
+        top: 24px;
+        left: 58px;
+    }
+    .menuVidyut{
+        left: 100px;
+    }
+    .menuVidyut svg{
+        height: 20px;
+    }
+}
+
+.color-change path{
+    fill: #fff;
+}
+.color-change{
+    color: #000;
+}
+.border-change{
+    border-color: #000;
+}

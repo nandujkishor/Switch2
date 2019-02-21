@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.house{
+  display: flex;
+  padding-left: 10px;
+  align-items: center;
+  height: 64px;
+  width: 100%;
+  border:2px solid #0277BD;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.house label{
+	cursor: pointer;
+}
+
+.house-dropdown{
+  display: none;
+  position: absolute;
+  z-index: 10;
+  background-color: #f6f6f6;
+  border: 1px solid #ddd;
+  overflow: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  height: 205px;
+  width: 100%;
+  max-width: 450px;	
+}
+
+.house-dropdown a{
+  z-index: 15;
+  color: #000;
+  padding: 12px 16px;
+  font-size: 14px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.house-dropdown a:hover {
+  background-color: #ddd;
+}
+
+.show{
+	display: block;
+}

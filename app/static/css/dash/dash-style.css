@@ -1,0 +1,308 @@
+* {
+    margin:0;
+    box-sizing: border-box;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+a{
+	cursor: pointer;
+}
+.desktop{
+	display: none;
+}
+.mobile{
+	display: block;
+}
+
+@media only screen and (min-width: 768px) {
+	.desktop{
+		display: block;
+	}
+	.mobile{
+		display: none;
+	}
+}
+
+.container{
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 100px auto 200px;
+	grid-template-rows: 60px 50px auto;
+	grid-gap: 5px 5px;
+	grid-template-areas:
+	"logo logo profile"
+	"head head head"
+	"body body body";
+}
+
+.three-column{
+	grid-area: body;
+	display: grid;
+	grid-template-columns: 100px auto 200px;
+	grid-template-rows: auto;
+	grid-template-areas:
+	"main main main";
+}
+
+.dash-logo, .dash-main, .dash-profile{
+	height: 100%;
+	width: 100%;
+}
+.dash-logo{
+	grid-area: logo;
+}
+.dash-main{
+	grid-area: main;
+	max-width: 1000px;
+}
+.dash-head{
+	grid-area: head;
+}
+.dash-head h1{
+	font-size: 1.5em;
+	float: left;
+}
+.drop-down-button svg{
+	cursor: pointer;
+	margin-top: 5px;
+	margin-left: 5px;
+	float: left;
+}
+.drop-down{
+	position: absolute;
+	margin-top: 100px;
+	margin-left: 20px;
+	height: 100px;
+	width: 140px;
+	z-index: 11;
+
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: -webkit-transform 0.2s, opacity 0.2s, visibility 0s 0.2s;
+	transition: transform 0.2s, opacity 0.2s, visibility 0s 0.2s;
+}
+
+.drop-down.open{
+	visibility: visible;
+	opacity: 1;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+}
+
+.drop-down ul{
+	list-style: none;
+	background: #E3E1DC;
+	border-top: 3px solid #696866;
+	padding: 0px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.drop-down ul li{
+	padding: 5px;
+}
+
+.dash-profile{
+	grid-area: profile;
+}
+
+/* Add button */
+.dashAdd{
+	position:fixed;
+	z-index: 5;
+	bottom: 20px;
+	right: 20px;
+}
+.dashAdd button{
+    color: #fff;
+    padding: 10px;
+    width: 100px;
+    background-color: #0277BD;
+    border: none;
+    cursor: pointer;
+}
+/* Profile */
+.dash-profile, .dash-logo, .dash-head{
+	height: 100%;
+	display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+	align-items: center;
+	padding-left: 20px;
+	/* justify-content: center; */
+}
+.dash-profile{
+	justify-content: flex-end;
+	padding-right: 20px;
+}
+
+/* Events */
+.eventItem, .eventItem2{
+	width: 100%;
+    display: grid;
+    grid-template-columns: auto 40px 40px;
+	grid-template-areas:
+    "meta edit delete";
+	padding: 20px;
+	transition: 0.3s;
+	border-bottom: solid 1px #e6e8eb;
+}
+
+.eventItem2{
+	grid-template-columns: 80px auto 40px 40px;
+	grid-template-areas:
+    "meta data edit delete"; 
+}
+
+.eventItem:hover, .eventItem2:hover{
+	cursor: pointer;
+    color: blue;
+}
+
+.eventmeta{
+	align-self: center;
+	justify-self:center;
+	grid-area: meta;
+	font-size: 24px;
+	color: #000;
+}
+
+.eventdata{
+	grid-area: data; 
+}
+
+.talkMeta{
+	grid-area: meta;
+}
+
+.talkEdit, .talkDelete, .eventdelete, .eventedit{
+	align-self: center;
+	justify-self: center;
+	visibility: hidden;
+  	opacity: 0;
+  	transition: visibility 0s, opacity 0.3s linear;
+}
+
+.talkEdit, .eventedit{
+	grid-area: edit;
+}
+
+.talkDelete, .eventdelete{
+	grid-area: delete;
+	fill: #000;
+}
+
+.talkEdit:hover, .talkDelete:hover, .eventdelete:hover, .eventedit:hover {
+	cursor: pointer;
+}
+.eventItem:hover .talkEdit, 
+.eventItem:hover .talkDelete, 
+.eventItem2:hover .eventdelete,
+.eventItem2:hover .eventedit{
+    visibility: visible;
+  	opacity: 1;
+}
+
+.meta{
+	color:#3B3B3B;
+	font-size: 0.9em;
+}
+
+.displayNone{
+	display: none;
+}
+
+@media only screen and (min-width: 768px) {
+
+	.container{
+		grid-template-columns: 230px auto 250px;
+		grid-template-rows: 80px auto;
+		grid-template-areas:
+	    "logo head profile"
+	    "body body body";
+	}
+
+	.three-column{
+		grid-template-columns: 230px auto 250px;
+		grid-template-areas:
+		"left-side main .";
+	}
+	
+	.dashAdd{
+		bottom: 30px;
+		right: 50px;
+	}
+	.dashAdd button{
+		width: 190px;
+	}
+	.dash-logo{
+		padding: 0px;
+		display: flex;
+	}
+    .left-sidebar{
+    	position: fixed;
+    	margin: 39px;
+    	justify-content: center;
+    }
+    .left-sidebar ul{
+    	font-size: 1.1em;
+    	font-weight: bold;
+    	list-style: none;
+    	margin-top: 30px;
+    	padding: 0px;
+    	line-height: 2em;
+    }
+    .left-sidebar a{
+    	text-decoration: none;
+    	color: #000;
+    }
+    .left-sidebar a:hover, .left-sidebar .active{
+    	color: blue;
+	}
+	.dash-logo, .dash-head{
+		padding-left: 40px;
+	}
+	.dash-profile{
+		padding-right: 40px;
+	}
+}
+@media only screen and (min-width: 1200px) {
+    .three-column{
+ 		grid-template-columns: 230px auto 350px;
+    }
+}
+
+.add-form{
+    height: 100%;
+    width: 100%;
+  	max-width: 600px;
+	padding: 10px;
+	padding-top: 30px;
+}
+.closeAdd{
+	position: absolute;
+	z-index: 11;
+	top: 25px;
+	left: 20px;
+}
+.closeAdd svg{
+	height: 15px;
+}
+
+@media only screen and (min-width: 768px){
+	.closeAdd{
+		top: 50px;
+		left: 40px;
+	}
+	.add-form{
+		padding-top: 20px;
+    	padding-left: 4em;
+	}
+}

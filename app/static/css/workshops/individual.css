@@ -1,0 +1,186 @@
+.workshopContainer{
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	opacity: 1;
+	transition: 0.4s;
+}
+
+.desktop{
+	visibility: hidden;
+}
+
+.right{
+	display: none;
+}
+
+.left{
+	margin-top: 70px;
+	height: 50vh;
+}
+
+.main-content{
+    display: grid;
+    min-height: 100vh;
+    width: 100%;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto;
+    padding: 20px;
+    grid-template-areas: 
+	"three"
+	"two"
+	"one";
+}
+
+.w-department{
+	margin-top: 20px;
+	padding: 5px 10px;
+	width: 100px;
+	border: 2px solid #000;
+}
+
+.w-m-main-mobile{
+	padding: 20px;
+	grid-area: three;
+}
+
+.w-m-main-content{
+	grid-area: one;
+	padding-top: 20px;
+}
+
+.w-m-rules, .w-m-prereq{
+	margin-top: 20px;
+}
+.w-m-sidebar{
+	grid-area: two;
+	/* background: yellow; */
+}
+
+.w-heading{
+	font-weight: bold;
+	font-family:'Neue Haas Grotesk Text Pro Bold';
+}
+
+.w-department{
+	display: flex;
+	justify-content: center;
+	align-items: center; 
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.w-heading{
+	font-size: 40px;
+	font-weight: bold;
+	font-family:'Neue Haas Grotesk Text Pro Bold';
+}
+
+h1{
+	/* font-size: 20px;
+	margin-top: 10px;
+    margin-bottom: 20px; */
+	font-weight: 400;
+	font-family:'Neue Haas Grotesk Text Pro Bold';
+}
+.w-m-content{
+	font-size: 14px;
+}
+
+/* .registeration, .w-s-fee{
+	padding-top: 20px;
+	width: 100%;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+} */
+
+.w-s-fee{
+	font-size: 25px;
+}
+
+.go-back{
+	position: absolute;
+	top: 25px;
+	left: 25px;
+	font-weight: bold;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.mobile{
+	display: block;
+}
+
+hr {
+	color: #efefef;
+}
+
+p {
+	line-height: 1.4em;
+	padding-bottom: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+	.mobile{
+		display: none;
+	}
+
+	.left, .right{
+		margin: 0px;
+		width: 50%;
+		height: 100vh;
+		float: left;
+	}
+
+	.left{
+		background-size: cover;
+	}
+	.right{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		/*align-items: center; */
+		padding: 50px;
+	}
+
+	.go-back{
+		top: 40px;
+        left: calc(50% + 50px);
+	}
+
+	.go-back i{
+		font-size: 20px;
+	}
+
+	.main-content{
+        display: grid;
+        height: 100vh;
+        width: 100%;
+        grid-template-rows: auto;
+        grid-template-columns: 80% 20%;
+        padding: 50px;
+        grid-template-areas: 
+        "one two";
+    }
+
+	.w-m-main-content{
+		padding: 0 50px;
+	}
+
+	.w-heading{
+		font-size: 48px;
+		margin-bottom: 10px;
+	}
+		
+	.w-description-s{
+		line-height: 140%;
+	}
+
+	.desktop{
+		visibility: visible;
+	}
+}

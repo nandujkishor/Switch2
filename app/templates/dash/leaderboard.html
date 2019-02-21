@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+
+    <meta name="theme-color" content="#000">
+    <meta name="msapplication-navbutton-color" content="#000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<!-- <link rel="stylesheet" href="/static/css/home.css"> -->
+    <link rel="stylesheet" href="/static/fonts/fonts.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://cloud.typenetwork.com/projects/2949/fontface.css/" rel="stylesheet" type="text/css">
+
+  	<style>
+  		.container{
+  			padding: 50px;
+  		}
+	   *{
+	    	margin:0;
+	    	box-sizing: border-box;
+	   		font-family: 'Source Sans Pro';
+	   }
+	   table{
+	    	border-collapse: collapse;
+	   }
+	   tr:hover {background-color: #f5f5f5;}
+	    th,td{
+	        text-align:center;
+	        padding: 15px;
+	        border-bottom: 1px solid #ddd;
+	    }
+	    th{
+	        background-color:#37474F;
+	        color:#FFFFFF;
+	    }
+	    .clr{
+	        color:#455A64;
+	        font-size: 20px;
+	    }
+	    .bol{
+	        font-weight: bold;
+	    }
+      .color{
+        background: green;
+      }
+  	</style>
+  </head>
+  <body>
+  	<div class="container">
+		<center><h1>Leaderboard</h1><br>
+		Hackathon ends in:
+		<span id = "count-down"></span></center>
+	</div>
+	<table style="width:100%" class="leaderboard"></table>
+	<div style="padding: 50px; float:right;">* Weighted total = (Review 1) + (2 * Review 2) + (3 * Review 3)</div>
+		<script>
+			$(document).ready(function(){
+				window.setInterval(function(){
+					console.log("LOADED");
+					$.getJSON("/data/hack/leaderboard/list/", function(data){
+						console.log(data);
+						$('.leaderboard').empty();
+						var th = "<tr><th>Rank</th><th>Team Name</th><th>Review 1</th><th>Review 2</th><th>Review 3</th><th>Weighted total*</th></tr>"
+						$('.leaderboard').append(th);
+
+						console.log("TESTING");
+						var prev = -100000, i = 0;
+						$.each(data, function(key,value){
+							var total = parseInt(value.r1) + parseInt(value.r2*2) + parseInt(value.r3*3);
+							if(prev != total){
+								i++;
+								prev = total;
+							}
+              var app = "<tr>"
+              if(value.sub == 1)
+                app = "<tr class=\"color\""
+							app += "<td>"+i+"</td><td class =\"clr\">"+value.name+"</td><td>" + value.r1 + "</td><td>" + value.r2 +"</td><td>" + value.r3 +"</td><td class=\"bol\">" + total +"</td></tr>"
+							if(value.tid != 20)
+								$('.leaderboard').append(app);
+						})
+					});
+				}, 1000);
+			})
+
+			var countDownDate = new Date("Jan 15, 2019 20:30:00").getTime();
+		    var x = setInterval(function() {
+
+		      var now = new Date().getTime();
+
+		      var distance = countDownDate - now;
+
+		      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+		      document.getElementById("count-down").innerHTML = ("0" + hours).slice(-2) + " : "
+		      + ("0" + minutes).slice(-2) + " : " + ("0" + seconds).slice(-2);
+
+		      if (distance < 0) {
+		        clearInterval(x);
+		        document.getElementById("count-down").innerHTML = "The hackathon is over.";
+		      }
+		    }, 1000);
+		</script>
+  </body>
+ </html>

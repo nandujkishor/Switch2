@@ -1,0 +1,116 @@
+* {
+    margin:0;
+    box-sizing: border-box;
+}
+body{
+    height: 100%;
+    width: 100%;
+    font-family: 'Source Sans Pro', sans-serif; 
+}
+
+.workshopContainer{
+	margin-left: 30px;
+	padding-top: 100px;
+}
+
+.heading{
+	display: block;
+	font-size: 20px;
+}
+
+.filter{
+	position: absolute;
+	font-size: 20px;
+	top: 100px;
+	right: 33px;
+}
+.login{
+	right: 33px;
+	font-size: 12px;
+	padding: 3px 12px;
+}
+.gridContainer{
+	margin-top: 30px;
+	margin-right: 34px;
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	grid-gap: 20px;  
+}
+
+.workshopItem{
+	height: 50vh;
+	/*background-color: #4832f0;*/
+	cursor: pointer;
+	display: grid;
+	grid-template-rows: 70% 30%;
+	grid-template-columns: 100%; 
+	grid-template-areas: 
+	"image"
+	"details";
+}
+.w-t-image{
+	grid-area: image;
+}
+
+.heading,
+.w-t-description h1{
+	font-size: 20px;
+	/* font-family: Neue Haas Grotesk Text Pro Bold; */
+	font-weight: 400;
+	text-transform: capitalize;
+}
+
+@media only screen and (min-width: 550px) {
+	.login{
+		right: 46px;
+	}
+	.filter{
+		right: 46px;
+	}
+	.gridContainer{
+		margin-right: 48px;
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.login{
+		right: 56px;
+		font-size: 16px;
+		padding: 4px 15px;
+	}
+	.heading, .filter{
+		font-size: 28px;
+	}
+	.workshopContainer{
+		margin-left: 58px;
+	}
+    .gridContainer{
+		margin-right: 58px;
+		grid-template-columns: repeat(3, 1fr);
+	}
+	.workshopItem{
+		height: 35vw;
+	}
+	.filter{
+		right: 56px;
+	}
+}
+
+@media only screen and (min-width: 1000px){
+	.login{
+		right: 66px;
+	}
+	.filter{
+		right: 66px;
+	}
+    .gridContainer{
+		margin-top: 30px;
+		margin-right: 68px;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+	}
+	.workshopItem{
+		height: 25vw;
+	}
+}

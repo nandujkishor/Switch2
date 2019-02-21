@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+
+    <title>Exhibitions | Vidyut</title>
+
+    <meta name="theme-color" content="#000">
+    <meta name="msapplication-navbutton-color" content="#000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="/static/fonts/fonts.css">
+    <link rel="stylesheet" href="/static/css/menu.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/static/js/mobile-check.js"></script>
+    <script src="/static/js/navbar.js"></script>
+    <script src="/static/js/login.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.header').css('background', '#000');
+        })
+    </script>
+    
+    <style>
+    	* {
+    		margin: 0;
+    		padding: 0;
+    		box-sizing: border-box;
+    	}
+    	.jumbotron {
+    		margin: 0 auto;
+    		max-width: 1000px;
+    	}
+    	body {
+    		background-color: black;
+    		color:white;
+    		/*padding: 20px;*/
+    		font-family: 'Neue Haas Grotesk Text Pro Bold', serif;
+    		font-weight: 400;
+    	}
+    	.types {
+    		display: grid;
+    		grid-template-rows: auto auto auto auto;
+    		grid-template-columns: auto;
+    		grid-template-areas: "one"
+    		"two"
+    		"three"
+    		"four";
+    	}
+    	h1 {
+    		font-size: 4em;
+    		font-family: 'Neue Haas Grotesk Text Pro Bold', serif;
+    		font-weight: 400;
+    		padding: 100px 0 0;
+    	}
+    	h3 {
+    		font-size: 2em;
+    	}
+    	.j-o {
+    		display: block;
+    		padding-bottom: 100px;
+    	}
+    	.t {
+    		/*max-width: 300px;*/
+    		width: 100%;
+    		height: 300px;
+    		padding: 20px;
+    	}
+    	.t1 {
+    		background-color: #FFCA37;
+    		grid-area: one;
+    	}
+    	.t2 {
+    		background-color: #353340;
+    		grid-area: two;	
+    	}	
+    	.t3 {
+    		background-color: #29065A;
+    		grid-area: three;
+    	}
+    	.t4 {
+    		background-color: #E9373F;
+    		grid-area: four;
+    	}
+    	.tt {
+    		max-width: 350px;
+    	}
+    	.tt span {
+    		line-height: 1.4em;
+    	}
+    	@media only screen and (min-width: 768px) {
+    		.types {
+    			grid-template-rows: auto auto;
+    			grid-template-columns: auto auto;
+    			grid-template-areas: "one two"
+    			"three four";
+    		}
+    		.t {
+
+    		}
+	</style>
+
+<!--     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"> -->
+</head>
+<body>
+	<div class="sideNav">
+      <div class="sideNavContents">
+        <ul class="nav">
+          <li id = "talks"><a class="talks" href="/talks/">Talks<span></span></a></li>
+          <li id = "concerts"><a class="concerts" href="/concerts/">Concerts<span></span></a></li>
+          <li id = "masterclass"><a class="masterclass" href="/exhibitions/">Exhibitions<span></span></a></li>
+          <li id = "workshops"><a class="workshops" href="/workshops">Workshops<span></span></a></li>
+          <li id = "contests"><a class="contests" href="/contests/">Contests<span></span></a></li>
+          <li id = "sponsors"><a class="sponsors" href="/sponsors/">Sponsors<span></span></a></li>
+        </ul>
+        <div class="social">
+          <a href="https://www.facebook.com/Vidyut.Multifest" target="_blank"><i class="fab fa-facebook-square"></i></a>
+          <a href="https://www.instagram.com/vidyutmultifest" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://twitter.com/VidyutMultifest" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.youtube.com/channel/UCrtm636yrNotuN7b8cDnMIA" target="_blank"><i class="fab fa-youtube"></i></a> 
+        </div>   
+      </div>
+
+        <div class="sideNavOverlay talksBG"></div>
+        <div class="sideNavOverlay concertsBG"></div>
+        <div class="sideNavOverlay masterclassBG"></div>
+        <div class="sideNavOverlay workshopsBG"></div>
+        <div class="sideNavOverlay contestsBG"></div>
+        <div class="sideNavOverlay sponsorsBG"></div>
+    </div>
+
+    <div class = "header">
+      <div class = "menuVidyut color-change">
+        <svg height = "20px" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 948.6667 135.1544"><title>v-text</title><path d="M84.3066,135.2315h-8.1L2.41.2364H33.189L80.3467,86.4532,127.3252.2364h30.7783Z"/><path d="M235.5049,135.2315H208.5063V.2364h26.9986Z"/><path d="M314.7056,135.2315V.2364h49.4975a67.4976,67.4976,0,1,1,0,134.9951Zm49.4975-26.999a40.4986,40.4986,0,1,0,0-80.9971h-22.499v80.9971Z"/><path d="M467.707.2364h31.8584l35.8184,57.2383L571.3828.2364h31.8584L548.8828,86.8135v48.418h-26.998V86.8135Z"/><path d="M768.8389,76.7335a58.4976,58.4976,0,1,1-116.9951,0V.2364h26.999V76.7335a31.4985,31.4985,0,1,0,62.997,0V.2364h26.9991Z"/><path d="M831.8418.2364H948.8379v26.999H903.84V135.2315h-26.999V27.2354h-44.999Z"/></svg>
+      </div>
+      <div class = "menu-button">
+        <div class = "bar1"></div><div class = "bar2"></div><div class = "bar3"></div>
+      </div>
+      <!-- <div class="login in-button">Login</div> -->
+    </div>
+
+	<div class="jumbotron">
+		<h1>Exhibitions</h1>
+		<span class="j-o">Enjoy the Bliss. Experience the hype. Excite your interest.</span>
+		<div class="types">
+			<div class="t t1">
+				<div class="tt">
+					<h3>Creative.</h3>
+					<span>Idea of creativity is a virtue that can hatch into magnificent happenings. Breath inspiration into creative 	ideas by glimpsing the artistic wonders of the present.</span>
+				</div>
+			</div>
+			<div class="t t2">
+				<div class="tt">
+					<h3>Governmental.</h3>
+					<span>Authorities are the leaders of today and an inspiration for the leaders of tomorrow. Experience the vast flair they possess and kindle yourself.</span>
+				</div>
+			</div>
+			<div class="t t3">
+				<div class="tt">
+					<h3>Non-Governmental.</h3>
+					<span>Work the magic of inspiration into your minds by observing the variety present. Enjoy the show and feel the mojo.</span>
+				</div>
+			</div>
+			<div class="t t4">
+				<div class="tt">
+					<h3>Schools and Colleges.</h3>
+					<span>Witness the early works of the next great minds of the world, as they showcase and calliber through their models and exhibits that can shake your minds and cause awe to your senses.</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

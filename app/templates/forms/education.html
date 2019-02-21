@@ -1,0 +1,323 @@
+<link rel="stylesheet" href="/static/css/education.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<div class ="form-container-full">
+  
+  <form class="st-form" novalidate>
+    
+    <h1>Please share a few details about your education.</h1>
+    <!-- <span>Please share a few details.</span> -->
+    <div>
+      <div class="degree" id="div-degree">
+        <label class="degree-choose" style="position: static">Degree</label>
+      </div>
+      <div class="degree-dropdown">
+          <a id="BTech.">BTech.</a>
+          <a id="BArch.">BArch.</a>
+          <a id="BEng.">BEng.</a>
+          <a id="BSc.">BSc.</a>
+          <a id="BDes.">BDes.</a>
+          <a id="BBA">BBA</a>
+          <a id="BEd.">BEd.</a>
+          <a id="BCA">BCA</a>
+          <a id="MTech.">MTech.</a>
+          <a id="MArch.">MArch.</a>
+          <a id="MEng.">MEng.</a>
+          <a id="MSc.">MSc.</a>
+          <a id="MBA">MBA</a>
+          <a id="MCA">MCA</a>
+          <a id="MEd.">MEd.</a>
+          <a id="MBBS">MBBS</a>
+          <a id="BDS">BDS</a>
+          <a id="BA">BA</a>
+          <a id="MA">MA</a>
+          <a id ="others">Others</a>
+        </div>
+    </div>
+    <div class="error" id="error-degree"></div>
+
+    <div class="float-label" style="margin-bottom: 0; margin-top: 20px" id="div-branch">
+        <div class="branch-dropdown">
+          <a id="1">Computer Science</a>
+          <a id="2">Computer Engineering</a>
+          <a id="3">Mathematics</a>
+          <a id="4">Biology</a>
+          <a id="5">Physics</a>
+          <a id="6">Chemistry</a>
+          <a id="7">Civil Engineering</a>
+          <a id="8">Mechanical Engineering</a>
+          <a id="9">Electrical Engineering</a>
+          <a id="10">Electrical and Electronics Engineering</a>
+          <a id="11">Electrical and Communications Engineering</a>
+          <a id="12">Biotechnology</a>
+          <a id="13">Business</a>
+          <a id="14">Social Work</a>
+          <a id="others">Others</a>
+        </div>
+       <input id="branch" name="branch" autocomplete="off" required type="text">
+       <label for="branch">Major</label>
+    </div>
+    <div class="error" id="error-branch"></div>
+
+    <div style="margin-top: 20px" id="div-year">
+      <div class="year">
+        <label class="year-choose" style="position: static">Year</label>
+      </div>
+      <div class="year-dropdown">
+        <a id="1">1st year</a>
+        <a id="2">2nd year</a>
+        <a id="3">3rd year</a>
+        <a id="4">4th year</a>
+        <a id="5">5th year</a>
+      </div>
+    </div> 
+    <div class="error" id="error-year"></div>
+
+    <div class="float-label" style="margin-top: 20px; margin-bottom: 0" id="div-college">
+        <div id="myDropdown" class="dropdown-content">
+          <!-- {% for college in colleges %}
+          <a id="{{ college.id }}">{{ college.name }}</a>
+          {% endfor %} -->
+          <a id="1">Amrita School of Engineering, Amritapuri</a>
+          <a id="2">Amrita School of Arts & Sciences, Amritapuri</a>
+          <a id="3">Amrita School of Biotechnology, Amritapuri</a>
+          <a id="4">Amrita School of Ayurveda, Amritapuri</a>
+          <a id="5">Amrita School of Businness, Amritapuri</a>
+          <!-- <a id="0">My college is not in the list</a> -->
+        </div>
+       <input id="college" name="college" autocomplete="off" required type="text">
+       <label for="college">Institution</label>
+    </div>
+    <div class="error" id="error-college"></div>
+
+    <div class="float-label college-m" style="margin-top: 20px">
+       <input id="college-m" name="college-m" autocomplete="off" required type="text">
+       <label for="college-m">Enter the name of your institution</label>
+    </div>
+    
+    <div class = "action-button">
+      <input id="submit" type="submit" name="submit" value="Proceed">
+      
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277bd;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+    </div>
+
+  </form>
+
+</div>
+
+<script>
+  
+  $(document).ready(function(){
+    console.log(window.sessionStorage.getItem('origin'));
+    if(isMobile() == false){
+      $(".dropdown-content, .degree-dropdown, .branch-dropdown, .year-dropdown").niceScroll({
+        zindex: 9999,
+        cursorcolor:'#A9A9A9',
+        cursorborder:'none',
+        cursorborderradius:0,
+      });
+    }
+
+    var college_id, degree, branch, year;
+    
+    $('#submit').click(function(e){
+
+      $('.loading').css('visibility', 'visible');
+
+      $('.float-label').removeClass('error-field');
+      $('.error').css('display', 'none');
+      
+      console.log("Posting education form");
+
+      $.ajax({
+        type: "POST",
+        url: "/forms/education/",
+        data:{ 
+          csrf_token: "{{ form.csrf_token._value() }}",
+          id: id,
+          course: degree,
+          major: branch,
+          year: year,
+          college: parseInt(college_id),
+          institution: $('#college-m').val(),
+        },
+        success: function(data){
+          
+          $('.loading').css('visibility', 'hidden');
+
+          if(data != "Success"){
+
+            if(data.hasOwnProperty('course')){
+              $('#div-degree').addClass('error-field');
+              $('#error-degree').css('display', 'block')
+              $('#error-degree').html(data['course'][0]);
+            }
+
+            if(data.hasOwnProperty('major')){
+              $('#div-branch').addClass('error-field');
+              $('#error-branch').css('display', 'block')
+              $('#error-branch').html(data['major'][0]);
+            }
+
+            if(data.hasOwnProperty('year')){
+              $('#div-year').addClass('error-field');
+              $('#error-year').css('display', 'block')
+              $('#error-year').html(data['year'][0]);
+            }
+
+            if(data.hasOwnProperty('college')){
+              $('#div-college').addClass('error-field');
+              $('#error-college').css('display', 'block')
+              $('#error-college').html(data['college'][0]);
+            }
+
+          }
+          else{
+
+            $('.container').css('opacity','0');
+            
+            console.log("education = " + data);
+
+            window.setTimeout(function(){
+
+              origin = window.sessionStorage.getItem('origin');
+              if(origin == null){
+                origin = "/home";
+                window.location.href="/home";
+              }
+
+              window.setTimeout(function(){
+                $('.container').css('opacity','1');
+              }, 600);
+
+              window.location.href = origin;
+            
+              //   $('.container').load(origin, function(){
+            //     if(origin == "/home")
+            //       window.history.pushState('/',null, '/');
+            //     else
+            //       window.history.pushState(origin,null,origin);
+
+            //     $('.header').css('display', 'block');
+                
+            //     window.setTimeout(function(){
+            //       $('.container').css('opacity','1');
+            //     }, 600);
+              
+            //   });
+
+            }, 500)
+
+          }
+        }
+
+      });
+
+      e.preventDefault();
+    
+    });
+
+    $('body').click(function(e){
+      if($(e.target).closest('#div-degree').length)
+        return;
+      else
+        $(".degree-dropdown").removeClass("show");
+
+      if($(e.target).closest('#div-branch').length)
+        return;
+      else
+        $(".branch-dropdown").removeClass("show");
+
+      if($(e.target).closest('#div-year').length)
+        return;
+      else
+        $(".year-dropdown").removeClass("show");
+
+      if($(e.target).closest('#div-college').length)
+        return;
+      else
+        $(".dropdown-content").removeClass("show");
+ 
+    })
+
+    $('#college').focusin(function(){
+      $("#myDropdown").addClass("show");
+      $(".degree-dropdown, .branch-dropdown, .year-dropdown").removeClass("show");
+    });
+
+    $('#branch').focusin(function(){
+      $(".branch-dropdown").addClass("show");
+      $(".degree-dropdown, #myDropdown, .year-dropdown").removeClass("show");
+    });
+
+    $('.year').click(function(){
+      $('.year-dropdown').addClass("show")
+      $(".degree-dropdown, #myDropdown, .branch-dropdown").removeClass("show");
+    });
+
+    $('.degree').click(function(){
+      $(".degree-dropdown").addClass("show");
+      $("#myDropdown, .branch-dropdown, .year-dropdown").removeClass("show");
+    });
+
+    $('#branch').keyup(function(){
+      
+      filter = $("#branch").val().toUpperCase();
+      
+      $('.branch-dropdown').find('a').each(function(){
+          if($(this).text().toUpperCase().indexOf(filter) > -1 || $(this).attr('id') == 0)
+            $(this).css('display','')
+          else
+            $(this).css('display','none');
+      });
+
+    });
+
+    $('#college').keyup(function(){
+      
+      filter = $("#college").val().toUpperCase();
+      
+      $('#myDropdown').find('a').each(function(){
+          if($(this).text().toUpperCase().indexOf(filter) > -1 || $(this).attr('id') == 0)
+            $(this).css('display','')
+          else
+            $(this).css('display','none');
+      });
+
+    });
+
+    $('#myDropdown a').click(function(){
+      college_id = $(this).attr('id');
+      $('#college').val($(this).text());
+      $("#myDropdown").removeClass("show");
+      if(college_id == 0)
+        $('.college-m').css('display','block');
+      else
+        $('.college-m').css('display','none');
+    });
+
+    $('.branch-dropdown a').click(function(){
+      branch = $(this).text();
+      $('#branch').val(branch);
+      $(".branch-dropdown").removeClass("show");
+    });
+
+    $('.year-dropdown a').click(function(){
+      year = $(this).attr('id');
+      $('.year label').html($(this).text());
+      $('.year-choose').css('opacity', '1');
+      $('.year-choose').css('color', '#000');
+      $(".year-dropdown").removeClass("show");
+    });
+
+    $('.degree-dropdown a').click(function(){
+      degree = $(this).text();
+      $('.degree label').html(degree);
+      $('.degree-choose').css('opacity', '1');
+      $('.degree-choose').css('color', '#000');
+      $(".degree-dropdown").removeClass("show");
+    });
+
+  });
+
+</script>

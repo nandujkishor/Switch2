@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+.college-m {
+  display: none;
+}
+
+.degree, .year, .gender, .type, .tsize, .crt{
+  display: flex;
+  padding-left: 10px;
+  align-items: center;
+  height: 64px;
+  width: 100%;
+  border: 2px solid #0277BD;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.tsize{
+  border:2px solid #c3088b;
+}
+
+.degree label, .year label{
+	cursor: pointer;
+}
+
+.degree-dropdown, 
+.type-dropdown, 
+.branch-dropdown, 
+.dropdown-content, 
+.year-dropdown, 
+.gender-dropdown,
+.tsize-dropdown,
+.crt-dropdown{
+  display: none;
+  position: absolute;
+  z-index: 10;
+  background-color: #f6f6f6;
+  border: 1px solid #ddd;
+  overflow: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.degree-dropdown, 
+.year-dropdown, 
+.gender-dropdown, 
+.type-dropdown,
+.tsize-dropdown,
+.crt-dropdown{
+  height: 200px;
+  max-width: 450px;
+  width: 100%;	
+}
+
+.type-dropdown{
+  height: 84px;
+}
+
+.gender-dropdown, .crt-dropdown{
+	height: 125px;
+}
+
+.branch-dropdown{
+  height: 100px;
+  width: 101%;
+  top:62px;
+  left: -2px;
+}
+
+.dropdown-content{
+  top: -254px;
+  width: 101%;
+  height: 252px;
+  left: -2px;
+}
+
+.dropdown-content a, 
+.type-dropdown a, 
+.degree-dropdown a, 
+.branch-dropdown a, 
+.year-dropdown a, 
+.gender-dropdown a,
+.tsize-dropdown a,
+.crt-dropdown a{
+  z-index: 15;
+  color: #000;
+  padding: 12px 16px;
+  font-size: 14px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.dropdown-content a:hover,
+.type-dropdown a:hover, 
+.degree-dropdown a:hover, 
+.branch-dropdown a:hover, 
+.year-dropdown a:hover, 
+.gender-dropdown a:hover,
+.tsize-dropdown a:hover,
+.crt-dropdown a:hover{
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}

@@ -1,0 +1,26 @@
+{% extends "dash/vol-dash.html" %}
+{% block content %}
+
+  <h1>Add Talk</h1>
+  <form action="" method="post" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    <span class="f-q">{{ form.title.label }}</span>
+    {{ form.title() }}
+    <span class="f-q">{{ form.description.label }}</span>
+    {{ form.description() }}
+    <span class="f-q">{{ form.person.label }}</span>
+    {{ form.person() }}
+    <span class="f-q">{{ form.picture.label }}</span>
+    {{ form.picture() }}
+    <span class="f-q">{{ form.personpicsm.label }}</span>
+    {{ form.personpicsm() }}
+    <span class="f-q">{{ form.personpiclr.label }}</span>
+    {{ form.personpiclr() }}
+    <span class="f-q">{{ form.amount.label }}</span>
+    {{ form.amount() }}
+
+    {{ form.submit() }}
+
+  </form>
+{% endblock %}

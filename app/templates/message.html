@@ -1,0 +1,72 @@
+<style>
+	.thank{
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	h1{
+		font-size: 20px;
+	}
+	input[type="submit"]{
+	    height: 40px;
+	    margin-top: 10px;
+	    padding: 5px;
+	    width: 100px; 
+	    background: #0277BD;
+	    color: #fff;
+	    border: none;
+	    cursor: pointer;
+	    transition: 0.2s;
+	    border: 2px solid #0277BD;
+  }
+  input[type="submit"]:hover{
+    background: transparent;
+    color: #0277BD;
+  }
+  @media only screen and (min-width: 768px){
+    input[type="submit"]{
+      margin-top: 20px;
+      padding: 5px; 
+      width: 100px;
+    }
+    h1{
+		font-size: 32px;
+	}
+  }
+</style>
+<div class = "thank">
+	<div style = "width: 50%">
+		<h1>{{message}}</h1>
+		<input type="submit" id = "submit" value = "Continue">
+	</div>
+</div>
+<script>
+
+	$(document).ready(function(){
+		var redirect = "{{redirect}}"
+		console.log(redirect);
+		u = "{{ u }}";
+		// console.log(u);
+		if(u != "none")
+			window.history.pushState(u,null, u);
+
+		$('#submit').click(function(e){
+			
+			if(redirect == "/hack")
+				window.history.pushState("/hack",null, "/hack");
+			else
+				window.history.pushState("/",null, "/");
+
+			$('.container').css('opacity', '0');
+			window.setTimeout(function(){
+				$('.container').load(redirect, function(){
+					window.setTimeout(function(){
+                  		$('.container').css('opacity','1');
+                	}, 600);
+				});
+            }, 500);
+		})
+	})
+</script>

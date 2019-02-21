@@ -1,0 +1,68 @@
+<form class="add-form" novalidate>
+    <h1>Add Talk</h1>
+    <div class="float-label">
+        <input id="title" name="title" required autocomplete="off" type="text">
+        <label for="title">Title</label>
+    </div>
+    <div class="textarea-border">
+        <textarea id="description" placeholder="Description" name="description"></textarea>
+    </div>
+    <div class="float-label">
+        <input id="person" name="person" required autocomplete="off" type="text">
+        <label for="person">Person</label>
+    </div>
+    <!-- <div>
+        <input type = "file" id="image" name="image">
+    </div>
+    <div>
+        <input type = "file" id="image" name="image">
+    </div>
+    <div id="div-image">
+        <input type = "file" id="image" name="image">
+    </div> -->
+    <div class="float-label">
+        <input id="amount" name="amount" required autocomplete="off" type="text">
+        <label for="amount">Amount</label>
+    </div>
+
+    <div class="action-button">
+        <input id="submit" type="submit" name="submit" value="Add">
+        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class="loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277bd;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+    </div>
+    
+</form>
+<script>
+    $(document).ready(function() {
+
+        $('#submit').click(function(e) {
+
+            $('.loading').css('visibility', 'visible');
+
+            e.preventDefault();
+
+            $.ajax({
+                type: "POST",
+                url: "/api/events/talks/",
+                data: {
+                    csrf_token: "{{ form.csrf_token._value() }}",
+                    title: $('#title').val(),
+                    description: $('#description').val(),
+                    person: $('#person').val(),
+                    amount: $('#amount').val(),
+                },
+                success: function(data) {
+
+                    $('.add-overlay').toggleClass('open');
+                    $(".eventItems").empty();
+                    loadData("talks");
+                    window.history.pushState(
+                        '/dash/events/talks', 
+                        null, 
+                        '/dash/events/talks'
+                    );
+                }
+            });
+
+        });
+});
+</script>

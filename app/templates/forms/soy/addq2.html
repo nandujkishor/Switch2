@@ -1,0 +1,117 @@
+
+<link rel="stylesheet" href="/static/css/education.css">
+
+<div class ="form-container-full">
+
+  <form class="st-form" novalidate>
+
+    <h1>Question content</h1>
+    <!-- <span>Please share a few details.</span> -->
+
+    <div id = "div-qtitle">
+      <textarea id = "qtitle" name="qtitle" placeholder = "Question"></textarea>
+    </div>
+    <div class="error" id="error-qtitle"></div>
+
+    <div id="div-image">
+      <input type = "file" id="image" name="image">
+    </div>
+    <div class="error" id="error-image"></div>
+
+    <div id = "div-qdesc">
+      <textarea id = "qdesc" placeholder="Question description"></textarea>
+    </div>
+
+    <div class = "action-button">
+      <input id="submit" type="submit" name="submit" value="Proceed">
+
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277bd;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+    </div>
+
+  </form>
+
+</div>
+
+<script>
+
+  $(document).ready(function(){
+
+    var qid;
+
+    console.log(qid);
+
+    $('#submit').click(function(e){
+
+      $('.loading').css('visibility', 'visible');
+
+      $('.float-label').removeClass('error-field');
+      $('.error').css('display', 'none');
+
+      e.preventDefault();
+
+      console.log($('#image')[0]);
+
+      var Fdata = new FormData($('.st-form')[0]);
+      console.log(Fdata);
+      Fdata.append('csrf_token', "{{ form.csrf_token._value() }}");
+      Fdata.append('qid', $.cookie("qid"));
+
+      $.ajax({
+        type: "POST",
+        url: "/dash/soy/amr/test/questions/add/content/",
+        processData: false,
+        contentType: false,
+        data: Fdata,
+        success: function(data){
+
+          $('.loading').css('visibility', 'hidden');
+
+          var flag = 0;
+
+          if(data.hasOwnProperty('qtitle')){
+            $('#div-qtitle').addClass('error-field');
+            $('#error-qtitle').css('display', 'block')
+            $('#error-qtitle').html(data['qtitle'][0]);
+            flag = 1;
+          }
+
+          if(data.hasOwnProperty('image')){
+            $('#div-image').addClass('error-field');
+            $('#error-image').css('display', 'block')
+            $('#error-image').html(data['image'][0]);
+            flag = 1;
+          }
+
+          if(!flag){
+
+            var url3;
+
+            if($.cookie("qtype") == 1)
+              url3 = '/dash/soy/amr/test/questions/add/objective/';
+            else
+              url3 = '/dash/soy/amr/test/questions/add/subjective/';
+
+            $('.addQues').css('opacity','0');
+
+            window.setTimeout(function(){
+
+              $('.addQues').load(url3, function(){
+
+                window.history.pushState(url3,null,url3);
+
+                window.setTimeout(function(){
+                  $('.addQues').css('opacity','1');
+                }, 600);
+
+              });
+
+            }, 500)
+
+          }
+
+        }
+      });
+
+    });
+  });
+</script>

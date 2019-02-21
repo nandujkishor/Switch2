@@ -1,0 +1,106 @@
+{% extends "dash/dash.html" %}
+
+{% block body %}
+<link rel="stylesheet" href="/static/css/dash/lounge.css">
+  <div class="lounge-container">
+    <div class="d-jumbotron">
+      <div class="d-j-one">
+        <h1>Good {{ greeting }}, {{ user.fname }}!</h1>
+        <span>Find all Vidyut internal services in your personalised dashboard. Access depends on the privileges you are granted. Let's together build a wonderful event. </span>
+      </div>
+      <div class="d-j-ext">
+        <span><a target="_blank" href="https://outlook.office.com">Mail</a></span>
+        <span><a target="_blank" href="https://tasks.office.com/am.amrita.edu/en-GB/Home/Planner/">Planner</a></span>
+        <span><a target="_blank" href="https://analytics.google.com/analytics/web/#/report-home/a39906050w190972248p186977354">Analytics</a></span>
+        <span><a target="_blank" href="https://console.aws.amazon.com/console/home">AWS</a></span>
+      </div>
+    </div>
+    <div class="d-j-notif">
+      <span>{{ notification }}</span>
+    </div>
+    <!-- <hr> -->
+    <div class="d-l-serv">
+      <div class="d-l-so">
+        <h4><a href="">Mission Control</a></h4>
+        <span>Controls for the web platform. Controls for user facing systems including front, registrations and dash. Sudo access level required.</span>
+      </div>
+      <div class="d-l-so disabled">
+        <h4><a href="">Services Health</a></h4>
+        <span>Shows error logs and manages service alerts. Displays status of services. Sudo access required.</span>
+        <span class="notif">In development</span>
+      </div>
+      <div class="d-l-so">
+        <h4><a href="/dash/soy/amr/test/questions">Quiz Manager</a></h4>
+        <span>Student of the Year second round Online test management system. For question set managers. Access level of 6 of more required to view. Access of 7 or more required to edit.</span>
+      </div>
+      <div class="d-l-so">
+        <h4><a href="/dash/events">Events Dashboard</a></h4>
+        <span>Events management dash for events team, with control on workshops and general competitions.</span>
+        <span class="notif">In development</span>
+      </div>
+      <div class="d-l-so">
+        <h4><a href="/dash/pss/">Public Spamming service</a></h4>
+        <span>Group user email service. For important announcements and other stuff. Sudo access level required.</span>
+      </div>
+      <div class="d-l-so">
+        <h4><a href="/dash/accounts/">Accounts control</a></h4>
+        <span>For viewing, upgrading, downgrading and / or disabling users. Access level of 8 or more required for viewing user list. Sudo access level required for complete features.</span>
+      </div>
+      <div class="d-l-so disabled">
+        <h4><a href="/dash/accounts/">Ambassador Management</a></h4>
+        <span>For viewing, approving and contacting Campus Ambassador applicants and selected Ambassadors.</span>
+        <span class="notif">In development</span>
+      </div>
+      <div class="d-l-so disabled">
+        <h4><a href="">Vallet Engine Room</a></h4>
+        <span>Vallet service control center with high level manager control, reports and logs.</span>
+        <span class="notif">Under consideration</span>
+      </div>
+      <div class="d-l-so disabled">
+        <h4><a href="">Vallet Manager</a></h4>
+        <span>Dashboard for managing Vallet services. With multiple access controls based on usage.</span>
+        <span class="notif">Under consideration</span>
+      </div>
+      <div class="d-l-so disabled">
+        <h4><a href="">Accomodation Control</a></h4>
+        <span>Platform for accomodation management and allocation, with controls.</span>
+        <span class="notif">In Development</span>
+      </div>
+      <div class="d-l-so disabled">
+        <h4><a href="">Payments Dash</a></h4>
+        <span>Payments Gateway control, statistics and issue management for incoming attendee payments.</span>
+        <span class="notif">In Development</span>
+      </div>
+      <div class="d-l-so disabled">
+        <h4><a href="">Support Desk</a></h4>
+        <span>Attendee support management. Query based system with alerts to managers in charge of the services.</span>
+        <span class="notif">Under Consideration</span>
+      </div>
+    </div>
+    <div class="d-ext">
+    </div>
+    <hr>
+    <div class="d-analytics">
+      <div>
+        <h3>{{ ucount }}</h3>
+        <span>Accounts</span>
+      </div>
+      <div>
+        <h3>{{ ccount }}</h3>
+        <span>Colleges</span>
+      </div>
+      <div>
+        <h3>{{ acount }}</h3>
+        <span>SOY Regs.</span>
+      </div>
+      <div>
+        <h3>{{ bcount }}</h3>
+        <span>Ambassors.</span>
+      </div>
+      <div class="support">
+        <span>In case of technical queries regarding the web services (Vidyut), please contact Aswanth <a href="tel:+919496434142">(+91 94964 34142)</a>. If there's a unicorn on this page, contact Nandakishore <a href="tel:+919061146679">(+91 90611 46679)</a>. Web services is under KrishnaDev <a href="tel:+917907529751">(+91 79075 29751)</a>.</span>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

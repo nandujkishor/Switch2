@@ -1,0 +1,139 @@
+<div class="form-container-full">
+
+    <form class="st-form" novalidate>
+
+        <h1>Objective</h1>
+
+        <div class="float-label" id="div-pscore">
+            <input id="pscore" name="pscore" required autocomplete="off" type="text">
+            <label for="pscore">Positive score</label>
+        </div>
+        <div class="error" id="error-pscore"></div>
+
+        <div class="float-label" id="div-nscore">
+            <input id="nscore" name="nscore" required autocomplete="off" type="text">
+            <label for="nscore">Negative score</label>
+        </div>
+        <div class="error" id="error-nscore"></div>
+
+        <div class="float-label" id="div-op1">
+            <input id="op1" name="op1" required autocomplete="off" type="text">
+            <label for="op1">Option 1</label>
+        </div>
+        <div class="error" id="error-op1"></div>
+
+        <div class="float-label" id="div-op2">
+            <input id="op2" name="op2" required autocomplete="off" type="text">
+            <label for="op2">Option 2</label>
+        </div>
+        <div class="error" id="error-op2"></div>
+
+        <div class="float-label" id="div-op3">
+            <input id="op3" name="op3" required autocomplete="off" type="text">
+            <label for="op3">Option 3</label>
+        </div>
+
+        <div class="float-label" id="div-op4">
+            <input id="op4" name="op4" required autocomplete="off" type="text">
+            <label for="op4">Option 4</label>
+        </div>
+
+        <div class="float-label" id="div-op5">
+            <input id="op5" name="op5" required autocomplete="off" type="text">
+            <label for="op5">Option 5</label>
+        </div>
+
+        <div class="float-label" id="div-ans">
+            <input id="ans" name="ans" required autocomplete="off" type="text">
+            <label for="ans">Answer</label>
+        </div>
+        <div class="error" id="error-ans"></div>
+
+        <div class="action-button">
+            <input id="submit" type="submit" name="submit" value="Proceed">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class="loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277bd;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+        </div>
+
+    </form>
+
+</div>
+
+<script>
+    $(document).ready(function() {
+
+        $('#submit').click(function(e) {
+
+            $('.loading').css('visibility', 'visible');
+
+            $('.float-label').removeClass('error-field');
+            $('.error').css('display', 'none');
+
+            e.preventDefault();
+
+            $.ajax({
+                type: "POST",
+                url: "/dash/soy/amr/test/questions/add/objective/",
+                data: {
+                    csrf_token: "{{ form.csrf_token._value() }}",
+                    qid: $.cookie("qid"),
+                    pscore: parseInt($('#pscore').val()),
+                    nscore: parseInt($('#nscore').val()),
+                    op1: $('#op1').val(),
+                    op2: $('#op2').val(),
+                    op3: $('#op3').val(),
+                    op4: $('#op4').val(),
+                    op5: $('#op5').val(),
+                    ans: parseInt($('#ans').val()),
+                },
+                success: function(data) {
+
+                    $('.loading').css('visibility', 'hidden');
+
+                    if (data != "Success") {
+                        if (data.hasOwnProperty('pscore')) {
+                            $('#div-pscore').addClass('error-field');
+                            $('#error-pscore').css('display', 'block')
+                            $('#error-pscore').html(data['pscore'][0]);
+                        }
+
+                        if (data.hasOwnProperty('nscore')) {
+                            $('#div-nscore').addClass('error-field');
+                            $('#error-nscore').css('display', 'block')
+                            $('#error-nscore').html(data['nscore'][0]);
+                        }
+
+                        if (data.hasOwnProperty('op1')) {
+                            $('#div-op1').addClass('error-field');
+                            $('#error-op1').css('display', 'block')
+                            $('#error-op1').html(data['op1'][0]);
+                        }
+
+                        if (data.hasOwnProperty('op2')) {
+                            $('#div-op2').addClass('error-field');
+                            $('#error-op2').css('display', 'block')
+                            $('#error-op2').html(data['op2'][0]);
+                        }
+
+                        if (data.hasOwnProperty('ans')) {
+                            $('#div-ans').addClass('error-field');
+                            $('#error-ans').css('display', 'block')
+                            $('#error-ans').html(data['ans'][0]);
+                        }
+
+                    } else {
+
+                        $('.addQues').css('opacity', '0');
+                        $('.addOverlay').toggleClass('open');
+
+                        loadData("questions");
+
+                        window.history.pushState('/dash/soy/amr/test/questions', null, '/dash/soy/amr/test/questions')
+
+                    }
+
+                }
+            });
+
+        });
+    });
+</script>

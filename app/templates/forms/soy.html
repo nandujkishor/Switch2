@@ -1,0 +1,141 @@
+<link rel="stylesheet" href="/static/css/soy.css">
+<div class ="form-container-full">
+  
+  <form class="st-form" novalidate>
+    
+    <h1>Please share a few details.</h1>
+    <!-- <span>Please share a few details.</span> -->
+    <div>
+      <div class="house" id = "div-house">
+        <label style="position: static">House</label>
+      </div>
+      <div class="house-dropdown">
+        <a id="1">Chinmayi</a>
+        <a id="2">Jyothirmayi</a>
+        <a id="3">Amritamayi</a>
+        <a id="4">Anandamayi</a>
+        <a id="5">I don't know</a>
+      </div>
+    </div>
+    <div class="error" id="error-house"></div>
+    
+    <div class="float-label" style="margin-top: 20px" id = "div-fear">
+       <input id="fear" name="year" required autocomplete="off" type="text">
+       <label for="fear">What is your biggest fear?</label>
+    </div> 
+    <div class="error" id="error-fear"></div>
+    
+    <div class = "action-button">
+      <input id="submit" type="submit" name="submit" value="Proceed">
+
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277bd;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+    </div>
+
+  </form>
+
+</div>
+
+<script>
+  
+  $(document).ready(function(){
+    
+    if(isMobile() == false){
+      $(".house-dropdown").niceScroll({
+        zindex: 9999,
+        cursorcolor:'#A9A9A9',
+        cursorborder:'none',
+        cursorborderradius:0,
+      });
+    }
+
+    $('body').click(function(e){
+      if($(e.target).closest('#div-house').length)
+        return;
+      else
+        $(".house-dropdown").removeClass("show");
+    })
+
+    var house;
+    
+    $('#submit').click(function(e){
+
+      $('.loading').css('visibility', 'visible');
+      
+      console.log("Posting soy registeration form");
+
+      $.ajax({
+        type: "POST",
+        url: "/soy/compete/",
+        data:{ 
+          csrf_token: "{{ form.csrf_token._value() }}",
+          id: id,
+          house: house,
+          fear: $('#fear').val(),
+        },
+        success: function(data){
+          
+          $('.loading').css('visibility', 'hidden');
+
+          if(data != "Success"){
+            if(data.hasOwnProperty('house')){
+              $('#div-house').addClass('error-field');
+              $('#error-house').css('display', 'block')
+              $('#error-house').html(data['house'][0]);
+            }
+
+            if(data.hasOwnProperty('fear')){
+              $('#div-fear').addClass('error-field');
+              $('#error-fear').css('display', 'block')
+              $('#error-fear').html(data['fear'][0]);
+            }
+          }
+          else{
+
+            $('.container').css('opacity','0');
+            // console.log("soyregister = " + data);
+
+            window.setTimeout(function(){
+              
+              if(origin == null){
+                origin = '/index'
+                window.history.pushState('/',null, '/');
+              }
+              else{
+                window.history.pushState(origin,null,origin);
+              }
+
+              $('.container').load('/soy/register/success/', function(){
+                
+                window.history.pushState('/soy/register/success',null, '/soy/register/success');
+
+
+                window.setTimeout(function(){
+                  $('.container').css('opacity','1');
+                }, 600);
+              
+              });
+
+            }, 500)
+          }
+        }
+
+      });
+
+      e.preventDefault();
+    
+    });
+
+    $('.house').click(function(){
+      $(".house-dropdown").addClass("show");
+    });
+
+    $('.house-dropdown a').click(function(){
+      house = $(this).attr('id');
+      console.log(house);
+      $('.house label').html($(this).text());
+      $(".house-dropdown").removeClass("show");
+    });
+
+  });
+
+</script>

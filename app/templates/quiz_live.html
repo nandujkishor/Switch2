@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+
+    <meta name="theme-color" content="#000">
+    <meta name="msapplication-navbutton-color" content="#000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- <meta name="google-signin-client_id" content="727153101463-709hp9lcjelc2ps4evtb4ojutbq1sotl.apps.googleusercontent.com"> -->
+
+    <title>SOTY</title>
+
+    <!-- Scripts -->
+
+    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="/static/js/mobile-check.js"></script>
+
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://cloud.typenetwork.com/projects/2949/fontface.css/" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/fonts/fonts.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/quiz_live.css">
+
+    <script>
+        $(document).ready(function() {
+
+            // console.log("READY");
+            // $.getJSON("/soy/amr/test/questions/", function(data) {
+            //     var qn = 0;
+            //     console.log(data);
+            //     if(data[qn].qset == 1)
+            //         $('.objective').addClass('show');
+            //     else
+            //         $('.subjective').addClass('show');
+            // });
+
+        })
+    </script>
+</head>
+
+<body>
+
+    <div class="container" style="opacity: 1">
+        <div class="questions">
+
+            <!-- <span class="meta">Question 1 of 36</span> -->
+
+            <div class="wrapper">
+
+                <div class = "qn">
+                    This is gonna be the question ? 
+                </div>
+
+                <div class = "subjective">
+                    <div class="float-label" id="div-ans" style="width: 450px">
+                        <input id="ans" name="ans" autocomplete="off" required type="text">
+                        <label for="ans">Answer</label>
+                     </div>
+                     <div class="error" id="error-ans"></div>
+                </div>
+                
+                <div class = "Objective" style="display: none;">
+                    
+                </div>
+            
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<link rel="stylesheet" href="/static/css/education.css">
+
+<div class ="form-container-full">
+  
+  <form class="st-form" novalidate>
+    
+    <h1>Add question</h1>
+    <!-- <span>Please share a few details.</span> -->
+
+    <div>
+      <div class="type" id="div-type">
+        <label style="position: static">Question type</label>
+      </div>
+      <div class="type-dropdown">
+        <a id="1">Objective</a>
+        <a id="2">Subjective</a>
+      </div>
+    </div>
+    <div class="error" id="error-type"></div>
+
+    <div class="float-label" style="margin-top: 20px;" id="div-qset">
+       <input id="qset" name="qset" required autocomplete="off" type="text">
+       <label for="qset">Question set</label>
+    </div>
+    <div class="error" id="error-qset"></div>
+
+    <div class = "action-button">
+      <input id="submit" type="submit" name="submit" value="Proceed">
+      
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277bd;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+    </div>
+
+  </form>
+
+</div>
+
+<script>
+  
+  $(document).ready(function(){
+    
+    var type;
+
+    if(isMobile() == false){
+      $(".type-dropdown").niceScroll({
+        zindex: 9999,
+        cursorcolor:'#A9A9A9',
+        cursorborder:'none',
+        cursorborderradius:0,
+      });
+    }
+
+    $('body').click(function(e){
+      if($(e.target).closest('#div-type').length)
+        return;
+      else
+        $(".type-dropdown").removeClass("show");
+    })
+
+    $('.type').click(function(){
+      $(".type-dropdown").addClass("show");
+    });
+
+    $('.type-dropdown a').click(function(){
+      type = $(this).attr('id');
+      $('.type label').html($(this).text());
+      $(".type-dropdown").removeClass("show");
+    });
+
+    $('#submit').click(function(e){
+
+      $('.loading').css('visibility', 'visible');
+
+      $('.float-label').removeClass('error-field');
+      $('.error').css('display', 'none');
+
+      e.preventDefault();
+
+      $.ajax({
+        type: "POST",
+        url: "/dash/soy/amr/test/questions/add/start/",
+        data:{ 
+          csrf_token: "{{ form.csrf_token._value() }}",
+          qtype: type,
+          qset: parseInt($('#qset').val()),
+        },
+        success: function(data){
+
+          $('.loading').css('visibility', 'hidden');
+
+          var flag = 0;
+
+          if(data.hasOwnProperty('qtype')){
+            $('#div-type').addClass('error-field');
+            $('#error-type').css('display', 'block')
+            $('#error-type').html(data['qtype'][0]);
+            flag = 1;
+          }
+
+          if(data.hasOwnProperty('qset')){
+            $('#div-qset').addClass('error-field');
+            $('#error-qset').css('display', 'block')
+            $('#error-qset').html(data['qset'][0]);
+            flag = 1;
+          }
+
+          if(!flag){
+            
+            $('.addQues').css('opacity','0');
+            
+            window.setTimeout(function(){
+
+              var url2 = '/dash/soy/amr/test/questions/add/content/';
+
+              $('.addQues').load(url2, function(){
+
+                $.cookie("qid", data);
+                $.cookie("qtype", type);
+
+                window.history.pushState(url2,null,url2);
+                
+                window.setTimeout(function(){
+                  $('.addQues').css('opacity','1');
+                }, 600);
+              
+              });
+
+            }, 500)
+
+          }
+
+        }
+      });
+
+    });
+  });
+</script>

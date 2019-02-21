@@ -1,0 +1,218 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+
+<form class="add-form" novalidate>
+    <h1>Add Contest</h1>
+    <div class="float-label">
+        <input id="title" name="title" required autocomplete="off" type="text">
+        <label for="title">Title</label>
+    </div>
+    <div style="margin-top: 20px" id="div-department">
+        <div class="department drop">
+            <label style="position: static">Department</label>
+        </div>
+        <div class="department-dropdown dropdown">
+            <a id="1">CSE</a>
+            <a id="2">ECE</a>
+            <a id="3">ME</a>
+            <a id="4">PHY</a>
+            <a id="5">CHEM</a>
+            <a id="6">ENG</a>
+            <a id="7">BIOTECH</a>
+            <a id="9">COMMERCE</a>
+            <a id="10">CIVIL</a>
+            <a id="11">EEE</a>
+            <a id="12">GAMING</a>
+            <a id="13">MATHS</a>
+            <a id="14">OTHERS</a>
+        </div>
+    </div>
+    <div class="textarea-border" style="margin-top: 20px">
+        <textarea style="width: 100%;" id="short" placeholder="Short description" name="short"></textarea>
+    </div>
+    <div class="textarea-border" style="margin-top: 20px">
+        <textarea style="width: 100%;" id="about" placeholder="Long description" name="about"></textarea>
+    </div>
+    <div class="float-label">
+        <div id="rules" class="markdown"></div>
+        <div id="toolbar"></div>
+    </div>
+    <div class="float-label">
+        <div id="prereq" class="markdown"></div>
+        <div id="toolbar"></div>
+    </div>
+    <div class="float-label">
+        <input id="team_limit" name="team_limit" required autocomplete="off" type="text">
+        <label for="team_limit">Team size (No. of members)</label>
+    </div>
+    <div class="float-label">
+        <input id="prize1" name="prize1" required autocomplete="off" type="text">
+        <label for="prize1">First prize</label>
+    </div>
+    <div class="float-label">
+        <input id="prize2" name="prize1" required autocomplete="off" type="text">
+        <label for="prize2">Second prize</label>
+    </div>
+    <div class="float-label">
+        <input id="prize3" name="prize3" required autocomplete="off" type="text">
+        <label for="prize3">Third prize</label>
+    </div>
+    <div class="float-label">
+        <input id="fee" name="fee" required autocomplete="off" type="text">
+        <label for="fee">Fee</label>
+    </div>
+    <div class="float-label">
+        <input id="support" name="support" required autocomplete="off" type="text">
+        <label for="support">VID of support volunteer</label>
+    </div>
+    <div class="float-label">
+        <input id="incharge" name="incharge" required autocomplete="off" type="text">
+        <label for="incharge">VID of incharge</label>
+    </div>
+    <div class="action-button">
+        <input id="submit" type="submit" name="submit" value="Add">
+        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class="loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277bd;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+    </div>
+    
+</form>
+<script>
+    $(document).ready(function() {
+        dept = ['CSE', 'ECE', 'ME', 'Physics', 'Chemisty', 'English', 'Biotech', 'Comm.', 'Civil', 'EEE', 'Gaming', 'Maths', 'Others']
+        
+        if(sessionStorage.getItem('mode') == 2){
+
+            $.getJSON('/api/events/'+current_page+'/'+sessionStorage.getItem('did'), function(data){
+                console.log(data);
+                department = data.department;
+                $('.department label').html(dept[data.department - 1]);
+                $('#title').val(data.title);
+                $('#fee').val(data.fee);
+                $('#prize1').val(data.prize1);
+                $('#prize2').val(data.prize2);
+                $('#prize3').val(data.prize3);
+                $('#team_limit').val(data.team_limit);
+                $('#short').val(data.short);
+                $('#about').val(data.about);
+                $('#incharge').val(data.incharge);
+                $('#support').val(data.support);
+                console.log(rules);
+                rules.container.firstElementChild.innerHTML = data.rules;
+                prereq.container.firstElementChild.innerHTML = data.prereq;
+
+            });
+        
+        }
+
+        var toolbarOptions = [
+            ['bold', 'italic', 'underline', 'strike'],
+            ['blockquote', 'code-block'],
+            [{ 'header': 1 }, { 'header': 2 }],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],
+            [{ 'indent': '-1'}, { 'indent': '+1' }],
+            [{ 'direction': 'rtl' }],
+            [{ 'size': ['small', false, 'large', 'huge'] }],
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+            ['clean']
+        ];
+
+        var options_rules = {
+            debug: 'info',
+            modules: {
+            toolbar: toolbarOptions
+            },
+            placeholder: 'Rules',
+            theme: 'snow'
+        };
+        var options_prereq = {
+            debug: 'info',
+            modules: {
+            toolbar: toolbarOptions
+            },
+            placeholder: 'Pre-requirements',
+            theme: 'snow'
+        };
+
+        var rules = new Quill('#rules', options_rules);
+        var prereq = new Quill('#prereq', options_prereq);
+
+        var department;
+
+        $('body').click(function(e){
+            if($(e.target).closest('#div-department').length)
+                return;
+            $(".department-dropdown").removeClass("show-dropdown");
+        })
+        if(isMobile() == false){
+            $(".dropdown").niceScroll({
+                zindex: 9999,
+                cursorcolor:'#A9A9A9',
+                cursorborder:'none',
+                cursorborderradius:0,
+            });
+        }
+
+        $('.department').click(function(){
+            $('.department-dropdown').addClass("show-dropdown")
+        });
+
+        $('.department-dropdown a').click(function(){
+            department = $(this).attr('id');
+            $('.department label').html($(this).text());
+            $(".department-dropdown").removeClass("show-dropdown");
+        });
+
+        $('#submit').click(function(e) {
+
+            $('.loading').css('visibility', 'visible');
+
+            e.preventDefault();
+            
+            var req_type = "PUT";
+            if(sessionStorage.getItem('mode') == 1)
+                req_type = "POST";
+
+            $.ajax({
+                type: req_type,
+                url: "/api/events/contests/",
+                data: {
+                    csrf_token: "{{ form.csrf_token._value() }}",
+                    cid: sessionStorage.getItem('did'),
+                    title: $('#title').val(),
+                    short: $('#short').val(),
+                    about: $('#about').val(),
+                    prize1: parseInt($('#prize1').val()) || 0,
+                    prize2: parseInt($('#prize2').val()) || 0,
+                    prize3: parseInt($('#prize3').val()) || 0,
+                    incharge: parseInt($('#incharge').val()),
+                    support: parseInt($('#support').val()),
+                    team_limit: parseInt($('#team_limit').val()) || 0,
+                    department: department,
+                    prereq: prereq.root.innerHTML,
+                    rules: rules.root.innerHTML,
+                    fee: parseInt($('#fee').val()) || 0,
+                },
+                success: function(data) {
+
+                    sessionStorage.removeItem('did')
+                    sessionStorage.removeItem('mode')
+
+                    console.log(data);
+                    
+                    $('.add-overlay').toggleClass('open');
+                    $(".eventItems").empty();
+                    loadData("contests");
+                    window.history.pushState(
+                        '/dash/events/contests', 
+                        null, 
+                        '/dash/events/contests'
+                    );
+
+                }
+            });
+
+        });
+});
+</script>

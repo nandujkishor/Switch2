@@ -1,0 +1,165 @@
+<link rel="stylesheet" href="/static/css/education.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<div class ="form-container-full">
+  
+  <form class="st-form" novalidate>
+    
+    <h1>Complete your registration.</h1>
+    <!-- <span>Please share a few details.</span> -->
+    
+    <div class="float-label" id="div-fname">
+       <input id="fname" name="fname" autocomplete="off" required type="text">
+       <label for="fname">First Name</label>
+    </div>
+    <div class="error" id="error-fname"></div>
+
+    <div class="float-label" id="div-lname">
+       <input id="lname" name="lname" autocomplete="off" required type="text">
+       <label for="lname">Last Name</label>
+    </div>
+    <div class="error" id="error-lname"></div>
+
+    <div style="margin-top: 20px" id="div-gender">
+      <div class="gender">
+        <label class="gender-choose" style="position: static;">Gender</label>
+      </div>
+      <div class="gender-dropdown">
+        <a id="1">Male</a>
+        <a id="2">Female</a>
+        <a id="3">Others</a>
+      </div>
+    </div> 
+    <div class="error" id="error-gender"></div>
+
+    <div class="float-label" style="margin-top: 20px;" id="div-mobile">
+       <input id="mobile" name="mobile" required autocomplete="off" type="text">
+       <label for="mobile">Mobile Number</label>
+    </div>
+    <div class="error" id="error-mobile"></div>
+
+    <div class = "action-button">
+      <input id="submit" type="submit" name="submit" value="Proceed">
+
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277BD;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+    </div>
+
+  </form>
+
+</div>
+
+<script>
+  
+  $(document).ready(function(){
+
+    var gender;
+
+    if(isMobile() == false){
+      $(".gender-dropdown").niceScroll({
+        zindex: 9999,
+        cursorcolor:'#A9A9A9',
+        cursorborder:'none',
+        cursorborderradius:0,
+      });
+    }
+
+    $('body').click(function(e){
+      if($(e.target).closest('#div-gender').length)
+        return;
+      $(".gender-dropdown").removeClass("show");
+    })
+    
+    $('.gender').click(function(){
+      $('.gender-dropdown').addClass("show")
+    });
+
+    $('.gender-dropdown a').click(function(){
+      gender = $(this).attr('id');
+      $('.gender label').html($(this).text());
+      $('.gender-choose').css('opacity', '1');
+      $('.gender-choose').css('color', '#000');  
+      $(".gender-dropdown").removeClass("show");
+    });
+
+
+    $('#submit').click(function(e){
+
+      $('.loading').css('visibility', 'visible');
+      
+      $('.float-label').removeClass('error-field');
+      $('.error').css('display', 'none');
+      
+      console.log("Posting details form");
+
+      $.ajax({
+        type: "POST",
+        url: "/forms/details/",
+        data:{ 
+          csrf_token: "{{ form.csrf_token._value() }}",
+          id: id,
+          fname: $('#fname').val(),
+          lname: $('#lname').val(),
+          sex: gender,
+          email: email,
+          phno: parseInt($('#mobile').val())
+        },
+        success: function(data){
+
+          $('.loading').css('visibility', 'hidden');
+          // console.log("details = " + data);
+
+          if(data != "Success"){
+
+            if(data.hasOwnProperty('fname')){
+              $('#div-fname').addClass('error-field');
+              $('#error-fname').css('display', 'block')
+              $('#error-fname').html(data['fname'][0]);
+            }
+
+            if(data.hasOwnProperty('sex')){
+              $('#div-gender').addClass('error-field');
+              $('#error-gender').css('display', 'block')
+              $('#error-gender').html(data['sex'][0]);
+            }
+            
+            if(data.hasOwnProperty('lname')){
+              $('#div-lname').addClass('error-field');
+              $('#error-lname').css('display', 'block')
+              $('#error-lname').html(data['lname'][0]); 
+            }
+            
+            if(data.hasOwnProperty('phno')){
+              $('#div-mobile').addClass('error-field');
+              $('#error-mobile').css('display', 'block')
+              $('#error-mobile').html(data['phno'][0]);
+            }
+          
+          }
+          else{
+            $('.container').css('opacity','0');
+
+            window.setTimeout(function(){
+
+              $('.container').load('/forms/education/', function(){
+                window.history.pushState('/farer/education',null, '/farer/education');
+                
+                window.setTimeout(function(){
+                  $('.container').css('opacity','1');
+                }, 600);
+              
+              });
+
+            }, 500)  
+          }
+          
+        }
+
+      });
+
+      e.preventDefault();
+    
+    });
+
+  });
+
+</script>

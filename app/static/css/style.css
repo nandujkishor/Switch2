@@ -1,0 +1,57 @@
+/*****************************************************************************/
+/*
+/* Home
+/*
+/*****************************************************************************/
+
+/* Font imports */
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+/* End of imports */
+
+/* Global Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1em;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+}
+
+h1 {
+  margin-bottom: 1em;
+}
+
+p {
+  margin: 1em 0;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 1px;
+}
+
+a:hover {
+  color: black;
+  text-decoration: none;
+  border-bottom: 1px solid;
+}
+
+a:visited {
+  text-decoration: none;
+}

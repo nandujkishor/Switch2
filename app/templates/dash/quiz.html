@@ -1,0 +1,159 @@
+{% extends "dash/dash.html" %}
+
+{% block body %}
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/overlays.css">
+    <link rel="stylesheet" href="/static/css/dash/quiz.css">
+
+        <div class="left-sidebar desktop">  
+            <ul>
+                <li> <a id="quiz" class="sidebar">Quiz</a> </li>
+                <li> <a id="questions" class="sidebar">Questions</a> </li>
+            </ul>
+        </div>
+        <div class="drop-down mobile">
+            <ul class="sidebar">
+                    <li> <a id="quiz" class="sidebar">Quiz</a> </li>
+                    <li> <a id="questions" class="sidebar">Questions</a> </li>
+            </ul>
+        </div>
+                
+        <div class="dash-head drop-down-button">
+            <h1 style="text-transform: capitalize;">{{event}}</h1>
+            <svg class="mobile" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" height="10px" viewBox="0 0 30.3333 16.8333"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:3px;}</style></defs><title>drop-down</title><line class="cls-1" x1="1.7708" y1="1.25" x2="16.2708" y2="15.75"/><line class="cls-1" x1="14.1146" y1="15.75" x2="28.6146" y2="1.25"/></svg>
+        </div>
+        <div class="three-column">
+            <div class="dash-main">
+                <div class="eventItems"></div>
+            </div>
+        </div>
+
+        <div class="dashAdd">
+            <button class="addButton">Add</button>
+        </div>
+    </div>
+
+    <div class="full-page-overlay addOverlay">
+        <div class="closeAdd" style="cursor: pointer;">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 108.4167 50.1667"><defs><style>.cls-1{fill:none;stroke: #000;stroke-miterlimit:10;stroke-width:5px;}</style></defs><title>back-arrow</title><line class="cls-1" x1="3" y1="25.0833" x2="131" y2="25.0833"/><line class="cls-1" x1="1.3177" y1="26.1823" x2="26.3177" y2="1.1823"/><line class="cls-1" x1="1.4433" y1="24.2188" x2="26.1921" y2="48.9675"/></svg>
+        </div>
+        <div class="full-page-overlay-content">
+            <div class="addQues">
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    $(document).ready(function() {
+
+        current_page = "{{event}}";
+        $("#{{event}}").toggleClass('active');
+
+        $('.addButton').click(function() {
+            $('.addOverlay').toggleClass('open');
+            var url = '/dash/soy/amr/test/questions/add/start/';
+            $('.addQues').load(url, function() {
+                window.history.pushState({
+                    url: url
+                }, null, url);
+                window.setTimeout(function() {
+                    $('.addQues').css('opacity', '1');
+                }, 500);
+            })
+        });
+
+        $('.closeAdd').click(function() {
+            $('.addOverlay').toggleClass('open');
+            $('.addQues').css('opacity', '0');
+            window.history.pushState(
+                '/dash/soy/amr/test/'+current_page, 
+                null, 
+                '/dash/soy/amr/test/'+current_page
+            );
+        });
+
+        $('.sidebar').click(function() {
+            pageurl = $(this).attr('id');
+            if (pageurl != current_page) {
+                window.history.pushState({
+                    url: pageurl
+                }, null, pageurl);
+                changeData(pageurl);
+            }
+        });
+
+        window.onpopstate = function(e) {
+            console.log("TESTING " + e.state.url);
+            changeData(e.state.url);
+        };
+
+    });
+
+    function changeData(url) {
+
+        $(".eventItems").empty();
+        $('.dash-main h1').html(url);
+
+        if (url != current_page) {
+            $("#" + current_page).toggleClass('active');
+            $("#" + url).toggleClass('active');
+        }
+
+        current_page = url;
+
+        loadData(url);
+    }
+
+    function loadData(event) {
+        $.getJSON("/data/soy/d/test/" + event + "/list/", function(data) {
+            console.log(data);
+
+            var check;
+            if (event == "questions")
+                check = "qid";
+            else
+                check = "'quid'";
+            $.each(data, function(key, value) {
+
+                if ($("#" + value[check]).length == 0) {
+
+                    var qtype;
+
+                    if (value.qtype == 1)
+                        qtype = "Objective";
+                    else
+                        qtype = "Subjective";
+
+                    var large = '<div class="eventItem2" id = "' + value['qid'] + '"><div class="eventmeta">' + value.qset + ' </div> <div class ="eventdata"><span class = "talkHead">' + value['qtitle'] + '</span><br><span class="meta">' + qtype + '</span></div><a class="eventdelete"><img src="/static/images/icons/del.svg" height="25px"></a></div>';
+
+                    $(".eventItems").append(large);
+
+                }
+
+            });
+
+            $('.eventdelete').click(function(e) {
+                console.log("TESTING");
+                e.preventDefault();
+                var del_u = '/dash/soy/amr/test/questions/' + $(this).parent().attr('id') + '/delete/';
+                $.get(del_u, function() {
+                    $(".eventItems").empty();
+                    loadData(event);
+                });
+            })
+
+        });
+    }
+
+    $(window).on('load', function() {
+        window.history.pushState({
+            url: "{{event}}"
+        }, null, "{{event}}");
+        loadData("{{event}}");
+    });
+
+</script>
+{% endblock %}

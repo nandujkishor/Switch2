@@ -1,0 +1,7 @@
+venv/
+__pycache__
+migrations/
+instance/
+Configs/
+config.py
+.vscode

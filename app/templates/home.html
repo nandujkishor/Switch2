@@ -1,0 +1,205 @@
+<script src="/static/js/home.js"></script>
+
+<div class = "b1">   
+  <div class = "b1-container">
+    <span class = "counter"></span>
+    <div class = "down-arrow bounce">
+      <img src = "/static/images/icons/down_arrow.png" height="35px" />
+    </div>
+  </div>
+  <div class="dates">
+    MARCH 15 16 17
+  </div>  
+</div>
+
+  <div class = "b2">
+
+    <div class = "b2-left">
+        <div class = "description">
+          Vidyut, the national multilevel organized by Amrita  Vishwa Vidyapeetham, Amritapuri campus is an endeavor to provide a symposium for students across the country to showcase and grow. Vidyut delivers bountiful opportunities for students to develop their unique skills by witnessing and partaking in the plethora of workshops, talks and competitions.
+        </div>
+    </div>
+
+    <div class = "b2-right">
+      Amrita's<br>
+      Largest<br>
+      Multifest<br>
+    </div>
+
+  </div>
+  <div class="timer">
+      <center>
+      <li><span id="days"></span>Days</li>
+      <li><span id="hours"></span>Hours</li>
+      <li><span id="minutes"></span>Minutes</li>
+      <li><span id="seconds"></span>Seconds</li>
+      </center>
+    <script>
+    const second = 1000,
+      minute = second * 60,
+      hour = minute * 60,
+      day = hour * 24;
+
+    let countDown = new Date('Mar 15, 2019 00:00:00').getTime(),
+        x = setInterval(function() {
+
+          let now = new Date().getTime(),
+              distance = countDown - now;
+
+          document.getElementById('days').innerText = ("0" + Math.floor(distance / (day))).slice(-2),
+          document.getElementById('hours').innerText = ("0" + Math.floor((distance % (day)) / (hour))).slice(-2),
+          document.getElementById('minutes').innerText = ("0" + Math.floor((distance % (hour)) / (minute))).slice(-2),
+          document.getElementById('seconds').innerText = ("0" + Math.floor((distance % (minute)) / second)).slice(-2);
+          
+          //do something later when date is reached
+          //if (distance < 0) {
+          //  clearInterval(x);
+          //  'IT'S MY BIRTHDAY!;
+          //}
+
+        }, second)
+    </script>
+  </div>
+  <div class="b3">
+    <div class="one"><a href="/talks/"><span>Talks</span></a></div>
+    <div class="two"><a href="/exhibitions/"><span>Exhibtions</span></a></div>
+    <div class="three"><a href="/workshops/"><span>Workshops</span></a></div>
+    <div class="four"><a href="/contests/"><span>Contests</span></a></div>
+    <div class="five"><a href="/concerts/"><span>Concerts</span></a></div>
+  </div>
+  <div class="b7">
+    <div class="about">
+      <div class="b7Content">
+        <span class="b7h1">About Amrita</span>
+        <span class="b7m mobile">Amrita Vishwa Vidyapeetham is a multi-campus, multi-disciplinary research academia spread across five campuses with the headquarters at Ettimadai, Coimbatore, Tamil Nadu.</span>
+        <span class="b7m desktop">Amrita Vishwa Vidyapeetham is a multi-campus, multi-disciplinary research academia that is accredited 'A' by NAAC and is ranked as one of the best research institutions in India. Amrita is spread across five campuses in three states of India - Kerala, Tamil Nadu and Karnataka, with the headquarters at Ettimadai, Coimbatore, Tamil Nadu. Amrita Vishwa Vidyapeetham continuously collaborates with top US universities including Ivy league universities and top European universities for regular student exchange programs, and has emerged as one of the fastest growing institutions of higher learning in India. The institution is managed by the Mata Amritanandamayi Math.</span>
+        <h1>Follow</h1>
+        <span class="aSocial">
+          <a href="https://www.facebook.com/AmritaUniversity" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/vidyut.multifest" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/AMRITAedu" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.youtube.com/user/AmritaUniversity" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://in.linkedin.com/company/amrita-university" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.amrita.edu" target="_blank"><i class="fas fa-globe"></i></a>
+        </span>
+      </div>
+    </div>
+    <div class="test">
+        <div class="testContainer">
+      <div class="testimonials"> 
+        " Amrita Vishwa Vidyapeetham has a major role to play in transforming our society into a knowledge society through its unique value-added education system "
+        <span class="pTest"> Dr. A.P.J. Abdul Kalam</span>
+        <span class="pdTest">  Former President of India </span>
+      </div>
+      <div class="testimonials">
+        " This is not just another academy, but a very high quality, world-class institution, focusing on technology research, dealing with very concrete issues which have immediate applications "
+        <span class="pTest"> Prof.Muhammad Yunus</span>
+        <span class="pdTest">  Nobel Laureate </span>
+      </div>
+      <div class="testimonials">
+        " What makes Amrita students special? Western science leads to knowledge. Eastern sceince leads to understanding. Amrita has both Western and Eastern traditions in education. "
+        <span class="pTest"> Dr. Lee Hartwell</span>
+        <span class="pdTest">  Nobel Laureate </span>
+      </div>
+      <div class="testimonials">
+        " The wireless sensor system developed by Amrita Vishwa Vidyapeetham and successfully tested at Munnar in Kerala to forecast natural disasters like landslides can be replicated in similar disaster-prone areas elsewhere in the country "
+        <span class="pTest"> Dr. R. Chidambaram</span>
+        <span class="pdTest">  Principal Scientific Advisor to the Government of India </span>
+      </div>
+    </div>
+  </div>
+  <script>
+    var myIndex = 0;
+    carousel();
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("testimonials");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";  
+        }
+        myIndex++;
+        if (myIndex > x.length) {myIndex = 1}    
+        x[myIndex-1].style.display = "block";  
+        setTimeout(carousel, 8000);    
+    }
+  </script>
+  <div class="rank">
+    <div class="rankingDetails">
+      <center> <img src="/static/images/rank.png" class="rank1"> </center>
+      <span class="ndes desktop">
+        <b>Amrita Vishwa Vidyapeetham</b> has emerged as the 8th best university in the National Institutional Ranking Framework (NIRF) Ranking 2018. 
+      </span>
+      <span class="ndes mobile">
+        <b>Amrita </b> has emerged as the 8th best university in the NIRF Ranking 2018. 
+      </span>
+    </div>
+  </div>
+</div>
+<div class="filler">
+  <span>Like. Never. Before.</span>
+</div>
+<div class = "footer">
+  <div class="f-one">
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 948.6667 135.1544"><title>v-text</title><path d="M84.3066,135.2315h-8.1L2.41.2364H33.189L80.3467,86.4532,127.3252.2364h30.7783Z"/><path d="M235.5049,135.2315H208.5063V.2364h26.9986Z"/><path d="M314.7056,135.2315V.2364h49.4975a67.4976,67.4976,0,1,1,0,134.9951Zm49.4975-26.999a40.4986,40.4986,0,1,0,0-80.9971h-22.499v80.9971Z"/><path d="M467.707.2364h31.8584l35.8184,57.2383L571.3828.2364h31.8584L548.8828,86.8135v48.418h-26.998V86.8135Z"/><path d="M768.8389,76.7335a58.4976,58.4976,0,1,1-116.9951,0V.2364h26.999V76.7335a31.4985,31.4985,0,1,0,62.997,0V.2364h26.9991Z"/><path d="M831.8418.2364H948.8379v26.999H903.84V135.2315h-26.999V27.2354h-44.999Z"/></svg>
+  </div>
+  <div class="f-two">
+    <img src="/static/images/SAC2.png">
+  </div>
+  <div class="f-three">
+    <div class="f-social">
+      <a href="mailto:vidyut@am.amrita.edu">vidyut@am.amrita.edu</a><br>
+      <a href="https://www.facebook.com/Vidyut.Multifest" target="_blank"><i class="fab fa-facebook-square"></i></a>
+      <a href="https://www.instagram.com/vidyutmultifest" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://twitter.com/VidyutMultifest" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.youtube.com/channel/UCrtm636yrNotuN7b8cDnMIA" target="_blank"><i class="fab fa-youtube"></i></a> 
+    </div>
+  </div>
+</div>
+
+  <!-- <div class = "b4">
+    <div class = "b4-container">
+      <div class="b4-left">
+        VIDYUT
+      </div>
+      <div class = "b4-content">
+        <div class="soy-content">
+          <span class="soy-c-1">Student</span>
+          <span class="soy-c-2">of the</span>
+          <span class="soy-c-3">Year</span>
+          <p>
+            A unique opportunity to bring out the best in you - and win exciting prizes!
+            Contestants will be tested based on their thinking level, imagination skills, lateral thinking, creativity, manegerial skills, among others.
+          </p>
+        </div>
+        <div class = "action-button soy-button">
+          <input type = "submit" value = "Register" class = "soy-register">
+
+          <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 0 100 100" style = "margin-top: 0px;" class = "loading loading-soy"><defs><style>.cls-1{fill:none;stroke:#ffdf00;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- <div class = "b5">
+    <div class = "b5-container">
+      <div class = "b5-content">
+
+        <h1>College Ambassador Program</h1>
+        <p>Vidyut's Campus Ambassador program offers wonderful leadership opportunities for college students with attractive benefits and rewards. Get started to become the leader of your campus and the face of Vidyut at your institution. Receive free merchandises, workshop and concert passes along with tons of other gifts.</p>
+
+        <div class = "action-button">
+          <input type = "submit" value = "Register" class = "ca-register">
+          <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading loading-ca" style="margin-top: 0px;" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277bd;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+        </div>
+
+        <a href="https://amrita.edu" target="_blank"><img src="https://www.amrita.edu/sites/default/files/amrita-new-logo-color-10.png"></a>
+      </div>
+    </div>
+
+  </div> -->
+
+<script>
+  $(document).ready(function(){
+    b1();
+  });
+</script>

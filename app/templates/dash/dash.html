@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ title }}</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/dash/dash-style.css">
+    <link rel="stylesheet" href="/static/fonts/fonts.css">
+    
+    <!-- Scripts -->
+    <script src="/static/js/mobile-check.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="dash-logo">
+            <svg id="v-text" data-name="v-text" xmlns="http://www.w3.org/2000/svg" width="130px" viewBox="0 0 948.6667 135.1544"><title>v-text</title><path d="M84.3066,135.2315h-8.1L2.41.2364H33.189L80.3467,86.4532,127.3252.2364h30.7783Z"/><path d="M235.5049,135.2315H208.5063V.2364h26.9986Z"/><path d="M314.7056,135.2315V.2364h49.4975a67.4976,67.4976,0,1,1,0,134.9951Zm49.4975-26.999a40.4986,40.4986,0,1,0,0-80.9971h-22.499v80.9971Z"/><path d="M467.707.2364h31.8584l35.8184,57.2383L571.3828.2364h31.8584L548.8828,86.8135v48.418h-26.998V86.8135Z"/><path d="M768.8389,76.7335a58.4976,58.4976,0,1,1-116.9951,0V.2364h26.999V76.7335a31.4985,31.4985,0,1,0,62.997,0V.2364h26.9991Z"/><path d="M831.8418.2364H948.8379v26.999H903.84V135.2315h-26.999V27.2354h-44.999Z"/></svg>
+        </div>
+        <div class="dash-profile">
+            <span>{{user.fname}}</span>
+        </div>
+    {% block body %}
+    {% endblock %}
+</html>

@@ -1,0 +1,49 @@
+<!Doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<head>
+  <title>Vidyut | Login</title>
+  <meta name="google-signin-client_id" content="727153101463-709hp9lcjelc2ps4evtb4ojutbq1sotl.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  
+  <script>
+    function onSignIn(googleUser) {
+      $.ajax({
+        type: "POST",
+        url: "/farer/tokensignin/",
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        data: {idtoken: googleUser.getAuthResponse().id_token},
+        success: function(data){
+          window.location.href=""
+        }
+      });
+    }
+  </script>
+  
+  <style>
+    * {
+      margin:0;
+      box-sizing: border-box;
+    }
+    .container{
+      width: 100vw;
+      height: 100vh;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+    }
+
+  </style>
+
+</head>
+<body>
+  <div class = "container">
+    <div>
+      <h1>Please login to continue</h1><br>
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    </div>
+  </div>
+</body>
+</html>

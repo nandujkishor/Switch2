@@ -1,0 +1,196 @@
+* {
+    font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 1px solid;
+  color: rgb(10, 70, 90);
+}
+
+.lounge-container{
+  grid-area: body;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 2100px;
+  padding: 0 20px;
+}
+
+.container{
+	grid-template-rows: 60px auto;
+	grid-template-areas:
+	"logo logo profile"
+	"body body body";
+}
+
+.d-header {
+  padding: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  /*background: yellow;*/
+}
+
+.d-header img {
+  width: 120px;
+}
+
+.user {
+  display: block;
+}
+
+.d-header a {
+  border: 0;
+  color: black;
+}
+
+.d-jumbotron {
+  /*background: red;*/
+}
+
+.d-j-one {
+  padding: 5px 0 20px;
+  width: 100%;
+  max-width: 700px;
+}
+
+.d-jumbotron h1 {
+  font-weight: 400;
+  font-size: 40px;
+  padding-bottom: 15px;
+}
+
+.d-j-one span {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.d-j-ext {
+  display: flex;
+  justify-content: space-between;
+  max-width: 290px;
+}
+
+.d-j-ext span {
+  display: inline-block;
+  background-color: #e1e1e1;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.d-j-ext span:hover {
+  background-color: #d1d1d1;
+}
+
+.d-j-ext a {
+  border: 0;
+  color: black;
+}
+
+.d-j-notif span {
+  display: block;
+  background: #90ee90;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+hr {
+  color: #f1f1f1;
+}
+
+.d-l-serv {
+  padding-bottom: 30px;
+}
+
+.d-l-so {
+  padding-top: 20px;
+}
+
+.d-l-so h4 {
+  padding-bottom: 10px;
+}
+
+.disabled {
+  opacity: 0.7;
+}
+
+.notif {
+  text-transform: uppercase;
+  font-size: 14px;
+  padding-top: 5px;
+  display: block;
+}
+
+.d-analytics {
+  padding: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.d-analytics span, h3 {
+  display: block;
+}
+
+.d-analytics h3 {
+  font-size: 40px;
+}
+
+.d-analytics span {
+  font-size: 18px;
+}
+
+.support {
+  display: none;
+}
+
+@media screen and (min-width: 598px) {
+  .d-l-serv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .d-l-so {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+
+  .container{
+    grid-template-rows: 80px auto;
+  }
+
+  .lounge-container{
+    padding: 0px 40px;
+  }
+
+  .d-j-notif {
+    /*max-width: 700px;*/
+  }
+
+  .d-j-one h1 {
+    font-size: 46px;
+  }
+
+  .d-jumbotron {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .d-j-ext {
+    width: 100%;
+    max-width: 300px;
+    height: 60px;
+    margin-top: 100px;
+  }
+
+  .d-l-so {
+    width: 31%;
+  }
+
+  .support {
+    display: block;
+    max-width: 800px;
+  }
+}
