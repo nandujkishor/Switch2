@@ -130,8 +130,8 @@
       console.log("Posting education form");
 
       $.ajax({
-        type: "POST",
-        url: "/forms/education/",
+        type: "PUT",
+        url: "/farer/user/education/",
         data:{ 
           csrf_token: "{{ form.csrf_token._value() }}",
           course: degree,

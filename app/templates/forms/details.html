@@ -90,8 +90,8 @@
       console.log("Posting details form");
 
       $.ajax({
-        type: "POST",
-        url: "/forms/details/",
+        type: "PUT",
+        url: "/farer/user/details/",
         data:{ 
           csrf_token: "{{ form.csrf_token._value() }}",
           fname: $('#fname').val(),
@@ -143,7 +143,7 @@
 
             window.setTimeout(function(){
 
-              $('.container').load('/forms/education/', function(){
+              $('.container').load('/farer/education/', function(){
                 window.history.pushState('/farer/education',null, '/farer/education');
                 
                 window.setTimeout(function(){

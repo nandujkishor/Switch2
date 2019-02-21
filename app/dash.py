@@ -20,10 +20,10 @@ dash = Blueprint('dash', __name__)
 @dash.route('/lounge/')
 @login_required
 def lounge():
-    u = requests.get('http://localhost:3000/farer/user/count', headers={'Authorization':current_user.id})
-    u = u.json()
-    c = requests.get('http://localhost:3000/farer/registered/college/count', headers={'Authorization':current_user.id})
-    c = c.json()
+    users = requests.get('http://localhost:3000/farer/user/count', headers={'Authorization':current_user.id})
+    users = users.json()
+    colleges = requests.get('http://localhost:3000/farer/registered/college/count', headers={'Authorization':current_user.id})
+    colleges = colleges.json()
     now = datetime.datetime.now().hour
     print(now)
     notification = "Meeting on the Student of the Year schools edition at N203 this Sunday. All team members are requested to be present."
@@ -33,11 +33,11 @@ def lounge():
         s = "Afternoon"
     if now > 16:
         s = "Evening"
-        
+    print(current_user)
     return render_template('dash/lounge.html',
                             user=current_user,
-                            ucount=u.get('sub'),
-                            ccount=c.get('sub'),
+                            user_count=users.get('sub'),
+                            colleges_count=colleges.get('sub'),
                             greeting=s,
                             notification=notification,
                             title="Switch Lounge")
