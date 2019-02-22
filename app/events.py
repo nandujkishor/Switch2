@@ -32,11 +32,7 @@ def workshops_listing():
             'incharge': form.incharge.data,
         }
 
-        if request.method == 'POST':
-            workshops = requests.post('http://localhost:3000/events/workshops', json=payload, headers={'Authorization':current_user.id})
-        else:
-            workshops = requests.put('http://localhost:3000/events/workshops', json=payload, headers={'Authorization':current_user.id})
-
+        workshops = requests.post('http://localhost:3000/events/workshops', json=payload, headers={'Authorization':current_user.id})
         print(workshops.json().get('message'))  
 
         return jsonify(201)

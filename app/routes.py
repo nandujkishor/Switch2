@@ -65,7 +65,7 @@ def workshop_single(wid):
     if mode is not None:
         if mode == "1":
             workshop = requests.get('http://localhost:3000/events/workshops/'+str(wid))
-            print("WORKSHOP = ", workshop)
+            print("WORKSHOP = ", workshop.json())
             # support = User.query.filter_by(vid=workshop.support).first()
             if workshop is None:
                 return "404"
