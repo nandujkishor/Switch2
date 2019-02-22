@@ -100,16 +100,15 @@ def workshops_individual(id):
             'incharge': form.incharge.data,
         }
 
-        if request.method == 'POST':
-            workshops = requests.post('http://localhost:3000/events/workshops', json=payload, headers={'Authorization':current_user.id})
-        else:
-            workshops = requests.put('http://localhost:3000/events/workshops', json=payload, headers={'Authorization':current_user.id})
+        workshops = requests.put('http://localhost:3000/events/workshops/'+str(id), json=payload, headers={'Authorization':current_user.id})
 
         print(workshops.json().get('message'))  
 
-        return jsonify(201)
+        return jsonify(workshops.json().get('message'))
 
-    return "Error"
+    workshop = requests.get('http://localhost:3000/events/workshops/'+str(id))
+    print(workshop.json())
+    return jsonify(workshop.json())
 
 @events.route('/data/contests/<int:id>/', methods=['GET','DELETE','PUT'])
 def contests_individual(id):

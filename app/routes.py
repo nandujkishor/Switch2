@@ -95,8 +95,9 @@ def page_not_found(e):
 
 # URL services for Volunteers
 
-@app.route('/staff/login/')
-def volunteers_accounts_login():
-    if (current_user.is_authenticated):
-        return redirect('/dash/lounge/')
-    return render_template('accounts/login.html', link='/dash/lounge')
+@app.route('/staff/creation', methods=['GET', 'POST'])
+def staff_creation():
+
+    # if request.method == 'POST':
+
+    return render_template('dash/staff_creation.html')

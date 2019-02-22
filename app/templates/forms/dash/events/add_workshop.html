@@ -73,7 +73,9 @@
         
         if(sessionStorage.getItem('mode') == 2){
 
-            $.getJSON('/events/'+current_page+'/'+sessionStorage.getItem('did'), function(data){
+            console.log("Loading content for editing");
+
+            $.getJSON('/events/data/'+current_page+'/'+sessionStorage.getItem('did'), function(data){
                 console.log(data);
                 department = data.department;
                 $('.department label').html(dept[data.department - 1]);
@@ -85,9 +87,11 @@
                 $('#about').val(data.about);
                 $('#incharge').val(data.incharge);
                 $('#support').val(data.support);
-                console.log(rules);
-                rules.container.firstElementChild.innerHTML = data.rules;
-                prereq.container.firstElementChild.innerHTML = data.prereq;
+                console.log("RULES = " + data.rules);
+                if(data.rules != undefined)
+                    rules.container.firstElementChild.innerHTML = data.rules;
+                if(data.prereq != undefined)
+                    prereq.container.firstElementChild.innerHTML = data.prereq;
 
             });
         
@@ -160,15 +164,18 @@
 
             $('.loading').css('visibility', 'visible');
 
-            var req_type = "PUT";
-            if(sessionStorage.getItem('mode') == 1)
+            var req_type = "PUT", req_url = "/events/data/workshops/" + sessionStorage.getItem('did')+"/";
+            if(sessionStorage.getItem('mode') == 1){
                 req_type = "POST";
+                req_url = "/events/data/workshops/";
+            }
 
             console.log(req_type);
+            console.log(req_url);
 
             $.ajax({
                 type: req_type,
-                url: "/events/data/workshops/",
+                url: req_url,
                 data: {
                     csrf_token: "{{ form.csrf_token._value() }}",
                     wid: sessionStorage.getItem('did'),
@@ -187,7 +194,7 @@
                 success: function(data) {
 
                     console.log("Return = " + data);
-                    
+
                     sessionStorage.removeItem('mode');
                     sessionStorage.removeItem('did');
 

@@ -80,7 +80,7 @@
         
         if(sessionStorage.getItem('mode') == 2){
 
-            $.getJSON('/api/events/'+current_page+'/'+sessionStorage.getItem('did'), function(data){
+            $.getJSON('/events/data/'+current_page+'/'+sessionStorage.getItem('did'), function(data){
                 console.log(data);
                 department = data.department;
                 $('.department label').html(dept[data.department - 1]);
@@ -95,8 +95,10 @@
                 $('#incharge').val(data.incharge);
                 $('#support').val(data.support);
                 console.log(rules);
-                rules.container.firstElementChild.innerHTML = data.rules;
-                prereq.container.firstElementChild.innerHTML = data.prereq;
+                if(data.rules != undefined)
+                    rules.container.firstElementChild.innerHTML = data.rules;
+                if(data.rules != undefined)
+                    prereq.container.firstElementChild.innerHTML = data.prereq;
 
             });
         
@@ -170,13 +172,17 @@
 
             e.preventDefault();
             
-            var req_type = "PUT";
-            if(sessionStorage.getItem('mode') == 1)
+            var req_type = "PUT", req_url = "/events/data/contests/" + sessionStorage.getItem('did');
+            if(sessionStorage.getItem('mode') == 1){
                 req_type = "POST";
+                req_url = "/events/data/contests/";
+            }
+
+            console.log(req_type);
 
             $.ajax({
                 type: req_type,
-                url: "/api/events/contests/",
+                url: req_url,
                 data: {
                     csrf_token: "{{ form.csrf_token._value() }}",
                     cid: sessionStorage.getItem('did'),

@@ -4,7 +4,7 @@
   
   <form class="st-form" novalidate>
     
-    <h1>Complete your registration.</h1>
+    <h1>Staff creation</h1>
     <!-- <span>Please share a few details.</span> -->
     
     <div class="float-label" id="div-fname">
@@ -30,12 +30,6 @@
       </div>
     </div> 
     <div class="error" id="error-gender"></div>
-
-    <div class="float-label" style="margin-top: 20px;" id="div-mobile">
-       <input id="mobile" name="mobile" required autocomplete="off" type="text">
-       <label for="mobile">Mobile Number</label>
-    </div>
-    <div class="error" id="error-mobile"></div>
 
     <div class = "action-button">
       <input id="submit" type="submit" name="submit" value="Proceed">
@@ -91,7 +85,7 @@
 
       $.ajax({
         type: "POST",
-        url: "/farer/forms/details/",
+        url: "/staff/creation",
         data:{ 
           csrf_token: "{{ form.csrf_token._value() }}",
           fname: $('#fname').val(),
@@ -106,53 +100,10 @@
           console.log("Return value = " + data);
 
           if(data != "success"){
-
-            console.log("form addition failed");
-
-            if(data.hasOwnProperty('fname')){
-              $('#div-fname').addClass('error-field');
-              $('#error-fname').css('display', 'block')
-              $('#error-fname').html(data['fname'][0]);
-            }
-
-            if(data.hasOwnProperty('sex')){
-              $('#div-gender').addClass('error-field');
-              $('#error-gender').css('display', 'block')
-              $('#error-gender').html(data['sex'][0]);
-            }
-            
-            if(data.hasOwnProperty('lname')){
-              $('#div-lname').addClass('error-field');
-              $('#error-lname').css('display', 'block')
-              $('#error-lname').html(data['lname'][0]); 
-            }
-            
-            if(data.hasOwnProperty('phno')){
-              $('#div-mobile').addClass('error-field');
-              $('#error-mobile').css('display', 'block')
-              $('#error-mobile').html(data['phno'][0]);
-            }
           
           }
-          else{
-
-            console.log("form addition successful");
-            
-            $('.container').css('opacity','0');
-
-            window.setTimeout(function(){
-
-              $('.container').load('/farer/forms/education/', function(){
-                window.history.pushState('/farer/education',null, '/farer/education');
-                
-                window.setTimeout(function(){
-                  $('.container').css('opacity','1');
-                }, 600);
-              
-              });
-
-            }, 500)  
-          }
+          else  
+            window.location.href="/dash/lounge"
           
         }
 
