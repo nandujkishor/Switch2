@@ -1,12 +1,8 @@
-import os
-import csv
-import json
-import requests
-import datetime
+import os, csv, json, requests, datetime
+from config import Config
 from flask import render_template, flash, redirect, request, url_for, jsonify
 from app import app, login, mail
 from app.models import User
-from config import Config
 from app.forms import AddTalk, AddWorkshop, MoreData, CABegin, CAQues, test, EduData, AmrSOY
 from app.mail import farer_welcome_mail, amrsoy_reg_mail, testing_mail
 from app.more import get_user_ip
@@ -89,74 +85,6 @@ def workshop_single(wtitle):
             return render_template('individual-workshops.html', page="workshops-single", workshop = workshop, dept=dept, support=support)
     else:
         return render_template('workshops.html', open=True,wid=wtitle)
-
-# forms
-
-@app.route('/forms/details/', methods=['GET', 'POST'])
-@login_required
-# Time to migrate to APIs
-def forms_farer_more():
-    form = MoreData(request.form)
-
-    if request.method == 'POST':
-
-        print("Validation = " + str(form.validate()))
-        if form.validate() == False:
-            print(form.errors)
-            return jsonify(form.errors)
-        
-        payload = {
-            'fname': form.fname.data,
-            'lname': form.lname.data,
-            'phno': form.phno.data,
-            'sex': form.sex.data,
-            'detailscomp': True
-        }
-
-        reply = requests.put('http://localhost:3000/farer/user/details', json=payload,  headers={'Authorization':current_user.id})
-        print("REPLY FOR DETAILS ( PUT REQUEST ) ", reply.json())
-
-        return jsonify(reply.json().get('status'))
-
-    return render_template('forms/details.html', user=current_user, form=form)
-
-@app.route('/forms/education/', methods=['GET', 'POST'])
-@login_required
-def forms_farer_edu():
-    
-    form = EduData(request.form)
-    
-    #colleges missing
-
-    # colleges = requests.get('http://localhost:3000/farer/college/list')
-    # colleges = colleges.json()
-
-    if request.method == 'POST':
-
-        print("Validation = " + str(form.validate()))
-
-        if form.validate() == False:
-            print(form.errors)
-            return jsonify(form.errors)
-
-        payload = {
-            'course': form.course.data,
-            'major': form.major.data,
-            'college': form.college.data,
-            'institution': form.institution.data,
-            'year': form.year.data,
-            'educomp': True
-        }
-
-        reply = requests.put('http://localhost:3000/farer/user/education', json=payload, headers={'Authorization':current_user.id})
-        
-        print("REPLY FOR EDUCATION ( PUT REQUEST ) = ", reply.json())
-        
-        return jsonify(reply.json().get('status'))
-
-    #Add colleges
-    return render_template('forms/education.html', user=current_user, form=form)
-
 
 # Error handlers
 

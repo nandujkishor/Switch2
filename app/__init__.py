@@ -12,6 +12,8 @@ login = LoginManager(app)
 from app import routes, models
 from app.dash import dash
 from app.farer import farer
+from app.events import events
 
 app.register_blueprint(dash, url_prefix='/dash')
 app.register_blueprint(farer, url_prefix='/farer')
+app.register_blueprint(events, url_prefix='/events')

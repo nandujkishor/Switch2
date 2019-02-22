@@ -1,10 +1,10 @@
-import requests
-import datetime
+import requests, datetime
+from config import Config
 from app import app, login
 from flask import Blueprint, render_template, abort, redirect, request, url_for, jsonify
 from jinja2 import TemplateNotFound
-from config import Config
-from app.models import User # College, FarerLog
+from app.models import User
+from app.forms import AddTalk, AddWorkshop, MoreData, CABegin, CAQues, test, EduData, AmrSOY
 from app.mail import farer_welcome_mail, amrsoy_reg_mail, testing_mail
 from app.more import get_user_ip
 from werkzeug.utils import secure_filename
@@ -105,7 +105,7 @@ def loggingIn():
     
     return "ERROR OCCURED DURING LOGIN"
 
-@app.route('/data/farer/user/')
+@farer.route('/data/farer/user/')
 def farer_user():
 
     print("INISDE DATA FARER")
@@ -127,7 +127,7 @@ def farer_more():
 
     if u.get('detailscomp') is True:
         return render_template('index.html', page = "/home")
-    return render_template('index.html', page = "/forms/details")
+    return render_template('index.html', page = "/farer/forms/details")
 
 @farer.route('/education/')
 @login_required
@@ -139,7 +139,7 @@ def farer_education():
 
     if u.get('detailscomp') is None:
         return render_template('index.html',
-                                page = "/forms/details",
+                                page = "/farer/forms/details",
                                 uchange="/farer/details/")
     if u.get('educomp') is True:
         return render_template('index.html',
@@ -147,10 +147,73 @@ def farer_education():
                                 uchange="")
 
     return render_template('index.html',
-                            page = "/forms/education",
+                            page = "/farer/forms/education",
                             uchange="")
                             
-    # Rewrite to use the endpoints in Switch2 with contact to Hub
+@farer.route('/forms/details/', methods=['GET', 'POST'])
+@login_required
+def forms_farer_more():
+    form = MoreData(request.form)
+
+    if request.method == 'POST':
+
+        print("Validation = " + str(form.validate()))
+        if form.validate() == False:
+            print(form.errors)
+            return jsonify(form.errors)
+        
+        payload = {
+            'fname': form.fname.data,
+            'lname': form.lname.data,
+            'phno': form.phno.data,
+            'sex': form.sex.data,
+            'detailscomp': True
+        }
+
+        reply = requests.put('http://localhost:3000/farer/user/details', json=payload,  headers={'Authorization':current_user.id})
+        print("REPLY FOR DETAILS ( PUT REQUEST ) ", reply.json())
+
+        return jsonify(reply.json().get('status'))
+
+    return render_template('forms/details.html', user=current_user, form=form)
+
+@farer.route('/forms/education/', methods=['GET', 'POST'])
+@login_required
+def forms_farer_edu():
+    
+    form = EduData(request.form)
+    
+    #colleges missing
+
+    # colleges = requests.get('http://localhost:3000/farer/college/list')
+    # colleges = colleges.json()
+
+    if request.method == 'POST':
+
+        print("Validation = " + str(form.validate()))
+
+        if form.validate() == False:
+            print(form.errors)
+            return jsonify(form.errors)
+
+        payload = {
+            'course': form.course.data,
+            'major': form.major.data,
+            'college': form.college.data,
+            'institution': form.institution.data,
+            'year': form.year.data,
+            'educomp': True
+        }
+
+        reply = requests.put('http://localhost:3000/farer/user/education', json=payload, headers={'Authorization':current_user.id})
+        
+        print("REPLY FOR EDUCATION ( PUT REQUEST ) = ", reply.json())
+        
+        return jsonify(reply.json().get('status'))
+
+    #Add colleges
+    return render_template('forms/education.html', user=current_user, form=form)
+
 
 @farer.route('/delete/<id>/')
 # @level_required(15)
