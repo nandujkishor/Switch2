@@ -19,8 +19,8 @@ def load_user(id):
 
     print("Loading user")
     
-    data = requests.get('http://localhost:3000/farer/auth/user', headers={'Authorization':id})
-    staff = requests.get('http://localhost:3000/farer/staff', headers={'Authorization':id})
+    data = requests.get(Config.hub_url+'/farer/auth/user', headers={'Authorization':id})
+    staff = requests.get(Config.hub_url+'/farer/staff', headers={'Authorization':id})
     
     print(data.json())
     print(staff.json())
@@ -47,7 +47,7 @@ def f_login(request, point="None"):
             'sender': 1
         }
 
-        reply = requests.post('http://localhost:3000/farer/auth/user', json=payload)
+        reply = requests.post(Config.hub_url+'/farer/auth/user', json=payload)
         print(reply.json())
 
         return reply
@@ -89,19 +89,6 @@ def staff_required(team="all", level=4):
         return d_view
     return staff_required_wrap
 
-# @farer.route('/login/')
-# def login():
-#     next_page = request.args.get('next')
-#     if not next_page or url_parse(next_page).netloc != '':
-#         next_page = url_for('index')
-#     if (current_user.is_authenticated):
-#         return "Welcome " + current_user.fname
-#         if(current_user.datacomp == True_pa):
-#             return redirect(url_for(nextge))
-#         else:
-#             return render_template('index.html', page="forms/details")
-#     return render_template('accounts/login.html')
-
 @farer.route('/logout/')
 def logout():
     logout_user()
@@ -130,7 +117,7 @@ def loggingIn():
         reply_p = f_login(request).json()
         print("REPLY_P = ", reply_p)
 
-        reply_g = requests.get('http://localhost:3000/farer/auth/user', headers={'Authorization':reply_p.get('auth_token')})
+        reply_g = requests.get(Config.hub_url+'/farer/auth/user', headers={'Authorization':reply_p.get('auth_token')})
         reply_g = reply_g.json()
         print("Reply-G", reply_g)
         print(reply_g.get('data'))
@@ -149,7 +136,7 @@ def farer_user():
     print("INISDE DATA FARER")
 
     if current_user.is_authenticated:
-        u = requests.get('http://localhost:3000/farer/auth/user', headers={'Authorization':current_user.id})
+        u = requests.get(Config.hub_url+'/farer/auth/user', headers={'Authorization':current_user.id})
         print(u.json())
         return jsonify(u.json().get('data'))
 
@@ -159,7 +146,7 @@ def farer_user():
 @login_required
 def farer_more():
 
-    u = requests.get('http://localhost:3000/farer/auth/user', headers={'Authorization':current_user.id})
+    u = requests.get(Config.hub_url+'/farer/auth/user', headers={'Authorization':current_user.id})
     u = u.json().get('data')
     print(u)
 
@@ -171,7 +158,7 @@ def farer_more():
 @login_required
 def farer_education():
     
-    u = requests.get('http://localhost:3000/farer/auth/user', headers={'Authorization':current_user.id})
+    u = requests.get(Config.hub_url+'/farer/auth/user', headers={'Authorization':current_user.id})
     u = u.json().get('data')
     print(u)
 
@@ -208,7 +195,7 @@ def forms_farer_more():
             'detailscomp': True
         }
 
-        reply = requests.put('http://localhost:3000/farer/user/details', json=payload,  headers={'Authorization':current_user.id})
+        reply = requests.put(Config.hub_url+'/farer/user/details', json=payload,  headers={'Authorization':current_user.id})
         print("REPLY FOR DETAILS ( PUT REQUEST ) ", reply.json())
 
         return jsonify(reply.json().get('status'))
@@ -221,7 +208,7 @@ def forms_farer_edu():
     
     form = EduData(request.form)
 
-    colleges = requests.get('http://localhost:3000/college/list')
+    colleges = requests.get(Config.hub_url+'/college/list')
     colleges = colleges.json()
 
     if request.method == 'POST':
@@ -241,7 +228,7 @@ def forms_farer_edu():
             'educomp': True
         }
 
-        reply = requests.put('http://localhost:3000/farer/user/education', json=payload, headers={'Authorization':current_user.id})
+        reply = requests.put(Config.hub_url+'/farer/user/education', json=payload, headers={'Authorization':current_user.id})
         
         print("REPLY FOR EDUCATION ( PUT REQUEST ) = ", reply.json())
         
