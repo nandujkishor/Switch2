@@ -65,12 +65,11 @@ def workshop_single(wid):
     if mode is not None:
         if mode == "1":
             workshop = requests.get('http://localhost:3000/events/workshops/'+str(wid))
-            print("WORKSHOP = ", workshop.json())
+            workshop = workshop.json()
             # support = User.query.filter_by(vid=workshop.support).first()
             if workshop is None:
                 return "404"
-            print(workshop.json())
-            return render_template('individual-workshops.html', workshop = workshop.json().get('data'), dept=dept) # support=support)
+            return render_template('individual-workshops.html', workshop = workshop, dept=dept) # support=support)
     else:
         return render_template('workshops.html', open=True, wid=wid)
 
@@ -80,15 +79,14 @@ def contests_single(cid):
     
     if mode is not None:
         if mode == "1":
-            contest = Contests.query.filter_by(id=cid).first()
+            contest = requests.get('http://localhost:3000/events/contests/'+str(cid))
+            contest = contest.json()
             if contest is None:
                 return "404"
 
-            contest = requests.get('http://localhost:3000/events/contests/'+str(cid))
-            # support = User.query.filter_by(vid=contest.support).first()
-            return render_template('individual-contests.html', contest=contest.json().get('data'), dept=dept) # support=support)
+            return render_template('individual-contests.html', contest=contest, dept=dept) # support=support)
     else:
-        return render_template('contests.html', open=True,cid=cid)
+        return render_template('contests.html', open=True, cid=cid)
 
 # Error handlers
 
