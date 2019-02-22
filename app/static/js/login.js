@@ -26,7 +26,7 @@ function init(){
 
   function login() {
     console.log("onLogin");
-    $.getJSON("/farer/data/farer/user/", function(data){
+    $.getJSON("/farer/data/user/", function(data){
       console.log(data);
       if(data == false){
         console.log("Passing to Google login");
@@ -40,7 +40,7 @@ function init(){
 
   function checkLogin(){
     
-    $.getJSON("/farer/data/farer/user/", function(data){
+    $.getJSON("/farer/data/user/", function(data){
 
       console.log("Details completed? " + data['detailscomp']);
       console.log("Educational details completed? " + data['educomp']);

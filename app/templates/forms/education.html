@@ -108,7 +108,9 @@
 <script>
   
   $(document).ready(function(){
+
     console.log("origin = " + window.sessionStorage.getItem('origin'));
+    
     if(isMobile() == false){
       $(".dropdown-content, .degree-dropdown, .branch-dropdown, .year-dropdown").niceScroll({
         zindex: 9999,

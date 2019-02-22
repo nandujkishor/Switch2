@@ -136,25 +136,31 @@
         });
 
         window.onpopstate = function(e) {
-            console.log("TESTING " + e.state.url);
+            console.log("Popping " + e.state.url);
             changeData(e.state.url);
         };
 
     });
 
     function loadData(event) {
-        $.getJSON("/api/events/" + event + "/", function(data) {
+
+        console.log("Trying to load data");
+
+        $.getJSON("/events/data/" + event + "/", function(data) {
 
             $.each(data, function(key, value) {
-                // var large = '<div class="eventItem" id = "' + value.id + '"><div class="talkMeta"><span class="talkHead">' + value.title + '</span><br><span class="meta"> By ' + value.person + '</span></div> <a href="" class="talkEdit"><img src="/static/images/icons/edit.svg" height="25px"></a><div href="" class="talkDelete"><img src="/static/images/icons/del.svg" height="25px"></div></div>';
                 
-                var large;
+                var large = '<div class="eventItem2" id = "' + value.id + '"><div class="eventmeta">' + value.id + ' </div><div class ="eventdata"><span class = "talkHead">' + value.title + '</span><br>';
+
                 if(current_page == "talks")
-                    large = '<div class="eventItem2" id = "' + value.id + '"><div class="eventmeta">' + value.id + ' </div><div class ="eventdata"><span class = "talkHead">' + value.title + '</span><br><span class="meta"> By ' + value.person + '</span></div><div class="eventedit"><img src="/static/images/icons/edit.svg" height="25px"></div><div class="eventdelete"><img src="/static/images/icons/del.svg" height="25px"></div></div>';
+                    large = large + value.title + '<span class="meta"> By ' + value.person + '</span></div>';
                 else if(current_page == "workshops")
-                    large = '<div class="eventItem2" id = "' + value.id + '"><div class="eventmeta">' + value.id + ' </div><div class ="eventdata"><span class = "talkHead">' + value.title + '</span><br><span class="meta"> By ' + value.org + '</span></div><div class="eventedit"><img src="/static/images/icons/edit.svg" height="25px"></div><div class="eventdelete"><img src="/static/images/icons/del.svg" height="25px"></div></div>';
+                    large = large + '<span class="meta"> By ' + value.org + '</span></div>';
                 else if(current_page == "contests")
-                large = '<div class="eventItem2" id = "' + value.id + '"><div class="eventmeta">' + value.id + ' </div><div class ="eventdata"><span class = "talkHead">' + value.title + '</span><br><span class="meta"> By ' + value.department + '</span></div><div class="eventedit"><img src="/static/images/icons/edit.svg" height="25px"></div><div class="eventdelete"><img src="/static/images/icons/del.svg" height="25px"></div></div>';
+                    large = large + '<div class="eventItem2" id = "' + value.id + '"><div class="eventmeta">' + value.id + ' </div>';
+                
+                large = large + '<div class="eventedit"><img src="/static/images/icons/edit.svg" height="25px"></div><div class="eventdelete"><img src="/static/images/icons/del.svg" height="25px"></div></div>';
+
                 $(".eventItems").append(large);
             });
 
@@ -162,7 +168,7 @@
                 var did = $(this).parent().attr('id');
                 $.ajax({
                     type: "DELETE",
-                    url: "/api/events/" + current_page + "/" + did + "/",
+                    url: "/events/data/" + current_page + "/" + did + "/",
                     success: function(result) {
                         $('#'+did).remove();
                     }
@@ -197,14 +203,16 @@
                 $('.view-overlay').toggleClass('open');
                 var eid = $(this).parent().parent().attr('id');
 
-                $.getJSON('/api/events/'+current_page+'/'+eid+'/', function(data) {
+                $.getJSON('/events/data/'+current_page+'/'+eid+'/', function(data) {
                         window.history.pushState(
                             '/dash/events/'+current_page+'/'+eid, 
                             null, 
                             '/dash/events/'+current_page+'/'+eid
                         );
+
                         console.log("Recieved data for " + current_page + " ID = " + eid);
                         console.log(data);
+                        
                         var large;
                         if(current_page == "workshops")
                             large = '<div class = "v-form"><div class="v-entry"><span class="vf-label">Title</span>'+ data.title +'</div><div class="v-entry"><span class="vf-label">Short desciption</span>'+ data.short +'</div><div class="v-entry"><span class="vf-label">Department</span>'+ data.department +'</div><div class="v-entry"><span class="vf-label">Long desciption</span>'+ data.short +'</div><div class="v-entry"><span class="vf-label">Company</span>'+ data.org +'</div><div class="v-entry"><span class="vf-label">Fee</span>'+ data.fee +'</div></div>';
@@ -212,7 +220,8 @@
                             large = '<div class = "v-form"><div class="v-entry"><span class="vf-label">Title</span>'+ data.title +'</div><div class="v-entry"><span class="vf-label">Description</span>'+ data.descr +'</div><div class="v-entry"><span class="vf-label">Person</span>'+ data.person +'</div><div class="v-entry"><span class="vf-label">Fee</span>'+ data.amt +'</div></div>';
                         else if(current_page = "contests")
                             large = '<div class = "v-form"><div class="v-entry"><span class="vf-label">Title</span>'+ data.title +'</div><div class="v-entry"><span class="vf-label">Short description</span>'+ data.short +'</div><div class="v-entry"><span class="vf-label">Long description</span>'+ data.about +'</div><div class="v-entry"><span class="vf-label">First prize</span>'+ data.prize1 +'</div><div class="v-entry"><span class="vf-label">Second prize</span>'+ data.prize2 +'</div><div class="v-entry"><span class="vf-label">Third prize</span>'+ data.prize3 +'</div><div class="v-entry"><span class="vf-label">Total worth</span>'+ data.pworth +'</div><div class="v-entry"><span class="vf-label">Fee</span>'+ data.fee +'</div></div>';
-                        $('.view-overlay-content').append(large);
+                        
+                            $('.view-overlay-content').append(large);
                     }
                 );
 

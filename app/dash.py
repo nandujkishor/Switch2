@@ -1,14 +1,10 @@
-import os
-import csv
-import json
-import datetime
-import requests
+import os, csv, json, datetime, requests
 from app import app, login, mail
 from flask import Blueprint, render_template, abort, redirect, request, url_for, jsonify
 from jinja2 import TemplateNotFound
 from config import Config
 from app.forms import AddTalk, AddWorkshop, AddContest, MoreData, CABegin, CAQues, test, EduData, AmrSOY
-from app.models import User #CAData, College, Talks, Workshops, Contests, FarerLog, AmrSoyParticipant
+from app.models import User
 from app.mail import farer_welcome_mail, amrsoy_reg_mail, testing_mail
 from app.more import get_user_ip, access
 from werkzeug.utils import secure_filename

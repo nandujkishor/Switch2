@@ -21,7 +21,6 @@ def index():
 
 @app.route('/home', methods=['GET'])
 def home():
-    
     mode = request.args.get('m')
     print(mode)
 
@@ -39,9 +38,39 @@ def talks():
 def concert():
     return render_template('coming.html')
 
+@app.route('/exhibitions/')
+def exhibitions():
+    return render_template('exhibitions.html')
+
 @app.route('/contests/')
 def contests():
     return render_template('contests.html')
+
+@app.route('/workshops/')
+def workshops():
+    return render_template('workshops.html')
+
+@app.route('/sponsors/')
+def sponsors():
+    return render_template('sponsors.html')
+
+# Individual pages
+
+dept = ['CSE', 'ECE', 'ME', 'Physics', 'Chemisty', 'English', 'Biotech','BUG', 'Comm.', 'Civil', 'EEE', 'Gaming', 'Maths', 'Others']
+
+@app.route('/workshops/<wtitle>/')
+def workshop_single(wtitle):
+    mode = request.args.get('m') 
+    
+    if mode is not None:
+        if mode == "1":
+            workshop = requests.get('http://localhost:3000/events/workshop/'+str(wtitle))
+            support = User.query.filter_by(vid=workshop.support).first()
+            if workshop is None:
+                return "404"
+            return render_template('individual-workshops.html', page="workshops-single", workshop = workshop, dept=dept, support=support)
+    else:
+        return render_template('workshops.html', open=True,wid=wtitle)
 
 @app.route('/contests/<int:cid>/')
 def contests_single(cid):
@@ -54,37 +83,9 @@ def contests_single(cid):
                 return "404"
             
             support = User.query.filter_by(vid=contest.support).first()
-            dept = ['CSE', 'ECE', 'ME', 'Physics', 'Chemisty', 'English', 'Biotech', 'BUG', 'Comm.', 'Civil', 'EEE', 'Gaming', 'Maths', 'Others']
             return render_template('individual-contests.html', page="contests-single", contest=contest, dept=dept, support=support)
     else:
         return render_template('contests.html', open=True,cid=cid)
-
-@app.route('/workshops/')
-def workshops():
-    return render_template('workshops.html')
-
-@app.route('/exhibitions/')
-def exhibitions():
-    return render_template('exhibitions.html')
-
-@app.route('/sponsors/')
-def sponsors():
-    return render_template('sponsors.html')
-
-@app.route('/workshops/<wtitle>/')
-def workshop_single(wtitle):
-    mode = request.args.get('m') 
-    
-    if mode is not None:
-        if mode == "1":
-            workshop = Workshops.query.filter_by(id=wtitle).first()
-            support = User.query.filter_by(vid=workshop.support).first()
-            if workshop is None:
-                return "404"
-            dept = ['CSE', 'ECE', 'ME', 'Physics', 'Chemisty', 'English', 'Biotech','BUG', 'Comm.', 'Civil', 'EEE', 'Gaming', 'Maths', 'Others']
-            return render_template('individual-workshops.html', page="workshops-single", workshop = workshop, dept=dept, support=support)
-    else:
-        return render_template('workshops.html', open=True,wid=wtitle)
 
 # Error handlers
 

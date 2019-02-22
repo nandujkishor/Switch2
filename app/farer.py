@@ -105,7 +105,7 @@ def loggingIn():
     
     return "ERROR OCCURED DURING LOGIN"
 
-@farer.route('/data/farer/user/')
+@farer.route('/data/user/')
 def farer_user():
 
     print("INISDE DATA FARER")

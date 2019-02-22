@@ -85,8 +85,10 @@
     	
     	$(window).on('load', function(){
 
-        $.getJSON("/api/events/workshops/", function(data){
+        $.getJSON("/events/data/workshops/", function(data){
+
           console.log(data);
+          
           $.each(data, function(key, value) {
             var workshopItem = '<div class = "workshopItem" id = "' + value.id + '"><div style = "background: url(\'/static/images/wtw.jpg\'); background-size: cover; background-position: center;" class = "w-t-image"></div><div class = "w-t-description" style = "padding: 10px 0px 10px"><h1>' + value.title +'</h1><span class = "w-t-d-content">' + value.short +'</span></div></div>';
             $(".gridContainer").append(workshopItem);
@@ -143,7 +145,7 @@
 
           $('.login').click(function(){
             console.log("INSIDE LOGIN");
-            $.getJSON("/data/farer/user/", function(data){
+            $.getJSON("/farer/data/user/", function(data){
               console.log("DATA");
               console.log(data);
             })

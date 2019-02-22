@@ -84,8 +84,11 @@
     <script>
     	
     	$(window).on('load', function(){
-        $.getJSON("/api/events/contests/", function(data){
+        
+        $.getJSON("/events/data/contests/", function(data){
+          
           console.log(data);
+          
           $.each(data, function(key, value) {
             var workshopItem = '<div class = "workshopItem" id = "' + value.id + '"><div style = "background: url(\'/static/images/wtc.jpg\'); background-size: cover; background-position: center;" class = "w-t-image"></div><div class = "w-t-description" style = "padding: 10px 0px 10px"><h1>' + value.title +'</h1><span class = "w-t-d-content">' + value.short +'</span></div></div>';
             $(".gridContainer").append(workshopItem);
@@ -96,10 +99,8 @@
 
             pageurl = $(this).attr('id');
 
-            // if(isMobile() == false){
-              $('.header').css('opacity','0');
-              $('.header').css('visibility','hidden');
-            // }
+            $('.header').css('opacity','0');
+            $('.header').css('visibility','hidden');
 
             window.setTimeout(function(){
               $('.workshopContainer').load('/contests/'+pageurl+'?m=1', function(responseTxt, statusTxt, xhr){
@@ -115,6 +116,7 @@
 
             });
           });
+
           var open = "{{open}}"
           if(open == "True"){
             openLoad();
