@@ -1,4 +1,5 @@
 import requests, datetime
+from functools import wraps
 from config import Config
 from app import app, login
 from flask import Blueprint, render_template, abort, redirect, request, url_for, jsonify
@@ -50,6 +51,58 @@ def f_login(request, point="None"):
         print(reply.json())
 
         return reply
+
+def staff_required(team="all", level=4):
+    # Remember to not name any team as "all"
+    def staff_required_wrap(func):
+        @wraps(func)
+        def d_view(*args, **kwargs):
+            try:
+                if current_user.super():
+                    print("Super user. Yeah!")
+                    return func(*args, **kwargs)
+                elif current_user.staff == []:
+                    responseObject = {
+                        'status':'fail',
+                        'message':'No levels'
+                    }
+                    return jsonify(responseObject)
+                elif team=="all":
+                    st = sorted(current_user.staff, key=lambda k: k['level'])
+                    if team[0].level < level:
+                        responseObject = {
+                            'status':'fail',
+                            'message':'No levels'
+                        }
+                        return jsonify(responseObject)
+                    return func(*args, **kwargs)
+                else:
+                    for i in current_user.staff
+                        if i.team == team:
+                            if i.level >= level:
+                                return func(*args, **kwargs)
+                            else:
+                                responseObject = {
+                                    'status':'fail',
+                                    'message':'No authorization within required team'
+                                }
+                                return jsonify(responseObject)
+                    responseObject = {
+                        'status':'fail',
+                        'message':'Unauthorized within the team'
+                    }
+                    return jsonify(responseObject)
+            except Exception as e:
+                print(e)
+                # Send mail on the exception
+                responseObject = {
+                    'status':'fail',
+                    'message':'Exception occured'
+                }
+                return jsonify(responseObject)
+            return func(*args, **kwargs)
+        return decorated_view
+    return staff_required_wrap
 
 # @farer.route('/login/')
 # def login():
