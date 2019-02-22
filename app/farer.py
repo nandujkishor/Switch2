@@ -62,46 +62,31 @@ def staff_required(team="all", level=4):
                     print("Super user. Yeah!")
                     return func(*args, **kwargs)
                 elif current_user.staff == []:
-                    responseObject = {
-                        'status':'fail',
-                        'message':'No levels'
-                    }
-                    return jsonify(responseObject)
+                    print("No levels")
+                    return redirect(url_for('home'))
                 elif team=="all":
                     st = sorted(current_user.staff, key=lambda k: k['level'])
-                    if team[0].level < level:
-                        responseObject = {
-                            'status':'fail',
-                            'message':'No levels'
-                        }
-                        return jsonify(responseObject)
+                    if st[0].level < level:
+                        print("No levels")
+                        return redirect(url_for('home'))
                     return func(*args, **kwargs)
                 else:
-                    for i in current_user.staff
+                    for i in current_user.staff:
                         if i.team == team:
                             if i.level >= level:
                                 return func(*args, **kwargs)
                             else:
-                                responseObject = {
-                                    'status':'fail',
-                                    'message':'No authorization within required team'
-                                }
-                                return jsonify(responseObject)
-                    responseObject = {
-                        'status':'fail',
-                        'message':'Unauthorized within the team'
-                    }
-                    return jsonify(responseObject)
+                                print("No authorization within required team")
+                                return redirect(url_for('home'))
+                    print("Unauthorized within the team")
+                    return redirect(url_for('home'))
             except Exception as e:
                 print(e)
                 # Send mail on the exception
-                responseObject = {
-                    'status':'fail',
-                    'message':'Exception occured'
-                }
-                return jsonify(responseObject)
+                print("Exception occured")
+                return redirect(url_for('home'))
             return func(*args, **kwargs)
-        return decorated_view
+        return d_view
     return staff_required_wrap
 
 # @farer.route('/login/')

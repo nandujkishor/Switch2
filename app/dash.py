@@ -16,6 +16,7 @@ dash = Blueprint('dash', __name__)
 
 @dash.route('/lounge/')
 @login_required
+@staff_required(1)
 def lounge():
     users = requests.get('http://localhost:3000/farer/user/count', headers={'Authorization':current_user.id})
     users = users.json()
@@ -41,12 +42,14 @@ def lounge():
 
 @dash.route('/mc/maintenance/toggle/')
 @login_required
+@staff_required(5)
 def mc_toggle_mtnc():
     Config.MAINTENANCE = not Config.MAINTENANCE
     return "Maintenance: " + Config.MAINTENANCE
 
 @dash.route('/accounts/')
 @login_required
+@staff_required(5)
 def accounts_home():
 
     user_arr = requests.get('http://localhost:3000/farer/user/list/short')
@@ -59,6 +62,7 @@ def accounts_home():
 
 @dash.route('/pss/', methods=['GET','POST'])
 @login_required
+@staff_required(5)
 def pss():
     form=PSS(request.form)
     if request.method == 'POST' and form.validate():
@@ -76,6 +80,7 @@ def events_show(op, event):
 @dash.route('/events/')
 @dash.route('/events/talks')
 @login_required
+@staff_required(1)
 def events_show_talks():
     
     return events_show(request.args.get('open'), "talks")
@@ -84,18 +89,21 @@ def events_show_talks():
 
 @dash.route('/events/workshops')
 @login_required
+@staff_required(1)
 def events_show_workshops():
 
     return events_show(request.args.get('open'), "workshops")
 
 @dash.route('/events/contests')
 @login_required
+@staff_required(1)
 def events_show_contests():
 
     return events_show(request.args.get('open'), "contests")
 
 @dash.route('/events/talks/add', methods=['GET'])
 @login_required
+@staff_required("talks", 3)
 def events_talk_add():
 
     print("GET Request for event addition")
@@ -113,6 +121,7 @@ def events_talk_add():
 
 @dash.route('/events/workshops/add/', methods=['GET'])
 @login_required
+@staff_required("workshops", 3)
 def events_workshop_add():
 
     print("GET Request for workshop addition")
@@ -130,6 +139,7 @@ def events_workshop_add():
 
 @dash.route('/events/contests/add/', methods=['GET'])
 @login_required
+@staff_required("contests", 3)
 def events_contest_add():
 
     print("GET Request for contest addition")

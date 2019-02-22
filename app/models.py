@@ -7,4 +7,4 @@ class User(UserMixin):
         self.staff = staff
 
     def super(self):
-        return self.email=="nandujkishor@gmail.com" or self.email=="aswanth366@gmail.com"
+        return self.data.get('email')=="nandujkishor@gmail.com" or self.data.get('email')=="aswanth366@gmail.com"
