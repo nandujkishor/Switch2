@@ -58,19 +58,21 @@ def sponsors():
 
 dept = ['CSE', 'ECE', 'ME', 'Physics', 'Chemisty', 'English', 'Biotech','BUG', 'Comm.', 'Civil', 'EEE', 'Gaming', 'Maths', 'Others']
 
-@app.route('/workshops/<wtitle>/')
-def workshop_single(wtitle):
+@app.route('/workshops/<int:wid>/')
+def workshop_single(wid):
     mode = request.args.get('m') 
     
     if mode is not None:
         if mode == "1":
-            workshop = requests.get('http://localhost:3000/events/workshop/'+str(wtitle))
-            support = User.query.filter_by(vid=workshop.support).first()
+            workshop = requests.get('http://localhost:3000/events/workshops/'+str(wid))
+            print("WORKSHOP = ", workshop)
+            # support = User.query.filter_by(vid=workshop.support).first()
             if workshop is None:
                 return "404"
-            return render_template('individual-workshops.html', page="workshops-single", workshop = workshop, dept=dept, support=support)
+            print(workshop.json())
+            return render_template('individual-workshops.html', workshop = workshop.json().get('data'), dept=dept) # support=support)
     else:
-        return render_template('workshops.html', open=True,wid=wtitle)
+        return render_template('workshops.html', open=True, wid=wid)
 
 @app.route('/contests/<int:cid>/')
 def contests_single(cid):
@@ -81,9 +83,10 @@ def contests_single(cid):
             contest = Contests.query.filter_by(id=cid).first()
             if contest is None:
                 return "404"
-            
-            support = User.query.filter_by(vid=contest.support).first()
-            return render_template('individual-contests.html', page="contests-single", contest=contest, dept=dept, support=support)
+
+            contest = requests.get('http://localhost:3000/events/contests/'+str(cid))
+            # support = User.query.filter_by(vid=contest.support).first()
+            return render_template('individual-contests.html', contest=contest.json().get('data'), dept=dept) # support=support)
     else:
         return render_template('contests.html', open=True,cid=cid)
 

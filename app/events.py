@@ -16,7 +16,7 @@ events = Blueprint('events', __name__)
 @events.route('/data/workshops/', methods=['GET', 'POST'])
 def workshops_listing():
     if request.method == 'POST' or request.method == 'PUT':
-        form = AddWorkshop()
+        form = AddWorkshop(request.form)
 
         payload = {
             'title': form.title.data,
@@ -48,7 +48,7 @@ def workshops_listing():
 @events.route('/data/contests/', methods=['GET', 'POST', 'DELETE'])
 def contests_listing():
     if request.method == 'POST' or request.method == 'PUT':
-        form = AddContest()
+        form = AddContest(request.form)
         
         payload = {
             'title': form.title.data,
@@ -58,10 +58,13 @@ def contests_listing():
             'prize1': form.prize1.data,
             'prize2': form.prize2.data,
             'prize3': form.prize3.data,
-            'pworth': form.prize1.data,
+            'pworth': form.prize1.data + form.prize2.data + form.prize3.data,
             'team_limit': form.team_limit.data,
             'fee': form.fee.data,
             'incharge': form.incharge.data,
+            'rules': form.rules.data,
+            'prereq': form.prereq.data,
+            'support': form.support.data
         }
 
         contests = requests.post('http://localhost:3000/events/contests', json=payload, headers={'Authorization':current_user.id})
@@ -84,7 +87,7 @@ def workshops_individual(id):
         return jsonify(201)
     
     if request.method == 'PUT':
-        form = AddWorkshop()
+        form = AddWorkshop(request.form)
 
         payload = {
             'title': form.title.data,
@@ -120,7 +123,7 @@ def contests_individual(id):
         return jsonify(201)
     
     if request.method == 'PUT':
-        form = AddContest()
+        form = AddContest(request.form)
         
         payload = {
             'title': form.title.data,
@@ -134,6 +137,8 @@ def contests_individual(id):
             'team_limit': form.team_limit.data,
             'fee': form.fee.data,
             'incharge': form.incharge.data,
+            'rules': form.rules.data,
+            'prereq': form.prereq.data,
         }
 
         contests = requests.put('http://localhost:3000/events/contests/'+str(id), json=payload, headers={'Authorization':current_user.id})
