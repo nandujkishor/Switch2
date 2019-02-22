@@ -11,6 +11,7 @@
     <meta name="msapplication-navbutton-color" content="#000">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/fonts/fonts.css">
     <link rel="stylesheet" href="/static/css/menu.css">
 
@@ -31,9 +32,13 @@
     		padding: 0;
     		box-sizing: border-box;
     	}
+			.social{
+				padding-left:0px;
+			}
     	.jumbotron {
     		margin: 0 auto;
     		max-width: 1000px;
+				padding: 40px;
     	}
     	body {
     		background-color: black;
@@ -52,13 +57,13 @@
     		"four";
     	}
     	h1 {
-    		font-size: 4em;
+    		font-size: 2em;
     		font-family: 'Neue Haas Grotesk Text Pro Bold', serif;
     		font-weight: 400;
     		padding: 100px 0 0;
     	}
     	h3 {
-    		font-size: 2em;
+    		font-size: 1em;
     	}
     	.j-o {
     		display: block;
@@ -93,6 +98,15 @@
     		line-height: 1.4em;
     	}
     	@media only screen and (min-width: 768px) {
+					.jumbotron{
+						padding: 0px;
+					}			
+					h1{
+						font-size: 4em;
+					}
+					h3{
+						font-size: 2em;
+					}
     		.types {
     			grid-template-rows: auto auto;
     			grid-template-columns: auto auto;
