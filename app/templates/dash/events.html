@@ -149,7 +149,6 @@
         $.getJSON("/events/data/" + event + "/", function(data) {
 
             console.log(data);
-
             $.each(data, function(key, value) {
                 
                 var large = '<div class="eventItem2" id = "' + value.id + '"><div class="eventmeta">' + value.id + ' </div><div class ="eventdata"><span class = "talkHead">' + value.title + '</span><br>';

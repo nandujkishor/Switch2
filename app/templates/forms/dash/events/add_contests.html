@@ -172,7 +172,7 @@
 
             e.preventDefault();
             
-            var req_type = "PUT", req_url = "/events/data/contests/" + sessionStorage.getItem('did');
+            var req_type = "PUT", req_url = "/events/data/contests/" + sessionStorage.getItem('did')+"/";
             if(sessionStorage.getItem('mode') == 1){
                 req_type = "POST";
                 req_url = "/events/data/contests/";

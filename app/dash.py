@@ -126,3 +126,20 @@ def events_workshop_add():
         return redirect(url_for('.events_show_workshops', open=True))
 
     return jsonify(406)   
+
+@dash.route('/events/contests/add/', methods=['GET'])
+@login_required
+def events_contest_add():
+
+    print("GET Request for contest addition")
+    mode = request.args.get('m')
+
+    if mode is not None:
+        if mode == "1":
+            form = AddContest(request.form)
+            return render_template('forms/dash/events/add_contests.html',
+                                    form=form)
+    else:
+        return redirect(url_for('.events_show_contests', open=True))
+
+    return jsonify(406)   

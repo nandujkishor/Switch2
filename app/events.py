@@ -70,7 +70,7 @@ def contests_listing():
 
         return jsonify(201)
 
-    contests = requests.get('http://localhost:3000/events/workshops')
+    contests = requests.get('http://localhost:3000/events/contests')
     print(contests.json())
     return jsonify(contests.json())
 
@@ -136,10 +136,12 @@ def contests_individual(id):
             'incharge': form.incharge.data,
         }
 
-        contests = requests.post('http://localhost:3000/events/contests', json=payload, headers={'Authorization':current_user.id})
+        contests = requests.put('http://localhost:3000/events/contests/'+str(id), json=payload, headers={'Authorization':current_user.id})
         
-        print(contests.json().get('message'))
+        print(contests.json().get('status'))
 
-        return jsonify(201)
+        return jsonify(contests.json().get('status'))
 
-    return "Error"
+    contest = requests.get('http://localhost:3000/events/contests/'+str(id))
+    print(contest.json())
+    return jsonify(contest.json())
