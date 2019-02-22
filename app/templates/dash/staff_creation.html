@@ -5,31 +5,23 @@
   <form class="st-form" novalidate>
     
     <h1>Staff creation</h1>
-    <!-- <span>Please share a few details.</span> -->
-    
-    <div class="float-label" id="div-fname">
-       <input id="fname" name="fname" autocomplete="off" required type="text">
-       <label for="fname">First Name</label>
-    </div>
-    <div class="error" id="error-fname"></div>
-
-    <div class="float-label" id="div-lname">
-       <input id="lname" name="lname" autocomplete="off" required type="text">
-       <label for="lname">Last Name</label>
-    </div>
-    <div class="error" id="error-lname"></div>
 
     <div style="margin-top: 20px" id="div-gender">
       <div class="gender">
         <label class="gender-choose" style="position: static;">Gender</label>
       </div>
       <div class="gender-dropdown">
-        <a id="1">Male</a>
-        <a id="2">Female</a>
-        <a id="3">Others</a>
+        <a id="1">web</a>
+        <a id="2">workshops</a>
+        <a id="3">talks</a>
+        <a id="4">contests</a>
       </div>
     </div> 
-    <div class="error" id="error-gender"></div>
+    
+    <div class="float-label" id="div-level">
+        <input id="level" name="level" autocomplete="off" required type="text">
+        <label for="level">Level</label>
+     </div>
 
     <div class = "action-button">
       <input id="submit" type="submit" name="submit" value="Proceed">
@@ -45,15 +37,6 @@
   $(document).ready(function(){
 
     var gender;
-
-    if(isMobile() == false){
-      $(".gender-dropdown").niceScroll({
-        zindex: 9999,
-        cursorcolor:'#A9A9A9',
-        cursorborder:'none',
-        cursorborderradius:0,
-      });
-    }
 
     $('body').click(function(e){
       if($(e.target).closest('#div-gender').length)

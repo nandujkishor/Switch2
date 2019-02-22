@@ -6,6 +6,7 @@ from app.models import User
 from app.forms import AddTalk, AddWorkshop, MoreData, CABegin, CAQues, test, EduData, AmrSOY
 from app.mail import farer_welcome_mail, amrsoy_reg_mail, testing_mail
 from app.more import get_user_ip
+from app.farer import staff_required
 from werkzeug.utils import secure_filename
 from werkzeug.urls import url_parse
 from flask_login import login_user, current_user, logout_user, login_required
@@ -103,6 +104,7 @@ def page_not_found(e):
 # URL services for Volunteers
 
 @app.route('/staff/creation', methods=['GET', 'POST'])
+@staff_required(5)
 def staff_creation():
 
     # if request.method == 'POST':
