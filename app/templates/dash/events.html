@@ -148,6 +148,8 @@
 
         $.getJSON("/events/data/" + event + "/", function(data) {
 
+            console.log(data);
+
             $.each(data, function(key, value) {
                 
                 var large = '<div class="eventItem2" id = "' + value.id + '"><div class="eventmeta">' + value.id + ' </div><div class ="eventdata"><span class = "talkHead">' + value.title + '</span><br>';
@@ -165,7 +167,10 @@
             });
 
             $('.eventdelete').click(function(e){
+
                 var did = $(this).parent().attr('id');
+                console.log("Processing delete request for " + did);
+                
                 $.ajax({
                     type: "DELETE",
                     url: "/events/data/" + current_page + "/" + did + "/",
@@ -200,7 +205,7 @@
             $('.talkHead').click(function(e){
 
                 console.log("View overlay opened");
-                
+
                 $('.view-overlay').toggleClass('open');
                 var eid = $(this).parent().parent().attr('id');
 

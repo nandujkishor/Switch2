@@ -73,7 +73,7 @@
         
         if(sessionStorage.getItem('mode') == 2){
 
-            $.getJSON('/api/events/'+current_page+'/'+sessionStorage.getItem('did'), function(data){
+            $.getJSON('/events/'+current_page+'/'+sessionStorage.getItem('did'), function(data){
                 console.log(data);
                 department = data.department;
                 $('.department label').html(dept[data.department - 1]);
@@ -168,7 +168,7 @@
 
             $.ajax({
                 type: req_type,
-                url: "/api/events/workshops/",
+                url: "/events/data/workshops/",
                 data: {
                     csrf_token: "{{ form.csrf_token._value() }}",
                     wid: sessionStorage.getItem('did'),
@@ -186,6 +186,8 @@
                 },
                 success: function(data) {
 
+                    console.log("Return = " + data);
+                    
                     sessionStorage.removeItem('mode');
                     sessionStorage.removeItem('did');
 

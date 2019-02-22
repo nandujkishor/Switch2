@@ -13,23 +13,81 @@ from flask_login import current_user, login_required
 
 events = Blueprint('events', __name__)
 
-@events.route('/data/workshops/')
+@events.route('/data/workshops/', methods=['GET', 'POST'])
 def workshops_listing():
+    if request.method == 'POST' or request.method == 'PUT':
+        form = AddWorkshop()
+
+        payload = {
+            'title': form.title.data,
+            'about': form.about.data,
+            'short': form.short.data,
+            'org': form.org.data,
+            'fee': form.fee.data,
+            'department': form.department.data,
+            'incharge': form.incharge.data,
+        }
+
+        if request.method == 'POST':
+            workshops = requests.post('http://localhost:3000/events/workshops', json=payload, headers={'Authorization':current_user.id})
+        else:
+            workshops = requests.put('http://localhost:3000/events/workshops', json=payload, headers={'Authorization':current_user.id})
+
+        print(workshops.json().get('message'))  
+
+        return jsonify(201)
 
     workshops = requests.get('http://localhost:3000/events/workshops')
     print(workshops.json())
     return jsonify(workshops.json())
 
-@events.route('/data/contests/')
+@events.route('/data/contests/', methods=['GET', 'POST', 'DELETE'])
 def contests_listing():
+    if request.method == 'POST' or request.method == 'PUT':
+        form = AddContest()
+        
+        payload = {
+            'title': form.title.data,
+            'about': form.about.data,
+            'short': form.short.data,
+            'department': form.department.data,
+            'prize1': form.prize1.data,
+            'prize2': form.prize2.data,
+            'prize3': form.prize3.data,
+            'pworth': form.prize1.data,
+            'team_limit': form.team_limit.data,
+            'fee': form.fee.data,
+            'incharge': form.incharge.data,
+        }
+
+        contests = requests.post('http://localhost:3000/events/contests', json=payload, headers={'Authorization':current_user.id})
+        
+        print(contests.json().get('message'))
+
+        return jsonify(201)
 
     contests = requests.get('http://localhost:3000/events/workshops')
     print(contests.json())
     return jsonify(contests.json())
 
-@events.route('/data/workshops/<wtitle>', methods=['GET','POST','DELETE','PUT'])
-def workshops_individual():
+@events.route('/data/workshops/<int:id>/', methods=['GET','DELETE','PUT'])
+def workshops_individual(id):
 
-    print("Individual")
-    return "Building"
+    if request.method == 'DELETE':
+        delete_reply = requests.delete('http://localhost:3000/events/workshops/'+str(id), headers={'Authorization':current_user.id})
+        print(delete_reply.json())
 
+        return jsonify(201)
+    
+    return "Error"
+
+@events.route('/data/contests/<int:id>/', methods=['GET','DELETE','PUT'])
+def contests_individual(id):
+
+    if request.method == 'DELETE':
+        delete_reply = requests.delete('http://localhost:3000/events/contests/'+str(id), headers={'Authorization':current_user.id})
+        print(delete_reply.json())
+
+        return jsonify(201)
+    
+    return "Error"
