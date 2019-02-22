@@ -193,13 +193,14 @@
                         console.log("Recieved form for editing");
                     }
                 );
-                console.log("TESTING");
+                
                 sessionStorage.setItem('did', did);
             });
             
             $('.talkHead').click(function(e){
 
                 console.log("View overlay opened");
+                
                 $('.view-overlay').toggleClass('open');
                 var eid = $(this).parent().parent().attr('id');
 

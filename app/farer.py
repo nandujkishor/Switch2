@@ -182,11 +182,9 @@ def forms_farer_more():
 def forms_farer_edu():
     
     form = EduData(request.form)
-    
-    #colleges missing
 
-    # colleges = requests.get('http://localhost:3000/farer/college/list')
-    # colleges = colleges.json()
+    colleges = requests.get('http://localhost:3000/college/list')
+    colleges = colleges.json()
 
     if request.method == 'POST':
 
@@ -211,8 +209,7 @@ def forms_farer_edu():
         
         return jsonify(reply.json().get('status'))
 
-    #Add colleges
-    return render_template('forms/education.html', user=current_user, form=form)
+    return render_template('forms/education.html', user=current_user, form=form, colleges=colleges)
 
 
 @farer.route('/delete/<id>/')
