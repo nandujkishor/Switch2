@@ -24,6 +24,10 @@ def workshops_listing():
             'short': form.short.data,
             'org': form.org.data,
             'fee': form.fee.data,
+            'seats': form.seats.data,
+            'rules': form.rules.data,
+            'prereq': form.prereq.data,
+            'support': form.support.data,
             'department': form.department.data,
             'incharge': form.incharge.data,
         }
@@ -79,6 +83,32 @@ def workshops_individual(id):
 
         return jsonify(201)
     
+    if request.method == 'PUT':
+        form = AddWorkshop()
+
+        payload = {
+            'title': form.title.data,
+            'about': form.about.data,
+            'short': form.short.data,
+            'org': form.org.data,
+            'fee': form.fee.data,
+            'seats': form.seats.data,
+            'rules': form.rules.data,
+            'prereq': form.prereq.data,
+            'support': form.support.data,
+            'department': form.department.data,
+            'incharge': form.incharge.data,
+        }
+
+        if request.method == 'POST':
+            workshops = requests.post('http://localhost:3000/events/workshops', json=payload, headers={'Authorization':current_user.id})
+        else:
+            workshops = requests.put('http://localhost:3000/events/workshops', json=payload, headers={'Authorization':current_user.id})
+
+        print(workshops.json().get('message'))  
+
+        return jsonify(201)
+
     return "Error"
 
 @events.route('/data/contests/<int:id>/', methods=['GET','DELETE','PUT'])
@@ -90,4 +120,27 @@ def contests_individual(id):
 
         return jsonify(201)
     
+    if request.method == 'PUT':
+        form = AddContest()
+        
+        payload = {
+            'title': form.title.data,
+            'about': form.about.data,
+            'short': form.short.data,
+            'department': form.department.data,
+            'prize1': form.prize1.data,
+            'prize2': form.prize2.data,
+            'prize3': form.prize3.data,
+            'pworth': form.prize1.data,
+            'team_limit': form.team_limit.data,
+            'fee': form.fee.data,
+            'incharge': form.incharge.data,
+        }
+
+        contests = requests.post('http://localhost:3000/events/contests', json=payload, headers={'Authorization':current_user.id})
+        
+        print(contests.json().get('message'))
+
+        return jsonify(201)
+
     return "Error"
