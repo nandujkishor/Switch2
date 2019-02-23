@@ -67,7 +67,7 @@ function init(){
         origin = sessionStorage.getItem('origin');
 
         if(origin == null)
-          window.location.href="/home"
+          window.location.href="/"
         else
           window.location.href=origin;
 

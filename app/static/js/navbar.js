@@ -23,7 +23,6 @@ function openNav() {
 }
 
 function closeNav() {
-    $('body').removeClass('noscroll');
     $('.login').toggleClass('loginDisable');
     $('.sideNavContents').css('pointer-events','none');
     $(".nav, .social").css("animation-name", "fadeOut");
@@ -31,6 +30,7 @@ function closeNav() {
       $('.sideNav').width(0);
     },200);
     window.setTimeout(function(){
+        $('body').removeClass('noscroll');
         $('.header').css('background-color', header_color);
     }, 700);
 }
@@ -165,7 +165,7 @@ $(document).ready(function(){
     }
 
     $('.menuVidyut').click(function(){
-        window.location.href="/index";
+        window.location.href="/";
     });
 
     /* Menu-Button */
