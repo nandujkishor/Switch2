@@ -22,12 +22,14 @@ def load_user(id):
     data = requests.get(Config.hub_url+'/farer/auth/user', headers={'Authorization':id})
     staff = requests.get(Config.hub_url+'/farer/staff', headers={'Authorization':id})
     
+    if data.json().get('status') == 'fail':
+        return None
+
     print(data.json())
     print(staff.json())
     
     user = User(id=id, data=data.json().get('data'), staff=staff.json())
     
-    print(id)
     print("End of loading user")
     
     return user
