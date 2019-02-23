@@ -10,6 +10,8 @@ from app.farer import staff_required
 from werkzeug.utils import secure_filename
 from werkzeug.urls import url_parse
 from flask_login import login_user, current_user, logout_user, login_required
+import hashlib
+from Crypto.Cipher import AES
 
 @login.unauthorized_handler
 def unauthorized():
@@ -130,3 +132,52 @@ def staff_creation():
         return jsonify(reply.json().get('status'))
 
     return render_template('dash/staff_creation.html', form=form)
+
+import sys
+import base64
+from Crypto.Cipher import AES
+
+key = "WEGSNGOXHEUDEEDD" 
+iv = "3564234432724374"
+
+class AESCipher(object):
+    def __init__(self, key):
+        self.bs = 16
+        self.cipher = AES.new(key, AES.MODE_CBC, iv)
+
+    def encrypt(self, raw):
+        raw = self._pad(raw)
+        encrypted = self.cipher.encrypt(raw)
+        encoded = base64.b64encode(encrypted)
+        return str(encoded, 'utf-8')
+
+    def decrypt(self, raw):
+        decoded = base64.b64decode(raw)
+        decrypted = self.cipher.decrypt(decoded)
+        return str(self._unpad(decrypted), 'utf-8')
+
+    def _pad(self, s):
+        return s + (self.bs - len(s) % self.bs) * chr(self.bs - len(s) % self.bs)
+
+    def _unpad(self, s):
+        return s[:-ord(s[len(s)-1:])]
+
+@app.route('/payment/')
+def payment():
+    plaintext = "transactionId=ORDER1|amount=1|purpose=VIDYUT19TEST|currency=inr"
+    result = hashlib.md5(plaintext.encode())
+    result = result.hexdigest()
+    print("md5",result)
+    pwc = plaintext + "|checkSum=" + result
+    print("before aes",pwc)
+    cipher = AESCipher(key)
+    encd = cipher.encrypt(pwc)
+    print("after aes", encd)
+    encd = "vfNh8J6pPzeP9l6gtkWj1CD9gTCy1Pyg7ac+S5fyIHmJhG67z7DFDzw1o4oaL0IIV5YYt1V08GSiFtMl2KxVPi9SeuL46anV0E3h9odZKCxHthL5HXzW7xjr6UOb0XWLl4zyOc2oSBEU2yjjN76v+Q=="
+    URL = "https://payments.acrd.org.in/pay/makethirdpartypayment"
+    PARAMS = {'encdata':encd,'code':"VIDYUT19TEST"} 
+    r = requests.post(url = URL, data = PARAMS) 
+
+    print("data", r.content)
+
+    return "SUCCESS"
