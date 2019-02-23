@@ -17,7 +17,7 @@ farer = Blueprint('farer', __name__)
 @login.user_loader
 def load_user(id):
 
-    print("Loading user")
+    print("Loading user", id)
     
     data = requests.get(Config.HUB_URL+'/farer/auth/user', headers={'Authorization':id})
     staff = requests.get(Config.HUB_URL+'/farer/staff', headers={'Authorization':id})
