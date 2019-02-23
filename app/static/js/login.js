@@ -40,6 +40,8 @@ function init(){
 
   function checkLogin(){
     
+    $('.loading-login').css('visibility', 'visible');
+
     $.getJSON("/farer/data/user/", function(data){
 
       console.log("Details completed? " + data['detailscomp']);

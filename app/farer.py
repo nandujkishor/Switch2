@@ -19,8 +19,8 @@ def load_user(id):
 
     print("Loading user")
     
-    data = requests.get(Config.hub_url+'/farer/auth/user', headers={'Authorization':id})
-    staff = requests.get(Config.hub_url+'/farer/staff', headers={'Authorization':id})
+    data = requests.get(Config.HUB_URL+'/farer/auth/user', headers={'Authorization':id})
+    staff = requests.get(Config.HUB_URL+'/farer/staff', headers={'Authorization':id})
     
     print(data.json())
     print(staff.json())
@@ -47,7 +47,7 @@ def f_login(request, point="None"):
             'sender': 1
         }
 
-        reply = requests.post(Config.hub_url+'/farer/auth/user', json=payload)
+        reply = requests.post(Config.HUB_URL+'/farer/auth/user', json=payload)
         print(reply.json())
 
         return reply
@@ -117,7 +117,7 @@ def loggingIn():
         reply_p = f_login(request).json()
         print("REPLY_P = ", reply_p)
 
-        reply_g = requests.get(Config.hub_url+'/farer/auth/user', headers={'Authorization':reply_p.get('auth_token')})
+        reply_g = requests.get(Config.HUB_URL+'/farer/auth/user', headers={'Authorization':reply_p.get('auth_token')})
         reply_g = reply_g.json()
         print("Reply-G", reply_g)
         print(reply_g.get('data'))
@@ -136,7 +136,7 @@ def farer_user():
     print("INISDE DATA FARER")
 
     if current_user.is_authenticated:
-        u = requests.get(Config.hub_url+'/farer/auth/user', headers={'Authorization':current_user.id})
+        u = requests.get(Config.HUB_URL+'/farer/auth/user', headers={'Authorization':current_user.id})
         print(u.json())
         return jsonify(u.json().get('data'))
 
@@ -146,7 +146,7 @@ def farer_user():
 @login_required
 def farer_more():
 
-    u = requests.get(Config.hub_url+'/farer/auth/user', headers={'Authorization':current_user.id})
+    u = requests.get(Config.HUB_URL+'/farer/auth/user', headers={'Authorization':current_user.id})
     u = u.json().get('data')
     print(u)
 
@@ -158,7 +158,7 @@ def farer_more():
 @login_required
 def farer_education():
     
-    u = requests.get(Config.hub_url+'/farer/auth/user', headers={'Authorization':current_user.id})
+    u = requests.get(Config.HUB_URL+'/farer/auth/user', headers={'Authorization':current_user.id})
     u = u.json().get('data')
     print(u)
 
@@ -195,7 +195,7 @@ def forms_farer_more():
             'detailscomp': True
         }
 
-        reply = requests.put(Config.hub_url+'/farer/user/details', json=payload,  headers={'Authorization':current_user.id})
+        reply = requests.put(Config.HUB_URL+'/farer/user/details', json=payload,  headers={'Authorization':current_user.id})
         print("REPLY FOR DETAILS ( PUT REQUEST ) ", reply.json())
 
         return jsonify(reply.json().get('status'))
@@ -208,7 +208,7 @@ def forms_farer_edu():
     
     form = EduData(request.form)
 
-    colleges = requests.get(Config.hub_url+'/college/list')
+    colleges = requests.get(Config.HUB_URL+'/college/list')
     colleges = colleges.json()
 
     if request.method == 'POST':
@@ -228,7 +228,7 @@ def forms_farer_edu():
             'educomp': True
         }
 
-        reply = requests.put(Config.hub_url+'/farer/user/education', json=payload, headers={'Authorization':current_user.id})
+        reply = requests.put(Config.HUB_URL+'/farer/user/education', json=payload, headers={'Authorization':current_user.id})
         
         print("REPLY FOR EDUCATION ( PUT REQUEST ) = ", reply.json())
         

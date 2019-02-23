@@ -32,12 +32,12 @@ def workshops_listing():
             'incharge': form.incharge.data,
         }
 
-        workshops = requests.post(Config.hub_url+'/events/workshops', json=payload, headers={'Authorization':current_user.id})
+        workshops = requests.post(Config.HUB_URL+'/events/workshops', json=payload, headers={'Authorization':current_user.id})
         print(workshops.json().get('message'))  
 
         return jsonify(201)
 
-    workshops = requests.get(Config.hub_url+'/events/workshops')
+    workshops = requests.get(Config.HUB_URL+'/events/workshops')
     print(workshops.json())
     return jsonify(workshops.json())
 
@@ -63,13 +63,13 @@ def contests_listing():
             'support': form.support.data
         }
 
-        contests = requests.post(Config.hub_url+'/events/contests', json=payload, headers={'Authorization':current_user.id})
+        contests = requests.post(Config.HUB_URL+'/events/contests', json=payload, headers={'Authorization':current_user.id})
         
         print(contests.json().get('message'))
 
         return jsonify(201)
 
-    contests = requests.get(Config.hub_url+'/events/contests')
+    contests = requests.get(Config.HUB_URL+'/events/contests')
     print(contests.json())
     return jsonify(contests.json())
 
@@ -77,7 +77,7 @@ def contests_listing():
 def workshops_individual(id):
 
     if request.method == 'DELETE':
-        delete_reply = requests.delete(Config.hub_url+'/events/workshops/'+str(id), headers={'Authorization':current_user.id})
+        delete_reply = requests.delete(Config.HUB_URL+'/events/workshops/'+str(id), headers={'Authorization':current_user.id})
         print(delete_reply.json())
 
         return jsonify(201)
@@ -99,13 +99,13 @@ def workshops_individual(id):
             'incharge': form.incharge.data,
         }
 
-        workshops = requests.put(Config.hub_url+'/events/workshops/'+str(id), json=payload, headers={'Authorization':current_user.id})
+        workshops = requests.put(Config.HUB_URL+'/events/workshops/'+str(id), json=payload, headers={'Authorization':current_user.id})
 
         print(workshops.json().get('message'))  
 
         return jsonify(workshops.json().get('message'))
 
-    workshop = requests.get(Config.hub_url+'/events/workshops/'+str(id))
+    workshop = requests.get(Config.HUB_URL+'/events/workshops/'+str(id))
     print(workshop.json())
     return jsonify(workshop.json())
 
@@ -113,7 +113,7 @@ def workshops_individual(id):
 def contests_individual(id):
 
     if request.method == 'DELETE':
-        delete_reply = requests.delete(Config.hub_url+'/events/contests/'+str(id), headers={'Authorization':current_user.id})
+        delete_reply = requests.delete(Config.HUB_URL+'/events/contests/'+str(id), headers={'Authorization':current_user.id})
         print(delete_reply.json())
 
         return jsonify(201)
@@ -137,12 +137,12 @@ def contests_individual(id):
             'prereq': form.prereq.data,
         }
 
-        contests = requests.put(Config.hub_url+'/events/contests/'+str(id), json=payload, headers={'Authorization':current_user.id})
+        contests = requests.put(Config.HUB_URL+'/events/contests/'+str(id), json=payload, headers={'Authorization':current_user.id})
         
         print(contests.json().get('status'))
 
         return jsonify(contests.json().get('status'))
 
-    contest = requests.get(Config.hub_url+'/events/contests/'+str(id))
+    contest = requests.get(Config.HUB_URL+'/events/contests/'+str(id))
     print(contest.json())
     return jsonify(contest.json())

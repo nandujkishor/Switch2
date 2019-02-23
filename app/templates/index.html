@@ -9,13 +9,10 @@
     <meta name="msapplication-navbutton-color" content="#000">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <!-- <meta name="google-signin-client_id" content="727153101463-709hp9lcjelc2ps4evtb4ojutbq1sotl.apps.googleusercontent.com"> -->
-
     <title>Vidyut - National Multifest organised by Amritapuri Campus</title>
 
     <!-- Scripts -->
 
-    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="/static/js/mobile-check.js"></script>
@@ -54,7 +51,6 @@
     <div class="orientation">Please rotate your device.</div>
     <script type="text/javascript">
       function doOnOrientationChange(){
-        // alert(window.orientation.type);
         if(window.orientation == -90 || window.orientation == 90){
           $('.orientation').css('display', 'block');
         }
@@ -155,7 +151,10 @@
       <div class = "menu-button">
         <div class = "bar1"></div><div class = "bar2"></div><div class = "bar3"></div>
       </div>
-      <div class="login in-button">Login</div>
+      <div class="login in-button">
+        Login
+        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading-login" height="10px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+      </div>
     </div>
 
     <div class = "container"></div>

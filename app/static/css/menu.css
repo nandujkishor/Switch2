@@ -72,6 +72,10 @@
     background-image: url('../images/menu/sponsors.jpg');
 }
 
+.loading-login{
+    visibility: none;
+}
+
 .nav{
     z-index: 2;
     font-size: 34px;

@@ -65,12 +65,12 @@ def workshop_single(wid):
     
     if mode is not None:
         if mode == "1":
-            workshop = requests.get(Config.hub_url+'/events/workshops/'+str(wid))
+            workshop = requests.get(Config.HUB_URL+'/events/workshops/'+str(wid))
             workshop = workshop.json()
             payload = {
                 'vid': workshop.get('support')
             }
-            support = requests.get(Config.hub_url+'/farer/user/contact', json=payload)
+            support = requests.get(Config.HUB_URL+'/farer/user/contact', json=payload)
             support = support.json()
             if workshop is None:
                 return "404"
@@ -84,9 +84,9 @@ def contests_single(cid):
     
     if mode is not None:
         if mode == "1":
-            contest = requests.get(Config.hub_url+'/events/contests/'+str(cid))
+            contest = requests.get(Config.HUB_URL+'/events/contests/'+str(cid))
             contest = contest.json()
-            support = requests.get(Config.hub_url+'/farer/user/contact', json=payload)
+            support = requests.get(Config.HUB_URL+'/farer/user/contact', json=payload)
             support = support.json()
             if contest is None:
                 return "404"
@@ -117,7 +117,7 @@ def staff_creation():
             'level': form.level.data
         }
 
-        reply = requests.post(Config.hub_url + '/farer/staff', json=payload, headers={'Authorization':current_user.id})
+        reply = requests.post(Config.HUB_URL + '/farer/staff', json=payload, headers={'Authorization':current_user.id})
 
         print(reply.json())
         return jsonify(reply.json().get('status'))
