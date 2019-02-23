@@ -1,3 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+
+    <meta name="theme-color" content="#000">
+    <meta name="msapplication-navbutton-color" content="#000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>Staff addition</title>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="/static/js/mobile-check.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://cloud.typenetwork.com/projects/2949/fontface.css/" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/css/menu.css">
+    <link rel="stylesheet" href="/static/fonts/fonts.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+  </head>
+  <body class="noscroll">
+    <div class = "container">
+
 <link rel="stylesheet" href="/static/css/education.css">
 
 <div class ="form-container-full">
@@ -5,10 +36,15 @@
   <form class="st-form" novalidate>
     
     <h1>Staff creation</h1>
+    
+    <div class="float-label" id="div-level">
+        <input id="vid" name="vid" autocomplete="off" required type="text">
+        <label for="vid">VID of staff</label>
+     </div>
 
-    <div style="margin-top: 20px" id="div-gender">
+    <div style="margin-top: 20px; margin-bottom: 20px;" id="div-gender">
       <div class="gender">
-        <label class="gender-choose" style="position: static;">Gender</label>
+        <label class="gender-choose" style="position: static;">Team</label>
       </div>
       <div class="gender-dropdown">
         <a id="1">web</a>
@@ -36,7 +72,7 @@
   
   $(document).ready(function(){
 
-    var gender;
+    var team;
 
     $('body').click(function(e){
       if($(e.target).closest('#div-gender').length)
@@ -49,7 +85,7 @@
     });
 
     $('.gender-dropdown a').click(function(){
-      gender = $(this).attr('id');
+      team = $(this).html();
       $('.gender label').html($(this).text());
       $('.gender-choose').css('opacity', '1');
       $('.gender-choose').css('color', '#000');  
@@ -61,20 +97,16 @@
 
       $('.loading').css('visibility', 'visible');
       
-      $('.float-label').removeClass('error-field');
-      $('.error').css('display', 'none');
-      
       console.log("Posting details form");
 
       $.ajax({
         type: "POST",
-        url: "/staff/creation",
+        url: "/staff/creation/",
         data:{ 
           csrf_token: "{{ form.csrf_token._value() }}",
-          fname: $('#fname').val(),
-          lname: $('#lname').val(),
-          sex: gender,
-          phno: parseInt($('#mobile').val())
+          vid: parseInt($('#vid').val()),
+          level: parseInt($('#level').val()),
+          team: team,
         },
         success: function(data){
 
@@ -82,12 +114,13 @@
 
           console.log("Return value = " + data);
 
-          if(data != "success"){
-          
+          if(data != "success")
+            console.log("Staff creation failed")
+          else{
+            console.log("Staff created successfully")
+            window.location.href="/dash/lounge";  
           }
-          else  
-            window.location.href="/dash/lounge"
-          
+
         }
 
       });
@@ -99,3 +132,5 @@
   });
 
 </script>
+</body>
+</html>

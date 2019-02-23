@@ -3,7 +3,7 @@ from config import Config
 from flask import render_template, flash, redirect, request, url_for, jsonify
 from app import app, login, mail
 from app.models import User
-from app.forms import AddTalk, AddWorkshop, MoreData, CABegin, CAQues, test, EduData, AmrSOY
+from app.forms import AddTalk, AddWorkshop, MoreData, EduData, CreateStaff
 from app.mail import farer_welcome_mail, amrsoy_reg_mail, testing_mail
 from app.more import get_user_ip
 from app.farer import staff_required
@@ -103,10 +103,23 @@ def page_not_found(e):
 
 # URL services for Volunteers
 
-@app.route('/staff/creation', methods=['GET', 'POST'])
+@app.route('/staff/creation/', methods=['GET', 'POST'])
 @staff_required(5)
 def staff_creation():
 
-    # if request.method == 'POST':
+    form = CreateStaff(request.form)
 
-    return render_template('dash/staff_creation.html')
+    if request.method == 'POST':
+
+        payload = {
+            'vid': form.vid.data,
+            'team': form.team.data,
+            'level': form.level.data
+        }
+
+        reply = requests.post(Config.hub_url + '/farer/staff', json=payload, headers={'Authorization':current_user.id})
+
+        print(reply.json())
+        return jsonify(reply.json().get('status'))
+
+    return render_template('dash/staff_creation.html', form=form)

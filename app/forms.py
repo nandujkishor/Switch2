@@ -157,3 +157,8 @@ class PSS(FlaskForm):
 
 class test(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
+
+class CreateStaff(FlaskForm):
+    vid = DateTimeField('VID of staff')
+    team = StringField('Team of the staff')
+    level = IntegerField('Level of the staff')
