@@ -15,6 +15,13 @@ from flask_login import login_user, current_user, logout_user, login_required
 def unauthorized():
     return render_template('accounts/login.html', link="")
 
+@app.route('/shit')
+@login_required
+def shit():
+    r = requests.get(Config.hub_url + '/mail/test', headers={'Authorization':current_user.id})
+    print(r.url)
+    return "Hello"
+
 @app.route('/')
 @app.route('/index')
 def index():

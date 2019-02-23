@@ -16,18 +16,22 @@ farer = Blueprint('farer', __name__)
 
 @login.user_loader
 def load_user(id):
-
+    
     print("Loading user", id)
+    if id is None:
+        return None
     
     data = requests.get(Config.HUB_URL+'/farer/auth/user', headers={'Authorization':id})
     staff = requests.get(Config.HUB_URL+'/farer/staff', headers={'Authorization':id})
     
+    if data.json().get('status') == 'fail':
+        return None
+
     print(data.json())
     print(staff.json())
     
     user = User(id=id, data=data.json().get('data'), staff=staff.json())
     
-    print(id)
     print("End of loading user")
     
     return user
@@ -36,6 +40,7 @@ def f_login(request, point="None"):
 
     print("Inside authentication f_login")
     
+
     ip = get_user_ip(request)
     if current_user.is_authenticated:
         return jsonify(1)
@@ -243,8 +248,7 @@ def delete_user(id):
     u = User.query.filter_by(id=id).first()
     v = AmrSoyParticipant.query.filter_by(id=id).first()
     w = CAData.query.filter_by(id=id).first()
-    flog = FarerLog(uid=u.id, action="Deletion")
-    db.session.add(flog)
+    
     if u is not None:
         db.session.delete(u)
     if u is not None:
