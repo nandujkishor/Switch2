@@ -1,10 +1,10 @@
 import os, csv, json, requests, datetime
-from config import Config
+from config import Config   
 from flask import render_template, flash, redirect, request, url_for, jsonify
 from app import app, login, mail
 from app.models import User
 from app.forms import AddTalk, AddWorkshop, MoreData, EduData, CreateStaff
-from app.mail import farer_welcome_mail, amrsoy_reg_mail, testing_mail
+from app.mail import farer_welcome_mail
 from app.more import get_user_ip
 from app.farer import staff_required
 from werkzeug.utils import secure_filename
@@ -18,7 +18,7 @@ def unauthorized():
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html', page="/home?m=1", uchange="")
+    return render_template('index.html', page="/home?m=1", uchange="", user=current_user.is_authenticated)
 
 @app.route('/home', methods=['GET'])
 def home():
@@ -29,7 +29,7 @@ def home():
         if mode == "1":
             return render_template('home.html')
     else:
-        return render_template('index.html', page="/home?m=1", uchange="")
+        return render_template('index.html', page="/home?m=1", uchange="", user=current_user.is_authenticated)
 
 @app.route('/talks/')
 def talks():

@@ -151,10 +151,16 @@
       <div class = "menu-button">
         <div class = "bar1"></div><div class = "bar2"></div><div class = "bar3"></div>
       </div>
+      {% if user %}
+      <div class="login dashboard-button">
+        Dashboard
+      </div>
+      {% else %}
       <div class="login in-button">
         Login
         <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading-login" height="10px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
       </div>
+      {% endif %}
     </div>
 
     <div class = "container"></div>

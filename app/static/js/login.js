@@ -26,6 +26,7 @@ function init(){
 
   function login() {
     console.log("onLogin");
+    $('.loading-login').css('display', 'inline');
     $.getJSON("/farer/data/user/", function(data){
       console.log(data);
       if(data == false){
@@ -39,8 +40,6 @@ function init(){
   }
 
   function checkLogin(){
-    
-    $('.loading-login').css('visibility', 'visible');
 
     $.getJSON("/farer/data/user/", function(data){
 

@@ -154,3 +154,11 @@ def events_contest_add():
         return redirect(url_for('.events_show_contests', open=True))
 
     return jsonify(406)   
+
+
+# Attendee dash beta
+
+@dash.route('/')
+@login_required
+def dash_attendee():
+    return render_template('dash_attendee.html', user=current_user)
