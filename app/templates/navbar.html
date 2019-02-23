@@ -1,0 +1,76 @@
+<style>
+.orientation{
+    width: 100vh;
+    height: 100vw;
+    z-index: 100;
+    display: none;
+    position: fixed;
+    background: #fff;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 22px;
+}
+</style>
+<div class="orientation">Please rotate your device.</div>
+<script type="text/javascript">
+function doOnOrientationChange(){
+    if(window.orientation == -90 || window.orientation == 90){
+    $('.orientation').css('display', 'block');
+    }
+    else{
+    $('.orientation').css('display', 'none');
+    }
+}
+window.addEventListener("orientationchange", doOnOrientationChange);
+doOnOrientationChange();
+</script>
+
+<div class="sideNav">
+    <div class="sideNavContents">
+        <ul class="nav">
+        <li id = "talks"><a class="talks" href="/talks/">Talks<span></span></a></li>
+        <li id = "concerts"><a class="concerts" href="/concerts/">Concerts<span></span></a></li>
+        <li id = "masterclass"><a class="masterclass" href="/exhibitions/">Exhibitions<span></span></a></li>
+        <li id = "workshops"><a class="workshops" href="/workshops">Workshops<span></span></a></li>
+        <li id = "contests"><a class="contests" href="/contests/">Contests<span></span></a></li>
+        <li id = "sponsors"><a class="sponsors" href="/sponsors/">Sponsors<span></span></a></li>
+        </ul>
+        <div class="social">
+        <a href="https://www.facebook.com/Vidyut.Multifest" target="_blank"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.instagram.com/vidyutmultifest" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/VidyutMultifest" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.youtube.com/channel/UCrtm636yrNotuN7b8cDnMIA" target="_blank"><i class="fab fa-youtube"></i></a> 
+        </div>   
+    </div>
+
+    <div class="sideNavOverlay talksBG"></div>
+    <div class="sideNavOverlay concertsBG"></div>
+    <div class="sideNavOverlay masterclassBG"></div>
+    <div class="sideNavOverlay workshopsBG"></div>
+    <div class="sideNavOverlay contestsBG"></div>
+    <div class="sideNavOverlay sponsorsBG"></div>
+</div>
+      
+<div class = "header">
+    <div class = "menuVidyut color-change">
+        <svg height = "20px" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 948.6667 135.1544"><title>v-text</title><path d="M84.3066,135.2315h-8.1L2.41.2364H33.189L80.3467,86.4532,127.3252.2364h30.7783Z"/><path d="M235.5049,135.2315H208.5063V.2364h26.9986Z"/><path d="M314.7056,135.2315V.2364h49.4975a67.4976,67.4976,0,1,1,0,134.9951Zm49.4975-26.999a40.4986,40.4986,0,1,0,0-80.9971h-22.499v80.9971Z"/><path d="M467.707.2364h31.8584l35.8184,57.2383L571.3828.2364h31.8584L548.8828,86.8135v48.418h-26.998V86.8135Z"/><path d="M768.8389,76.7335a58.4976,58.4976,0,1,1-116.9951,0V.2364h26.999V76.7335a31.4985,31.4985,0,1,0,62.997,0V.2364h26.9991Z"/><path d="M831.8418.2364H948.8379v26.999H903.84V135.2315h-26.999V27.2354h-44.999Z"/></svg>
+    </div>
+    <div class = "menu-button">
+        <div class = "bar1"></div><div class = "bar2"></div><div class = "bar3"></div>
+    </div>
+    {% if user %}
+    <div class="login dashboard-button">
+        Dashboard
+    </div>
+    {% else %}
+    <div class="login in-button">
+        Login
+        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading-login" height="10px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+    </div>
+    {% endif %}
+</div>

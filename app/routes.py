@@ -36,33 +36,33 @@ def home():
 
     if mode is not None:
         if mode == "1":
-            return render_template('home.html')
+            return render_template('home.html', user=current_user.is_authenticated)
     else:
         return render_template('index.html', page="/home?m=1", uchange="", user=current_user.is_authenticated)
 
 @app.route('/talks/')
 def talks():
-    return render_template('coming.html')
+    return render_template('coming.html', user=current_user.is_authenticated)
 
 @app.route('/concerts/')
 def concert():
-    return render_template('coming.html')
+    return render_template('coming.html', user=current_user.is_authenticated)
 
 @app.route('/exhibitions/')
 def exhibitions():
-    return render_template('exhibitions.html')
+    return render_template('exhibitions.html', user=current_user.is_authenticated)
 
 @app.route('/contests/')
 def contests():
-    return render_template('contests.html')
+    return render_template('contests.html', user=current_user.is_authenticated)
 
 @app.route('/workshops/')
 def workshops():
-    return render_template('workshops.html')
+    return render_template('workshops.html', user=current_user.is_authenticated)
 
 @app.route('/sponsors/')
 def sponsors():
-    return render_template('sponsors.html')
+    return render_template('sponsors.html', user=current_user.is_authenticated)
 
 # Individual pages
 

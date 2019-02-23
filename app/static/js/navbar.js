@@ -17,11 +17,13 @@ function openNav() {
     $('.sideNav').width("100%");
     $(".nav, .social").css("animation-name", "fadeIn");
     window.setTimeout(function(){
+      $('body').addClass('noscroll');
       $('.sideNavContents').css('pointer-events','auto');
     },500);
 }
 
 function closeNav() {
+    $('body').removeClass('noscroll');
     $('.login').toggleClass('loginDisable');
     $('.sideNavContents').css('pointer-events','none');
     $(".nav, .social").css("animation-name", "fadeOut");
@@ -103,7 +105,7 @@ preload([
 ]);
 
 function scroll(){
-    // Hide Header on on scroll down
+    
     var didScroll;
     var lastScrollTop = 0;
     var delta = 5;
@@ -123,17 +125,12 @@ function scroll(){
     function hasScrolled() {
         var st = $(this).scrollTop();
         
-        // Make sure they scroll more than delta
         if(Math.abs(lastScrollTop - st) <= delta)
             return;
         
-        // If they scrolled down and are past the navbar, add class .nav-up.
-        // This is necessary so you never see what is "behind" the navbar.
-        if (st > lastScrollTop && st > navbarHeight){
-            // Scroll Down
+        if(st > lastScrollTop && st > navbarHeight){
             $('.header').addClass('header-up');
-        } else {
-            // Scroll Up
+        }else{
             if(st + $(window).height() < $(document).height()) {
                 console.log("SCROLLED UP");
                 $('.header').removeClass('header-up');
@@ -145,6 +142,21 @@ function scroll(){
 }
 
 $(document).ready(function(){
+
+    $.getScript("https://apis.google.com/js/client:platform.js", function () {
+      
+        init();
+
+        $('.in-button').click(function(){
+          console.log("Login clicked");
+          login();
+        });
+    
+    });
+
+    $('.dashboard-button').click(function(){
+        window.location.href="/dash/"
+    });
 
     scroll();
 
