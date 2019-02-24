@@ -1,6 +1,9 @@
 {% extends "dash/dash.html" %}
 
 {% block body %}
+
+<title>Dashboard | Vidyut</title>
+    
     <style>
       * {
         margin:0;
@@ -28,11 +31,11 @@
       }
       .meta-data, .registered{
         display: grid;
-        justify-content: center;
         align-items: center;
         height: 50%;
       }
       .meta-data{
+        justify-content: center;
         grid-area: one;
         line-height: 165%;
         font-size: 20px;
@@ -45,6 +48,7 @@
     <div class="dash-container">
       <div class="dash-content">
         <div class="meta-data">
+          <img scr="/static/QR/1.png"/>
           {{ user.data.fname }} {{user.data.lname}} <br>
           V19{{ '%04d' % user.data.vid }}
         </div>

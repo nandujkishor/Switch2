@@ -118,7 +118,6 @@
         eventname = "workshops"
 
       $(".event-dropdown").empty();
-      $(".pricing").empty();
 
       $.getJSON("/events/data/"+eventname+"/", function(data) {
         console.log(data);
@@ -155,6 +154,8 @@
           $('#div-event label').css('opacity', '1');
           $('#div-event label').css('color', '#000');  
           $(".event-dropdown").removeClass("show-dropdown");
+          
+          $(".pricing").empty();
           
           $.getJSON("/events/data/"+eventname+"/"+event, function(data) {
             $('.pricing').append('<p>Fee : ' + data.fee + '</p>');
