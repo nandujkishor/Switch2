@@ -16,7 +16,7 @@ dash = Blueprint('dash', __name__)
 
 @dash.route('/lounge/')
 @login_required
-@staff_required(1)
+@staff_required()
 def lounge():
     users = requests.get('http://localhost:3000/farer/user/count', headers={'Authorization':current_user.id})
     users = users.json()
