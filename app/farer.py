@@ -57,7 +57,7 @@ def f_login(request, point="None"):
 
         return reply
 
-def staff_required(team="all", level=4):
+def staff_required(team="all", level=1):
     # Remember to not name any team as "all"
     def staff_required_wrap(func):
         @wraps(func)
@@ -248,7 +248,7 @@ def delete_user(id):
     u = User.query.filter_by(id=id).first()
     v = AmrSoyParticipant.query.filter_by(id=id).first()
     w = CAData.query.filter_by(id=id).first()
-    
+
     if u is not None:
         db.session.delete(u)
     if u is not None:
