@@ -1,56 +1,16 @@
+<title>Dashboard | Vidyut</title>
 {% extends "dash/dash.html" %}
 
 {% block body %}
-
-<title>Dashboard | Vidyut</title>
-    
-    <style>
-      * {
-        margin:0;
-        box-sizing: border-box;
-      }
-      body{
-        font-family: 'Source Sans Pro', sans-serif;
-      }
-      .dash-container{
-        grid-area: body;
-        margin: 0 auto;
-        width: 100%;
-        max-width: 2100px;
-        display: grid;
-        justify-content: center;
-        align-items: center;
-      }
-      .dash-content{
-        display: grid;
-        grid-template-columns: auto auto;
-        grid-template-rows: auto;
-        grid-template-areas: "one two";
-        width: 80vw;
-        height: 50vh;
-      }
-      .meta-data, .registered{
-        display: grid;
-        align-items: center;
-        height: 50%;
-      }
-      .meta-data{
-        justify-content: center;
-        grid-area: one;
-        line-height: 165%;
-        font-size: 20px;
-      }
-      .registered{
-        grid-area: two;
-      }
-    </style>
-
+<link rel="stylesheet" href="/static/css/dash/attendee_dash.css">
     <div class="dash-container">
       <div class="dash-content">
-        <div class="meta-data">
-          <img scr="/static/QR/1.png"/>
-          {{ user.data.fname }} {{user.data.lname}} <br>
-          V19{{ '%04d' % user.data.vid }}
+        <div class="dash-meta-data">
+          <div>
+              <img src="/static/QR/{{user.data.vid}}.png">
+              <h1>{{ user.data.fname }} {{user.data.lname}}</h1><br>
+              <h3>V19{{ '%04d' % user.data.vid }}</h3>
+          </div>
         </div>
         <div class="registered">
           Registered events
