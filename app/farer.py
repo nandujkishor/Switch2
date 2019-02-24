@@ -98,7 +98,7 @@ def staff_required(team="all", level=1):
 def logout():
     logout_user()
     print("Logging out user.")
-    return "Logged out"
+    return redirect(url_for('home'))
 
 @farer.route('/user/')
 @login_required

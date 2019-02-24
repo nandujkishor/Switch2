@@ -42,6 +42,18 @@ body{
     justify-content: center;
 }
 
+.logout{
+    background: transparent;
+    color: #000;
+    border: 3px solid #000;
+    right: 20px;
+    font-size: 10px;
+    padding: 2px 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
 @media only screen and (min-width: 768px) {
     .dash-container{
         max-width: 2100px;
@@ -59,9 +71,14 @@ body{
     .dash-meta-data img{
         height: 450px; 
     }
-    h1, h3{
+    h1, h2{
         padding-left: 30px;
     }
-
+    .logout{
+        top: 24px;
+        right: 56px;
+        font-size: 16px;
+        padding: 4px 15px;
+    }
 }
   
