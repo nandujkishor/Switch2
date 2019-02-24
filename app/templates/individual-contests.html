@@ -116,6 +116,10 @@
 				$('.desktop').css('display', 'css');
 			}
 
+			$(window).bind('popstate', function(){
+				window.location.href="/contests/"
+			});
+
 		});
 		
 	</script>

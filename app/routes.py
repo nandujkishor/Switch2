@@ -93,6 +93,9 @@ def contests_single(cid):
         if mode == "1":
             contest = requests.get(Config.HUB_URL+'/events/contests/'+str(cid))
             contest = contest.json()
+            payload = {
+                'vid': contest.get('support')
+            }
             support = requests.get(Config.HUB_URL+'/farer/user/contact', json=payload)
             support = support.json()
             if contest is None:

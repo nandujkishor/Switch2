@@ -178,7 +178,7 @@ def registration():
         print("POSTED", reg)
         print("REPLY = ", reg.json().get('message'))  
 
-        return jsonify(201)
+        return jsonify(reg.json())
 
     return render_template('dash/registrations/registration_add.html', form=form)
 
@@ -187,4 +187,4 @@ def registration():
 @dash.route('/')
 @login_required
 def dash_attendee():
-    return render_template('dash_attendee.html', user=current_user)
+    return render_template('dash/attendee_dash.html', user=current_user.data)

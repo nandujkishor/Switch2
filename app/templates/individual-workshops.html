@@ -172,6 +172,10 @@
 
 		});
 		
+		$(window).bind('popstate', function(){
+			window.location.href="/workshops/"
+		});
+		
 		$.getScript("https://apis.google.com/js/client:platform.js", function () {
       
 			init();
