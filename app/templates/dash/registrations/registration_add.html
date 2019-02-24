@@ -130,8 +130,12 @@
       $.getJSON("/events/data/"+eventname+"/", function(data) {
         console.log(data);
         $.each(data, function(key, value) {
-          if(value.rmseats > 0){
-            var large = '<a id="'+value.id+'">'+value.title+'</a>';
+          var large = '<a id="'+value.id+'">'+value.title+'</a>';
+          if(eventname == "workshops"){
+            if(value.rmseats > 0)
+              $(".event-dropdown").append(large);
+          }
+          else{
             $(".event-dropdown").append(large);
           }
         });
