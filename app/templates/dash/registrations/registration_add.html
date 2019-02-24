@@ -111,6 +111,9 @@
       $('.cat-choose').css('color', '#000');  
       $(".cat-dropdown").removeClass("show-dropdown");
       
+      $('#div-event label').html("Events");
+      $(".pricing").empty();
+
       var eventname;
       if(cat == 2)
         eventname = "contests"
@@ -156,7 +159,7 @@
           $(".event-dropdown").removeClass("show-dropdown");
           
           $(".pricing").empty();
-          
+
           $.getJSON("/events/data/"+eventname+"/"+event, function(data) {
             $('.pricing').append('<p>Fee : ' + data.fee + '</p>');
           });
