@@ -35,7 +35,7 @@
   
   <form class="st-form" novalidate>
 
-    <h1>Registraion Dashboard</h1>
+    <h1>Registration Dashboard</h1>
     
     <div class="float-label" id="div-level">
         <input id="vid" name="vid" autocomplete="off" required type="text">
@@ -52,13 +52,19 @@
       </div>
     </div> 
     
-    <div style="margin-top: 20px; margin-bottom: 20px;" id="div-event">
-      <div class="event drop">
-        <label class="event-choose" style="position: static;">Category</label>
-      </div>
-      <div class="dropdown event-dropdown">
-      </div>
+    <div class="float-label" style="margin-top: 20px; margin-bottom: 20px;" id="div-event">
+        <div class="dropdown event-dropdown">
+          <a id="1">Amrita School of Engineering, Amritapuri</a>
+          <a id="2">Amrita School of Arts & Sciences, Amritapuri</a>
+          <a id="3">Amrita School of Biotechnology, Amritapuri</a>
+          <a id="4">Amrita School of Ayurveda, Amritapuri</a>
+          <a id="5">Amrita School of Businness, Amritapuri</a>
+        </div>
+       <input id="event" name="event" autocomplete="off" required type="text">
+       <label for="event">Event</label>
     </div>
+
+    <div class="pricing"></div>
 
     <div class = "action-button">
       <input id="submit" type="submit" name="submit" value="Proceed">
@@ -79,7 +85,10 @@
     max-width: 450px; 
   }
   .event-dropdown{
-    max-width: 450px;
+    margin-top: 62px;
+    margin-left: -2px;
+    width: 450px;
+    max-width: 500px;
   }
 </style>
 <script>
@@ -91,7 +100,7 @@
     $('body').click(function(e){
       if($(e.target).closest('#div-cat').length)
         return;
-      if($(e.target).closest('#div-event').length)
+      if($(e.target).closest('#event').length)
         return;  
       $(".cat-dropdown").removeClass("show-dropdown");
     })
@@ -121,26 +130,45 @@
       $.getJSON("/events/data/"+eventname+"/", function(data) {
         console.log(data);
         $.each(data, function(key, value) {
-          var large = '<a id="'+value.id+'">'+value.title+'</a>';
-          $(".event-dropdown").append(large);
+          if(value.rmseats > 0){
+            var large = '<a id="'+value.id+'">'+value.title+'</a>';
+            $(".event-dropdown").append(large);
+          }
         });
         
         $('#div-event').css('display', 'block');
 
+        $('#event').keyup(function(){
+      
+          filter = $("#event").val().toUpperCase();
+          
+          $('.event-dropdown').find('a').each(function(){
+              if($(this).text().toUpperCase().indexOf(filter) > -1 || $(this).attr('id') == 0)
+                $(this).css('display','')
+              else
+                $(this).css('display','none');
+          });
+
+        });
+
         $('.event-dropdown a').click(function(){
           event = $(this).attr('id');
           
-          $('.event label').html($(this).text());
-          $('.event-choose').css('opacity', '1');
-          $('.event-choose').css('color', '#000');  
+          $('#div-event label').html($(this).text());
+          $('#div-event label').css('opacity', '1');
+          $('#div-event label').css('color', '#000');  
           $(".event-dropdown").removeClass("show-dropdown");
-        
+          
+          $.getJSON("/events/data/"+eventname+"/"+event, function(data) {
+            $('.pricing').append('<p>Fee : ' + data.fee + '</p>');
+          });
         });
       
       });
     });
 
-    $('.event').click(function(){
+    $('#event').focusin(function(){
+      console.log("TESTING");
       $('.event-dropdown').addClass("show-dropdown");
       $(".cat-dropdown").removeClass("show-dropdown");
     });
