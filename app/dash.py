@@ -187,4 +187,4 @@ def registration():
 @dash.route('/')
 @login_required
 def dash_attendee():
-    return render_template('dash/attendee_dash.html', user=current_user.data)
+    return render_template('dash/attendee_dash.html', user=current_user)

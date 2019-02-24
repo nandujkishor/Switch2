@@ -71,7 +71,7 @@ def staff_required(team="all", level=1):
                     return redirect(url_for('home'))
                 elif team=="all":
                     st = sorted(current_user.staff, key=lambda k: k['level'])
-                    if st[0].level < level:
+                    if st[0].get('level') < level:
                         print("No levels")
                         return redirect(url_for('home'))
                     return func(*args, **kwargs)
