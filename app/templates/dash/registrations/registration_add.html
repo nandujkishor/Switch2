@@ -96,14 +96,6 @@
   $(document).ready(function(){
 
     var cat, event;
-
-    $('body').click(function(e){
-      if($(e.target).closest('#div-cat').length)
-        return;
-      if($(e.target).closest('#event').length)
-        return;  
-      $(".cat-dropdown").removeClass("show-dropdown");
-    })
     
     $('.cat').click(function(){
       $('.cat-dropdown').addClass("show-dropdown");
@@ -126,6 +118,7 @@
         eventname = "workshops"
 
       $(".event-dropdown").empty();
+      $(".pricing").empty();
 
       $.getJSON("/events/data/"+eventname+"/", function(data) {
         console.log(data);
@@ -172,7 +165,6 @@
     });
 
     $('#event').focusin(function(){
-      console.log("TESTING");
       $('.event-dropdown').addClass("show-dropdown");
       $(".cat-dropdown").removeClass("show-dropdown");
     });
@@ -217,6 +209,14 @@
       e.preventDefault();
     
     });
+
+    $('body').click(function(e){
+      if($(e.target).closest('#div-cat').length)
+        return;
+      if($(e.target).closest('#event').length)
+        return;  
+      $(".cat-dropdown").removeClass("show-dropdown");
+    })
 
   });
 
