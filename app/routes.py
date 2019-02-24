@@ -10,8 +10,6 @@ from app.farer import staff_required
 from werkzeug.utils import secure_filename
 from werkzeug.urls import url_parse
 from flask_login import login_user, current_user, logout_user, login_required
-import hashlib
-from Crypto.Cipher import AES
 
 @login.unauthorized_handler
 def unauthorized():
@@ -133,6 +131,8 @@ def staff_creation():
 
     return render_template('dash/staff_creation.html', form=form)
 
+# import hashlib
+# from Crypto.Cipher import AES
 # import sys
 # import base64
 # from Crypto.Cipher import AES

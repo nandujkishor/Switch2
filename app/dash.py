@@ -159,7 +159,8 @@ def events_contest_add():
 
 @dash.route('/registrations/add')
 def registration():
-    return "TRUE"
+    
+    return render_template('registration_add')
 
 # Attendee dash beta
 
