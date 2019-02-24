@@ -77,8 +77,8 @@ def staff_required(team="all", level=1):
                     return func(*args, **kwargs)
                 else:
                     for i in current_user.staff:
-                        if i.team == team:
-                            if i.level >= level:
+                        if i.get('team') == team:
+                            if i.get('level') >= level:
                                 return func(*args, **kwargs)
                             else:
                                 print("No authorization within required team")
