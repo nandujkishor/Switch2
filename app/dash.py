@@ -155,6 +155,11 @@ def events_contest_add():
 
     return jsonify(406)   
 
+# Registrations
+
+@dash.route('/registrations/add')
+def registration():
+    return "TRUE"
 
 # Attendee dash beta
 

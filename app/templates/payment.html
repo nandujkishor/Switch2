@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sponsors | Vidyut</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  </head>
+
+  <body>
+    
+    <input type="submit" id="pay">
+      
+    <script>
+        function acrd(data){
+            console.log("Going to acrd");
+            payload = {
+                'encdata': data,
+                'code': 'VIDYUT19TEST'
+            }
+            $.ajax({
+                type: "GET",
+                data: payload,
+                async:true,
+                dataType : 'jsonp',   //you may use jsonp for cross origin request
+                crossDomain:true,
+                url: "https://payments.acrd.org.in/pay/makethirdpartypayment",
+                success: function(data){
+                    console.log("Success function!")
+                    console.log(data);
+                }
+            });
+        }
+
+        $(document).ready(function(){
+            var encd;
+            $('#pay').click(function(){
+                console.log("CLICKED");
+                $.ajax({
+                    type: "GET",
+                    url: "/payment/",
+                    success: function(data){
+                        console.log(data);
+                        acrd(data);
+                    }
+                });
+            });
+            
+        })
+    </script>
+  
+</body>
+  
+</html>

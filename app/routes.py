@@ -20,7 +20,7 @@ def unauthorized():
 @app.route('/shit')
 @login_required
 def shit():
-    r = requests.get(Config.hub_url + '/mail/test', headers={'Authorization':current_user.id})
+    r = requests.get(Config.HUB_URL + '/mail/test', headers={'Authorization':current_user.id})
     print(r.url)
     return "Hello"
 
@@ -133,51 +133,56 @@ def staff_creation():
 
     return render_template('dash/staff_creation.html', form=form)
 
-import sys
-import base64
-from Crypto.Cipher import AES
+# import sys
+# import base64
+# from Crypto.Cipher import AES
 
-key = "WEGSNGOXHEUDEEDD" 
-iv = "3564234432724374"
+# key = "WEGSNGOXHEUDEEDD" 
+# iv = "3564234432724374"
 
-class AESCipher(object):
-    def __init__(self, key):
-        self.bs = 16
-        self.cipher = AES.new(key, AES.MODE_CBC, iv)
+# class AESCipher(object):
+#     def __init__(self, key):
+#         self.bs = 16
+#         self.cipher = AES.new(key, AES.MODE_CBC, iv)
 
-    def encrypt(self, raw):
-        raw = self._pad(raw)
-        encrypted = self.cipher.encrypt(raw)
-        encoded = base64.b64encode(encrypted)
-        return str(encoded, 'utf-8')
+#     def encrypt(self, raw):
+#         raw = self._pad(raw)
+#         encrypted = self.cipher.encrypt(raw)
+#         encoded = base64.b64encode(encrypted)
+#         return str(encoded, 'utf-8')
 
-    def decrypt(self, raw):
-        decoded = base64.b64decode(raw)
-        decrypted = self.cipher.decrypt(decoded)
-        return str(self._unpad(decrypted), 'utf-8')
+#     def decrypt(self, raw):
+#         decoded = base64.b64decode(raw)
+#         decrypted = self.cipher.decrypt(decoded)
+#         return str(self._unpad(decrypted), 'utf-8')
 
-    def _pad(self, s):
-        return s + (self.bs - len(s) % self.bs) * chr(self.bs - len(s) % self.bs)
+#     def _pad(self, s):
+#         return s + (self.bs - len(s) % self.bs) * chr(self.bs - len(s) % self.bs)
 
-    def _unpad(self, s):
-        return s[:-ord(s[len(s)-1:])]
+#     def _unpad(self, s):
+#         return s[:-ord(s[len(s)-1:])]
 
-@app.route('/payment/')
-def payment():
-    plaintext = "transactionId=ORDER1|amount=1|purpose=VIDYUT19TEST|currency=inr"
-    result = hashlib.md5(plaintext.encode())
-    result = result.hexdigest()
-    print("md5",result)
-    pwc = plaintext + "|checkSum=" + result
-    print("before aes",pwc)
-    cipher = AESCipher(key)
-    encd = cipher.encrypt(pwc)
-    print("after aes", encd)
-    encd = "vfNh8J6pPzeP9l6gtkWj1CD9gTCy1Pyg7ac+S5fyIHmJhG67z7DFDzw1o4oaL0IIV5YYt1V08GSiFtMl2KxVPi9SeuL46anV0E3h9odZKCxHthL5HXzW7xjr6UOb0XWLl4zyOc2oSBEU2yjjN76v+Q=="
-    URL = "https://payments.acrd.org.in/pay/makethirdpartypayment"
-    PARAMS = {'encdata':encd,'code':"VIDYUT19TEST"} 
-    r = requests.post(url = URL, data = PARAMS) 
+# @app.route('/payment/')
+# def payment():
+#     plaintext = "transactionId=HELLOWORLD|amount=1|purpose=VIDYUT19TEST|currency=inr"
+#     result = hashlib.md5(plaintext.encode())
+#     result = result.hexdigest()
+#     print("md5",result)
+#     pwc = plaintext + "|checkSum=" + result
+#     print("before aes",pwc)
+#     cipher = AESCipher(key)
+#     encd = cipher.encrypt(pwc)
+#     print("after aes", encd)
+#     URL = "https://payments.acrd.org.in/pay/makethirdpartypayment"
+#     PARAMS = {'encdata':encd,'code':"VIDYUT19TEST"}
+#     return encd; 
 
-    print("data", r.content)
+#     r = requests.post(url = URL, data = PARAMS) 
 
-    return "SUCCESS"
+#     print("data", r.content)
+
+#     return "SUCCESS"
+
+@app.route('/check/')
+def check_pay():
+    return render_template('payment.html')
