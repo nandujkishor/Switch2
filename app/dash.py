@@ -3,7 +3,7 @@ from app import app, login, mail
 from flask import Blueprint, render_template, abort, redirect, request, url_for, jsonify
 from jinja2 import TemplateNotFound
 from config import Config
-from app.forms import AddTalk, AddWorkshop, AddContest, MoreData, CABegin, CAQues, test, EduData, AmrSOY
+from app.forms import AddTalk, AddWorkshop, AddContest, MoreData, EduData, AddRegistration
 from app.models import User
 from app.mail import farer_welcome_mail, amrsoy_reg_mail, testing_mail
 from app.more import get_user_ip, access
@@ -157,10 +157,30 @@ def events_contest_add():
 
 # Registrations
 
-@dash.route('/registrations/add')
+@dash.route('/registration/add/', methods=['GET', 'POST'])
+@login_required
+@staff_required("registration", 3)
 def registration():
     
-    return render_template('registration_add')
+    form = AddRegistration(request.form)
+
+    if request.method == 'POST':
+
+        print("Inside post"
+        )
+        payload = {
+            'vid': form.vid.data,
+            'cat': form.cat.data,
+            'eid': form.eid.data,
+        }
+
+        reg = requests.post(Config.HUB_URL+'/events/registration/staff', json=payload, headers={'Authorization':current_user.id})
+        print("POSTED", reg)
+        print("REPLY = ", reg.json().get('message'))  
+
+        return jsonify(201)
+
+    return render_template('dash/registrations/registration_add.html', form=form)
 
 # Attendee dash beta
 

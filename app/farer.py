@@ -17,7 +17,7 @@ farer = Blueprint('farer', __name__)
 @login.user_loader
 def load_user(id):
     
-    print("Loading user", id)
+    # print("Loading user", id)
     if id is None:
         return None
     
@@ -27,12 +27,12 @@ def load_user(id):
     if data.json().get('status') == 'fail':
         return None
 
-    print(data.json())
-    print(staff.json())
+    # print(data.json())
+    # print(staff.json())
     
     user = User(id=id, data=data.json().get('data'), staff=staff.json())
     
-    print("End of loading user")
+    # print("End of loading user")
     
     return user
 

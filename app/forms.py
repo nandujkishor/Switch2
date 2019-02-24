@@ -159,6 +159,11 @@ class test(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
 
 class CreateStaff(FlaskForm):
-    vid = DateTimeField('VID of staff')
+    vid = IntegerField('VID of staff')
     team = StringField('Team of the staff')
     level = IntegerField('Level of the staff')
+
+class AddRegistration(FlaskForm):
+    vid = IntegerField('VID of staff')
+    cat = IntegerField('Category of event')
+    eid = IntegerField('Event ID')

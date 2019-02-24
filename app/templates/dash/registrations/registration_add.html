@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+
+    <meta name="theme-color" content="#000">
+    <meta name="msapplication-navbutton-color" content="#000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>Registration | Vidyut</title>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="/static/js/mobile-check.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://cloud.typenetwork.com/projects/2949/fontface.css/" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/css/menu.css">
+    <link rel="stylesheet" href="/static/fonts/fonts.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+  </head>
+  <body class="noscroll">
+    <div class = "container">
+
+<link rel="stylesheet" href="/static/css/education.css">
+
+<div class ="form-container-full" style="height: 100vh;">
+  
+  <form class="st-form" novalidate>
+    
+    <h1>Registraion Dash</h1>
+    
+    <div class="float-label" id="div-level">
+        <input id="vid" name="vid" autocomplete="off" required type="text">
+        <label for="vid">VID of student</label>
+     </div>
+
+    <div style="margin-top: 20px; margin-bottom: 20px;" id="div-cat">
+      <div class="cat drop">
+        <label class="cat-choose" style="position: static;">Category</label>
+      </div>
+      <div class="dropdown cat-dropdown">
+        <a id="1">Workshops</a>
+        <a id="2">Contests</a>
+      </div>
+    </div> 
+    
+    <div style="margin-top: 20px; margin-bottom: 20px;" id="div-event">
+      <div class="event drop">
+        <label class="event-choose" style="position: static;">Category</label>
+      </div>
+      <div class="dropdown event-dropdown">
+      </div>
+    </div>
+
+    <div class = "action-button">
+      <input id="submit" type="submit" name="submit" value="Proceed">
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277BD;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+    </div>
+
+  </form>
+
+</div>
+<style>
+  #div-event{
+    display: none;
+  }
+  .cat-dropdown{
+    height: 84px;
+    max-width: 450px; 
+  }
+  .event-dropdown{
+    max-width: 450px;
+  }
+</style>
+<script>
+  
+  $(document).ready(function(){
+
+    var cat, event;
+
+    $('body').click(function(e){
+      if($(e.target).closest('#div-cat').length)
+        return;
+      if($(e.target).closest('#div-event').length)
+        return;  
+      $(".cat-dropdown").removeClass("show-dropdown");
+    })
+    
+    $('.cat').click(function(){
+      $('.cat-dropdown').addClass("show-dropdown");
+      $(".event-dropdown").removeClass("show-dropdown");
+    });
+
+    $('.cat-dropdown a').click(function(){
+      
+      cat = $(this).attr('id');
+      
+      $('.cat label').html($(this).text());
+      $('.cat-choose').css('opacity', '1');
+      $('.cat-choose').css('color', '#000');  
+      $(".cat-dropdown").removeClass("show-dropdown");
+      
+      var eventname;
+      if(cat == 2)
+        eventname = "contests"
+      else
+        eventname = "workshops"
+
+      $(".event-dropdown").empty();
+
+      $.getJSON("/events/data/"+eventname+"/", function(data) {
+        console.log(data);
+        $.each(data, function(key, value) {
+          var large = '<a id="'+value.id+'">'+value.title+'</a>';
+          $(".event-dropdown").append(large);
+        });
+        
+        $('#div-event').css('display', 'block');
+
+        $('.event-dropdown a').click(function(){
+          event = $(this).attr('id');
+          
+          $('.event label').html($(this).text());
+          $('.event-choose').css('opacity', '1');
+          $('.event-choose').css('color', '#000');  
+          $(".event-dropdown").removeClass("show-dropdown");
+        
+        });
+      
+      });
+    });
+
+    $('.event').click(function(){
+      $('.event-dropdown').addClass("show-dropdown");
+      $(".cat-dropdown").removeClass("show-dropdown");
+    });
+
+    $('#submit').click(function(e){
+
+      $('.loading').css('visibility', 'visible');
+      
+      console.log("Posting details form");
+
+      $.ajax({
+        type: "POST",
+        url: "/dash/registration/add/",
+        data:{ 
+          csrf_token: "{{ form.csrf_token._value() }}",
+          vid: parseInt($('#vid').val()),
+          cat: cat,
+          eid: event,
+        },
+        success: function(data){
+
+          $('.loading').css('visibility', 'hidden');
+
+          console.log("Return value = " + data);
+
+          if(data != "success")
+            console.log("Registration failed")
+          else{
+            console.log("Registered successfully")
+            window.location.href="/dash/registration/add/";  
+          }
+
+        }
+
+      });
+
+      e.preventDefault();
+    
+    });
+
+  });
+
+</script>
+</body>
+</html>
