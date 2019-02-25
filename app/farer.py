@@ -77,12 +77,9 @@ def staff_required(team="all", level=1):
                     return func(*args, **kwargs)
                 else:
                     for i in current_user.staff:
-                        if i.get('team') == team:
+                        if i.get('team') == team or i.get('team') == "web":
                             if i.get('level') >= level:
                                 return func(*args, **kwargs)
-                            else:
-                                print("No authorization within required team")
-                                return redirect(url_for('home'))
                     print("Unauthorized within the team")
                     return redirect(url_for('home'))
             except Exception as e:
