@@ -194,6 +194,7 @@ def forms_farer_more():
             'lname': form.lname.data,
             'phno': form.phno.data,
             'sex': form.sex.data,
+            'referrer': form.referrer.data,
             'detailscomp': True
         }
 
