@@ -176,15 +176,9 @@ def staff_creation():
 #     cipher = AESCipher(key)
 #     encd = cipher.encrypt(pwc)
 #     print("after aes", encd)
-#     URL = "https://payments.acrd.org.in/pay/makethirdpartypayment"
-#     PARAMS = {'encdata':encd,'code':"VIDYUT19TEST"}
+#     # URL = "https://payments.acrd.org.in/pay/makethirdpartypayment"
+#     # PARAMS = {'encdata':encd,'code':"VIDYUT19TEST"}
 #     return encd; 
-
-#     r = requests.post(url = URL, data = PARAMS) 
-
-#     print("data", r.content)
-
-#     return "SUCCESS"
 
 @app.route('/check/')
 def check_pay():

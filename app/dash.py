@@ -3,7 +3,7 @@ from app import app, login, mail
 from flask import Blueprint, render_template, abort, redirect, request, url_for, jsonify
 from jinja2 import TemplateNotFound
 from config import Config
-from app.forms import AddTalk, AddWorkshop, AddContest, MoreData, EduData, AddRegistration
+from app.forms import AddTalk, AddWorkshop, AddContest, MoreData, EduData, AddRegistration, AddonVolunteer
 from app.models import User
 from app.mail import farer_welcome_mail, amrsoy_reg_mail, testing_mail
 from app.more import get_user_ip, access
@@ -166,8 +166,6 @@ def registration():
 
     if request.method == 'POST':
 
-        print("Inside post"
-        )
         payload = {
             'vid': form.vid.data,
             'cat': form.cat.data,
@@ -182,7 +180,7 @@ def registration():
 
     return render_template('dash/registrations/registration_add.html', form=form)
 
-@dash.route('/purchases/addons/buy', methods=['GET', 'POST'])
+@dash.route('/purchases/addons/buy/', methods=['GET', 'POST'])
 @login_required
 @staff_required("registration", 3)
 def addons_staff():
@@ -190,12 +188,30 @@ def addons_staff():
     form = AddonVolunteer(request.form)
 
     if request.method == 'POST':
+<<<<<<< HEAD
         print("Addon POST method")
         payload = {
             'vid':1
         }
         r = requests.get(Config.HUB_URL+'/addons/order/staff', json=payload, headers={'Authorization':current_user.id})
         print(r.text)
+=======
+
+        payload = {
+            'vid': form.vid.data,
+            'pid': form.pid.data,
+            'qty': form.qty.data,
+            'tsize': form.tsize.data
+        }
+
+        reg = requests.post(Config.HUB_URL+'/addons/order/staff', json=payload, headers={'Authorization':current_user.id})
+        print("REPLY = ", reg.json().get('message'))  
+
+        return jsonify(reg.json())
+
+    return render_template('dash/registrations/addons.html', form=form)
+
+>>>>>>> 437a85663c4e4e76bf68550929ddf4f75ed75aff
 
 # Attendee dash beta
 

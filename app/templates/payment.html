@@ -10,42 +10,23 @@
   </head>
 
   <body>
-    
-    <input type="submit" id="pay">
+    <form method="POST" action="https://payments.acrd.org.in/pay/testmakethirdparty">
+        <input type="hidden" value="" name="encdata" id="encdata">
+        <input type="hidden" value="VIDYUT19TEST" name="code" id="code">
+        <input type="submit" id="pay">
+    </form>
       
     <script>
-        function acrd(data){
-            console.log("Going to acrd");
-            payload = {
-                'encdata': data,
-                'code': 'VIDYUT19TEST'
-            }
-            $.ajax({
-                type: "GET",
-                data: payload,
-                async:true,
-                dataType : 'jsonp',   //you may use jsonp for cross origin request
-                crossDomain:true,
-                url: "https://payments.acrd.org.in/pay/makethirdpartypayment",
-                success: function(data){
-                    console.log("Success function!")
-                    console.log(data);
-                }
-            });
-        }
 
         $(document).ready(function(){
             var encd;
-            $('#pay').click(function(){
-                console.log("CLICKED");
-                $.ajax({
-                    type: "GET",
-                    url: "/payment/",
-                    success: function(data){
-                        console.log(data);
-                        acrd(data);
-                    }
-                });
+            $.ajax({
+                type: "GET",
+                url: "/payment/",
+                success: function(data){
+                    console.log(data);
+                    $('#encdata').val(data);  
+                }
             });
             
         })

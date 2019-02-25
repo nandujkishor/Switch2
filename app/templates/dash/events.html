@@ -95,6 +95,7 @@
 
         $('.closeAdd').click(function() {
             $('.add-overlay, .view-overlay').removeClass('open');
+            $('.add-overlay-content').empty();
             $('.view-overlay-content').empty();
             window.history.pushState(
                 '/dash/events/'+current_page, 

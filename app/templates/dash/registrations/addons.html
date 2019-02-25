@@ -42,17 +42,38 @@
         <label for="vid">VID of student</label>
      </div>
 
-    <div style="margin-top: 20px; margin-bottom: 20px;" id="div-cat">
+    <div style="margin-top: 20px; margin-bottom: 20px;" id="div-product">
       <div class="product drop">
         <label class="product-choose" style="position: static;">Item</label>
       </div>
       <div class="dropdown product-dropdown">
-        <a id="1">Workshops</a>
-        <a id="2">Contests</a>
-      </div>
+        <a id="1">Amritapuri: Proshow + Choreonite + Fashionshow</a>
+        <a id="2">Outstation: Proshow + Choreonite + Fashionshow</a>
+        <a id="3">General: Headbangers + Choreonite + Fashionshow</a>
+        <a id="4">Choreonite + Fashionshow</a>
+        <a id="5">T-Shirt</a>
+        <a id="6">Amritapuri: Tickets + T-Shirt</a>
+        <a id="7">Outstation: Tickets + T-Shirt</a>
+    </div>
     </div>
 
+    <div style="margin-top: 20px; margin-bottom: 20px;" id="div-t-size">
+        <div class="t-size drop">
+            <label class="t-size-choose" style="position: static;">T-Shirt Size</label>
+        </div>
+        <div class="dropdown t-size-dropdown">
+            <a id="1">S</a>
+            <a id="2">M</a>
+            <a id="3">L</a>
+            <a id="4">XL</a>
+            <a id="5">XXL</a>    
+        </div>
+    </div>
     
+    <div class="float-label" id="div-count">
+        <input id="count" name="count" autocomplete="off" required type="text">
+        <label for="count">Count</label>
+    </div>
 
     <div class="pricing"></div>
 
@@ -67,100 +88,69 @@
 
 </div>
 <style>
-  #div-event{
+  #div-t-size{
     display: none;
   }
-  .cat-dropdown{
-    height: 84px;
+  .product-dropdown, .t-size-dropdown{
+    height: 150px;
     max-width: 450px; 
-  }
-  .event-dropdown{
-    margin-top: 62px;
-    margin-left: -2px;
-    width: 450px;
-    max-width: 500px;
   }
 </style>
 <script>
   
   $(document).ready(function(){
 
-    var cat, event;
+    var product, tsize;
+    
+    var pricing = ['500','700','900','100','300','750','950']
+
+    if(isMobile() == false){
+        $(".t-size-dropdown, .product-dropdown").niceScroll({
+        zindex: 9999,
+        cursorcolor:'#A9A9A9',
+        cursorborder:'none',
+        cursorborderradius:0,
+        });
+    }
     
     $('.product').click(function(){
       $('.product-dropdown').addClass("show-dropdown");
-      $(".event-dropdown").removeClass("show-dropdown");
+      $(".t-size-dropdown").removeClass("show-dropdown");
+    });
+
+    $('.t-size').click(function(){
+      $('.t-size-dropdown').addClass("show-dropdown");
+      $(".product-dropdown").removeClass("show-dropdown");
     });
 
     $('.product-dropdown a').click(function(){
       
-      cat = $(this).attr('id');
+      product = $(this).attr('id');
       
-      $('.cat label').html($(this).text());
-      $('.cat-choose').css('opacity', '1');
-      $('.cat-choose').css('color', '#000');  
-      $(".cat-dropdown").removeClass("show-dropdown");
+      $('.product label').html($(this).text());
+      $('.product-choose').css('opacity', '1');
+      $('.product-choose').css('color', '#000');  
+      $(".product-dropdown").removeClass("show-dropdown");
       
-      $('#div-event label').html("Events");
       $(".pricing").empty();
 
-      var eventname;
-      if(cat == 2)
-        eventname = "contests"
+      if(product > 4)
+        $('#div-t-size').css('display', 'block');
       else
-        eventname = "workshops"
-
-      $(".event-dropdown").empty();
-
-      $.getJSON("/events/data/"+eventname+"/", function(data) {
-        console.log(data);
-        $.each(data, function(key, value) {
-          var large = '<a id="'+value.id+'">'+value.title+'</a>';
-          if(eventname == "workshops"){
-            if(value.rmseats > 0)
-              $(".event-dropdown").append(large);
-          }
-          else{
-            $(".event-dropdown").append(large);
-          }
-        });
-        
-        $('#div-event').css('display', 'block');
-
-        $('#event').keyup(function(){
-      
-          filter = $("#event").val().toUpperCase();
-          
-          $('.event-dropdown').find('a').each(function(){
-              if($(this).text().toUpperCase().indexOf(filter) > -1 || $(this).attr('id') == 0)
-                $(this).css('display','')
-              else
-                $(this).css('display','none');
-          });
-
-        });
-
-        $('.event-dropdown a').click(function(){
-          event = $(this).attr('id');
-          
-          $('#div-event label').html($(this).text());
-          $('#div-event label').css('opacity', '1');
-          $('#div-event label').css('color', '#000');  
-          $(".event-dropdown").removeClass("show-dropdown");
-          
-          $(".pricing").empty();
-
-          $.getJSON("/events/data/"+eventname+"/"+event, function(data) {
-            $('.pricing').append('<p>Fee : ' + data.fee + '</p>');
-          });
-        });
-      
-      });
+        $('#div-t-size').css('display', 'none');
     });
 
-    $('#event').focusin(function(){
-      $('.event-dropdown').addClass("show-dropdown");
-      $(".cat-dropdown").removeClass("show-dropdown");
+    $('.t-size-dropdown a').click(function(){
+      
+      tsize = $(this).html();
+        console.log(tsize);
+      $('.t-size label').html($(this).text());
+      $('.t-size-choose').css('opacity', '1');
+      $('.t-size-choose').css('color', '#000');  
+      $(".t-size-dropdown").removeClass("show-dropdown");
+      
+      $(".pricing").empty();
+
     });
 
     $('#submit').click(function(e){
@@ -172,12 +162,13 @@
 
       $.ajax({
         type: "POST",
-        url: "/dash/registration/add/",
+        url: "/dash/purchases/addons/buy/",
         data:{ 
           csrf_token: "{{ form.csrf_token._value() }}",
           vid: parseInt($('#vid').val()),
-          cat: cat,
-          eid: event,
+          pid: product,
+          tsize: tsize,
+          qty: parseInt($('.count').val()),
         },
         success: function(data){
 
@@ -204,12 +195,22 @@
     
     });
 
+    $('#count').focusout(function(){
+        var cnt = parseInt($('#count').val());
+        var total = pricing[product - 1] * cnt;
+        if(product == 2)
+            total = total - parseInt(cnt / 3) * 100;
+        if( cnt > 0)
+            $('.pricing').append('Total : &#8377;' + total);
+    });
+
     $('body').click(function(e){
-      if($(e.target).closest('#div-cat').length)
+      if($(e.target).closest('#div-product').length)
         return;
-      if($(e.target).closest('#event').length)
+      if($(e.target).closest('#div-t-size').length)
         return;  
-      $(".cat-dropdown").removeClass("show-dropdown");
+      $(".product-dropdown").removeClass("show-dropdown");
+      $(".t-size-dropdown").removeClass("show-dropdown");
     })
 
   });
