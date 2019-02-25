@@ -100,7 +100,7 @@
   
   $(document).ready(function(){
 
-    var product;
+    var product, tsize;
     
     var pricing = ['500','700','900','100','300','750','950']
 
@@ -142,8 +142,8 @@
 
     $('.t-size-dropdown a').click(function(){
       
-      tsize = $(this).attr('id');
-      
+      tsize = $(this).html();
+        console.log(tsize);
       $('.t-size label').html($(this).text());
       $('.t-size-choose').css('opacity', '1');
       $('.t-size-choose').css('color', '#000');  
@@ -162,14 +162,13 @@
 
       $.ajax({
         type: "POST",
-        url: "/purchases/addons/buy/",
+        url: "/dash/purchases/addons/buy/",
         data:{ 
           csrf_token: "{{ form.csrf_token._value() }}",
           vid: parseInt($('#vid').val()),
           pid: product,
           tsize: tsize,
           qty: parseInt($('.count').val()),
-          eid: event,
         },
         success: function(data){
 

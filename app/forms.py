@@ -170,5 +170,5 @@ class AddRegistration(FlaskForm):
 class AddonVolunteer(FlaskForm):
     vid = IntegerField('VID of the purchaser')
     pid = IntegerField('Product ID')
-    size = StringField('T-Shirt Size')
+    tsize = StringField('T-Shirt Size')
     qty = IntegerField('Product quandity')
