@@ -188,14 +188,6 @@ def addons_staff():
     form = AddonVolunteer(request.form)
 
     if request.method == 'POST':
-<<<<<<< HEAD
-        print("Addon POST method")
-        payload = {
-            'vid':1
-        }
-        r = requests.get(Config.HUB_URL+'/addons/order/staff', json=payload, headers={'Authorization':current_user.id})
-        print(r.text)
-=======
 
         payload = {
             'vid': form.vid.data,
@@ -211,7 +203,6 @@ def addons_staff():
 
     return render_template('dash/registrations/addons.html', form=form)
 
->>>>>>> 437a85663c4e4e76bf68550929ddf4f75ed75aff
 
 # Attendee dash beta
 
