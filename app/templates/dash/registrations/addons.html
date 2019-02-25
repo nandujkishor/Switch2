@@ -100,9 +100,9 @@
   
   $(document).ready(function(){
 
-    var product;
+    var product, tsize = "";
     
-    var pricing = ['']
+    var pricing = ['500','700','900','100','300','750','950']
 
     if(isMobile() == false){
         $(".t-size-dropdown, .product-dropdown").niceScroll({
@@ -142,8 +142,8 @@
 
     $('.t-size-dropdown a').click(function(){
       
-      tsize = $(this).attr('id');
-      
+      tsize = $(this).html();
+        console.log(tsize);
       $('.t-size label').html($(this).text());
       $('.t-size-choose').css('opacity', '1');
       $('.t-size-choose').css('color', '#000');  
@@ -162,14 +162,13 @@
 
       $.ajax({
         type: "POST",
-        url: "/purchases/addons/buy/",
+        url: "/dash/purchases/addons/buy/",
         data:{ 
           csrf_token: "{{ form.csrf_token._value() }}",
           vid: parseInt($('#vid').val()),
-          pid: cat,
+          pid: product,
           tsize: tsize,
-          qty: $('.count').val(),
-          eid: event,
+          qty: parseInt($('#count').val()),
         },
         success: function(data){
 
@@ -194,6 +193,15 @@
 
       e.preventDefault();
     
+    });
+
+    $('#count').focusout(function(){
+        var cnt = parseInt($('#count').val());
+        var total = pricing[product - 1] * cnt;
+        if(product == 2)
+            total = total - parseInt(cnt / 3) * 100;
+        if( cnt > 0)
+            $('.pricing').append('Total : &#8377;' + total);
     });
 
     $('body').click(function(e){
