@@ -66,7 +66,8 @@ class MoreData(FlaskForm):
     lname = StringField('Last Name', validators=[DataRequired()])
     sex = IntegerField('Gender', validators=[DataRequired()])
     phno = IntegerField('Mobile', validators=[mobile_check, DataRequired()])
-
+    referrer = StringField('Referrer')
+    
 class EduData(FlaskForm):
     course = StringField('Course', validators=[DataRequired()])
     major = StringField('Major', validators=[DataRequired()])
