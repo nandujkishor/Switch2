@@ -196,6 +196,8 @@ def addons_staff():
             'tsize': form.tsize.data
         }
 
+        print("PAYLOAD = ", payload)
+
         reg = requests.post(Config.HUB_URL+'/addons/order/staff', json=payload, headers={'Authorization':current_user.id})
         print("REPLY = ", reg.json().get('message'))  
 

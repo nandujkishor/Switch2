@@ -100,7 +100,7 @@
   
   $(document).ready(function(){
 
-    var product, tsize;
+    var product, tsize = "";
     
     var pricing = ['500','700','900','100','300','750','950']
 
@@ -168,7 +168,7 @@
           vid: parseInt($('#vid').val()),
           pid: product,
           tsize: tsize,
-          qty: parseInt($('.count').val()),
+          qty: parseInt($('#count').val()),
         },
         success: function(data){
 
