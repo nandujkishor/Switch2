@@ -1,78 +1,13 @@
 <title>{{ workshop.title }} | Workshops</title>
 <link rel="stylesheet" href="/static/css/workshops/individual.css">
 <link rel="stylesheet" href="/static/css/form.css">
-<script>
-	function init(){
-    // console.log("loading gapi");
-    gapi.load('auth2', function () {
-      // console.log("gapi loaded");
-      auth2 = gapi.auth2.init({
-          client_id: '727153101463-709hp9lcjelc2ps4evtb4ojutbq1sotl.apps.googleusercontent.com'
-      });
-    });
-  }
-
-  function changeheader(color){
-    $('.menuVidyut').toggleClass('color-change');
-    $('.menu-button').toggleClass('change');
-    $('.login').toggleClass('color-change');
-    $('.login').toggleClass('border-change');
-    if(color == "b")
-      $('.header').css('background-color', '#000');
-    else
-      $('.header').css('background-color', '#fff');
-  }
-
-  function userChanged(user){
-    console.log("USER CHANGED");
-    $.ajax({
-      type: "POST",
-      url: "/farer/tokensignin/",
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      data: {idtoken: user.getAuthResponse().id_token},
-      success: function(data){
-		console.log("data = " + data);
-		checkLogin();
-      }
-    });
-  }
-
-  function login() {
-	// console.log("onLogin");
-	auth2.currentUser.listen(userChanged);
-	auth2.signIn();
-  }
-
-  function checkLogin(){
-
-    var fName, lName;
-	console.log("Inside checklogin");
-
-    $.getJSON("/data/farer/user/", function(data){
-
-    //   console.log("Details completed? " + data['detailscomp']);
-    //   console.log("Educational details completed? " + data['educomp']);
-	  
-	  $('.workshopContainer').css('opacity', '0');
-
-	  window.setTimeout(function(){
-		id = data['id'];
-		if(data['detailscomp'] == null){
-			window.location.href = "/farer/details"
-		}
-		else if(data['educomp'] == null){
-			window.location.href = "/farer/education"
-		}
-		else{
-			window.location.href = window.sessionStorage.getItem('origin');
-		}
-	  }, 500);
-    });
-
-  }
-</script>
+<style>
+	.right .down-arrow{
+		position: absolute;
+		left: 75%;
+		bottom: 2%;
+	}
+</style>
 <div class = "Containter">
 	<!-- <div class="trans-layer"></div>
 	<div class="medium-page-overlay registeration-overlay">
@@ -99,6 +34,9 @@
 		</div>
 		<div class="w-department">
 			{{dept[workshop.department - 1]}}
+		</div>
+		<div class="down-arrow">
+				Scroll down
 		</div>
 	</div>
 	<div class="w-m-main-mobile mobile">

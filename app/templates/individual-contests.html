@@ -1,7 +1,13 @@
 <title>{{ contest.title }} | Contests</title>
 <link rel="stylesheet" href="/static/css/workshops/individual.css">
 <link rel="stylesheet" href="/static/css/form.css">
-
+<style>
+	.right .down-arrow{
+		position: absolute;
+		left: 75%;
+		bottom: 2%;
+	}
+</style>
 <div class = "Containter">
 	<!-- <div class="trans-layer"></div>
 	<div class="medium-page-overlay registeration-overlay">
@@ -28,6 +34,9 @@
 		</div>
 		<div class="w-department">
 			{{dept[contest.department - 1]}}
+		</div>
+		<div class="down-arrow">
+			Scroll down
 		</div>
 	</div>
 	<div class="w-m-main-mobile mobile">
