@@ -108,6 +108,7 @@
     </div>
 
     <div class="pricing"></div>
+    <div class="confirmation" style="margin-top: 20px;"></div>
 
     <div class = "action-button">
       <input id="submit" type="submit" name="submit" value="Proceed">
@@ -146,7 +147,8 @@
   $(document).ready(function(){
 
     var product, tsize = "", roll = "AM.EN.";
-    
+    var confirmation = 0;
+
     var pricing = ['500','700','900','100','300','750','950','1150']
 
     if(isMobile() == false){
@@ -211,50 +213,57 @@
     });
 
     $('#submit').click(function(e){
+      
+      if(confirmation == 0){
+        confirmation++;
+        $('.confirmation').append('<p style="color: red">Click proceed again to confirm.</p>');
+        e.preventDefault();
+      }
+      else{
+        $('.loading').css('visibility', 'visible');
+        $('.message').empty();
 
-      $('.loading').css('visibility', 'visible');
-      $('.message').empty();
+        console.log("Posting details form");
 
-      console.log("Posting details form");
+        $.ajax({
+            type: "POST",
+            url: "/dash/purchases/addons/buy/",
+            data:{ 
+            csrf_token: "{{ form.csrf_token._value() }}",
+            vid: parseInt($('#vid').val()),
+            roll: roll + $('#roll').val().toUpperCase(),
+            bookid: $('#bookid').val(),
+            pid: product,
+            scount: parseInt($('#t-s').val()) | 0,
+            mcount: parseInt($('#t-m').val()) | 0,
+            lcount: parseInt($('#t-l').val()) | 0,
+            xlcount: parseInt($('#t-xl').val()) | 0,
+            xxlcount: parseInt($('#t-xxl').val()) | 0,
+            qty: parseInt($('#count').val()),
+            },
+            success: function(data){
 
-      $.ajax({
-        type: "POST",
-        url: "/dash/purchases/addons/buy/",
-        data:{ 
-          csrf_token: "{{ form.csrf_token._value() }}",
-          vid: parseInt($('#vid').val()),
-          roll: roll + $('#roll').val().toUpperCase(),
-          bookid: $('#bookid').val(),
-          pid: product,
-          scount: parseInt($('#t-s').val()) | 0,
-          mcount: parseInt($('#t-m').val()) | 0,
-          lcount: parseInt($('#t-l').val()) | 0,
-          xlcount: parseInt($('#t-xl').val()) | 0,
-          xxlcount: parseInt($('#t-xxl').val()) | 0,
-          qty: parseInt($('#count').val()),
-        },
-        success: function(data){
+            $('.loading').css('visibility', 'hidden');
 
-          $('.loading').css('visibility', 'hidden');
+            console.log("Return value = " + data.message);
 
-          console.log("Return value = " + data.message);
+            if(data.status != "success"){
+                console.log("Registration failed")
+                $('.message').append('<p style="color: red">'+data.message+'</p>');
+            }
+            else{
+                $('.message').append('<p style="color: green">'+data.message+'</p>');
+                console.log("Registered successfully");
+            }
 
-          if(data.status != "success"){
-            console.log("Registration failed")
-            $('.message').append('<p style="color: red">'+data.message+'</p>');
-          }
-          else{
-            $('.message').append('<p style="color: green">'+data.message+'</p>');
-            console.log("Registered successfully");
-          }
+            $('.message').css('display', 'block');
+            $('.message').append('<a href="/dash/registration/add/" style="color:blue;">Register new user</a>');
+            }
 
-          $('.message').css('display', 'block');
-          $('.message').append('<a href="/dash/registration/add/" style="color:blue;">Register new user</a>');
-        }
+        });
 
-      });
-
-      e.preventDefault();
+        e.preventDefault();
+      }
     
     });
 
