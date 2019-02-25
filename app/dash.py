@@ -190,8 +190,12 @@ def addons_staff():
     form = AddonVolunteer(request.form)
 
     if request.method == 'POST':
-        print("Je")
-
+        print("Addon POST method")
+        payload = {
+            'vid':1
+        }
+        r = requests.get(Config.HUB_URL+'/addons/order/staff', json=payload, headers={'Authorization':current_user.id})
+        print(r.text)
 
 # Attendee dash beta
 
