@@ -61,7 +61,8 @@
     </div>
 
     <div class="pricing"></div>
-
+    <div class="confirmation" style="margin-top: 20px;"></div>
+    
     <div class = "action-button">
       <input id="submit" type="submit" name="submit" value="Proceed">
       <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277BD;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
@@ -90,6 +91,8 @@
 <script>
   
   $(document).ready(function(){
+
+    var confirmation = 0;
 
     var cat, event;
     
@@ -181,42 +184,51 @@
 
     $('#submit').click(function(e){
 
-      $('.loading').css('visibility', 'visible');
-      $('.message').empty();
+      if(confirmation == 0){
+        confirmation++;
+        $('.confirmation').append('<p style="color: red">Click proceed again to confirm.</p>');
+        e.preventDefault();
+      }
+      else{
+        $('.confirmation').empty();
 
-      console.log("Posting details form");
+        $('.loading').css('visibility', 'visible');
+        $('.message').empty();
 
-      $.ajax({
-        type: "POST",
-        url: "/dash/registration/add/",
-        data:{ 
-          csrf_token: "{{ form.csrf_token._value() }}",
-          vid: parseInt($('#vid').val()),
-          cat: cat,
-          eid: event,
-        },
-        success: function(data){
+        console.log("Posting details form");
 
-          $('.loading').css('visibility', 'hidden');
+        $.ajax({
+          type: "POST",
+          url: "/dash/registration/add/",
+          data:{ 
+            csrf_token: "{{ form.csrf_token._value() }}",
+            vid: parseInt($('#vid').val()),
+            cat: cat,
+            eid: event,
+          },
+          success: function(data){
 
-          console.log("Return value = " + data.message);
+            $('.loading').css('visibility', 'hidden');
 
-          if(data.status != "success"){
-            console.log("Registration failed")
-            $('.message').append('<p style="color: red">'+data.message+'</p>');
+            console.log("Return value = " + data.message);
+
+            if(data.status != "success"){
+              console.log("Registration failed")
+              $('.message').append('<p style="color: red">'+data.message+'</p>');
+            }
+            else{
+              $('.message').append('<p style="color: green">'+data.message+'</p>');
+              console.log("Registered successfully");
+            }
+
+            $('.message').css('display', 'block');
+            $('.message').append('<a href="/dash/registration/add/" style="color:blue;">Register new user</a>');
           }
-          else{
-            $('.message').append('<p style="color: green">'+data.message+'</p>');
-            console.log("Registered successfully");
-          }
 
-          $('.message').css('display', 'block');
-          $('.message').append('<a href="/dash/registration/add/" style="color:blue;">Register new user</a>');
-        }
+        });
 
-      });
-
-      e.preventDefault();
+        e.preventDefault();
+      }
     
     });
 
