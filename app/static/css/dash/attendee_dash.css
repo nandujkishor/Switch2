@@ -71,7 +71,7 @@ body{
     .dash-meta-data img{
         height: 450px; 
     }
-    h1, h2{
+    .dash-meta-data h1, .dash-meta-data h2{
         padding-left: 30px;
     }
     .logout{

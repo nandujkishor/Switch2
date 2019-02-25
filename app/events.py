@@ -146,3 +146,11 @@ def contests_individual(id):
     contest = requests.get(Config.HUB_URL+'/events/contests/'+str(id))
     print(contest.json())
     return jsonify(contest.json())
+
+@events.route('/data/registered/', methods=['GET'])
+def events_registered():
+
+    events = requests.get(Config.HUB_URL+'/events/registration', headers={'Authorization':current_user.id})    
+    print(events)
+
+    return jsonify(events.json())

@@ -13,7 +13,14 @@
           </div>
         </div>
         <div class="registered">
-          Registered events
+          <div>
+              <div class="registered-workshops">
+                <h2>Registered workshops</h2>
+              </div>
+              <div class="registered-events" style="margin-top: 20px">
+                <h2>Registered events</h2>
+              </div>
+          </div>
         </div>
       </div>    
     </div>
@@ -25,6 +32,17 @@
           window.location.href = "/farer/logout/"
         })
       })
+
+      $.getJSON("/events/data/registered/", function(data) {
+        console.log(data);
+        $.each(data, function(key, value) {
+          var large = '<p>'+value.title+'</p>';
+          if(value.cat == 1)
+            $(".registered-workshops").append(large);
+          else
+          $(".registered-events").append(large);
+        });
+      });
     </script>
   </body>
 {% endblock %}
