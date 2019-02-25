@@ -80,7 +80,7 @@ def events_show(op, event):
 @dash.route('/events/')
 @dash.route('/events/talks')
 @login_required
-@staff_required(1)
+@staff_required("all",1)
 def events_show_talks():
     
     return events_show(request.args.get('open'), "talks")
@@ -89,14 +89,14 @@ def events_show_talks():
 
 @dash.route('/events/workshops')
 @login_required
-@staff_required(1)
+@staff_required("all",1)
 def events_show_workshops():
 
     return events_show(request.args.get('open'), "workshops")
 
 @dash.route('/events/contests')
 @login_required
-@staff_required(1)
+@staff_required("all",1)
 def events_show_contests():
 
     return events_show(request.args.get('open'), "contests")
