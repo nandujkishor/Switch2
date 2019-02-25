@@ -193,7 +193,13 @@ def addons_staff():
             'vid': form.vid.data,
             'pid': form.pid.data,
             'qty': form.qty.data,
-            'tsize': form.tsize.data
+            'roll': form.roll.data,
+            'bookid': form.bookid.data, 
+            'scount': form.scount.data,
+            'mcount': form.mcount.data,
+            'lcount': form.lcount.data,
+            'xlcount': form.xlcount.data,
+            'xxlcount': form.xxlcount.data
         }
 
         print("PAYLOAD = ", payload)

@@ -44,7 +44,7 @@
      <div class="vid-meta"></div>
      
     <div class="float-label" id="div-bookid" style="margin-top: 20px">
-        <input id="bookid" name="count" autocomplete="off" required type="text">
+        <input id="bookid" name="bookid" autocomplete="off" required type="text">
         <label for="bookid">Book ID</label>
     </div>
 
@@ -222,14 +222,14 @@
         data:{ 
           csrf_token: "{{ form.csrf_token._value() }}",
           vid: parseInt($('#vid').val()),
-          roll: roll,
-          bookid: bookid,
+          roll: roll + $('#roll').val().toUpperCase(),
+          bookid: $('#bookid').val(),
           pid: product,
-          scount: tsize,
-          mcount: mcount,
-          lcount: lcount,
-          xlcount: xlcount,
-          xxlcount: xxlcount,
+          scount: parseInt($('#t-s').val()) | 0,
+          mcount: parseInt($('#t-m').val()) | 0,
+          lcount: parseInt($('#t-l').val()) | 0,
+          xlcount: parseInt($('#t-xl').val()) | 0,
+          xxlcount: parseInt($('#t-xxl').val()) | 0,
           qty: parseInt($('#count').val()),
         },
         success: function(data){
@@ -257,11 +257,49 @@
     
     });
 
+    var total = 0;
+
     $('#count').focusout(function(){
         var cnt = parseInt($('#count').val());
-        var total = pricing[product - 1] * cnt;
-        if(product == 2)
-            total = total - parseInt(cnt / 3) * 100;
+        total = total + pricing[product - 1] * cnt;
+        $('.pricing').empty();
+        if( cnt > 0)
+            $('.pricing').append('Total : &#8377;' + total);
+    });
+    $('#t-s').focusout(function(){
+        $('.pricing').empty();
+        var cnt = parseInt($('#t-s').val());
+        total = total + pricing[product - 1] * cnt;
+        console.log(total)
+        if( cnt > 0)
+            $('.pricing').append('Total : &#8377;' + total);
+    });
+    $('#t-m').focusout(function(){
+        $('.pricing').empty();
+        var cnt = parseInt($('#t-m').val());
+        total = total + pricing[product - 1] * cnt;
+        if( cnt > 0)
+            $('.pricing').append('Total : &#8377;' + total);
+    });
+
+    $('#t-l').focusout(function(){
+        $('.pricing').empty();
+        var cnt = parseInt($('#t-l').val());
+        total = total + pricing[product - 1] * cnt;
+        if( cnt > 0)
+            $('.pricing').append('Total : &#8377;' + total);
+    });
+    $('#t-xl').focusout(function(){
+        $('.pricing').empty();
+        var cnt = parseInt($('#t-xl').val());
+        total = total + pricing[product - 1] * cnt;
+        if( cnt > 0)
+            $('.pricing').append('Total : &#8377;' + total);
+    });
+    $('#t-xxl').focusout(function(){
+        $('.pricing').empty();
+        var cnt = parseInt($('#t-xxl').val());
+        total = total + pricing[product - 1] * cnt;
         if( cnt > 0)
             $('.pricing').append('Total : &#8377;' + total);
     });
