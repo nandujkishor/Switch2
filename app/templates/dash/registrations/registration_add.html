@@ -156,7 +156,7 @@
           $(".pricing").empty();
 
           $.getJSON("/events/data/"+eventname+"/"+event, function(data) {
-            $('.pricing').append('<p>Fee : ' + data.fee + '</p>');
+            $('.pricing').append('<p>Fee : &#8377;' + data.fee + '</p>');
           });
         });
       

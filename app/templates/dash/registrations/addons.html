@@ -102,7 +102,7 @@
 
     var product;
     
-    var pricing = ['']
+    var pricing = ['500','700','900','100','300','750','950']
 
     if(isMobile() == false){
         $(".t-size-dropdown, .product-dropdown").niceScroll({
@@ -166,9 +166,9 @@
         data:{ 
           csrf_token: "{{ form.csrf_token._value() }}",
           vid: parseInt($('#vid').val()),
-          pid: cat,
+          pid: product,
           tsize: tsize,
-          qty: $('.count').val(),
+          qty: parseInt($('.count').val()),
           eid: event,
         },
         success: function(data){
@@ -194,6 +194,15 @@
 
       e.preventDefault();
     
+    });
+
+    $('#count').focusout(function(){
+        var cnt = parseInt($('#count').val());
+        var total = pricing[product - 1] * cnt;
+        if(product == 2)
+            total = total - parseInt(cnt / 3) * 100;
+        if( cnt > 0)
+            $('.pricing').append('Total : &#8377;' + total);
     });
 
     $('body').click(function(e){
