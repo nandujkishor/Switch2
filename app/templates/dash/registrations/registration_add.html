@@ -38,9 +38,10 @@
     <h1>Registration Dashboard</h1>
     
     <div class="float-label" id="div-level">
-        <input id="vid" name="vid" autocomplete="off" required type="text">
-        <label for="vid">VID of student</label>
-     </div>
+      <input id="vid" name="vid" autocomplete="off" required type="text">
+      <label for="vid">VID of student</label>
+    </div>
+    <div class="vid-meta"></div>
 
     <div style="margin-top: 20px; margin-bottom: 20px;" id="div-cat">
       <div class="cat drop">
@@ -166,6 +167,14 @@
     $('#event').focusin(function(){
       $('.event-dropdown').addClass("show-dropdown");
       $(".cat-dropdown").removeClass("show-dropdown");
+    });
+
+    $('#vid').focusout(function(){
+      $.getJSON("/farer/meta/user?m="+parseInt($('#vid').val()), function(data) {
+        $('.vid-meta').empty();
+        if(data.message != "Internal Server Error")
+          $('.vid-meta').append('<b><p>'+data.fname+' '+data.lname+'</p><p>'+data.email+'</p></b>')
+      });
     });
 
     $('#submit').click(function(e){

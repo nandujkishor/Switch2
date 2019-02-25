@@ -238,6 +238,19 @@ def forms_farer_edu():
 
     return render_template('forms/education.html', user=current_user, form=form, colleges=colleges)
 
+@farer.route('/meta/user/', methods=['GET'])
+def meta_user():
+    
+    mode = request.args.get('m')
+    payload = {
+        'vid': mode
+    }
+    meta = requests.get(Config.HUB_URL+'/farer/user/contact', json=payload)
+    meta = meta.json()
+
+    print(meta)
+
+    return jsonify(meta)
 
 @farer.route('/delete/<id>/')
 # @level_required(15)

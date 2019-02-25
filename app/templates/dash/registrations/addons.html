@@ -41,6 +41,7 @@
         <input id="vid" name="vid" autocomplete="off" required type="text">
         <label for="vid">VID of student</label>
      </div>
+     <div class="vid-meta"></div>
 
     <div style="margin-top: 20px; margin-bottom: 20px;" id="div-product">
       <div class="product drop">
@@ -48,12 +49,12 @@
       </div>
       <div class="dropdown product-dropdown">
         <a id="1">Amritapuri: Proshow + Choreonite + Fashionshow</a>
-        <a id="2">Outstation: Proshow + Choreonite + Fashionshow</a>
+        <!-- <a id="2">Outstation: Proshow + Choreonite + Fashionshow</a> -->
         <a id="3">General: Headbangers + Choreonite + Fashionshow</a>
         <a id="4">Choreonite + Fashionshow</a>
         <a id="5">T-Shirt</a>
-        <a id="6">Amritapuri: Tickets + T-Shirt</a>
-        <a id="7">Outstation: Tickets + T-Shirt</a>
+        <a id="6">Amritapuri: Combo all + T-Shirt</a>
+        <!-- <a id="7">Outstation: Combo all + T-Shirt</a> -->
     </div>
     </div>
 
@@ -92,7 +93,7 @@
     display: none;
   }
   .product-dropdown, .t-size-dropdown{
-    height: 150px;
+    height: 207px;
     max-width: 450px; 
   }
 </style>
@@ -151,6 +152,14 @@
       
       $(".pricing").empty();
 
+    });
+
+    $('#vid').focusout(function(){
+      $.getJSON("/farer/meta/user?m="+parseInt($('#vid').val()), function(data) {
+        $('.vid-meta').empty();
+        if(data.message != "Internal Server Error")
+            $('.vid-meta').append('<b><p>'+data.fname+' '+data.lname+'</p><p>'+data.email+'</p></b>')
+      });
     });
 
     $('#submit').click(function(e){
