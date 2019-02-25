@@ -52,6 +52,58 @@ body{
 	grid-area: image;
 }
 
+.filter svg{
+	cursor: pointer;
+	margin-top: 10px;
+	margin-left: 5px;
+	float: right;
+}
+
+.filter-drop-down{
+	position: absolute;
+	margin-top: -5px;
+	height: 140px;
+	width: 120px;
+	z-index: 11;
+
+	display: none;
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: -webkit-transform 0.2s, opacity 0.2s, visibility 0s 0.2s;
+	transition: transform 0.2s, opacity 0.2s, visibility 0s 0.2s;
+}
+
+.filter-drop-down.open{
+	display: block;
+	visibility: visible;
+	opacity: 1;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+}
+
+.filter-drop-down ul{
+	list-style: none;
+	background: #E3E1DC;
+	border-top: 3px solid #696866;
+	padding: 0px;
+	margin-top: 5px;
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+
+.filter-drop-down ul li{
+	padding: 5px;
+}
+
+.filter-drop-down ul li:hover{
+	background: #696866;
+	cursor: pointer;
+}
+
+.filter-drop-down ul a li{
+	cursor: pointer;
+}
+
 .heading,
 .w-t-description h1{
 	font-size: 20px;
@@ -74,6 +126,14 @@ body{
 }
 
 @media only screen and (min-width: 768px) {
+	.filter svg{
+		margin-top: 15px;
+	}
+	.filter-drop-down{
+		position: absolute;
+		margin-top: -5px;
+		width: 155px;
+	}
 	.login{
 		right: 56px;
 		font-size: 16px;
