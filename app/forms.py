@@ -15,7 +15,6 @@ class AddTalk(FlaskForm):
     amount = IntegerField('Amount')
     submit = SubmitField('Add Talk')
 
-
 class AddWorkshop(FlaskForm):
     id = StringField('ID')
     wid = IntegerField('W-ID')
@@ -167,3 +166,9 @@ class AddRegistration(FlaskForm):
     vid = IntegerField('VID of staff')
     cat = IntegerField('Category of event')
     eid = IntegerField('Event ID')
+
+class AddonVolunteer(FlaskForm):
+    vid = IntegerField('VID of the purchaser')
+    pid = IntegerField('Product ID')
+    size = StringField('T-Shirt Size')
+    qty = IntegerField('Product quandity')

@@ -182,6 +182,17 @@ def registration():
 
     return render_template('dash/registrations/registration_add.html', form=form)
 
+@dash.route('/purchases/addons/buy', methods=['GET', 'POST'])
+@login_required
+@staff_required("registration", 3)
+def addons_staff():
+
+    form = AddonVolunteer(request.form)
+
+    if request.method == 'POST':
+        print("Je")
+
+
 # Attendee dash beta
 
 @dash.route('/')
