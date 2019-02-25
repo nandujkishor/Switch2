@@ -42,6 +42,25 @@
         <label for="vid">VID of student</label>
      </div>
      <div class="vid-meta"></div>
+     
+    <div class="float-label" id="div-bookid" style="margin-top: 20px">
+        <input id="bookid" name="count" autocomplete="off" required type="text">
+        <label for="bookid">Book ID</label>
+    </div>
+
+    <div style="margin-top: 20px; margin-bottom: 20px;" id="div-roll-prefix">
+        <div class="roll-prefix drop">
+            <label class="roll-prefix-choose" style="position: static;">AM.EN</label>
+        </div>
+        <div class="float-label" id="div-roll">
+            <input id="roll" name="count" autocomplete="off" required type="text">
+            <label for="roll">Roll Number</label>
+        </div>
+        <div class="dropdown roll-prefix-dropdown">
+            <a>AM.AR</a>
+            <a>AM.BT</a>
+        </div>
+    </div>
 
     <div style="margin-top: 20px; margin-bottom: 20px;" id="div-product">
       <div class="product drop">
@@ -53,21 +72,32 @@
         <a id="3">General: Headbangers + Choreonite + Fashionshow</a>
         <a id="4">Choreonite + Fashionshow</a>
         <a id="5">T-Shirt</a>
-        <a id="6">Amritapuri: Combo all + T-Shirt</a>
+        <a id="6">Amritapuri: Proshow + Choreonite + Fashionshow + T-Shirt</a>
+        <a id="8">General: Headbangers + Choreonite + Fashionshow + T-Shirt</a>
         <!-- <a id="7">Outstation: Combo all + T-Shirt</a> -->
-    </div>
+      </div>
     </div>
 
-    <div style="margin-top: 20px; margin-bottom: 20px;" id="div-t-size">
-        <div class="t-size drop">
-            <label class="t-size-choose" style="position: static;">T-Shirt Size</label>
+    <div id="div-t-size">
+        <div class="float-label" id="div-t-s">
+            <input id="t-s" name="t-s" autocomplete="off" required type="text">
+            <label for="t-s">Count of S</label>
         </div>
-        <div class="dropdown t-size-dropdown">
-            <a id="1">S</a>
-            <a id="2">M</a>
-            <a id="3">L</a>
-            <a id="4">XL</a>
-            <a id="5">XXL</a>    
+        <div class="float-label" id="div-t-m">
+            <input id="t-m" name="t-m" autocomplete="off" required type="text">
+            <label for="t-m">Count of M</label>
+        </div>
+        <div class="float-label" id="div-t-l">
+            <input id="t-l" name="t-l" autocomplete="off" required type="text">
+            <label for="t-l">Count of L</label>
+        </div>
+        <div class="float-label" id="div-t-xl">
+            <input id="t-xl" name="t-xl" autocomplete="off" required type="text">
+            <label for="t-xl">Count of XL</label>
+        </div>
+        <div class="float-label" id="div-t-xxl">
+            <input id="t-xxl" name="t-xxl" autocomplete="off" required type="text">
+            <label for="t-xxl">Count of XXL</label>
         </div>
     </div>
     
@@ -93,20 +123,33 @@
     display: none;
   }
   .product-dropdown, .t-size-dropdown{
-    height: 207px;
+    height: 285px;
     max-width: 450px; 
+  }
+  .roll-prefix{
+    border-right: none;
+  }
+  #div-roll-prefix{
+    display: grid;
+    grid-template-columns: 100px auto;
+    grid-template-rows: auto;
+    grid-area: "one two";
+  }
+  .roll-prefix-dropdown{
+      width: 102px;
+      margin-top: 64px;
   }
 </style>
 <script>
   
   $(document).ready(function(){
 
-    var product, tsize = "";
+    var product, tsize = "", roll;
     
     var pricing = ['500','700','900','100','300','750','950']
 
     if(isMobile() == false){
-        $(".t-size-dropdown, .product-dropdown").niceScroll({
+        $(".roll-prefix-dropdown, .product-dropdown").niceScroll({
         zindex: 9999,
         cursorcolor:'#A9A9A9',
         cursorborder:'none',
@@ -116,12 +159,23 @@
     
     $('.product').click(function(){
       $('.product-dropdown').addClass("show-dropdown");
-      $(".t-size-dropdown").removeClass("show-dropdown");
+      $(".roll-prefix-dropdown").removeClass("show-dropdown");
     });
 
-    $('.t-size').click(function(){
-      $('.t-size-dropdown').addClass("show-dropdown");
+    $('.roll-prefix').click(function(){
+      $('.roll-prefix-dropdown').addClass("show-dropdown");
       $(".product-dropdown").removeClass("show-dropdown");
+    });
+
+    $('.roll-prefix-dropdown a').click(function(){
+        
+        roll = $(this).text()+'.';
+
+        $('.roll-prefix label').html($(this).text());
+        $('.roll-prefix-choose').css('opacity', '1');
+        $('.roll-prefix-choose').css('color', '#000');  
+
+        $('.roll-prefix-dropdown').removeClass("show-dropdown");
     });
 
     $('.product-dropdown a').click(function(){
@@ -135,30 +189,23 @@
       
       $(".pricing").empty();
 
-      if(product > 4)
+      if(product > 4){
         $('#div-t-size').css('display', 'block');
-      else
+        $('#div-count').css('display', 'none');
+      }
+      else{
         $('#div-t-size').css('display', 'none');
-    });
-
-    $('.t-size-dropdown a').click(function(){
-      
-      tsize = $(this).html();
-        console.log(tsize);
-      $('.t-size label').html($(this).text());
-      $('.t-size-choose').css('opacity', '1');
-      $('.t-size-choose').css('color', '#000');  
-      $(".t-size-dropdown").removeClass("show-dropdown");
-      
-      $(".pricing").empty();
-
+        $('#div-count').css('display', 'block');
+      }
     });
 
     $('#vid').focusout(function(){
       $.getJSON("/farer/meta/user?m="+parseInt($('#vid').val()), function(data) {
         $('.vid-meta').empty();
         if(data.message != "Internal Server Error")
-            $('.vid-meta').append('<b><p>'+data.fname+' '+data.lname+'</p><p>'+data.email+'</p></b>')
+          $('.vid-meta').append('<b><p>'+data.fname+' '+data.lname+'</p><p>'+data.email+'</p></b>')
+        else
+          $('.vid-meta').append('<b><p>User not found</p></b>')
       });
     });
 
@@ -175,8 +222,14 @@
         data:{ 
           csrf_token: "{{ form.csrf_token._value() }}",
           vid: parseInt($('#vid').val()),
+          roll: roll,
+          bookid: bookid,
           pid: product,
-          tsize: tsize,
+          scount: tsize,
+          mcount: mcount,
+          lcount: lcount,
+          xlcount: xlcount,
+          xxlcount: xxlcount,
           qty: parseInt($('#count').val()),
         },
         success: function(data){
@@ -216,10 +269,10 @@
     $('body').click(function(e){
       if($(e.target).closest('#div-product').length)
         return;
-      if($(e.target).closest('#div-t-size').length)
+      if($(e.target).closest('#div-roll-prefix').length)
         return;  
       $(".product-dropdown").removeClass("show-dropdown");
-      $(".t-size-dropdown").removeClass("show-dropdown");
+      $(".roll-prefix-dropdown").removeClass("show-dropdown");
     })
 
   });
