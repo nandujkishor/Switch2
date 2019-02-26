@@ -45,7 +45,7 @@ class AESCipher(object):
 
 @pay.route('/authorize', methods=['GET', 'POST'])
 def payauth():
-    return "Inside authorize"
+    # return "Inside authorize"
     # payload = {
     #     'code': request.form.get('code'),
     #     'data': request.form.get('data')
