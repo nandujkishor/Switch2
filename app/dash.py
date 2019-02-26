@@ -18,9 +18,9 @@ dash = Blueprint('dash', __name__)
 @login_required
 @staff_required()
 def lounge():
-    users = requests.get('http://localhost:3000/farer/user/count', headers={'Authorization':current_user.id})
+    users = requests.get(Config.HUB_URL+'farer/user/count', headers={'Authorization':current_user.id})
     users = users.json()
-    colleges = requests.get('http://localhost:3000/farer/registered/college/count', headers={'Authorization':current_user.id})
+    colleges = requests.get(Config.HUB_URL+'/farer/registered/college/count', headers={'Authorization':current_user.id})
     colleges = colleges.json()
     now = datetime.datetime.now().hour
     print(now)
@@ -52,7 +52,7 @@ def mc_toggle_mtnc():
 @staff_required(5)
 def accounts_home():
 
-    user_arr = requests.get('http://localhost:3000/farer/user/list/short')
+    user_arr = requests.get(Config.HUB_URL+'/farer/user/list/short')
     user_arr = user_arr.json()
 
     return render_template('dash/accounts.html', users = user_arr,
