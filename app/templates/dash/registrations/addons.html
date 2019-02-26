@@ -149,6 +149,8 @@
     var product, tsize = "", roll = "AM.EN.";
     var confirmation = 0;
 
+    var scount, mcount, lcount, xlcount, xxlcount;
+    
     var pricing = ['500','700','900','100','300','750','950','1150']
 
     if(isMobile() == false){
@@ -213,7 +215,8 @@
     });
 
     $('#submit').click(function(e){
-      
+      console.log("CONF = " + confirmation);
+      $('.message').empty();
       if(confirmation == 0){
         confirmation++;
         $('.confirmation').append('<p style="color: red">Click proceed again to confirm.</p>');
@@ -223,7 +226,6 @@
         confirmation++;
         $('.confirmation').empty();
         $('.loading').css('visibility', 'visible');
-        $('.message').empty();
 
         console.log("Posting details form");
 
@@ -250,7 +252,8 @@
             console.log("Return value = " + data.message);
 
             if(data.status != "success"){
-                console.log("Registration failed")
+                console.log("Registration failed");
+                confirmation = 0;
                 $('.message').append('<p style="color: red">'+data.message+'</p>');
             }
             else{
@@ -279,47 +282,26 @@
     $('#count').focusout(function(){
         var cnt = parseInt($('#count').val());
         total = 0;
-        total = total + pricing[product - 1] * cnt;
+        total = pricing[product - 1] * cnt;
         $('.pricing').empty();
-        if( cnt > 0)
-            $('.pricing').append('Total : &#8377;' + total);
-    });
-    $('#t-s').focusout(function(){
-        $('.pricing').empty();
-        var cnt = parseInt($('#t-s').val());
-        total = total + pricing[product - 1] * cnt;
-        console.log(total)
-        if( cnt > 0)
-            $('.pricing').append('Total : &#8377;' + total);
-    });
-    $('#t-m').focusout(function(){
-        $('.pricing').empty();
-        var cnt = parseInt($('#t-m').val());
-        total = total + pricing[product - 1] * cnt;
         if( cnt > 0)
             $('.pricing').append('Total : &#8377;' + total);
     });
 
-    $('#t-l').focusout(function(){
+    $('#t-s, #t-m, #t-l, #t-xl, #t-xxl').focusout(function(){
         $('.pricing').empty();
-        var cnt = parseInt($('#t-l').val());
-        total = total + pricing[product - 1] * cnt;
-        if( cnt > 0)
+        
+        scount = parseInt($('#t-s').val()) | 0;
+        mcount = parseInt($('#t-m').val()) | 0;
+        lcount = parseInt($('#t-l').val()) | 0;
+        xlcount = parseInt($('#t-xl').val()) | 0;
+        xxlcount = parseInt($('#t-xxl').val()) | 0;
+
+        total = pricing[product - 1] * (mcount + scount + lcount + xlcount + xxlcount);
+
+        if( total > 0)
             $('.pricing').append('Total : &#8377;' + total);
-    });
-    $('#t-xl').focusout(function(){
-        $('.pricing').empty();
-        var cnt = parseInt($('#t-xl').val());
-        total = total + pricing[product - 1] * cnt;
-        if( cnt > 0)
-            $('.pricing').append('Total : &#8377;' + total);
-    });
-    $('#t-xxl').focusout(function(){
-        $('.pricing').empty();
-        var cnt = parseInt($('#t-xxl').val());
-        total = total + pricing[product - 1] * cnt;
-        if( cnt > 0)
-            $('.pricing').append('Total : &#8377;' + total);
+    
     });
 
     $('body').click(function(e){

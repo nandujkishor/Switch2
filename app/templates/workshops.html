@@ -72,7 +72,29 @@
   <!-- Scripts -->
     
     <script>
-    	
+      function clicker(){
+        $('.workshopItem').click(function(){
+          openLoad();
+          pageurl = $(this).attr('id');
+
+            $('.header').css('opacity','0');
+            $('.header').css('visibility','hidden');
+
+          window.setTimeout(function(){
+            $('.workshopContainer').load('/workshops/'+pageurl+'?m=1', function(responseTxt, statusTxt, xhr){
+              closeLoad();
+            });
+          }, 500);
+
+          window.history.pushState(pageurl,pageurl, pageurl);
+
+          $(window).bind('popstate', function(){
+            console.log("popstate = " + history.state);
+          });           
+
+        });
+      }
+
     	$(window).on('load', function(){
 
         if(isMobile() == false){
@@ -92,28 +114,8 @@
             var workshopItem = '<div class = "workshopItem" id = "' + value.id + '"><div style = "background: url(\'/static/images/wtw.jpg\'); background-size: cover; background-position: center;" class = "w-t-image"></div><div class = "w-t-description" style = "padding: 10px 0px 10px"><h1>' + value.title +'</h1><span class = "w-t-d-content">' + value.short +'</span></div></div>';
             $(".gridContainer").append(workshopItem);
           })
-          
-          $('.workshopItem').click(function(){
-            openLoad();
-            pageurl = $(this).attr('id');
-
-              $('.header').css('opacity','0');
-              $('.header').css('visibility','hidden');
-
-            window.setTimeout(function(){
-              $('.workshopContainer').load('/workshops/'+pageurl+'?m=1', function(responseTxt, statusTxt, xhr){
-                closeLoad();
-              });
-            }, 500);
-
-            window.history.pushState(pageurl,pageurl, pageurl);
-
-            $(window).bind('popstate', function(){
-              console.log("popstate = " + history.state);
-            });           
-
-            });
-          });
+          clicker();
+        });
 
           var open = "{{open}}"
           if(open == "True"){
@@ -131,7 +133,8 @@
 
             $(window).bind('popstate', function(){
               window.location.href="/workshops/"
-            });           
+            });
+                       
           }
           
         });
@@ -171,7 +174,8 @@
                   var workshopItem = '<div class = "workshopItem" id = "' + value.id + '"><div style = "background: url(\'/static/images/wtw.jpg\'); background-size: cover; background-position: center;" class = "w-t-image"></div><div class = "w-t-description" style = "padding: 10px 0px 10px"><h1>' + value.title +'</h1><span class = "w-t-d-content">' + value.short +'</span></div></div>';
                   $(".gridContainer").append(workshopItem);
                 }
-              })            
+              });
+              clicker();           
             });
             $(".filter-drop-down").removeClass("open");
           })
