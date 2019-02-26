@@ -49,6 +49,8 @@ def payauth():
     #     'code': request.form.get('code'),
     #     'data': request.form.get('data')
     # }
+    payload = request.form
+    payload = request.text
     payload = request.get_json()
     r = requests.post('http://localhost:5000/pay/callback/', json=payload)
 
@@ -56,7 +58,7 @@ def payauth():
 
 @pay.route('/testing/', methods=['POST', 'GET'])
 def payment():	
-    plaintext = "transactionId=VIDYUTTEST4|amount=1|purpose=VIDYUT19TEST|currency=inr"
+    plaintext = "transactionId=VIDYUTTEST5|amount=1|purpose=VIDYUT19TEST|currency=inr"
     result = hashlib.md5(plaintext.encode())
     result = result.hexdigest()
     print("md5",result)

@@ -181,6 +181,8 @@ def registration():
     return render_template('dash/registrations/registration_add.html', form=form)
 
 @dash.route('/purchases/')
+@login_required
+@staff_required("all", 4)
 def purchases_home():
     saltotcount = requests.get(Config.HUB_URL+'/addons/order/stats', headers={'Authorization':current_user.id})
     purchases = requests.get(Config.HUB_URL+'/addons/order/staff', headers={'Authorization':current_user.id})
