@@ -53,7 +53,7 @@ def payauth():
 
     return ("Check localhost")
 
-@pay.route('/testing/', methods=['POST'])
+@pay.route('/testing/', methods=['POST', 'GET'])
 def payment():	
     i = request.form.get('id')
     print(i)
