@@ -13,7 +13,9 @@ from app import routes, models
 from app.dash import dash
 from app.farer import farer
 from app.events import events
+from app.pay import pay
 
 app.register_blueprint(dash, url_prefix='/dash')
 app.register_blueprint(farer, url_prefix='/farer')
 app.register_blueprint(events, url_prefix='/events')
+app.register_blueprint(pay, url_prefix='/pay')

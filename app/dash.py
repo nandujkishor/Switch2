@@ -25,6 +25,17 @@ def lounge():
     now = datetime.datetime.now().hour
     print(now)
     notification = "Meeting on the Student of the Year schools edition at N203 this Sunday. All team members are requested to be present."
+    reg=False
+    regl=0
+    sal=False
+    sall=0
+    for i in current_user.staff:
+        if i.team == 'registration' or current_user.super():
+            reg = True
+            regl = i.level
+        elif i.team == 'sales' or current_user.super():
+            sal = True
+            sall = i.level
     if now < 12:
         s = "Morning"
     if now >= 12:
@@ -38,7 +49,9 @@ def lounge():
                             colleges_count=colleges.get('sub'),
                             greeting=s,
                             notification=notification,
-                            title="Switch Lounge")
+                            title="Switch Lounge",
+                            reg=reg, regl=regl,
+                            sal=sal, sall=sall)
 
 @dash.route('/mc/maintenance/toggle/')
 @login_required
