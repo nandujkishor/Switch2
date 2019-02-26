@@ -61,6 +61,22 @@
         <label for="fee">Fee</label>
     </div>
     <div class="float-label">
+        <input id="d1dur" name="d1dur" required autocomplete="off" type="text">
+        <label for="d1dur">Day 1 duration</label>
+    </div>
+    <div class="float-label">
+        <input id="d2dur" name="d2dur" required autocomplete="off" type="text">
+        <label for="d2dur">Day 2 duration</label>
+    </div>
+    <div class="float-label">
+        <input id="d3dur" name="d3dur" required autocomplete="off" type="text">
+        <label for="d3dur">Day 3 duration</label>
+    </div>
+    <div class="float-label">
+        <input id="venue" name="venue" required autocomplete="off" type="text">
+        <label for="venue">Venue</label>
+    </div>
+    <div class="float-label">
         <input id="support" name="support" required autocomplete="off" type="text">
         <label for="support">VID of support volunteer</label>
     </div>
@@ -76,8 +92,8 @@
 </form>
 <script>
     $(document).ready(function() {
-        dept = ['CSE', 'ECE', 'ME', 'Physics', 'Chemisty', 'English', 'Biotech', 'Comm.', 'Civil', 'EEE', 'Gaming', 'Maths', 'Others']
-        
+        dept = ['CSE', 'ECE', 'ME', 'Physics', 'Chemisty', 'English', 'Biotech','BUG', 'Comm.', 'Civil', 'EEE', 'Gaming', 'Maths', 'Others']
+
         if(sessionStorage.getItem('mode') == 2){
 
             $.getJSON('/events/data/'+current_page+'/'+sessionStorage.getItem('did'), function(data){
@@ -94,6 +110,10 @@
                 $('#about').val(data.about);
                 $('#incharge').val(data.incharge);
                 $('#support').val(data.support);
+                $('#d1dur').val(data.d1dur);
+                $('#d2dur').val(data.d2dur);
+                $('#d3dur').val(data.d3dur);
+                $('#venue').val(data.venue);  
                 console.log(rules);
                 if(data.rules != undefined)
                     rules.container.firstElementChild.innerHTML = data.rules;
@@ -199,6 +219,10 @@
                     prereq: prereq.root.innerHTML,
                     rules: rules.root.innerHTML,
                     fee: parseInt($('#fee').val()) || 0,
+                    d1dur: $('#d1dur').val(),
+                    d2dur: $('#d2dur').val(),
+                    d3dur: $('#d3dur').val(),
+                    venue: $('#venue').val(),
                 },
                 success: function(data) {
 
