@@ -220,6 +220,7 @@
         e.preventDefault();
       }
       else if(confirmation == 1){
+        confirmation++;
         $('.confirmation').empty();
         $('.loading').css('visibility', 'visible');
         $('.message').empty();
@@ -258,7 +259,7 @@
             }
 
             $('.message').css('display', 'block');
-            $('.message').append('<a href="/dash/registration/add/" style="color:blue;">Register new user</a>');
+            $('.message').append('<a href="/dash/purchases/addons/buy/" style="color:blue;">Register new user</a>');
             }
 
         });
@@ -268,6 +269,7 @@
       else{
         $('.message').css('display', 'block');
         $('.message').append('<p>Dont click the button too many times</p>');
+        e.preventDefault();
       }
     
     });
