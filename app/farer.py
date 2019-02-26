@@ -109,13 +109,13 @@ def user_print():
 def loggingIn():
     
     print("Intiating login")
-    
     if current_user.is_authenticated:
         print("Authenticated")
         return "Already authenticated"
     
     if request.method == 'POST':
         print("PASSING TO F_LOGIN")
+        print(request.form['idtoken'])
         reply_p = f_login(request).json()
         print("REPLY_P = ", reply_p)
 
