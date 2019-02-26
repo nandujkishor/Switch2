@@ -50,11 +50,11 @@ def payauth():
     #     'data': request.form.get('data')
     # }
     try:
-        payload = request.form
         print(request.args)
-        r = requests.post('http://localhost:5000/pay/callback/',params=request.args)
+        return (str(request.args))
+        # r = requests.post('http://127.0.0.1:5000/pay/callback/',params=request.args)
     except Exception as e:
-        return str(e)
+        return "Exception occured : " + str(e)
     
     # payload = request.text
     # payload = request.get_json()
