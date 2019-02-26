@@ -18,7 +18,7 @@ dash = Blueprint('dash', __name__)
 @login_required
 @staff_required()
 def lounge():
-    users = requests.get(Config.HUB_URL+'farer/user/count', headers={'Authorization':current_user.id})
+    users = requests.get(Config.HUB_URL+'/farer/user/count', headers={'Authorization':current_user.id})
     users = users.json()
     colleges = requests.get(Config.HUB_URL+'/farer/registered/college/count', headers={'Authorization':current_user.id})
     colleges = colleges.json()
