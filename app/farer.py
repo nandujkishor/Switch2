@@ -93,6 +93,7 @@ def staff_required(team="all", level=1):
 
 @farer.route('/logout/')
 def logout():
+    requests.post(Config.HUB_URL+'/farer/logout', headers={'Authorization':current_user.id})
     logout_user()
     print("Logging out user.")
     return redirect(url_for('home'))
