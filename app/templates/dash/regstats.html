@@ -12,7 +12,21 @@
       <div class="listing" style="grid-area: main">
         <div class="dash-stats">
           <h2>Total sales: {{ stat.get('count') }}</h2>
-          <h2>T-Shirt size</h2>
+          <h2>T-Shirt sizes count</h2>
+          <h2>S: {{ stat.get('scount') }}</h2>
+          <h2>M: {{ stat.get('mcount') }}</h2>
+          <h2>L: {{ stat.get('lcount') }}</h2>
+          <h2>XL: {{ stat.get('xlcount') }}</h2>
+          <h2>XXL: {{ stat.get('xxlcount') }}</h2>
+          <h2>Tickets sold</h2>
+          <h2>Amritapuri: Proshow + Choreonite + Fashionshow: {{ stat.get('pid1') }}</h2>
+          <h2>Outstation: Proshow + Choreonite + Fashionshow: {{ stat.get('pid2') }}</h2>
+          <h2>General: Headbangers + Choreonite + Fashionshow: {{ stat.get('pid3') }}</h2>
+          <h2>Choreonite + Fashionshow: {{ stat.get('pid4') }}</h2>
+          <h2>T-Shirt: {{ stat.get('pid5') }}</h2>
+          <h2>Amritapuri: All Tickets + T-Shirt: {{ stat.get('pid6') }}</h2>
+          <h2>Outstation: All Tickets + T-Shirt: {{ stat.get('pid7') }}</h2>
+          <h2>General: Headbangers + Choreonite + Fashionshow + T-Shirt: {{ stat.get('pid8') }}</h2>
         </div>
         {% for i in purchases %}
         <div class="eventItem2" id = "{{ '%04d' % i.get('vid') }}">
