@@ -51,8 +51,7 @@ def payauth():
     #     'data': request.form.get('data')
     # }
     try:
-        print(request.args)
-        return (str(request.args))
+        return request.get_json()
         # r = requests.post('http://127.0.0.1:5000/pay/callback/',params=request.args)
     except Exception as e:
         return "Exception occured : " + str(e)
@@ -64,7 +63,7 @@ def payauth():
 
 @pay.route('/testing/', methods=['POST', 'GET'])
 def payment():
-    plaintext = "transactionId=VIDYUTTEST7|amount=1|purpose=VIDYUT19TEST|currency=inr"
+    plaintext = "transactionId=VIDYUTTEST9|amount=1|purpose=VIDYUT19TEST|currency=inr"
     result = hashlib.md5(plaintext.encode())
     result = result.hexdigest()
     print("md5",result)
