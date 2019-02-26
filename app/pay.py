@@ -45,6 +45,7 @@ class AESCipher(object):
 
 @pay.route('/authorize/', methods=['GET', 'POST'])
 def payauth():
+    return "Inside authorize"
     # payload = {
     #     'code': request.form.get('code'),
     #     'data': request.form.get('data')
@@ -63,7 +64,7 @@ def payauth():
 
 @pay.route('/testing/', methods=['POST', 'GET'])
 def payment():
-    plaintext = "transactionId=VIDYUTTEST6|amount=1|purpose=VIDYUT19TEST|currency=inr"
+    plaintext = "transactionId=VIDYUTTEST7|amount=1|purpose=VIDYUT19TEST|currency=inr"
     result = hashlib.md5(plaintext.encode())
     result = result.hexdigest()
     print("md5",result)
