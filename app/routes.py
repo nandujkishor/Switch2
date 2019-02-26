@@ -167,7 +167,7 @@ def staff_creation():
 
 # @app.route('/payment/')
 # def payment():
-#     plaintext = "transactionId=HELLOWORLD|amount=1|purpose=VIDYUT19TEST|currency=inr"
+#     plaintext = "transactionId=VIDYUTTEST1|amount=1|purpose=VIDYUT19TEST|currency=inr"
 #     result = hashlib.md5(plaintext.encode())
 #     result = result.hexdigest()
 #     print("md5",result)
@@ -178,7 +178,7 @@ def staff_creation():
 #     print("after aes", encd)
 #     # URL = "https://payments.acrd.org.in/pay/makethirdpartypayment"
 #     # PARAMS = {'encdata':encd,'code':"VIDYUT19TEST"}
-#     return encd; 
+#     return encd
 
 @app.route('/check/')
 def check_pay():
