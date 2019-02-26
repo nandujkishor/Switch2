@@ -16,7 +16,7 @@ import sys
 import base64
 from Crypto.Cipher import AES
 
-key = "WEGSNGOXHEUDEEDD" 
+key = "WEGSNGOXHEUDEEDD"
 iv = "3564234432724374"
 
 pay = Blueprint('pay', __name__)
@@ -43,21 +43,22 @@ class AESCipher(object):
     def _unpad(self, s):
         return s[:-ord(s[len(s)-1:])]
 
-@pay.route('/authorize/', methods=['GET', 'POST'])
+@pay.route('/authorize', methods=['GET', 'POST'])
 def payauth():
     # payload = {
     #     'code': request.form.get('code'),
     #     'data': request.form.get('data')
     # }
     payload = request.form
-    payload = request.text
-    payload = request.get_json()
-    r = requests.post('http://localhost:5000/pay/callback/', json=payload)
+    print(request.args)
+    # payload = request.text
+    # payload = request.get_json()
+    r = requests.post('http://localhost:5000/pay/callback/',params=request.args)
 
     return ("Check localhost")
 
 @pay.route('/testing/', methods=['POST', 'GET'])
-def payment():	
+def payment():
     plaintext = "transactionId=VIDYUTTEST5|amount=1|purpose=VIDYUT19TEST|currency=inr"
     result = hashlib.md5(plaintext.encode())
     result = result.hexdigest()
@@ -72,7 +73,7 @@ def payment():
 @pay.route('/callback/', methods=['POST', 'GET'])
 def callback():
     print("Inside callback")
-    print(request.get_json())
+    print(request.args)
     return "Check terminal"
 
 @pay.route('/check/')
