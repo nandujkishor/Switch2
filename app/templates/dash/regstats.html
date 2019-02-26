@@ -1,0 +1,29 @@
+{% extends "dash/dash.html" %}
+
+{% block body %}
+    
+    <div class="dash-head">
+        <h1 style="text-transform: capitalize;">Purchases</h1>
+        <!-- <h2 style="text-transform: capitalize;">: {{ stat.get('count') }}</h2>
+        <h2 style="text-transform: capitalize;">Total sales: {{ stat.get('count') }}</h2> -->
+    </div>
+
+    <div class="dash-stats">
+        <h2 style="text-transform: capitalize;">Total sales: {{ stat.get('count') }}</h2>
+    </div>
+
+    <div class="accounts-container three-column" style="grid-area: body">
+      <div class="listing" style="grid-area: main">
+        {% for i in purchases %}
+        <div class="eventItem2" id = "{{ '%04d' % i.get('vid') }}">
+            <div class="eventmeta"> {{ '%03d' % i.get('purid') }} </div>
+            <div class ="eventdata">
+                <span class = "talkHead">{{ '%04d' % i.get('vid') }} : {{ i.get('purchase') }} ({{ i.get('qty') }})</span><br>
+                <span class="meta"> Rs. {{ i.get('total') }} - {{ i.get('message') }} - {{ i.get('purtime') }}</span></div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

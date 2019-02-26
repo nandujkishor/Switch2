@@ -25,33 +25,20 @@ def lounge():
     now = datetime.datetime.now().hour
     print(now)
     notification = "Meeting on the Student of the Year schools edition at N203 this Sunday. All team members are requested to be present."
-    reg=False
-    regl=0
-    sal=False
-    sall=0
-    for i in current_user.staff:
-        if i.team == 'registration' or current_user.super():
-            reg = True
-            regl = i.level
-        elif i.team == 'sales' or current_user.super():
-            sal = True
-            sall = i.level
     if now < 12:
         s = "Morning"
     if now >= 12:
         s = "Afternoon"
     if now > 16:
         s = "Evening"
-    print(current_user)
     return render_template('dash/lounge.html',
                             user=current_user,
                             user_count=users.get('sub'),
                             colleges_count=colleges.get('sub'),
                             greeting=s,
                             notification=notification,
-                            title="Switch Lounge",
-                            reg=reg, regl=regl,
-                            sal=sal, sall=sall)
+                            title="Switch Lounge"
+                            )
 
 @dash.route('/mc/maintenance/toggle/')
 @login_required
@@ -192,6 +179,14 @@ def registration():
         return jsonify(reg.json())
 
     return render_template('dash/registrations/registration_add.html', form=form)
+
+@dash.route('/purchases/')
+def purchases_home():
+    saltotcount = requests.get(Config.HUB_URL+'/addons/order/stats', headers={'Authorization':current_user.id})
+    purchases = requests.get(Config.HUB_URL+'/addons/order/staff', headers={'Authorization':current_user.id})
+    print(saltotcount.json())
+    print(purchases.json())
+    return render_template('dash/regstats.html', stat=saltotcount.json(), purchases=purchases.json(), user=current_user)
 
 @dash.route('/purchases/addons/buy/', methods=['GET', 'POST'])
 @login_required

@@ -143,6 +143,11 @@ hr {
   display: none;
 }
 
+/* D2 */
+.d-data {
+  padding: 10px 0;
+}
+
 @media screen and (min-width: 598px) {
   .d-l-serv {
     display: flex;
