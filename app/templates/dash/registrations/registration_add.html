@@ -189,7 +189,7 @@
         $('.confirmation').append('<p style="color: red">Click proceed again to confirm.</p>');
         e.preventDefault();
       }
-      else{
+      else if(confirmation==1){
         $('.confirmation').empty();
 
         $('.loading').css('visibility', 'visible');
@@ -228,6 +228,10 @@
         });
 
         e.preventDefault();
+      }
+      else{
+        $('.message').css('display', 'block');
+        $('.message').append('<p>Dont click the button too many times</p>');
       }
     
     });
