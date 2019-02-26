@@ -55,11 +55,13 @@
 			<div class="w-m-about">
 					<p>{{ workshop.about }}</p>	
 			</div>
+			{% if workshop.rules != '<p></p>' and workshop.rules != '<p><br></p>' %}
 			<div class="w-m-rules">
 				<h1>Rules</h1>
 				<p>{{ workshop.rules|safe }}</p>
 			</div>
-			{% if workshop.prereq %}
+			{% endif %}
+			{% if workshop.prereq != '<p></p>' and workshop.prereq != '<p><br></p>' %}
 			<div class="w-m-prereq">
 				<h1>Prerequisites</h1>
 				<p>{{ workshop.prereq|safe }}</p>
