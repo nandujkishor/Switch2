@@ -55,10 +55,7 @@ def payauth():
 
 @pay.route('/testing/', methods=['POST', 'GET'])
 def payment():	
-    i = request.form.get('id')
-    print(i)
-    tid = "transactionId=VIDYUTTEST" + str(i)
-    plaintext = tid + "|amount=1|purpose=VIDYUT19TEST|currency=inr"
+    plaintext = "transactionId=VIDYUTTEST1|amount=1|purpose=VIDYUT19TEST|currency=inr"
     result = hashlib.md5(plaintext.encode())
     result = result.hexdigest()
     print("md5",result)
@@ -71,6 +68,7 @@ def payment():
 
 @pay.route('/callback/', methods=['POST', 'GET'])
 def callback():
+    print("Inside callback")
     print(request.get_json())
     return "Check terminal"
 
