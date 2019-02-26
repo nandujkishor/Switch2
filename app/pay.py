@@ -43,14 +43,16 @@ class AESCipher(object):
     def _unpad(self, s):
         return s[:-ord(s[len(s)-1:])]
 
-@pay.route('/authorize/', methods=['GET', 'POST'])
+@pay.route('/authorize', methods=['GET', 'POST'])
 def payauth():
     # payload = {
     #     'code': request.form.get('code'),
     #     'data': request.form.get('data')
     # }
-    payload = request.form
-    print(request.args)
+    try:
+        payload = request.form
+        print(request.args)
+    
     # payload = request.text
     # payload = request.get_json()
     r = requests.post('http://localhost:5000/pay/callback/',params=request.args)
@@ -59,7 +61,7 @@ def payauth():
 
 @pay.route('/testing/', methods=['POST', 'GET'])
 def payment():
-    plaintext = "transactionId=VIDYUTTEST5|amount=1|purpose=VIDYUT19TEST|currency=inr"
+    plaintext = "transactionId=VIDYUTTEST6|amount=1|purpose=VIDYUT19TEST|currency=inr"
     result = hashlib.md5(plaintext.encode())
     result = result.hexdigest()
     print("md5",result)
