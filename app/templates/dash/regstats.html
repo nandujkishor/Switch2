@@ -1,3 +1,4 @@
+<title>Purchases | VIDYUT</title>
 {% extends "dash/dash.html" %}
 
 {% block body %}
@@ -10,23 +11,27 @@
 
     <div class="accounts-container three-column" style="grid-area: body">
       <div class="listing" style="grid-area: main">
-        <div class="dash-stats">
-          <h2>Total sales: {{ stat.get('count') }}</h2>
-          <h2>T-Shirt sizes count</h2>
-          <h2>S: {{ stat.get('scount') }}</h2>
-          <h2>M: {{ stat.get('mcount') }}</h2>
-          <h2>L: {{ stat.get('lcount') }}</h2>
-          <h2>XL: {{ stat.get('xlcount') }}</h2>
-          <h2>XXL: {{ stat.get('xxlcount') }}</h2>
-          <h2>Tickets sold</h2>
-          <h2>Amritapuri: Proshow + Choreonite + Fashionshow: {{ stat.get('pid1') }}</h2>
-          <h2>Outstation: Proshow + Choreonite + Fashionshow: {{ stat.get('pid2') }}</h2>
-          <h2>General: Headbangers + Choreonite + Fashionshow: {{ stat.get('pid3') }}</h2>
-          <h2>Choreonite + Fashionshow: {{ stat.get('pid4') }}</h2>
-          <h2>T-Shirt: {{ stat.get('pid5') }}</h2>
-          <h2>Amritapuri: All Tickets + T-Shirt: {{ stat.get('pid6') }}</h2>
-          <h2>Outstation: All Tickets + T-Shirt: {{ stat.get('pid7') }}</h2>
-          <h2>General: Headbangers + Choreonite + Fashionshow + T-Shirt: {{ stat.get('pid8') }}</h2>
+        <div class="dash-stats" style="margin-left: 40px;">
+          <h1>Total sales: &#8377;{{ stat.get('count') }}</h1>
+          <h2 style="margin-top: 20px; margin-bottom: 10px;">T-Shirt sizes count</h2>
+          <div style="margin-left: 20px;">
+              <p>S: {{ stat.get('scount') }}</p>
+              <p>M: {{ stat.get('mcount') }}</p>
+              <p>L: {{ stat.get('lcount') }}</p>
+              <p>XL: {{ stat.get('xlcount') }}</p>
+              <p>XXL: {{ stat.get('xxlcount') }}</p>
+          </div>
+          <h2 style="margin-top: 20px; margin-bottom: 10px;">Tickets sold</h2>
+          <div style="margin-left: 20px; margin-bottom: 20px;">
+              <p>Amritapuri: Proshow + Choreonite + Fashionshow: {{ stat.get('pid1') }}</p>
+              <p>Outstation: Proshow + Choreonite + Fashionshow: {{ stat.get('pid2') }}</p>
+              <p>General: Headbangers + Choreonite + Fashionshow: {{ stat.get('pid3') }}</p>
+              <p>Choreonite + Fashionshow: {{ stat.get('pid4') }}</p>
+              <p>T-Shirt: {{ stat.get('pid5') }}</p>
+              <p>Amritapuri: All Tickets + T-Shirt: {{ stat.get('pid6') }}</p>
+              <p>Outstation: All Tickets + T-Shirt: {{ stat.get('pid7') }}</p>
+              <p>General: Headbangers + Choreonite + Fashionshow + T-Shirt: {{ stat.get('pid8') }}</p>
+          </div>
         </div>
         {% for i in purchases %}
         <div class="eventItem2" id = "{{ '%04d' % i.get('vid') }}">
