@@ -43,20 +43,20 @@ pay = Blueprint('pay', __name__)
 #     def _unpad(self, s):
 #         return s[:-ord(s[len(s)-1:])]
 
-# @pay.route('/authorize', methods=['GET', 'POST'])
-# def payauth():
-#     # return "Inside authorize"
-#     # payload = {
-#     #     'code': request.form.get('code'),
-#     #     'data': request.form.get('data')
-#     # }
-#     try:
-#         if request.method == 'POST':
-#             return request.form.get('data')
-#     except Exception as e:
-#         return "Exception occured : " + str(e)
+@pay.route('/authorize', methods=['GET', 'POST'])
+def payauth():
+    # return "Inside authorize"
+    # payload = {
+    #     'code': request.form.get('code'),
+    #     'data': request.form.get('data')
+    # }
+    try:
+        if request.method == 'POST':
+            return request.form.get('data')
+    except Exception as e:
+        return "Exception occured : " + str(e)
 
-#     return ("Check localhost")
+    return ("Check localhost")
 
 # @pay.route('/testing/', methods=['POST', 'GET'])
 # def payment():
