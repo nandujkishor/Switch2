@@ -143,14 +143,6 @@ function scroll(){
 
 $(document).ready(function(){
 
-    $.getScript("https://apis.google.com/js/client:platform.js", function () {
-        init();
-        $('.in-button').click(function(){
-          console.log("Login clicked");
-          login();
-        });
-    });
-
     $('.dashboard-button').click(function(){
         window.location.href="/dash/"
     });

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/static/fonts/fonts.css">
     
     <!-- Scripts -->
+    <script src="/static/js/login.js"></script>
     <script src="/static/js/mobile-check.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
@@ -33,4 +34,12 @@
         </div>
     {% block body %}
     {% endblock %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39906050-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-39906050-7');
+    </script>
 </html>
