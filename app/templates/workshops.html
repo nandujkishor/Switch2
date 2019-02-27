@@ -111,7 +111,7 @@
           console.log(data);
           
           $.each(data, function(key, value) {
-            var workshopItem = '<div class = "workshopItem" id = "' + value.id + '"><div style = "background: url(\'https://hub.amblygon.org/static/images/workshops/'+value.id+'a.jpg\'); background-size: cover; background-position: center;" class = "w-t-image"></div><div class = "w-t-description" style = "padding: 10px 0px 10px"><h1>' + value.title +'</h1><span class = "w-t-d-content">' + value.short +'</span></div></div>';
+            var workshopItem = '<div class = "workshopItem" id = "' + value.id + '"><div style = "background: url(\'https://devhub.amblygon.org/static/images/workshops/'+value.id+'a.jpg\'); background-size: cover; background-position: center;" class = "w-t-image"></div><div class = "w-t-description" style = "padding: 10px 0px 10px"><h1>' + value.title +'</h1><span class = "w-t-d-content">' + value.short +'</span></div></div>';
             $(".gridContainer").append(workshopItem);
           })
           clicker();
@@ -171,7 +171,7 @@
               console.log(data);
               $.each(data, function(key, value) {
                 if(value.department == filt){
-                  var workshopItem = '<div class = "workshopItem" id = "' + value.id + '"><div style = "background: url(\'https://hub.amblygon.org/static/images/workshops/'+value.id+'a.jpg\'); background-size: cover; background-position: center;" class = "w-t-image"></div><div class = "w-t-description" style = "padding: 10px 0px 10px"><h1>' + value.title +'</h1><span class = "w-t-d-content">' + value.short +'</span></div></div>';
+                  var workshopItem = '<div class = "workshopItem" id = "' + value.id + '"><div style = "background: url(\'https://devhub.amblygon.org/static/images/workshops/'+value.id+'a.jpg\'); background-size: cover; background-position: center;" class = "w-t-image"></div><div class = "w-t-description" style = "padding: 10px 0px 10px"><h1>' + value.title +'</h1><span class = "w-t-d-content">' + value.short +'</span></div></div>';
                   $(".gridContainer").append(workshopItem);
                 }
               });

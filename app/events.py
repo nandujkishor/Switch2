@@ -42,7 +42,7 @@ def workshops_listing():
         return jsonify(201)
 
     workshops = requests.get(Config.HUB_URL+'/events/workshops')
-    print(workshops.json())
+    # print(workshops.json())
     return jsonify(workshops.json())
 
 @events.route('/data/contests/', methods=['GET', 'POST', 'DELETE'])
@@ -78,7 +78,7 @@ def contests_listing():
         return jsonify(201)
 
     contests = requests.get(Config.HUB_URL+'/events/contests')
-    print(contests.json())
+    # print(contests.json())
     return jsonify(contests.json())
 
 @events.route('/data/workshops/<int:id>/', methods=['GET','DELETE','PUT'])
@@ -148,6 +148,7 @@ def contests_individual(id):
             'venue': form.venue.data,
             'team_limit': form.team_limit.data,
             'fee': form.fee.data,
+            'support': form.support.data,
             'incharge': form.incharge.data,
             'rules': form.rules.data,
             'prereq': form.prereq.data,
