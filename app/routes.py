@@ -44,7 +44,7 @@ def talks():
 
 @app.route('/concerts/')
 def concert():
-    return render_template('concerts.html', user=current_user.is_authenticated)
+    return render_template('coming.html', user=current_user.is_authenticated)
 
 @app.route('/exhibitions/')
 def exhibitions():
