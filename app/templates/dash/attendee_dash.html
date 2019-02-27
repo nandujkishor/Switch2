@@ -1,4 +1,5 @@
 <title>Dashboard | Vidyut</title>
+<script src="/static/js/login.js"></script>
 {% extends "dash/dash.html" %}
 
 {% block body %}
@@ -28,9 +29,10 @@
       $(document).ready(function(){
         $('.dash-profile').empty();
         $('.dash-profile').append('<input type="submit" class="logout" value="Logout">');   
-        $('.logout').click(function(){
-          window.location.href = "/farer/logout/"
-        })
+        $('.logout').click(function() {
+          console.log("TESTING");
+          revokeAccess();
+        });
       })
 
       $.getJSON("/events/data/registered/", function(data) {
@@ -45,4 +47,5 @@
       });
     </script>
   </body>
+<script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
 {% endblock %}

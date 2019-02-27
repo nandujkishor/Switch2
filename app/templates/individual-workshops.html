@@ -30,7 +30,7 @@
 		</div> -->
 		<div class = "w-heading">{{ workshop.title }}</div>
 		<div class = "w-description-s">
-			{{ workshop.short }}
+			{{ workshop.about }}
 		</div>
 		<div class="w-department">
 			{{dept[workshop.department - 1]}}
@@ -44,7 +44,7 @@
 			<div class = "w-heading">{{ workshop.title }}</div>
 		</div>
 		<div class = "w-description-s" style="margin-top: 10px;">
-			{{ workshop.short }}
+			{{ workshop.about }}
 		</div>
 		<div class="w-department">
 			{{dept[workshop.department - 1]}}
@@ -52,18 +52,16 @@
 	</div>
 	<div class = "main-content">
 		<div class="w-m-main-content">
-			<div class="w-m-about">
+			<!-- <div class="w-m-about">
 				<p>{{ workshop.about }}</p>	
-			</div>
+			</div> -->
 			{% if workshop.rules != '<p></p>' and workshop.rules != '<p><br></p>' %}
 			<div class="w-m-rules">
-				<h1>Rules</h1>
 				<p>{{ workshop.rules|safe }}</p>
 			</div>
 			{% endif %}
 			{% if workshop.prereq != '<p></p>' and workshop.prereq != '<p><br></p>' %}
 			<div class="w-m-prereq">
-				<h1>Prerequisites</h1>
 				<p>{{ workshop.prereq|safe }}</p>
 			</div>
 			{% endif %}
@@ -102,7 +100,7 @@
 
 		$(document).ready(function(){
 			console.log("{{ workshop.id }}");
-			$('.left').css('background', 'url("https://hub.amblygon.org/static/images/workshops/{{ workshop.id }}a.jpg")');
+			$('.left').css('background', 'url("https://devhub.amblygon.org/static/images/workshops/{{ workshop.id }}a.jpg")');
 			$('.left').css('background-size', "cover");
 			$('.left').css('background-repeat', "no-repeat");
 			$('.left').css('background-position', "center");

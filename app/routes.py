@@ -64,7 +64,7 @@ def sponsors():
 
 # Individual pages
 
-dept = ['CSE', 'ECE', 'ME', 'Physics', 'Chemisty', 'English', 'Biotech','BUG', 'Comm.', 'Civil', 'EEE', 'Gaming', 'Maths', 'Others']
+dept = ['CSE', 'ECE', 'ME', 'Physics', 'Chemistry', 'English', 'Biotech','BUG', 'Comm.', 'Civil', 'EEE', 'Gaming', 'Maths', 'Others']
 
 @app.route('/workshops/<int:wid>/')
 def workshop_single(wid):

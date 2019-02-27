@@ -111,7 +111,7 @@
           console.log(data);
           
           $.each(data, function(key, value) {
-            var workshopItem = '<div class = "workshopItem" id = "' + value.id + '"><div style = "background: url(\'https://hub.amblygon.org/static/images/workshops/'+value.id+'a.jpg\'); background-size: cover; background-position: center;" class = "w-t-image"></div><div class = "w-t-description" style = "padding: 10px 0px 10px"><h1>' + value.title +'</h1><span class = "w-t-d-content">' + value.short +'</span></div></div>';
+            var workshopItem = '<div class = "workshopItem" id = "' + value.id + '"><div style = "background: url(\'https://devhub.amblygon.org/static/images/workshops/'+value.id+'a.jpg\'); background-size: cover; background-position: center;" class = "w-t-image"></div><div class = "w-t-description" style = "padding: 10px 0px 10px"><h1>' + value.title +'</h1><span class = "w-t-d-content">' + value.short +'</span></div></div>';
             $(".gridContainer").append(workshopItem);
           })
           clicker();
@@ -145,7 +145,7 @@
         	normal_scroll = false;
         	$('.content-wrapper').css('background-color','#fff');
 
-          $('.filter svg').click(function(){
+          $('.filter').click(function(){
             $('.filter-drop-down').toggleClass('open');
           });
 
@@ -171,7 +171,7 @@
               console.log(data);
               $.each(data, function(key, value) {
                 if(value.department == filt){
-                  var workshopItem = '<div class = "workshopItem" id = "' + value.id + '"><div style = "background: url(\'https://hub.amblygon.org/static/images/workshops/'+value.id+'a.jpg\'); background-size: cover; background-position: center;" class = "w-t-image"></div><div class = "w-t-description" style = "padding: 10px 0px 10px"><h1>' + value.title +'</h1><span class = "w-t-d-content">' + value.short +'</span></div></div>';
+                  var workshopItem = '<div class = "workshopItem" id = "' + value.id + '"><div style = "background: url(\'https://devhub.amblygon.org/static/images/workshops/'+value.id+'a.jpg\'); background-size: cover; background-position: center;" class = "w-t-image"></div><div class = "w-t-description" style = "padding: 10px 0px 10px"><h1>' + value.title +'</h1><span class = "w-t-d-content">' + value.short +'</span></div></div>';
                   $(".gridContainer").append(workshopItem);
                 }
               });
@@ -180,6 +180,14 @@
             $(".filter-drop-down").removeClass("open");
           })
       });
-
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39906050-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-39906050-7');
+    </script>
+  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
 </html>
