@@ -52,6 +52,9 @@ body{
 	grid-area: image;
 }
 
+.filter{
+	cursor: pointer;
+}
 .filter svg{
 	cursor: pointer;
 	margin-top: 10px;

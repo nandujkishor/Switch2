@@ -229,7 +229,7 @@ def addons_staff_amr():
     form = AddonVolunteer(request.form)
     return render_template('dash/registrations/addons_amr.html', form=form)
 
-@dash.route('/purchases/addons/buy/amr/')
+@dash.route('/purchases/addons/buy/out/')
 @login_required
 @staff_required("registration", 3)
 def addons_staff_out():
