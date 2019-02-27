@@ -59,7 +59,6 @@ def payauth():
             r = request.post(Config.HUB_URL+'/payments/receive', json=payload)
     except Exception as e:
         return "Exception occured : " + str(e)
-Request
     return ("Check localhost")
 
 # @pay.route('/testing/', methods=['POST', 'GET'])
