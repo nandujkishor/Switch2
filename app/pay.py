@@ -52,7 +52,11 @@ def payauth():
     # }
     try:
         if request.method == 'POST':
-            return request.form.get('data')
+            payload = {
+                'data':request.form.get('data'),
+                'code':request.form.get('code')
+            }
+            r = request.post(HUB_URL+'/pay/receive', json=payload)
     except Exception as e:
         return "Exception occured : " + str(e)
 
