@@ -21,11 +21,11 @@
         $(document).ready(function(){
             var encd;
             $.ajax({
-                type: "GET",
-                url: "/pay/testing/",
+                type: "POST",
+                url: "/events/register",
                 success: function(data){
                     console.log(data);
-                    $('#encdata').val(data);  
+                    $('#encdata').val(data.encdata);  
                 }
             });
             

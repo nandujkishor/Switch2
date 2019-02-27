@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+
+    <title>Concerts | Vidyut</title>
+
+    <meta name="theme-color" content="#000">
+    <meta name="msapplication-navbutton-color" content="#000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/fonts/fonts.css">
+    <link rel="stylesheet" href="/static/css/menu.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/static/js/mobile-check.js"></script>
+    <script src="/static/js/navbar.js"></script>
+    <script src="/static/js/login.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.header').css('background', '#000');
+        })
+    </script>
+    <style>
+        *{
+    		margin: 0;
+    		padding: 0;
+    		box-sizing: border-box;
+    	}
+        body{
+            background: #000;
+        }
+        .con-container{
+            display: grid;
+            height: 200vh;
+            width: 100%;
+            color: #fff;
+            grid-template-columns: 50% 50%;
+            grid-auto-rows: 100vh 100vh;
+            grid-template-areas:
+            "l1 r1"
+            "l2 r2";
+        }
+        .l1-div{
+            grid-area: l1;
+        }
+        .r1-div{
+            grid-area: r1;
+        }
+        .l2-div{
+            grid-area: l2;
+        }
+        .r2-div{
+            grid-area: r2;
+        }
+    </style>
+</head>
+<body>
+	{% include 'navbar.html' %}
+    <div class="con-container">
+        <div class="l1-div">
+            <img src="/static/images/concerts/1.png">
+        </div>
+        <div class="r1-div">
+            Haricharan
+        </div>
+        <div class="l2-div">
+            When chai met toast            
+        </div>
+        <div class="r2-div">
+            <img src="/static/images/concerts/2.png">
+        </div>
+    </div>
+</body>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39906050-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-39906050-7');
+    </script>
+</html>
