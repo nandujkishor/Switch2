@@ -56,7 +56,7 @@ def payauth():
                 'data':request.form.get('data'),
                 'code':request.form.get('code')
             }
-            r = request.post(Config.HUB_URL+'/pay/receive', json=payload)
+            r = request.post(Config.HUB_URL+'/payments/receive', json=payload)
     except Exception as e:
         return "Exception occured : " + str(e)
 
