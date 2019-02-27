@@ -219,8 +219,23 @@ def addons_staff():
 
         return jsonify(reg.json())
 
-    return render_template('dash/registrations/addons.html', form=form)
+    return redirect(url_for('routes.page_not_found'))
 
+@dash.route('/purchases/addons/buy/amr/')
+@login_required
+@staff_required("registration", 3)
+def addons_staff_amr():
+
+    form = AddonVolunteer(request.form)
+    return render_template('dash/registrations/addons_amr.html', form=form)
+
+@dash.route('/purchases/addons/buy/amr/')
+@login_required
+@staff_required("registration", 3)
+def addons_staff_out():
+
+    form = AddonVolunteer(request.form)
+    return render_template('dash/registrations/addons_out.html', form=form)
 
 # Attendee dash beta
 

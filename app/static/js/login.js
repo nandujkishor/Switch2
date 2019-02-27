@@ -22,10 +22,12 @@ function initClient() {
 }
 
 function handleAuthClick() {
-  console.log(GoogleAuth.isSignedIn.get());
+  // console.log(GoogleAuth.isSignedIn.get());
   if (!GoogleAuth.isSignedIn.get()) {
     GoogleAuth.signIn();
   }
+  else
+    console.log("Not authenticated")
 }
 
 function revokeAccess() {
@@ -44,7 +46,6 @@ function setSigninStatus(isSignedIn) {
     },
     data: {idtoken: user.getAuthResponse().id_token},
     success: function(data){
-      console.log(data);
       if(data != "Already authenticated")
         checkLogin();
     }

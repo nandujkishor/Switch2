@@ -49,15 +49,11 @@
       
     <script>
       $(document).ready(function(){
-        $.getScript("https://apis.google.com/js/client:platform.js", function () {
-          init();
-          $('#login').click(function(){
-            console.log("Login clicked");
-            sessionStorage.setItem('origin', "");            
-            login();
-          });
-  
-        });
+        $('#login').click(function(){
+          console.log("Login clicked");
+          sessionStorage.setItem('origin', "");            
+          handleAuthClick();
+        });      
       })
     </script>
 </head>
@@ -68,5 +64,6 @@
       <input type="submit" value="Login" name="Login" id="login">    
     </div>
   </div>
+  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
 </body>
 </html>

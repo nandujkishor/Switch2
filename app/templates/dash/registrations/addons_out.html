@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+
+    <meta name="theme-color" content="#000">
+    <meta name="msapplication-navbutton-color" content="#000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>Addons | Vidyut</title>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="/static/js/mobile-check.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://cloud.typenetwork.com/projects/3030/fontface.css/" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/css/menu.css">
+    <link rel="stylesheet" href="/static/fonts/fonts.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+  </head>
+  <body class="noscroll">
+    <div class = "container">
+
+<link rel="stylesheet" href="/static/css/education.css">
+
+<div class ="form-container-full" style="height: 100vh; margin-bottom: 50px;">
+  
+  <form class="st-form" novalidate>
+
+    <h1>Addons Dashboard</h1>
+    
+    <div class="float-label" id="div-level">
+        <input id="vid" name="vid" autocomplete="off" required type="text">
+        <label for="vid">VID of student</label>
+     </div>
+     <div class="vid-meta"></div>
+     
+    <div class="float-label" id="div-bookid" style="margin-top: 20px">
+        <input id="bookid" name="bookid" autocomplete="off" required type="text">
+        <label for="bookid">Book ID</label>
+    </div>
+
+    <div style="margin-top: 20px; margin-bottom: 20px;" id="div-product">
+      <div class="product drop">
+        <label class="product-choose" style="position: static;">Item</label>
+      </div>
+      <div class="dropdown product-dropdown">
+        <!-- <a id="1">Amritapuri: Proshow + Choreonite + Fashionshow</a> -->
+        <a id="2">Outstation: Proshow + Choreonite + Fashionshow</a>
+        <a id="3">General: Headbangers + Choreonite + Fashionshow</a>
+        <a id="4">Choreonite + Fashionshow</a>
+        <a id="5">T-Shirt</a>
+        <!-- <a id="6">Amritapuri: Proshow + Choreonite + Fashionshow + T-Shirt</a> -->
+        <a id="8">General: Headbangers + Choreonite + Fashionshow + T-Shirt</a>
+        <a id="7">Outstation: Combo all + T-Shirt</a>
+      </div>
+    </div>
+
+    <div id="div-t-size">
+        <div class="float-label" id="div-t-s">
+            <input id="t-s" name="t-s" autocomplete="off" required type="text">
+            <label for="t-s">Count of S</label>
+        </div>
+        <div class="float-label" id="div-t-m">
+            <input id="t-m" name="t-m" autocomplete="off" required type="text">
+            <label for="t-m">Count of M</label>
+        </div>
+        <div class="float-label" id="div-t-l">
+            <input id="t-l" name="t-l" autocomplete="off" required type="text">
+            <label for="t-l">Count of L</label>
+        </div>
+        <div class="float-label" id="div-t-xl">
+            <input id="t-xl" name="t-xl" autocomplete="off" required type="text">
+            <label for="t-xl">Count of XL</label>
+        </div>
+        <div class="float-label" id="div-t-xxl">
+            <input id="t-xxl" name="t-xxl" autocomplete="off" required type="text">
+            <label for="t-xxl">Count of XXL</label>
+        </div>
+    </div>
+    
+    <div class="float-label" id="div-count">
+        <input id="count" name="count" autocomplete="off" required type="text">
+        <label for="count">Count</label>
+    </div>
+
+    <div class="pricing"></div>
+    <div class="confirmation" style="margin-top: 20px;"></div>
+
+    <div class = "action-button">
+      <input id="submit" type="submit" name="submit" value="Proceed">
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277BD;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+    </div>
+
+    <div class = "message" style="display: none; margin-top: 20px;"></div>
+
+  </form>
+
+</div>
+<style>
+  #div-t-size{
+    display: none;
+  }
+  .product-dropdown, .t-size-dropdown{
+    height: 285px;
+    max-width: 450px; 
+  }
+  .roll-prefix{
+    border-right: none;
+  }
+  #div-roll-prefix{
+    display: grid;
+    grid-template-columns: 100px auto;
+    grid-template-rows: auto;
+    grid-area: "one two";
+  }
+  .roll-prefix-dropdown{
+      width: 102px;
+      margin-top: 64px;
+  }
+</style>
+<script>
+  
+  $(document).ready(function(){
+
+    var product, tsize = "", roll = "AM.EN.";
+    var confirmation = 0;
+
+    var scount, mcount, lcount, xlcount, xxlcount;
+    
+    var pricing = ['500','700','900','100','300','750','950','1150']
+
+    if(isMobile() == false){
+        $(".roll-prefix-dropdown, .product-dropdown").niceScroll({
+        zindex: 9999,
+        cursorcolor:'#A9A9A9',
+        cursorborder:'none',
+        cursorborderradius:0,
+        });
+    }
+    
+    $('.product').click(function(){
+      $('.product-dropdown').addClass("show-dropdown");
+      $(".roll-prefix-dropdown").removeClass("show-dropdown");
+    });
+
+    $('.roll-prefix').click(function(){
+      $('.roll-prefix-dropdown').addClass("show-dropdown");
+      $(".product-dropdown").removeClass("show-dropdown");
+    });
+
+    $('.roll-prefix-dropdown a').click(function(){
+        
+        roll = $(this).text()+'.';
+
+        $('.roll-prefix label').html($(this).text());
+        $('.roll-prefix-choose').css('opacity', '1');
+        $('.roll-prefix-choose').css('color', '#000');  
+
+        $('.roll-prefix-dropdown').removeClass("show-dropdown");
+    });
+
+    $('.product-dropdown a').click(function(){
+      
+      product = $(this).attr('id');
+      total = 0;
+      $('.product label').html($(this).text());
+      $('.product-choose').css('opacity', '1');
+      $('.product-choose').css('color', '#000');  
+      $(".product-dropdown").removeClass("show-dropdown");
+      
+      $(".pricing").empty();
+
+      if(product > 4){
+        $('#div-t-size').css('display', 'block');
+        $('#div-count').css('display', 'none');
+      }
+      else{
+        $('#div-t-size').css('display', 'none');
+        $('#div-count').css('display', 'block');
+      }
+    });
+
+    $('#vid').focusout(function(){
+      $.getJSON("/farer/meta/user?m="+parseInt($('#vid').val()), function(data) {
+        $('.vid-meta').empty();
+        if(data.message != "Internal Server Error")
+          $('.vid-meta').append('<b><p>'+data.fname+' '+data.lname+'</p><p>'+data.email+'</p></b>')
+        else
+          $('.vid-meta').append('<b><p>User not found</p></b>')
+      });
+    });
+
+    $('#submit').click(function(e){
+      console.log("CONF = " + confirmation);
+      $('.message').empty();
+      if(confirmation == 0){
+        confirmation++;
+        $('.confirmation').append('<p style="color: red">Click proceed again to confirm.</p>');
+        e.preventDefault();
+      }
+      else if(confirmation == 1){
+        confirmation++;
+        $('.confirmation').empty();
+        $('.loading').css('visibility', 'visible');
+
+        console.log("Posting details form");
+
+        $.ajax({
+            type: "POST",
+            url: "/dash/purchases/addons/buy/",
+            data:{ 
+            csrf_token: "{{ form.csrf_token._value() }}",
+            vid: parseInt($('#vid').val()),
+            bookid: $('#bookid').val(),
+            pid: product,
+            scount: parseInt($('#t-s').val()) | 0,
+            mcount: parseInt($('#t-m').val()) | 0,
+            lcount: parseInt($('#t-l').val()) | 0,
+            xlcount: parseInt($('#t-xl').val()) | 0,
+            xxlcount: parseInt($('#t-xxl').val()) | 0,
+            qty: parseInt($('#count').val()),
+            },
+            success: function(data){
+
+            $('.loading').css('visibility', 'hidden');
+
+            console.log("Return value = " + data.message);
+
+            if(data.status != "success"){
+                console.log("Registration failed");
+                confirmation = 0;
+                $('.message').append('<p style="color: red">'+data.message+'</p>');
+            }
+            else{
+                $('.message').append('<p style="color: green">'+data.message+'</p>');
+                console.log("Registered successfully");
+            }
+
+            $('.message').css('display', 'block');
+            $('.message').append('<a href="/dash/purchases/addons/buy/" style="color:blue;">Register new user</a>');
+            }
+
+        });
+
+        e.preventDefault();
+      }
+      else{
+        $('.message').css('display', 'block');
+        $('.message').append('<p>Dont click the button too many times</p>');
+        e.preventDefault();
+      }
+    
+    });
+
+    var total = 0;
+
+    $('#count').focusout(function(){
+        var cnt = parseInt($('#count').val());
+        total = 0;
+        total = pricing[product - 1] * cnt;
+        $('.pricing').empty();
+        if( cnt > 0)
+            $('.pricing').append('Total : &#8377;' + total);
+    });
+
+    $('#t-s, #t-m, #t-l, #t-xl, #t-xxl').focusout(function(){
+        $('.pricing').empty();
+        
+        scount = parseInt($('#t-s').val()) | 0;
+        mcount = parseInt($('#t-m').val()) | 0;
+        lcount = parseInt($('#t-l').val()) | 0;
+        xlcount = parseInt($('#t-xl').val()) | 0;
+        xxlcount = parseInt($('#t-xxl').val()) | 0;
+
+        total = pricing[product - 1] * (mcount + scount + lcount + xlcount + xxlcount);
+
+        if( total > 0)
+            $('.pricing').append('Total : &#8377;' + total);
+    
+    });
+
+    $('body').click(function(e){
+      if($(e.target).closest('#div-product').length)
+        return;
+      if($(e.target).closest('#div-roll-prefix').length)
+        return;  
+      $(".product-dropdown").removeClass("show-dropdown");
+      $(".roll-prefix-dropdown").removeClass("show-dropdown");
+    })
+
+  });
+
+</script>
+</body>
+</html>
