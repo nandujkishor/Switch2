@@ -57,6 +57,7 @@
                 <a id="6"><li>English</li></a>
                 <a id="12"><li>Gaming</li></a>
                 <a id="14"><li>Others</li></a>
+                <a id="0"><li>All</li></a>
             </ul>
         </div>
       </div>
@@ -145,7 +146,7 @@
         	normal_scroll = false;
         	$('.content-wrapper').css('background-color','#fff');
 
-          $('.filter').click(function(){
+          $('.filter svg').click(function(){
             $('.filter-drop-down').toggleClass('open');
           });
 
@@ -170,7 +171,7 @@
             $.getJSON("/events/data/workshops/", function(data){
               console.log(data);
               $.each(data, function(key, value) {
-                if(value.department == filt){
+                if(value.department == filt  || filt == 0){
                   var workshopItem = '<div class = "workshopItem" id = "' + value.id + '"><div style = "background: url(\'https://devhub.amblygon.org/static/images/workshops/'+value.id+'a.jpg\'); background-size: cover; background-position: center;" class = "w-t-image"></div><div class = "w-t-description" style = "padding: 10px 0px 10px"><h1>' + value.title +'</h1><span class = "w-t-d-content">' + value.short +'</span></div></div>';
                   $(".gridContainer").append(workshopItem);
                 }

@@ -11,7 +11,11 @@
     <meta name="msapplication-navbutton-color" content="#000">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://cloud.typenetwork.com/projects/3030/fontface.css/" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/fonts/fonts.css">
     <link rel="stylesheet" href="/static/css/menu.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
@@ -34,20 +38,37 @@
     	}
         body{
             background: #000;
+            font-family: 'Source Sans Pro';
+        }
+        .social{
+            padding-left:0px;
         }
         .con-container{
-            display: grid;
-            height: 200vh;
-            width: 100%;
+            padding-top: 60px;
             color: #fff;
-            grid-template-columns: 50% 50%;
-            grid-auto-rows: 100vh 100vh;
+            display: grid;
+            height: 400vh;
+            width: 100%;
+            grid-template-columns: auto;
+            grid-template-rows: repeat(8, 50vh);
             grid-template-areas:
-            "l1 r1"
-            "l2 r2";
+            "l1"
+            "r1"
+            "r2"
+            "l2"
+            "f"
+            "f-r"
+            "c"
+            "c-l";
         }
+        .noscroll{
+            position: fixed; 
+            overflow-y: scroll;
+        }
+
         .l1-div{
             grid-area: l1;
+            background: url('/static/images/concerts/18.jpg');
         }
         .r1-div{
             grid-area: r1;
@@ -57,26 +78,96 @@
         }
         .r2-div{
             grid-area: r2;
+            background: url('/static/images/concerts/8.jpg');
+        }
+
+        .con-container-2{
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: 50vh 50vh;
+        }
+        .f-div{
+            grid-area: f;
+            background: url('/static/images/concerts/f.jpg');
+        }
+        .c-div{
+            grid-area: c;
+            background: url('/static/images/concerts/c.jpg');
+        }
+        .l1-div, .r2-div, .f-div, .c-div{
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .f-r{
+            grid-area: f-r;
+        }
+        .c-l{
+            grid-area: c-l;
+        }
+        .r1-div, .l2-div, .f-r, .c-l{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+        }
+        @media screen and (min-width: 768px) {
+            .con-container{
+                height: 400vh;
+                padding-top: 80px;
+                grid-template-columns: 50% 50%;
+                grid-template-rows: repeat(4,100vh);
+                grid-template-areas:
+                "l1 r1"
+                "l2 r2"
+                "f f-r"
+                "c-l c";
+            }
+            .r1-div, .l2-div, .f-r, .c-l{
+                padding: 100px;
+            }
         }
     </style>
 </head>
 <body>
 	{% include 'navbar.html' %}
     <div class="con-container">
-        <div class="l1-div">
-            <img src="/static/images/concerts/1.png">
-        </div>
+        <div class="l1-div"></div>
         <div class="r1-div">
-            Haricharan
+            <div>
+                <h1>Haricharan</h1>
+                Get yourself pumped up for the sensational music medley to be performed by the ever talented ‘Haricharan Ft. Bennet and the band’ which includes Haricharan a prominent, multilingual awarding winning playback singer who has been in the music industry for many years and has many hit songs under his name. And to add to the  flavour, we have ‘Bennet and the band’ to resonate with the rhythm of Kerala. It’s all going to be there, funky beats, ambience, soulful music and you.
+            </div>
         </div>
         <div class="l2-div">
-            When chai met toast            
+            <div>
+                <h1>When Chai Met Toast</h1>
+                Come, witness a synthesis of the East and the West at Vidyut'19. Pull yourself together and gear up to meet the young “band from the land of coconuts” - When Chai Met Toast that builds a bridge between the Indian roots and Western music with their happy, heartwarming music. Set your soul free like fireflies into the exhilarating night with the next big thing taglined to be revolutionary.
+            </div>            
         </div>
         <div class="r2-div">
-            <img src="/static/images/concerts/2.png">
+        </div>
+        <div class="f-div"></div>
+        <div class="f-r">
+            <div>
+                <h1>Incandescence</h1>
+                Racing heart beats synchronising with footsteps… Bring out your inner model and flaunt it as you glide down the ramp with your incandescence for the universe to see... Set the trends and bring the exuberated crowd on its knees and leave them in awe as the air fills with excitement and the tantalizing aura you portray. Come, find yourself at INCANDESCENCE VIDYUT’19.
+            </div>
+        </div>
+        <div class="c-div"></div>
+        <div class="c-l">
+            <div>
+                <h1>Choreonite</h1>
+                The stage is set for Vidyut 19&#39;s most anticipated event that brings together some of the most
+talented and crowd pulling dancers in all of south india.This enchanting and adrenaline filled
+event includes teams that have participated in national level competitions like &#39;National Hip Hop
+competition.’ Tese vibrant dancers will be overseen and judged by master choreographers who
+have conquered the art of dancing. Let’s set the roof on fire!
+            </div>
         </div>
     </div>
 </body>
+<script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39906050-7"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
