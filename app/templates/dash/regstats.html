@@ -2,7 +2,7 @@
 {% extends "dash/dash.html" %}
 
 {% block body %}
-    
+
     <div class="dash-head">
         <h1 style="text-transform: capitalize;">Purchases</h1>
         <!-- <h2 style="text-transform: capitalize;">: {{ stat.get('count') }}</h2>
@@ -20,8 +20,9 @@
               <p>L: {{ stat.get('lcount') }}</p>
               <p>XL: {{ stat.get('xlcount') }}</p>
               <p>XXL: {{ stat.get('xxlcount') }}</p>
+              <p>Total T-Shirts: {{ stat.get('tshirt') }}</p>
           </div>
-          <h2 style="margin-top: 20px; margin-bottom: 10px;">Tickets sold</h2>
+          <h2 style="margin-top: 20px; margin-bottom: 10px;">Transcations Done</h2>
           <div style="margin-left: 20px; margin-bottom: 20px;">
               <p>Amritapuri: Proshow + Choreonite + Fashionshow: {{ stat.get('pid1') }}</p>
               <p>Outstation: Proshow + Choreonite + Fashionshow: {{ stat.get('pid2') }}</p>
@@ -31,6 +32,12 @@
               <p>Amritapuri: All Tickets + T-Shirt: {{ stat.get('pid6') }}</p>
               <p>Outstation: All Tickets + T-Shirt: {{ stat.get('pid7') }}</p>
               <p>General: Headbangers + Choreonite + Fashionshow + T-Shirt: {{ stat.get('pid8') }}</p>
+          </div>
+          <h2 style="margin-top: 20px; margin-bottom: 10px;">Tickets sold</h2>
+          <div style="margin-left: 20px; margin-bottom: 20px;">
+              <p>Proshow: {{ stat.get('proshow') }} includes {{stat.get('headbangers')}} Headbangers</p>
+              <p>Fashionshow: {{ stat.get('fashionshow') }}</p>
+              <p>Choreonite: {{ stat.get('choreonite') }}</p>
           </div>
         </div>
         {% for i in purchases %}
