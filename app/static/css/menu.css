@@ -75,12 +75,6 @@
 .loading-login{
     display: none;
 }
-
-.noscroll{
-    position: fixed; 
-    overflow-y: scroll;
-  }
-
 .nav{
     z-index: 2;
     font-size: 34px;
