@@ -26,25 +26,6 @@ def payauth():
         return "Exception occured : " + str(e)
     return ("Check localhost")
 
-# @pay.route('/testing/', methods=['POST', 'GET'])
-# def payment():
-#     plaintext = "transactionId=VIDYUTTEST10|amount=1|purpose=VIDYUT19TEST|currency=inr"
-#     result = hashlib.md5(plaintext.encode())
-#     result = result.hexdigest()
-#     print("md5",result)
-#     pwc = plaintext + "|checkSum=" + result
-#     print("before aes",pwc)
-#     cipher = AESCipher(key)
-#     encd = cipher.encrypt(pwc)
-#     print("after aes", encd)
-#     return encd
-
-# @pay.route('/callback/', methods=['POST', 'GET'])
-# def callback():
-#     print("Inside callback")
-#     print(request.args)
-#     return "Check terminal"
-
 @pay.route('/check/')
 def check_pay():
     return render_template('payment.html')

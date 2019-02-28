@@ -6,7 +6,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
 
     <title>Concerts | Vidyut</title>
-
+    
     <meta name="theme-color" content="#000">
     <meta name="msapplication-navbutton-color" content="#000">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -15,10 +15,9 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Source+Sans+Pro" rel="stylesheet">
     <link href="https://cloud.typenetwork.com/projects/3030/fontface.css/" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/fonts/fonts.css">
     <link rel="stylesheet" href="/static/css/menu.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/static/js/mobile-check.js"></script>
@@ -30,145 +29,129 @@
             $('.header').css('background', '#000');
         })
     </script>
+
     <style>
         *{
-    		margin: 0;
-    		padding: 0;
-    		box-sizing: border-box;
-    	}
-        body{
+            margin: 0;
+            box-sizing: border-box;   
+        }
+        html{
             background: #000;
-            font-family: 'Source Sans Pro';
+            color: #ffc72a;
+            font-family: 'Source Sans Pro'
         }
-        .social{
-            padding-left:0px;
+        .block1{
+            padding-top: 80px;
         }
-        .con-container{
-            padding-top: 60px;
-            color: #fff;
-            display: grid;
-            height: 400vh;
-            width: 100%;
-            grid-template-columns: auto;
-            grid-template-rows: repeat(8, 50vh);
-            grid-template-areas:
-            "l1"
-            "r1"
-            "r2"
-            "l2"
-            "f"
-            "f-r"
-            "c"
-            "c-l";
-        }
-        .noscroll{
-            position: fixed; 
-            overflow-y: scroll;
-        }
-
-        .l1-div{
-            grid-area: l1;
-            background: url('/static/images/concerts/18.jpg');
-        }
-        .r1-div{
-            grid-area: r1;
-        }
-        .l2-div{
-            grid-area: l2;
-        }
-        .r2-div{
-            grid-area: r2;
-            background: url('/static/images/concerts/8.jpg');
-        }
-
-        .con-container-2{
+        .block1, .block2{
             display: grid;
             grid-template-columns: auto;
-            grid-template-rows: 50vh 50vh;
+            grid-template-rows: 60vh 60vh;
+            grid-template-areas: 
+            "l"
+            "r";
         }
-        .f-div{
-            grid-area: f;
-            background: url('/static/images/concerts/f.jpg');
+        .b1-left{
+            grid-area: r;
         }
-        .c-div{
-            grid-area: c;
-            background: url('/static/images/concerts/c.jpg');
+        .b1-right{
+            grid-area: l;
+            height: 100%;
+            background: url('/static/images/concerts/WCMT-mob.jpg'); 
         }
-        .l1-div, .r2-div, .f-div, .c-div{
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
+        .b2-right{
+            grid-area: l;
         }
-        .f-r{
-            grid-area: f-r;
+        .b2-left{
+            grid-area: r;
+            height: 100%;
+            background: url('/static/images/concerts/Hari.jpg');
         }
-        .c-l{
-            grid-area: c-l;
-        }
-        .r1-div, .l2-div, .f-r, .c-l{
+        .b1-left, .b2-right{
+            padding: 30px;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 50px;
+        }  
+        .b1-left{
+            align-items: flex-start;
         }
-        @media screen and (min-width: 768px) {
-            .con-container{
-                height: 400vh;
-                padding-top: 80px;
-                grid-template-columns: 50% 50%;
-                grid-template-rows: repeat(4,100vh);
-                grid-template-areas:
-                "l1 r1"
-                "l2 r2"
-                "f f-r"
-                "c-l c";
+        @media only screen and (min-height: 700px) {
+            .block1, .block2{
+                grid-template-rows: 50vh 50vh;
             }
-            .r1-div, .l2-div, .f-r, .c-l{
-                padding: 100px;
+        }
+        @media only screen and (min-width: 768px) {
+            .block1{
+                padding-top: 60px;
             }
+            .b1-left{
+                align-items: center;
+            }
+            .block1, .block2{
+                height: 100vh;
+                display: grid;
+                grid-template-rows: auto;
+                grid-template-areas: 
+                "l r";
+            }
+            .block1{
+                grid-template-columns: auto 70%;
+            }
+            .b1-left{
+                grid-area: l;
+            }
+            .b1-right{
+                grid-area: r;
+                height: 100%;
+                background: url('/static/images/concerts/WCMT2.jpg'); 
+            }
+            .block2{
+                grid-template-columns: 70% auto;
+            }
+            .b2-right{
+                grid-area: r;
+            }
+            .b2-left{
+                grid-area: l;
+                height: 100%;
+                background: url('/static/images/concerts/Hari.jpg');
+            }
+            .b1-left, .b2-right{
+                padding: 70px;
+            }  
+        }
+        .b2-left, .b1-right{
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            background-position: center;
         }
     </style>
-</head>
-<body>
-	{% include 'navbar.html' %}
-    <div class="con-container">
-        <div class="l1-div"></div>
-        <div class="r1-div">
-            <div>
-                <h1>Haricharan</h1>
-                Get yourself pumped up for the sensational music medley to be performed by the ever talented ‘Haricharan Ft. Bennet and the band’ which includes Haricharan a prominent, multilingual awarding winning playback singer who has been in the music industry for many years and has many hit songs under his name. And to add to the  flavour, we have ‘Bennet and the band’ to resonate with the rhythm of Kerala. It’s all going to be there, funky beats, ambience, soulful music and you.
+    <body>
+        {% include 'navbar.html' %}
+        <div class="block1">
+            <div class="b1-left">
+                <div>
+                    <h1>WHEN CHAI MET TOAST</h1>
+                    Come, witness a synthesis of the East and the West at Vidyut'19. Pull yourself together and gear up to meet the young “band from the land of coconuts” - When Chai Met Toast that builds a bridge between the Indian roots and Western music with their happy, heartwarming music. Set your soul free like fireflies into the exhilarating night with the next big thing taglined to be revolutionary. 
+                </div>
+            </div>
+            <div class="b1-right"></div>
+        </div>
+        <div class="block2">
+            <div class="b2-left"></div>
+            <div class="b2-right">
+                <div>
+                    <h1>Haricharan Ft. Bennet and the band</h1>
+                    Get yourself pumped up for the sensational music medley to be performed by the ever talented Haricharan Ft. Bennet and the band which includes Haricharan a prominent, multilingual awarding winning playback singer who has been in the music industry for many years and has many hit songs under his name. And to add to the flavour, we have ‘Bennet and the band’ to resonate with the rhythm of Kerala. It’s all going to be there, funky beats, ambience, soulful music and you. 
+                </div>
             </div>
         </div>
-        <div class="l2-div">
-            <div>
-                <h1>When Chai Met Toast</h1>
-                Come, witness a synthesis of the East and the West at Vidyut'19. Pull yourself together and gear up to meet the young “band from the land of coconuts” - When Chai Met Toast that builds a bridge between the Indian roots and Western music with their happy, heartwarming music. Set your soul free like fireflies into the exhilarating night with the next big thing taglined to be revolutionary.
-            </div>            
-        </div>
-        <div class="r2-div">
-        </div>
-        <div class="f-div"></div>
-        <div class="f-r">
-            <div>
-                <h1>Incandescence</h1>
-                Racing heart beats synchronising with footsteps… Bring out your inner model and flaunt it as you glide down the ramp with your incandescence for the universe to see... Set the trends and bring the exuberated crowd on its knees and leave them in awe as the air fills with excitement and the tantalizing aura you portray. Come, find yourself at INCANDESCENCE VIDYUT’19.
-            </div>
-        </div>
-        <div class="c-div"></div>
-        <div class="c-l">
-            <div>
-                <h1>Choreonite</h1>
-                The stage is set for Vidyut 19&#39;s most anticipated event that brings together some of the most
-talented and crowd pulling dancers in all of south india.This enchanting and adrenaline filled
-event includes teams that have participated in national level competitions like &#39;National Hip Hop
-competition.’ Tese vibrant dancers will be overseen and judged by master choreographers who
-have conquered the art of dancing. Let’s set the roof on fire!
-            </div>
-        </div>
-    </div>
-</body>
-<script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39906050-7"></script>
+    </body>
+    <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39906050-7"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
