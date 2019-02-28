@@ -115,7 +115,8 @@ body{
 }
 
 .w-t-description h1{
-	font-family: Neue Haas Grotesk Text Pro Bold;
+	/* font-family: Neue Haas Grotesk Text Pro Bold; */
+	font-weight: bold;
 }
 
 @media only screen and (min-width: 550px) {

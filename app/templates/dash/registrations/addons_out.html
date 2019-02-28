@@ -246,7 +246,7 @@
             }
 
             $('.message').css('display', 'block');
-            $('.message').append('<a href="/dash/purchases/addons/buy/" style="color:blue;">Register new user</a>');
+            $('.message').append('<a href="/dash/purchases/addons/buy/out/" style="color:blue;">Register new user</a>');
             }
 
         });
@@ -267,6 +267,8 @@
         var cnt = parseInt($('#count').val());
         total = 0;
         total = pricing[product - 1] * cnt;
+        if(product == 2 && qty > 3)
+          total = total - (qty/3) * 100;
         $('.pricing').empty();
         if( cnt > 0)
             $('.pricing').append('Total : &#8377;' + total);
