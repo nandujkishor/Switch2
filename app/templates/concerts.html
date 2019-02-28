@@ -37,16 +37,18 @@
     		box-sizing: border-box;
     	}
         body{
-            background: #fff;
+            background: #000;
             font-family: 'Source Sans Pro';
         }
+        .social{
+            padding-left:0px;
+        }
         .con-container{
-            margin-top: 60px;
-            background: #000;
+            padding-top: 60px;
+            color: #fff;
             display: grid;
             height: 400vh;
             width: 100%;
-            color: #fff;
             grid-template-columns: auto;
             grid-template-rows: repeat(8, 50vh);
             grid-template-areas:
@@ -108,7 +110,7 @@
         @media screen and (min-width: 768px) {
             .con-container{
                 height: 400vh;
-                margin-top: 80px;
+                padding-top: 80px;
                 grid-template-columns: 50% 50%;
                 grid-template-rows: repeat(4,100vh);
                 grid-template-areas:
