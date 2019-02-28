@@ -44,6 +44,6 @@ def payauth():
 #     print(request.args)
 #     return "Check terminal"
 
-# @pay.route('/check/')
-# def check_pay():
-#     return render_template('payment.html')
+@pay.route('/check/')
+def check_pay():
+    return render_template('payment.html')

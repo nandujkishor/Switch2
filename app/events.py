@@ -170,7 +170,7 @@ def events_register():
     if request.method == 'POST':
         payload = {
             'cat': 1,
-            'eid': 62,
+            'eid': 66,
         }
         req = requests.post(Config.HUB_URL+'/events/registration', json=payload, headers={'Authorization':current_user.id})
         print(req.json())
