@@ -39,7 +39,6 @@ def load_user(id):
 def f_login(request, point="None"):
 
     print("Inside authentication f_login")
-    
 
     ip = get_user_ip(request)
     if current_user.is_authenticated:
@@ -116,7 +115,7 @@ def loggingIn():
     
     if request.method == 'POST':
         print("PASSING TO F_LOGIN")
-        print(request.form['idtoken'])
+        # print(request.form['idtoken'])
         reply_p = f_login(request).json()
         print("REPLY_P = ", reply_p)
 
@@ -136,7 +135,7 @@ def loggingIn():
 @farer.route('/data/user/')
 def farer_user():
 
-    print("INISDE DATA FARER")
+    print("Inside Data farer")
 
     if current_user.is_authenticated:
         u = requests.get(Config.HUB_URL+'/farer/auth/user', headers={'Authorization':current_user.id})

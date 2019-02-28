@@ -164,6 +164,21 @@ def contests_individual(id):
     print(contest.json())
     return jsonify(contest.json())
 
+@events.route('/register', methods=['GET', 'POST'])
+def events_register():
+
+    if request.method == 'POST':
+        payload = {
+            'cat': 1,
+            'eid': 66,
+        }
+        req = requests.post(Config.HUB_URL+'/events/registration', json=payload, headers={'Authorization':current_user.id})
+        print(req.json())
+
+        return jsonify(req.json())
+
+    return render_template('payment.html')
+
 @events.route('/data/registered/', methods=['GET'])
 def events_registered():
 

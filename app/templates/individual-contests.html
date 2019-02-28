@@ -106,16 +106,14 @@
 		});
 
 		$(document).ready(function(){
-			
-			$('.left').css('background', "url('/static/images/wtc.jpg')");
+			console.log("{{ contest.id }}");
+			$('.left').css('background', 'url("https://devhub.amblygon.org/static/images/contests/{{ contest.id }}a.jpg")');
 			$('.left').css('background-size', "cover");
 			$('.left').css('background-repeat', "no-repeat");
 			$('.left').css('background-position', "center");
 
 			$('.go-back').click(function(){
 				window.location.href="/contests"
-				// console.log("BACK");
-				// window.history.back();
 			});
 
 			if(isMobile() == true){
