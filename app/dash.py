@@ -186,8 +186,8 @@ def registration():
 def purchases_home():
     saltotcount = requests.get(Config.HUB_URL+'/addons/order/stats', headers={'Authorization':current_user.id})
     purchases = requests.get(Config.HUB_URL+'/addons/order/staff', headers={'Authorization':current_user.id})
-    print(saltotcount.json())
-    print(purchases.json())
+    print("Stats", saltotcount.json())
+    print("Purchases", purchases.json())
     return render_template('dash/regstats.html', stat=saltotcount.json(), purchases=purchases.json(), user=current_user)
 
 @dash.route('/purchases/addons/buy/', methods=['GET', 'POST'])
