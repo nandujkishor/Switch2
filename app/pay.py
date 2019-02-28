@@ -21,7 +21,7 @@ def payauth():
                 # 'code':request.form.get('code')
             }
             r = requests.post(Config.HUB_URL+'/pay/receive', json=payload)
-            return ("POSTED TO " + str(r.url))
+            return ("POSTED TO " + str(r.json()))
     except Exception as e:
         return "Exception occured : " + str(e)
     return ("Check localhost")
