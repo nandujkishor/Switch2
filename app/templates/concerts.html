@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/fonts/fonts.css">
     <link rel="stylesheet" href="/static/css/menu.css">
+    <link rel="stylesheet" href="/static/css/overlays.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/static/js/mobile-check.js"></script>
@@ -40,8 +41,31 @@
             color: #ffc72a;
             font-family: 'Source Sans Pro'
         }
-        .block1{
-            padding-top: 80px;
+        h1{
+            font-size: 28px;
+        }
+        .intro-grid{
+            color: #fff; 
+            height: 100vh;
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-areas:
+            "one"
+            "two"
+            "three";
+        }
+        .div-one{
+            grid-area: one;
+            background: yellow;
+        }
+        .div-two{
+            grid-area: two;
+            background: blue;
+        }
+        .div-three{
+            grid-area: three;
+            background: green;
         }
         .block1, .block2{
             display: grid;
@@ -98,8 +122,21 @@
             }
         }
         @media only screen and (min-width: 768px) {
-            .block1{
-                padding-top: 60px;
+            h1{
+                font-size: 50px;
+            }
+            .intro-grid{
+                display: grid;
+                height: 100vh;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: auto;
+                grid-template-areas:
+                "one two three";
+            }
+            .div-one, .div-two, .div-three{
+                display: flex; 
+                align-items: flex-end;
+                padding: 80px;
             }
             .b1-left{
                 align-items: center;
@@ -147,6 +184,7 @@
                 max-width: 600px;
             }
         }
+
         .b2-left, .b1-right{
             -webkit-background-size: cover;
             -moz-background-size: cover;
@@ -157,6 +195,38 @@
     </style>
     <body>
         {% include 'navbar.html' %}
+        <div class="trans-layer"></div>
+        <div class="medium-page-overlay payment-popup">
+            <form method="POST" action=" https://payments.acrd.org.in/pay/makethirdpartypayment">
+                <input type="hidden" value="" name="encdata" id="encdata">
+                <input type="hidden" value="VIDYUT19TEST" name="code" id="code">
+                <input type="submit" id="pay">
+            </form>
+            <div>
+                <input type="submit" value="Proshow" class="p2-book">
+                <input type="submit" value="Combo offer" class="p3-book">
+            </div>
+        </div>
+        <div class="intro-grid">
+            <div class="div-one">
+                <div>
+                    <h1>Choreonite</h1>
+                    <input type="submit" value="Book Tickets" class="book">
+                </div>
+            </div>
+            <div class="div-two">
+                <div>
+                    <h1>Haricharan ft. Bennet the band & When Chai Met Toast </h1>
+                    <input type="submit" value="Book Tickets"class="book">
+                </div>
+            </div>
+            <div class="div-three">
+                <div>
+                    <h1>Incandescence</h1>
+                    <input type="submit" value="Book Tickets" class="book">
+                </div>
+            </div>
+        </div>
         <div class="block1">
             <div class="b1-left">
                 <div>
@@ -180,9 +250,9 @@
                 <div>
                     <h1>Choreonite</h1>
                     The stage is set for Vidyut 19&#39;s most anticipated event that brings together some of the most
-                    talented and crowd pulling dancers in all of south india.This enchanting and adrenaline filled
+                    talented and crowd pulling dancers in all of south india. This enchanting and adrenaline filled
                     event includes teams that have participated in national level competitions like &#39;National Hip Hop
-                    competition.’ Tese vibrant dancers will be overseen and judged by master choreographers who
+                    competition’. These vibrant dancers will be overseen and judged by master choreographers who
                     have conquered the art of dancing. Let’s set the roof on fire!
                 </div>
             </div>
@@ -197,6 +267,36 @@ and the tantalizing aura you portray. Come, find yourself at INCANDESCENCE VIDYU
             </div>
         </div>
     </body>
+    <script>
+        $(document).ready(function(){
+            $('.book').click(function(){
+                $('.medium-page-overlay, .trans-layer').toggleClass('open')
+            });
+            $('.p2-book').click(function(){
+                payload = {
+                    'pid': 2, 
+                    'qty': 1
+                }
+                $.ajax({
+                    type: "POST",
+                    data: payload,
+                    url: "/events/register",
+                    success: function(data){
+                        console.log(data);
+                        // $('#encdata').val(data.encdata);  
+                    }
+                });
+            })
+            $('.p1-book').click(function(){
+
+            })
+        })
+
+        $(document).on('keyup',function(evt) {
+            if (evt.keyCode == 27)
+                $('.medium-page-overlay, .trans-layer').toggleClass('open');
+        });
+    </script>
     <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39906050-7"></script>
     <script>

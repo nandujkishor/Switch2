@@ -29,3 +29,18 @@ def payauth():
 @pay.route('/check/')
 def check_pay():
     return render_template('payment.html')
+
+@pay.route('/addon', methods=['GET', 'POST'])
+@login_required
+def addon_pay():
+    try:
+        pid = request.form['pid']
+        qty = request.form['qty']
+        r = requests.post(Config.HUB_URL+'/addons/order/new', json=payload, headers={'Authorization':current_user.id})
+    except Exception as e:
+        print(e)
+        responseObject = {
+            'status':'fail',
+            'message':'Internal server communication Issue (Error:'+str(e)
+        }
+    return r.json()
