@@ -37,9 +37,10 @@ def addon_pay():
         pid = request.form['pid']
         qty = request.form['qty']
         payload = {
-            'pid': pid,
-            'qty': qty
+            'pid': int(pid),
+            'qty': int(qty)
         }
+        print(payload)
         r = requests.post(Config.HUB_URL+'/addons/order/new', json=payload, headers={'Authorization':current_user.id})
     except Exception as e:
         print(e)
