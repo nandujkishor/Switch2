@@ -14,29 +14,25 @@
           </div>
         </div>
         <div class="registered">
-
-          <div>
-            <h2>Purchased Addons</h2>
-            {% for i in purchases %}
-            <div class="eventItem2" >
-                <div class="eventmeta"> {{ '%03d' % i.get('purid') }} </div>
-                <div class ="eventdata">
-                    <span class = "talkHead">{{ i.get('purchase') }} ({{ i.get('qty') }})</span><br>
-                    <span class="meta"> Rs. {{ i.get('total') }} - {{ i.get('purtime') }}</span>
-                </div>
-            </div>
-            {% endfor %}
-          </div>
-          
-          <div>
               <div class="registered-workshops">
                 <h2>Registered workshops</h2>
               </div>
-              <div class="registered-events" style="margin-top: 20px">
+              <div class="registered-events">
                 <h2>Registered events</h2>
               </div>
+              <div>
+                <h2>Purchased Addons</h2>
+                {% for i in purchases %}
+                <div class="eventItem2" >
+                    <div class="eventmeta"> {{ '%03d' % i.get('purid') }} </div>
+                    <div class ="eventdata">
+                        <span class = "talkHead">{{ i.get('purchase') }} ({{ i.get('qty') }})</span><br>
+                        <span class="meta"> Rs. {{ i.get('total') }} - {{ i.get('purtime') }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+              </div>
           </div>
-        </div>
       </div>
     </div>
     <script>
