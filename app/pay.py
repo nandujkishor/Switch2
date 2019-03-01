@@ -36,6 +36,10 @@ def addon_pay():
     try:
         pid = request.form['pid']
         qty = request.form['qty']
+        payload = {
+            'pid': pid,
+            'qty': qty
+        }
         r = requests.post(Config.HUB_URL+'/addons/order/new', json=payload, headers={'Authorization':current_user.id})
     except Exception as e:
         print(e)
@@ -43,4 +47,5 @@ def addon_pay():
             'status':'fail',
             'message':'Internal server communication Issue (Error:'+str(e)
         }
-    return r.json()
+        return jsonify(responseObject)
+    return jsonify(r.json())
