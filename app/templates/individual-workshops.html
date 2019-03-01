@@ -83,16 +83,20 @@
 			<br><hr><br>
 			{% if workshop.org %}
 			<div class="w-s-sponsor">
-				Organiser
+				<h4>Organiser</h4>
 				<h1>{{ workshop.org }}</h1>
 			</div>
 			<br><hr><br>
 			{% endif %}
 			{% if support %}
 			<div class="w-s-sponsor">
-				<h3>For any queries</h3>
+				<h4>For any queries</h4>
+				<h3>
 				<span class="c-name">{{ support.fname }}</span>
+				<span class="c-name">{{ support.lname }} </span>
+				<br>
 				<span class="c-phno">{{ support.phno }}</span>
+				</h3>
 			</div>
 			{% endif %}
 			<br><hr><br>
