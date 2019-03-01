@@ -51,6 +51,22 @@
             "l"
             "r";
         }
+        .block3{
+            color: #fff;
+            width: 100%;
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: 50vh 50vh;
+            grid-template-areas: 
+            "l"
+            "r";
+        }
+        .b3-l{
+            grid-area: l;
+        }
+        .b3-r{
+            grid-area: r;
+        }
         .b1-left{
             grid-area: r;
         }
@@ -67,7 +83,7 @@
             height: 100%;
             background: url('/static/images/concerts/Hari.jpg');
         }
-        .b1-left, .b2-right{
+        .b1-left, .b2-right, .b3-l, .b3-r{
             padding: 30px;
             display: flex;
             justify-content: center;
@@ -91,6 +107,13 @@
             .block1, .block2{
                 height: 100vh;
                 display: grid;
+                grid-template-rows: auto;
+                grid-template-areas: 
+                "l r";
+            }
+            .block3{
+                height: 100vh;
+                grid-template-columns: 1fr 1fr;
                 grid-template-rows: auto;
                 grid-template-areas: 
                 "l r";
@@ -120,6 +143,9 @@
             .b1-left, .b2-right{
                 padding: 70px;
             }  
+            .b3-l, .b3-r{
+                max-width: 600px;
+            }
         }
         .b2-left, .b1-right{
             -webkit-background-size: cover;
@@ -146,6 +172,27 @@
                 <div>
                     <h1>Haricharan Ft. Bennet and the band</h1>
                     Get yourself pumped up for the sensational music medley to be performed by the ever talented Haricharan Ft. Bennet and the band which includes Haricharan a prominent, multilingual awarding winning playback singer who has been in the music industry for many years and has many hit songs under his name. And to add to the flavour, we have ‘Bennet and the band’ to resonate with the rhythm of Kerala. It’s all going to be there, funky beats, ambience, soulful music and you. 
+                </div>
+            </div>
+        </div>
+        <div class="block3">
+            <div class="b3-l">
+                <div>
+                    <h1>Choreonite</h1>
+                    The stage is set for Vidyut 19&#39;s most anticipated event that brings together some of the most
+                    talented and crowd pulling dancers in all of south india.This enchanting and adrenaline filled
+                    event includes teams that have participated in national level competitions like &#39;National Hip Hop
+                    competition.’ Tese vibrant dancers will be overseen and judged by master choreographers who
+                    have conquered the art of dancing. Let’s set the roof on fire!
+                </div>
+            </div>
+            <div class="b3-r">
+                <div>
+                    <h1>Incandescence</h1>
+                    Racing heart beats synchronising with footsteps… Bring out your inner model and flaunt it as
+you glide down the ramp with your incandescence for the universe to see... Set the trends and
+bring the exuberated crowd on its knees and leave them in awe as the air fills with excitement
+and the tantalizing aura you portray. Come, find yourself at INCANDESCENCE VIDYUT’19.
                 </div>
             </div>
         </div>
