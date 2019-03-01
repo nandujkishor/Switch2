@@ -58,13 +58,11 @@
 			</div>
 			{% if contest.rules != '<p></p>' and contest.rules != '<p><br></p>' %}
 			<div class="w-m-rules">
-				<h1>Rules</h1>
 				<p>{{ contest.rules|safe }}</p>
 			</div>
 			{% endif %}
 			{% if contest.prereq != '<p></p>' and contest.prereq != '<p><br></p>' %}
 			<div class="w-m-prereq">
-				<h1>Prerequisites</h1>
 				<p>{{ contest.prereq|safe }}</p>
 			</div>
 			{% endif %}
@@ -84,6 +82,25 @@
 			<div class="w-s-sponsor">
 				<h1>Organiser</h1>
 				<img src = "/static/images/nvidea.png" height="100px"/>	
+			</div>
+			<br><hr><br>
+			{% endif %}
+			{% if contest.prize1 %}
+			<div class="w-s-sponsor">
+				<h1>1st Prize</h1>
+				&#8377;{{ contest.prize1 }}	
+			</div>
+			{% endif %}
+			{% if contest.prize2 %}
+			<div class="w-s-sponsor">
+				<h1>2nd Prize</h1>
+				&#8377;{{ contest.prize2 }}	
+			</div>
+			{% endif %}
+			{% if contest.prize3 %}
+			<div class="w-s-sponsor">
+				<h1>3rd Prize</h1>
+				&#8377;{{ contest.prize3 }}	
 			</div>
 			<br><hr><br>
 			{% endif %}
