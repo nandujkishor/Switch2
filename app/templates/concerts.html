@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/fonts/fonts.css">
     <link rel="stylesheet" href="/static/css/menu.css">
+    <link rel="stylesheet" href="/static/css/form.css">
     <link rel="stylesheet" href="/static/css/overlays.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -44,16 +45,21 @@
         h1{
             font-size: 28px;
         }
+        .noscroll{
+            position: fixed; 
+            overflow-y: scroll;
+        }
         .intro-grid{
             color: #fff; 
             height: 100vh;
             display: grid;
             grid-template-columns: auto;
-            grid-template-rows: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 33.3%);
             grid-template-areas:
             "one"
             "two"
             "three";
+            font-family: "Neue Haas Grotesk Disp Med";
         }
         .div-one{
             grid-area: one;
@@ -66,6 +72,11 @@
         .div-three{
             grid-area: three;
             background: green;
+        }
+        .div-one, .div-two, .div-three{
+            display: flex; 
+            align-items: flex-end;
+            padding: 40px;
         }
         .block1, .block2{
             display: grid;
@@ -107,7 +118,7 @@
             height: 100%;
             background: url('/static/images/concerts/Hari.jpg');
         }
-        .b1-left, .b2-right, .b3-l, .b3-r{
+        .b1-left, .b2-right, .b3-l, .b3-r, .payment-left, .payment-right{
             padding: 30px;
             display: flex;
             justify-content: center;
@@ -115,6 +126,32 @@
         }  
         .b1-left{
             align-items: flex-start;
+        }
+        .payment-popup{
+            padding: 50px;
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: 30% 70%;
+            grid-template-areas:
+            "p-l"
+            "p-r";
+        }
+        .payment-left{
+            grid-area: p-l;
+            font-family: "Neue Haas Grotesk Disp Med";
+            font-size: 25px;
+        }
+        .payment-right{
+            font-family: "Neue Haas Grotesk Disp Reg";
+            grid-area: p-r;
+        }
+        .gen, .vip{
+            padding: 15px;
+            width: 100%;
+        }
+        .gen:hover, .vip:hover{
+            cursor: pointer;
+            background: #C9C9C9;
         }
         @media only screen and (min-height: 700px) {
             .block1, .block2{
@@ -134,9 +171,22 @@
                 "one two three";
             }
             .div-one, .div-two, .div-three{
-                display: flex; 
-                align-items: flex-end;
-                padding: 80px;
+                padding: 40px;
+            }
+            .payment-right{
+                justify-content: flex-start;
+            }
+            .payment-popup{
+                grid-template-columns: 50% 50%;
+                grid-template-rows: auto;
+                grid-template-areas:
+                "p-l p-r";
+            }
+            .payment-left{
+                font-size: 50px;
+            }
+            .payment-right{
+                font-size: 28px;
             }
             .b1-left{
                 align-items: center;
@@ -195,16 +245,37 @@
     </style>
     <body>
         {% include 'navbar.html' %}
-        <div class="trans-layer"></div>
-        <div class="medium-page-overlay payment-popup">
-            <form method="POST" action=" https://payments.acrd.org.in/pay/makethirdpartypayment">
-                <input type="hidden" value="" name="encdata" id="encdata">
-                <input type="hidden" value="VIDYUT19TEST" name="code" id="code">
-                <input type="submit" id="pay">
-            </form>
-            <div>
-                <input type="submit" value="Proshow" class="p2-book">
-                <input type="submit" value="Combo offer" class="p3-book">
+        <!-- <div class="trans-layer"></div> -->
+        <div class="full-page-overlay payment-popup">
+            <div class="payment-left">
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    Haricharan + <br>
+                    When Chai Met Toast + <br>
+                    Choreonite + <br>
+                    Incandescence
+                </div>
+            </div>
+            <div class="payment-right">
+                <div>
+                    <div class="gen" style="margin-bottom: 10px;" id="2">
+                        General<br>
+                        &#8377;700 <br>
+                        Some text
+                    </div>
+                    <hr>
+                    <div class="vip" style="margin-top: 10px;" id="3">
+                        VIP (Headbangers)<br>
+                        &#8377;900 <br>
+                        Some text
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <form method="POST" action="https://payments.acrd.org.in/pay/makethirdpartypayment" style="display: none;">
+                            <input type="hidden" value="" name="encdata" id="encdata">
+                            <input type="hidden" value="VIDYUT19TEST" name="code" id="code">
+                            <input type="submit" id="pay" value="Proceed to pay" style="width: 150px;">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="intro-grid">
@@ -269,12 +340,26 @@ and the tantalizing aura you portray. Come, find yourself at INCANDESCENCE VIDYU
     </body>
     <script>
         $(document).ready(function(){
+            
             $('.book').click(function(){
-                $('.medium-page-overlay, .trans-layer').toggleClass('open')
+                $('.full-page-overlay').toggleClass('open');
+                $('body').addClass('noscroll');
             });
-            $('.p2-book').click(function(){
+
+            $('.gen, .vip').click(function(){
+                var pid;
+                if($(this).attr('id') == '2'){
+                    pid = 2;
+                    $('.vip').css('background','transparent');
+                    $('.gen').css('background','#C9C9C9');
+                }
+                else{
+                    pid = 3;
+                    $('.gen').css('background','transparent');
+                    $('.vip').css('background','#C9C9C9');
+                }
                 payload = {
-                    'pid': 2, 
+                    'pid': pid, 
                     'qty': 1
                 }
                 $.ajax({
@@ -283,18 +368,20 @@ and the tantalizing aura you portray. Come, find yourself at INCANDESCENCE VIDYU
                     url: "/pay/addon",
                     success: function(data){
                         console.log(data);
-                        // $('#encdata').val(data.encdata);  
+                        $('form').css('display','block');
+                        $('#encdata').val(data.encdata);  
                     }
                 });
             })
-            $('.p1-book').click(function(){
-
-            })
+            
         })
 
+
         $(document).on('keyup',function(evt) {
-            if (evt.keyCode == 27)
-                $('.medium-page-overlay, .trans-layer').toggleClass('open');
+            if (evt.keyCode == 27){
+                $('.full-page-overlay').toggleClass('open');    
+                $('body').removeClass('noscroll');
+            }
         });
     </script>
     <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
