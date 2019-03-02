@@ -51,10 +51,10 @@
         }
         .intro-grid{
             color: #fff; 
-            height: 100vh;
+            height: 300vh;
             display: grid;
             grid-template-columns: auto;
-            grid-template-rows: repeat(3, 33.3%);
+            grid-template-rows: repeat(3, 100vh);
             grid-template-areas:
             "one"
             "two"
@@ -62,16 +62,16 @@
             font-family: "Neue Haas Grotesk Disp Med";
         }
         .div-one{
-            grid-area: one;
-            background: yellow;
+            grid-area: two;
+            background: url('/static/images/concerts/CN.jpg');
         }
         .div-two{
-            grid-area: two;
+            grid-area: one;
             background: blue;
         }
         .div-three{
             grid-area: three;
-            background: green;
+            background: url('/static/images/concerts/IN.jpg');
         }
         .div-one, .div-two, .div-three{
             display: flex; 
@@ -85,22 +85,6 @@
             grid-template-areas: 
             "l"
             "r";
-        }
-        .block3{
-            color: #fff;
-            width: 100%;
-            display: grid;
-            grid-template-columns: auto;
-            grid-template-rows: 50vh 50vh;
-            grid-template-areas: 
-            "l"
-            "r";
-        }
-        .b3-l{
-            grid-area: l;
-        }
-        .b3-r{
-            grid-area: r;
         }
         .b1-left{
             grid-area: r;
@@ -118,7 +102,7 @@
             height: 100%;
             background: url('/static/images/concerts/Hari.jpg');
         }
-        .b1-left, .b2-right, .b3-l, .b3-r, .payment-left, .payment-right{
+        .b1-left, .b2-right, .payment-left, .payment-right{
             padding: 30px;
             display: flex;
             justify-content: center;
@@ -148,10 +132,20 @@
         .gen, .vip{
             padding: 15px;
             width: 100%;
+            transition: 0.5s;
         }
         .gen:hover, .vip:hover{
             cursor: pointer;
             background: #C9C9C9;
+        }
+        .close{
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .close svg{
+            height: 20px;
         }
         @media only screen and (min-height: 700px) {
             .block1, .block2{
@@ -188,19 +182,15 @@
             .payment-right{
                 font-size: 28px;
             }
+            .close svg{
+                height: 40px;
+            }
             .b1-left{
                 align-items: center;
             }
             .block1, .block2{
                 height: 100vh;
                 display: grid;
-                grid-template-rows: auto;
-                grid-template-areas: 
-                "l r";
-            }
-            .block3{
-                height: 100vh;
-                grid-template-columns: 1fr 1fr;
                 grid-template-rows: auto;
                 grid-template-areas: 
                 "l r";
@@ -230,23 +220,33 @@
             .b1-left, .b2-right{
                 padding: 70px;
             }  
-            .b3-l, .b3-r{
-                max-width: 600px;
-            }
         }
 
-        .b2-left, .b1-right{
+        .b2-left, .b1-right, .div-one, .div-two, .div-three{
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
             background-position: center;
         }
+
+        input[type="submit"] {
+            width: 150px;
+            background: #ffc72a;
+            color: #000;
+            border: 2px solid #ffc72a;
+        }
+        input[type="submit"]:hover {
+            color: #ffc72a;
+        }
     </style>
     <body>
         {% include 'navbar.html' %}
         <!-- <div class="trans-layer"></div> -->
         <div class="full-page-overlay payment-popup">
+            <div class="close">
+                    <?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg enable-background="new 0 0 100 100" id="Layer_1" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon fill="#010101" points="77.6,21.1 49.6,49.2 21.5,21.1 19.6,23 47.6,51.1 19.6,79.2 21.5,81.1 49.6,53 77.6,81.1 79.6,79.2   51.5,51.1 79.6,23 "/></svg>
+            </div>
             <div class="payment-left">
                 <div style="display: flex; justify-content: center; align-items: center;">
                     Haricharan + <br>
@@ -281,20 +281,25 @@
         <div class="intro-grid">
             <div class="div-one">
                 <div>
-                    <h1>Choreonite</h1>
-                    <input type="submit" value="Book Tickets" class="book">
+                    <div>
+                        <h1>Choreonite</h1><br>
+                        <p>The stage is set for Vidyut 19&#39;s most anticipated event that brings together some of the most talented and crowd pulling dancers in all of south india. This enchanting and adrenaline filled event includes teams that have participated in national level competitions like &#39;National Hip Hop competition’. These vibrant dancers will be overseen and judged by master choreographers who have conquered the art of dancing. Let’s set the roof on fire!</p>
+                        <!-- <br><br><input type="submit" value="Book Tickets" class="book">     -->
+                    </div>
                 </div>
             </div>
             <div class="div-two">
                 <div>
-                    <h1>Haricharan ft. Bennet the band & When Chai Met Toast </h1>
-                    <input type="submit" value="Book Tickets"class="book">
+                    <h1>Haricharan ft. Bennet the band & When Chai Met Toast</h1><br>
+                    <!-- <input type="submit" value="Book Tickets"class="book"> -->
                 </div>
             </div>
             <div class="div-three">
                 <div>
-                    <h1>Incandescence</h1>
-                    <input type="submit" value="Book Tickets" class="book">
+                    <h1>Incandescence</h1><br>
+                    Racing heart beats synchronising with footsteps… Bring out your inner model and flaunt it as you glide down the ramp with your incandescence for the universe to see. Set the trends and bring the exuberated crowd on its knees and leave them in awe as the air fills with excitement and the tantalizing aura you portray. Come, find yourself at INCANDESCENCE VIDYUT’19.</p>
+                    <br><br>
+                    <!-- <input type="submit" value="Book Tickets" class="book"> -->
                 </div>
             </div>
         </div>
@@ -316,27 +321,6 @@
                 </div>
             </div>
         </div>
-        <div class="block3">
-            <div class="b3-l">
-                <div>
-                    <h1>Choreonite</h1>
-                    The stage is set for Vidyut 19&#39;s most anticipated event that brings together some of the most
-                    talented and crowd pulling dancers in all of south india. This enchanting and adrenaline filled
-                    event includes teams that have participated in national level competitions like &#39;National Hip Hop
-                    competition’. These vibrant dancers will be overseen and judged by master choreographers who
-                    have conquered the art of dancing. Let’s set the roof on fire!
-                </div>
-            </div>
-            <div class="b3-r">
-                <div>
-                    <h1>Incandescence</h1>
-                    Racing heart beats synchronising with footsteps… Bring out your inner model and flaunt it as
-you glide down the ramp with your incandescence for the universe to see... Set the trends and
-bring the exuberated crowd on its knees and leave them in awe as the air fills with excitement
-and the tantalizing aura you portray. Come, find yourself at INCANDESCENCE VIDYUT’19.
-                </div>
-            </div>
-        </div>
     </body>
     <script>
         $(document).ready(function(){
@@ -349,7 +333,7 @@ and the tantalizing aura you portray. Come, find yourself at INCANDESCENCE VIDYU
             $('.gen, .vip').click(function(){
                 var pid;
                 if($(this).attr('id') == '2'){
-                    pid = 2;
+                    pid = 100;
                     $('.vip').css('background','transparent');
                     $('.gen').css('background','#C9C9C9');
                 }
@@ -372,15 +356,24 @@ and the tantalizing aura you portray. Come, find yourself at INCANDESCENCE VIDYU
                         $('#encdata').val(data.encdata);  
                     }
                 });
-            })
+            });
+
+            $('.close').click(function(){
+                $('.full-page-overlay').removeClass('open');    
+                $('body').removeClass('noscroll');
+                $('form').css('display','none');
+                $('.vip, .gen').css('background','transparent');
+            });
             
         })
 
 
         $(document).on('keyup',function(evt) {
             if (evt.keyCode == 27){
-                $('.full-page-overlay').toggleClass('open');    
+                $('.full-page-overlay').removeClass('open');    
                 $('body').removeClass('noscroll');
+                $('form').css('display','none');
+                $('.vip, .gen').css('background','transparent');
             }
         });
     </script>

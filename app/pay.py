@@ -30,6 +30,9 @@ def payauth():
 def check_pay():
     return render_template('payment.html')
 
+@pay.route('/probe')
+def payprobe():
+    return render_template('probe.html')
 @pay.route('/addon', methods=['GET', 'POST'])
 @login_required
 def addon_pay():
