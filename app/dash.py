@@ -77,7 +77,7 @@ def events_show(op, event):
                             title="Events Dashboard",
                             user=current_user)
 
-@dash.route('/events/')
+
 @dash.route('/events/talks')
 @login_required
 @staff_required()
@@ -86,7 +86,7 @@ def events_show_talks():
     return events_show(request.args.get('open'), "talks")
 
 # Content to be pulled from the provided data endpoints
-
+@dash.route('/events/')
 @dash.route('/events/workshops')
 @login_required
 @staff_required()
@@ -186,9 +186,14 @@ def registration():
 def purchases_home():
     saltotcount = requests.get(Config.HUB_URL+'/addons/order/stats', headers={'Authorization':current_user.id})
     purchases = requests.get(Config.HUB_URL+'/addons/order/staff', headers={'Authorization':current_user.id})
-    print("Stats", saltotcount.json())
-    print("Purchases", purchases.json())
     return render_template('dash/regstats.html', stat=saltotcount.json(), purchases=purchases.json(), user=current_user)
+
+@dash.route('/registrations/')
+@login_required
+@staff_required("all", 4)
+def registrations_home():
+    registrations = requests.get(Config.HUB_URL+'/events/registration/all', headers={'Authorization':current_user.id})
+    return render_template('dash/regevtstats.html', registrations=registrations.json(), user=current_user)
 
 @dash.route('/purchases/addons/buy/', methods=['GET', 'POST'])
 @login_required
@@ -243,5 +248,6 @@ def addons_staff_out():
 @login_required
 def dash_attendee():
     purchases = requests.get(Config.HUB_URL+'/addons/order/my', headers={'Authorization':current_user.id})
-    print("Purchases", purchases.json())
-    return render_template('dash/attendee_dash.html', purchases=purchases.json(),user=current_user)
+    workshops = requests.get(Config.HUB_URL+'/events/registration/workshops', headers={'Authorization':current_user.id})
+    contests = requests.get(Config.HUB_URL+'/events/registration/contests', headers={'Authorization':current_user.id})
+    return render_template('dash/attendee_dash.html', purchases=purchases.json(),user=current_user, workshops=workshops.json(), contests=contests.json())
