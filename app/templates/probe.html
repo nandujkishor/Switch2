@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sponsors | Vidyut</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  </head>
+
+  <body></body>
+    
+    <script>
+
+        $(document).ready(function(){
+            console.log("READY");
+            var encd;
+            payload = {
+                'code':'VIDYUT19TEST',
+                'encdata': 'XGg+vDd6ejtOixqgRU7tEvqflYlYEMC07GmCxKbHDnYP93OAiNOrLWNGcTG3uQCywaixEq6q5YmFLXpWhKRm7IBLs5X/1bubJeotOHiPczmLDQ0dxlEBZoaFMCX7NJOFEsrj3Zp1ZT1M7O9EeB1kdQ=='        
+            }
+            $.ajax({
+                type: "POST",
+                data: payload,
+                url: "https://payments.acrd.org.in/pay/doubleverifythridparty",
+                success: function(data){
+                    console.log("TESTING")
+                    console.log(data);
+                    // $('#encdata').val(data.encdata);  
+                }
+            });
+            
+        })
+    </script>
+  
+</body>
+  
+</html>
