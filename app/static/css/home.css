@@ -140,9 +140,8 @@ html, body{
   background-color:#000;
   color: #fff;
   display: grid;
-  grid-template-rows: repeat(5,1fr);
+  grid-template-rows: repeat(4,1fr);
   grid-template-areas: 
-  "one"
   "two"
   "three"
   "four"
@@ -485,7 +484,7 @@ html, body{
 }
 
 
-.bounce {
+.bounce{
   -moz-animation: bounce 3s infinite;
   -webkit-animation: bounce 3s infinite;
   animation: bounce 3s infinite;
@@ -556,10 +555,10 @@ html, body{
 	}
 
 	.b3{    
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(4,1fr);
     grid-template-rows: auto;
     grid-template-areas: 
-    "one two three four five";
+    "two three four five";
     font-size: 1em;
   }
   .one{

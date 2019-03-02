@@ -1,25 +1,12 @@
 <title>{{ workshop.title }} | Workshops</title>
+
 <link rel="stylesheet" href="/static/css/workshops/individual.css">
 <link rel="stylesheet" href="/static/css/imageviewer.css">
 <link rel="stylesheet" href="/static/css/form.css">
 <script src="/static/js/imageviewer.js"></script>
-<style>
-	.right .down-arrow{
-		position: absolute;
-		left: 75%;
-		bottom: 2%;
-	}
-</style>
-<div class = "Containter">
-	<!-- <div class="trans-layer"></div>
-	<div class="medium-page-overlay registeration-overlay">
-		<div class="medium-overlay-content">
-			Are you sure you want to register for the workshop on {{workshop.title}}?
-			<input type="submit" id="yes" name="yes" value="Yes">
-			<input type="submit" id="no" name="no" value="No">
-		</div>
-	</div> -->
 
+<div class = "Containter">
+	
 	</div>
 	<div class = "left">
 	</div>
@@ -37,8 +24,8 @@
 		<div class="w-department">
 			{{dept[workshop.department - 1]}}
 		</div>
-		<div class="down-arrow">
-				Scroll down
+		<div class="down-arrow bounce">
+			<img src = "/static/images/icons/down_arrow_black.png" height="35px" />
 		</div>
 	</div>
 	<div class="w-m-main-mobile mobile">
@@ -83,14 +70,14 @@
 			<br><hr><br>
 			{% if workshop.org %}
 			<div class="w-s-sponsor">
-				<h4>Organiser</h4>
+				Organiser
 				<h2>{{ workshop.org }}</h2>
 			</div>
 			<br><hr><br>
 			{% endif %}
 			{% if support %}
 			<div class="w-s-sponsor support">
-				<h4>For any queries</h4>
+				For any queries
 				<h3>
 				<span class="c-name1">{{ support.fname }}</span>
 				<span class="c-name2">{{ support.lname }} </span>
@@ -100,9 +87,9 @@
 			</div>
 			{% endif %}
 			<br><hr><br>
-			<div class="cf" >
+			<!-- <div class="cf" >
     			<img width="285px" src="https://devhub.amblygon.org/static/images/workshops/{{ workshop.id }}a.jpg" data-high-res-src="https://devhub.amblygon.org/static/images/workshops/{{ workshop.id }}a.jpg" class="poster">
-			</div>
+			</div> -->
 		</div>
 
 	</div>

@@ -11,14 +11,6 @@
 	}
 </style>
 <div class = "Containter">
-	<!-- <div class="trans-layer"></div>
-	<div class="medium-page-overlay registeration-overlay">
-		<div class="medium-overlay-content">
-			Are you sure you want to register for the workshop on {{contest.title}}?
-			<input type="submit" id="yes" name="yes" value="Yes">
-			<input type="submit" id="no" name="no" value="No">
-		</div>
-	</div> -->
 
 	</div>
 	<div class = "left">
@@ -37,8 +29,8 @@
 		<div class="w-department">
 			{{dept[contest.department - 1]}}
 		</div>
-		<div class="down-arrow">
-			Scroll down
+		<div class="down-arrow bounce">
+			<img src = "/static/images/icons/down_arrow_black.png" height="35px" />
 		</div>
 	</div>
 	<div class="w-m-main-mobile mobile">
@@ -77,6 +69,13 @@
 				Maximum {{contest.team_limit}} member(s) in a team
 				{% else %}
 				Individual competition
+				{% endif %}
+			</div>
+			<div class="w-s-fee">
+				{% if contest.team_limit > 1 %}
+				<b>&#8377;</b> {{contest.fee}} per team
+				{% else %}
+				<b>&#8377;</b> {{contest.fee}} per head
 				{% endif %}
 			</div>
 			<br><hr><br>
@@ -119,10 +118,10 @@
 				</h3>
 			</div>
 			{% endif %}
-			<br><hr><br>
-			<div class="cf" >
+			<!-- <br><hr><br> -->
+			<!-- <div class="cf" >
     			<img width="285px" src="https://devhub.amblygon.org/static/images/contests/{{ contest.id }}a.jpg" data-high-res-src="https://devhub.amblygon.org/static/images/contests/{{ contest.id }}a.jpg" class="poster">
-			</div>
+			</div> -->
 		</div>
 	</div>
 
