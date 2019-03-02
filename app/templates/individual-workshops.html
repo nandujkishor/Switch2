@@ -75,7 +75,7 @@
 			</div> -->
 			<div class="w-s-fee">
 				{% if workshop.fee %}
-				&#8377; {{workshop.fee}} per head
+				&#8377; <strong>{{workshop.fee}}</strong> per head
 				{% else %}
 				Price to be announced soon
 				{% endif %}
@@ -83,16 +83,20 @@
 			<br><hr><br>
 			{% if workshop.org %}
 			<div class="w-s-sponsor">
-				Organiser
-				<h1>{{ workshop.org }}</h1>
+				<h4>Organiser</h4>
+				<h2>{{ workshop.org }}</h2>
 			</div>
 			<br><hr><br>
 			{% endif %}
 			{% if support %}
-			<div class="w-s-sponsor">
-				<h3>For any queries</h3>
-				<span class="c-name">{{ support.fname }}</span>
+			<div class="w-s-sponsor support">
+				<h4>For any queries</h4>
+				<h3>
+				<span class="c-name1">{{ support.fname }}</span>
+				<span class="c-name2">{{ support.lname }} </span>
+				<br>
 				<span class="c-phno">{{ support.phno }}</span>
+				</h3>
 			</div>
 			{% endif %}
 			<br><hr><br>
@@ -102,10 +106,16 @@
 		</div>
 
 	</div>
-	<br><br>
+
 	<script>
 
 		$(document).ready(function(){
+
+			$('.c-name1').html($('.c-name1').html().toLowerCase())
+			$('.c-name1').css('text-transform','capitalize')
+			$('.c-name2').html($('.c-name2').html().toLowerCase())
+			$('.c-name2').css('text-transform','capitalize')
+
 			console.log("{{ workshop.id }}");
 			$('.left').css('background', 'url("https://devhub.amblygon.org/static/images/workshops/{{ workshop.id }}a.jpg")');
 			$('.left').css('background-size', "cover");

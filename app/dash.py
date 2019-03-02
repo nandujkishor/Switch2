@@ -82,7 +82,7 @@ def events_show(op, event):
 @login_required
 @staff_required()
 def events_show_talks():
-    
+
     return events_show(request.args.get('open'), "talks")
 
 # Content to be pulled from the provided data endpoints
@@ -135,7 +135,7 @@ def events_workshop_add():
     else:
         return redirect(url_for('.events_show_workshops', open=True))
 
-    return jsonify(406)   
+    return jsonify(406)
 
 @dash.route('/events/contests/add/', methods=['GET'])
 @login_required
@@ -153,7 +153,7 @@ def events_contest_add():
     else:
         return redirect(url_for('.events_show_contests', open=True))
 
-    return jsonify(406)   
+    return jsonify(406)
 
 # Registrations
 
@@ -161,7 +161,7 @@ def events_contest_add():
 @login_required
 @staff_required("registration", 3)
 def registration():
-    
+
     form = AddRegistration(request.form)
 
     if request.method == 'POST':
@@ -174,7 +174,7 @@ def registration():
 
         reg = requests.post(Config.HUB_URL+'/events/registration/staff', json=payload, headers={'Authorization':current_user.id})
         print("POSTED", reg)
-        print("REPLY = ", reg.json().get('message'))  
+        print("REPLY = ", reg.json().get('message'))
 
         return jsonify(reg.json())
 
@@ -204,7 +204,7 @@ def addons_staff():
             'pid': form.pid.data,
             'qty': form.qty.data,
             'roll': form.roll.data,
-            'bookid': form.bookid.data, 
+            'bookid': form.bookid.data,
             'scount': form.scount.data,
             'mcount': form.mcount.data,
             'lcount': form.lcount.data,
@@ -215,7 +215,7 @@ def addons_staff():
         print("PAYLOAD = ", payload)
 
         reg = requests.post(Config.HUB_URL+'/addons/order/staff', json=payload, headers={'Authorization':current_user.id})
-        print("REPLY = ", reg.json().get('message'))  
+        print("REPLY = ", reg.json().get('message'))
 
         return jsonify(reg.json())
 
@@ -242,4 +242,6 @@ def addons_staff_out():
 @dash.route('/')
 @login_required
 def dash_attendee():
-    return render_template('dash/attendee_dash.html', user=current_user)
+    purchases = requests.get(Config.HUB_URL+'/addons/order/my', headers={'Authorization':current_user.id})
+    print("Purchases", purchases.json())
+    return render_template('dash/attendee_dash.html', purchases=purchases.json(),user=current_user)

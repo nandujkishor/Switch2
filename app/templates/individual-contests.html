@@ -1,6 +1,8 @@
 <title>{{ contest.title }} | Contests</title>
 <link rel="stylesheet" href="/static/css/workshops/individual.css">
+<link rel="stylesheet" href="/static/css/imageviewer.css">
 <link rel="stylesheet" href="/static/css/form.css">
+<script src="/static/js/imageviewer.js"></script>
 <style>
 	.right .down-arrow{
 		position: absolute;
@@ -12,7 +14,7 @@
 	<!-- <div class="trans-layer"></div>
 	<div class="medium-page-overlay registeration-overlay">
 		<div class="medium-overlay-content">
-			Are you sure you want to register for the workshop on {{contest.title}}? 
+			Are you sure you want to register for the workshop on {{contest.title}}?
 			<input type="submit" id="yes" name="yes" value="Yes">
 			<input type="submit" id="no" name="no" value="No">
 		</div>
@@ -50,7 +52,7 @@
 			{{dept[contest.department - 1]}}
 		</div>
 	</div>
-	<div class = "main-content" style="margin-bottom: 50px;">
+	<div class = "main-content">
 
 		<div class="w-m-main-content">
 			<div class="w-m-about">
@@ -67,7 +69,7 @@
 			</div>
 			{% endif %}
 		</div>
-		
+
 		<div class="w-m-sidebar">
 			<div class="registeration">
 				<!-- <input id="register" type="submit" name="register" style="width: 100%; margin-bottom: 20px" value="Register"> -->
@@ -81,42 +83,50 @@
 			{% if contest.orglogo %}
 			<div class="w-s-sponsor">
 				<h1>Organiser</h1>
-				<img src = "/static/images/nvidea.png" height="100px"/>	
+				<img src = "/static/images/nvidea.png" height="100px"/>
 			</div>
 			<br><hr><br>
 			{% endif %}
 			{% if contest.prize1 %}
 			<div class="w-s-sponsor">
 				1st Prize
-				<h1>&#8377;{{ contest.prize1 }}</h1>	
+				<h1>&#8377;{{ contest.prize1 }}</h1>
 			</div>
-			<br>
 			{% endif %}
 			{% if contest.prize2 %}
+			<br>
 			<div class="w-s-sponsor">
 				2nd Prize
-				<h1>&#8377;{{ contest.prize2 }}</h1>	
+				<h1>&#8377;{{ contest.prize2 }}</h1>
 			</div>
-			<br>
 			{% endif %}
 			{% if contest.prize3 %}
+			<br>
 			<div class="w-s-sponsor">
 				3rd Prize
-				<h1>&#8377;{{ contest.prize3 }}</h1>	
+				<h1>&#8377;{{ contest.prize3 }}</h1>
 			</div>
-			<br><hr><br>
 			{% endif %}
+			<br><hr><br>
 			{% if support %}
 			<div class="w-s-sponsor support">
-				<h3>For any queries</h3>
-				<span class="c-name">{{ support.fname }}</span>
+				<h4>For any queries</h4>
+				<h3>
+				<span class="c-name1">{{ support.fname }}</span>
+				<span class="c-name2">{{ support.lname }} </span>
+				<br>
 				<span class="c-phno">{{ support.phno }}</span>
+				</h3>
 			</div>
 			{% endif %}
+			<br><hr><br>
+			<div class="cf" >
+    			<img width="285px" src="https://devhub.amblygon.org/static/images/contests/{{ contest.id }}a.jpg" data-high-res-src="https://devhub.amblygon.org/static/images/contests/{{ contest.id }}a.jpg" class="poster">
+			</div>
 		</div>
 	</div>
 
-	<script>	
+	<script>
 		$('#register').click(function(){
 			console.log("TESTING");
 			$('.trans-layer').addClass('open');
@@ -125,8 +135,10 @@
 
 		$(document).ready(function(){
 
-			$('.c-name').html($('.c-name').html().toLowerCase())
-			$('.c-name').css('text-transform','capitalize')
+			$('.c-name1').html($('.c-name1').html().toLowerCase())
+			$('.c-name1').css('text-transform','capitalize')
+			$('.c-name2').html($('.c-name2').html().toLowerCase())
+			$('.c-name2').css('text-transform','capitalize')
 			console.log("{{ contest.id }}");
 			$('.left').css('background', 'url("https://devhub.amblygon.org/static/images/contests/{{ contest.id }}a.jpg")');
 			$('.left').css('background-size', "cover");
@@ -145,7 +157,15 @@
 				window.location.href="/contests/"
 			});
 
+			// Image Viewer
+			var viewer = ImageViewer();
+    	$('.poster').click(function () {
+	        var imgSrc = this.src,
+	            highResolutionImage = $(this).data('high-res-img');
+	        viewer.show(imgSrc, highResolutionImage);
+    		});
+
 		});
-		
+
 	</script>
 </div>
