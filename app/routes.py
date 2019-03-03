@@ -42,7 +42,7 @@ def home():
 def talks():
     return render_template('coming.html', user=current_user.is_authenticated)
 
-@app.route('/concerts/')
+@app.route('/culturals/')
 def concert():
     return render_template('concerts.html', user=current_user.is_authenticated, check=current_user)
 

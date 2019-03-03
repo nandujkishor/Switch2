@@ -34,10 +34,6 @@
     $(document).ready(function(){
 
       $('.header').css('background','#000');
-      $.getJSON("/data/farer/user/", function(data){
-        email = data['email'];
-        id = data['id'];
-      });
 
       var url_change = "{{uchange}}";
       if(url_change != "")
