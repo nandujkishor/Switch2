@@ -9,7 +9,20 @@
 
     <div class="accounts-container three-column" style="grid-area: body">
       <div class="listing" style="grid-area: main">
-
+        <div class="dash-stats" style="margin-left: 40px; padding-right: 40px;">
+          <h1>Total sales: &#8377;{{ stat.get('total') }}</h1>
+          <h2 style="margin-top: 20px; margin-bottom: 10px;">Workshops</h2>
+          <div style="margin-left: 20px;">
+              <p>No. of Registrations: {{ stat.get('totalw') }}</p>
+              <p><strong>Total Amount: &#8377;{{ stat.get('totalwcost') }}</strong></p>
+          </div>
+          <h2 style="margin-top: 20px; margin-bottom: 10px;">Contest</h2>
+          <div style="margin-left: 20px; margin-bottom: 20px;">
+            <p>No. of Registrations: {{ stat.get('totalc') }}</p>
+            <p><strong>Total Amount: &#8377;{{ stat.get('totalccost') }}</strong></p>
+          </div>
+        <h2 style="margin-top: 20px; margin-bottom: 10px;">Registrations</h2>
+        </div>
         {% for i in registrations %}
         <div class="eventItem2" >
             <div class="eventmeta">{{  '%03d' % i.get('regid') }} </div>

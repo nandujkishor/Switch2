@@ -193,7 +193,8 @@ def purchases_home():
 @staff_required("all", 4)
 def registrations_home():
     registrations = requests.get(Config.HUB_URL+'/events/registration/all', headers={'Authorization':current_user.id})
-    return render_template('dash/regevtstats.html', registrations=registrations.json(), user=current_user)
+    stat = requests.get(Config.HUB_URL+'/events/registration/stats', headers={'Authorization':current_user.id})
+    return render_template('dash/regevtstats.html', registrations=registrations.json(), stat=stat.json(), user=current_user)
 
 @dash.route('/purchases/addons/buy/', methods=['GET', 'POST'])
 @login_required
