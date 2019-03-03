@@ -49,7 +49,7 @@ def mc_toggle_mtnc():
 
 @dash.route('/accounts/')
 @login_required
-@staff_required(5)
+@staff_required("web", 4)
 def accounts_home():
 
     user_arr = requests.get(Config.HUB_URL+'/farer/user/list/short')
