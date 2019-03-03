@@ -62,9 +62,9 @@ def workshops():
 def sponsors():
     return render_template('sponsors.html', user=current_user.is_authenticated)
 
-@app.route('/broucher/')
+@app.route('/brochure/')
 def broucher():
-    return render_template('broucher.html', user=current_user.is_authenticated)
+    return render_template('brochure.html', user=current_user.is_authenticated)
 
 # Individual pages
 
