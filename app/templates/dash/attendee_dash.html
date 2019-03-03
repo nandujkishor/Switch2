@@ -12,11 +12,12 @@
               <h1>{{ user.data.fname }} {% if user.data.lname %} {{user.data.lname}} {% endif %}</h1><br>
               <h2>{{ user.data.email }}</h2><br>
               <h2>V19{{ '%04d' % user.data.vid }}</h2>
+              <!-- <img src="{{ user.data.ppic}}" style="height:100px"> -->
           </div>
         </div>
         <div class="registered">
           <div>
-              <div style="margin-top:10">
+              <div style="margin-top:10; margin-left: 20 ">
                 <h2>Registered Workshops</h2>
                 {% for i in workshops %}
                 <div class="eventItem2" >
@@ -29,7 +30,7 @@
                   </div>
                 {% endfor %}
               </div>
-              <div style="margin-top:10">
+              <div style="margin-top:10; margin-left: 20">
                 <h2>Registered Contests</h2>
                 {% for i in contests %}
                 <div class="eventItem2" >
@@ -42,7 +43,7 @@
                 </div>
                 {% endfor %}
               </div>
-              <div style="margin-top:10">
+              <div style="margin-top:10; margin-left: 20">
                 <h2>Purchased Addons</h2>
                 {% for i in purchases %}
                 <div class="eventItem2" >

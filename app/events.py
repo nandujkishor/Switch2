@@ -37,7 +37,7 @@ def workshops_listing():
         }
 
         workshops = requests.post(Config.HUB_URL+'/events/workshops', json=payload, headers={'Authorization':current_user.id})
-        print(workshops.json().get('message'))  
+        print(workshops.json().get('message'))
 
         return jsonify(201)
 
@@ -49,7 +49,7 @@ def workshops_listing():
 def contests_listing():
     if request.method == 'POST' or request.method == 'PUT':
         form = AddContest(request.form)
-        
+
         payload = {
             'title': form.title.data,
             'about': form.about.data,
@@ -72,7 +72,7 @@ def contests_listing():
         }
 
         contests = requests.post(Config.HUB_URL+'/events/contests', json=payload, headers={'Authorization':current_user.id})
-        
+
         print(contests.json().get('message'))
 
         return jsonify(201)
@@ -89,7 +89,7 @@ def workshops_individual(id):
         print(delete_reply.json())
 
         return jsonify(201)
-    
+
     if request.method == 'PUT':
         form = AddWorkshop(request.form)
 
@@ -113,7 +113,7 @@ def workshops_individual(id):
 
         workshops = requests.put(Config.HUB_URL+'/events/workshops/'+str(id), json=payload, headers={'Authorization':current_user.id})
 
-        print(workshops.json().get('message'))  
+        print(workshops.json().get('message'))
 
         return jsonify(workshops.json().get('message'))
 
@@ -129,10 +129,10 @@ def contests_individual(id):
         print(delete_reply.json())
 
         return jsonify(201)
-    
+
     if request.method == 'PUT':
         form = AddContest(request.form)
-        
+
         payload = {
             'title': form.title.data,
             'about': form.about.data,
@@ -155,7 +155,7 @@ def contests_individual(id):
         }
 
         contests = requests.put(Config.HUB_URL+'/events/contests/'+str(id), json=payload, headers={'Authorization':current_user.id})
-        
+
         print(contests.json().get('status'))
 
         return jsonify(contests.json().get('status'))
@@ -182,7 +182,7 @@ def events_register():
 @events.route('/data/registered/', methods=['GET'])
 def events_registered():
 
-    events = requests.get(Config.HUB_URL+'/events/registration', headers={'Authorization':current_user.id})    
+    events = requests.get(Config.HUB_URL+'/events/registration', headers={'Authorization':current_user.id})
     print(events)
 
     return jsonify(events.json())

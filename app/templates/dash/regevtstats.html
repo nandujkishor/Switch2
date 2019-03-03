@@ -1,0 +1,26 @@
+<title>Registrations | Vidyut</title>
+{% extends "dash/dash.html" %}
+
+{% block body %}
+
+    <div class="dash-head">
+        <h1 style="text-transform: capitalize;">Event Registrations</h1>
+    </div>
+
+    <div class="accounts-container three-column" style="grid-area: body">
+      <div class="listing" style="grid-area: main">
+
+        {% for i in registrations %}
+        <div class="eventItem2" >
+            <div class="eventmeta">{{  '%03d' % i.get('regid') }} </div>
+            <div class ="eventdata">
+                 <span class = "talkHead">{{  '%04d' % i.get('vid') }} : ({{ i.get('cat') }}) {{ i.get('title') }}</span><br>
+                 <span class="meta"> Rs. {{ i.get('fee') }} - {{ i.get('registime') }} - Reg by {{ i.get('regby') }} </span>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}
