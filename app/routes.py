@@ -1,5 +1,5 @@
 import os, csv, json, requests, datetime
-from config import Config   
+from config import Config
 from flask import render_template, flash, redirect, request, url_for, jsonify
 from app import app, login, mail
 from app.models import User
@@ -62,14 +62,18 @@ def workshops():
 def sponsors():
     return render_template('sponsors.html', user=current_user.is_authenticated)
 
+@app.route('/broucher/')
+def broucher():
+    return render_template('broucher.html', user=current_user.is_authenticated)
+
 # Individual pages
 
 dept = ['CSE', 'ECE', 'ME', 'Physics', 'Chemistry', 'English', 'Biotech','BUG', 'Comm.', 'Civil', 'EEE', 'Gaming', 'Maths', 'Others']
 
 @app.route('/workshops/<int:wid>/')
 def workshop_single(wid):
-    mode = request.args.get('m') 
-    
+    mode = request.args.get('m')
+
     if mode is not None:
         if mode == "1":
             workshop = requests.get(Config.HUB_URL+'/events/workshops/'+str(wid))
@@ -88,7 +92,7 @@ def workshop_single(wid):
 @app.route('/contests/<int:cid>/')
 def contests_single(cid):
     mode = request.args.get('m')
-    
+
     if mode is not None:
         if mode == "1":
             contest = requests.get(Config.HUB_URL+'/events/contests/'+str(cid))
