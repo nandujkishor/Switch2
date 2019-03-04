@@ -10,14 +10,15 @@
     <meta name="theme-color" content="#000">
     <meta name="msapplication-navbutton-color" content="#000">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Source+Sans+Pro" rel="stylesheet">
     <link href="https://cloud.typenetwork.com/projects/3030/fontface.css/" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/fonts/fonts.css">
     <link rel="stylesheet" href="/static/css/menu.css">
+    <link rel="stylesheet" href="/static/css/form.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/static/js/mobile-check.js"></script>
@@ -32,8 +33,11 @@
     	}
         .container{
             display: flex;
+            height: 100vh;
             justify-content: center;
             align-items: center;
+            color: #0277BD;
+            font-family: 'Source Sans Pro';
         }
 	</style>
 
@@ -42,7 +46,7 @@
 <body>
 	<div class="container">
         <div>
-            <h1>Transaction Sucesss. You have been successfully registered.</h1>
+            <h1>Transaction Success. You have been successfully registered.</h1>
             <input type="submit" id="proceed" name="proceed" value="Proceed">
         </div>
     </div> 
@@ -53,7 +57,7 @@
         $('#proceed').click(function(){
             window.location.href="/dash"
         })
-    }
+    });
 </script>
 <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39906050-7"></script>
