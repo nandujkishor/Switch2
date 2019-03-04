@@ -18,7 +18,7 @@ def unauthorized():
 @app.before_request
 def check_for_maintenance(): 
     if request.path != url_for('maintenance'):
-        return redirect(url_for('.maintenance'))
+        return redirect(url_for('maintenance'))
 
 @app.route('/maintenance')
 def maintenance():
