@@ -176,7 +176,6 @@ def events_register():
         }
         req = requests.post(Config.HUB_URL+'/events/registration', json=payload, headers={'Authorization':current_user.id})
         print(req.json())
-
         return jsonify(req.json())
 
     return 404
