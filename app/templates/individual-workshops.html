@@ -12,7 +12,7 @@
 		<div>
 			<h1>{{ workshop.title }}</h1>
 			<h2>Fee: &#8377; {{ workshop.fee }}</h2>
-			<div>
+			<div style="margin-top: 10px;">
 				<form method="POST" action="https://payments.acrd.org.in/pay/makethirdpartypayment">
 					<input type="hidden" value="" name="encdata" id="encdata">
 					<input type="hidden" value="VIDYUT19TEST" name="code" id="code">
@@ -149,7 +149,21 @@
 				}
 				else{
 					$('.full-page-overlay').toggleClass('open');
-                    $('body').addClass('noscroll');
+					$('body').addClass('noscroll');
+					var eid = "{{ workshop.id }}"
+					payload = {
+                    	'cat': 1, 
+                    	'eid':parseInt(eid)
+					}
+					$.ajax({
+						type: "POST",
+						data: payload,
+						url: "/events/register",
+						success: function(data){
+							// console.log(data);
+							$('#encdata').val(data.encdata);  
+						}
+					});
 				}
 			});
 			
