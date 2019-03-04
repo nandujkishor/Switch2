@@ -9,6 +9,9 @@
 		left: 75%;
 		bottom: 2%;
 	}
+	p a{
+		text-decoration: underline;
+	}
 </style>
 <div class="full-page-overlay reg-workshop">
 	<div class="close">
@@ -29,7 +32,7 @@
 					<input type="submit" value="Join an existing team" id ="join-team" style="margin-bottom: 10px; width: 250px;">
 					{% endif %}
 					<br>
-					<p">If you are not redirected to the payment gateway please refresh and try again.</p>
+					<p>Please read the <a href="/faq" target="_blank">FAQ</a></p>
 				</div>
 			</div>
 		</div>
@@ -197,7 +200,6 @@
 						data: payload,
 						url: "/events/register",
 						success: function(data){
-							// console.log(data);
 							$('#encdata').val(data.encdata);  
 						}
 					});

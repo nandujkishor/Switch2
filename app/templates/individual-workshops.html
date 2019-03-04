@@ -8,6 +8,11 @@
 	<div class="close">
 		<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg enable-background="new 0 0 100 100" id="Layer_1" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon fill="#010101" points="77.6,21.1 49.6,49.2 21.5,21.1 19.6,23 47.6,51.1 19.6,79.2 21.5,81.1 49.6,53 77.6,81.1 79.6,79.2   51.5,51.1 79.6,23 "/></svg>
 	</div>
+	<style>
+		p a{
+			text-decoration: underline;
+		}
+	</style>
 	<div class="reg-workshop-content">
 		<div>
 			<h1>{{ workshop.title }}</h1>
@@ -17,7 +22,7 @@
 					<input type="hidden" value="" name="encdata" id="encdata">
 					<input type="hidden" value="VIDYUT2019" name="code" id="code">
 					<input type="submit" id="pay" value="Proceed to pay" style="width: 150px;">
-					<p style="margin-top: 10px;">If you are not redirected to the payment gateway please refresh and try again.</p>
+					<p style="margin-top: 10px;">Please read the <a href="/faq" target="_blank">FAQ</a></p>
 				</form>
 			</div>
 		</div>
@@ -165,7 +170,6 @@
 						data: payload,
 						url: "/events/register",
 						success: function(data){
-							console.log(data)
 							$('#encdata').val(data.encdata);  
 						}
 					});
