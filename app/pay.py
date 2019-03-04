@@ -22,6 +22,7 @@ def payauth():
             }
             r = requests.post(Config.HUB_URL+'/pay/receive', json=payload)
             r = r.json()
+
             if r.get('status') == 'success':
                 return redirect(url_for('.success'))
             elif r.get('status') == 'failed':
@@ -30,9 +31,11 @@ def payauth():
                 return redirect(url_for('.processing'))
 
             return ("POSTED TO " + str(r))
+    
     except Exception as e:
         return "Exception occured : " + str(e)
-    return ("Check localhost")
+    
+    return ("1")
 
 @pay.route('/check/')
 def check_pay():
