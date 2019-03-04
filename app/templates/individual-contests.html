@@ -10,6 +10,25 @@
 		bottom: 2%;
 	}
 </style>
+<div class="full-page-overlay reg-workshop">
+	<div class="close">
+		<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg enable-background="new 0 0 100 100" id="Layer_1" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon fill="#010101" points="77.6,21.1 49.6,49.2 21.5,21.1 19.6,23 47.6,51.1 19.6,79.2 21.5,81.1 49.6,53 77.6,81.1 79.6,79.2   51.5,51.1 79.6,23 "/></svg>
+	</div>
+	<div class="reg-workshop-content">
+		<div>
+			<h1>{{ contest.title }}</h1>
+			<h2>Fee: &#8377; {{ contest.fee }}</h2>
+			<div style="margin-top: 10px;">
+				<form method="POST" action="https://payments.acrd.org.in/pay/makethirdpartypayment">
+					<input type="hidden" value="" name="encdata" id="encdata">
+					<input type="hidden" value="VIDYUT19TEST" name="code" id="code">
+					<input type="submit" id="pay" value="Proceed to pay" style="width: 150px;">
+					<p style="margin-top: 10px;">Due to heavy traffic if you are not redirected to the payment gateway please refresh and try again.</p>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 <div class = "Containter">
 
 	</div>
@@ -64,7 +83,7 @@
 
 		<div class="w-m-sidebar">
 			<div class="registeration">
-				<!-- <input id="register" type="submit" name="register" style="width: 100%; margin-bottom: 20px" value="Register"> -->
+				<input id="register" type="submit" name="register" style="width: 100%; margin-bottom: 20px" value="Register">
 				{% if contest.team_limit > 1 %}
 				Maximum {{contest.team_limit}} member(s) in a team
 				{% else %}
@@ -152,13 +171,55 @@
 				$('.desktop').css('display', 'css');
 			}
 
+			$('#register').click(function(){
+				if (!GoogleAuth.isSignedIn.get()) {
+                    var cookie = '/contests/{{contest.id}}/'
+					sessionStorage.setItem('origin', cookie);
+					console.log(sessionStorage.getItem('origin'));
+                    GoogleAuth.signIn();
+				}
+				else{
+					$('.full-page-overlay').toggleClass('open');
+					$('body').addClass('noscroll');
+					var eid = "{{ contest.id }}"
+					payload = {
+                    	'cat': 2, 
+                    	'eid':parseInt(eid)
+					}
+					$.ajax({
+						type: "POST",
+						data: payload,
+						url: "/events/register",
+						success: function(data){
+							if(data.status == 'fail'){
+								$('.reg-workshop-content').empty();
+								$('.reg-workshop-content').append("<h1>User already registered</h1>");
+							}
+							$('#encdata').val(data.encdata);  
+						}
+					});
+				}
+			});
+			
+			$('.close').click(function(){
+                $('.full-page-overlay').removeClass('open');    
+                $('body').removeClass('noscroll');
+			});
+
+			$(document).on('keyup',function(evt) {
+				if (evt.keyCode == 27){
+					$('.full-page-overlay').removeClass('open');    
+					$('body').removeClass('noscroll');
+				}
+			});
+
 			$(window).bind('popstate', function(){
 				window.location.href="/contests/"
 			});
 
 			// Image Viewer
 			var viewer = ImageViewer();
-    	$('.poster').click(function () {
+    		$('.poster').click(function () {
 	        var imgSrc = this.src,
 	            highResolutionImage = $(this).data('high-res-img');
 	        viewer.show(imgSrc, highResolutionImage);
