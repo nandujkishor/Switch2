@@ -168,17 +168,18 @@ def contests_individual(id):
 def events_register():
 
     if request.method == 'POST':
+        cat = request.form['cat']
+        eid = request.form['eid']
         payload = {
-            'cat': 1,
-            'eid': 66,
+            'cat': int(cat),
+            'eid': int(eid),
         }
         req = requests.post(Config.HUB_URL+'/events/registration', json=payload, headers={'Authorization':current_user.id})
         print(req.json())
 
         return jsonify(req.json())
 
-    return render_template('payment.html')
-
+    return 404
 @events.route('/data/registered/', methods=['GET'])
 def events_registered():
 
