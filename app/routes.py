@@ -85,7 +85,7 @@ def workshop_single(wid):
 
     if mode is not None:
         if mode == "1":
-            workshop = requests.get(Config.HUB_URL+'/events/workshops/'+str(wid))
+            workshop = requests.get(Config.HUB_URL+'/events/workshops/'+str(wid), headers={'Authorization':current_user.id})
             workshop = workshop.json()
             payload = {
                 'vid': workshop.get('support')
@@ -104,16 +104,16 @@ def contests_single(cid):
 
     if mode is not None:
         if mode == "1":
-            contest = requests.get(Config.HUB_URL+'/events/contests/'+str(cid))
+            contest = requests.get(Config.HUB_URL+'/events/contests/'+str(cid), headers={'Authorization':current_user.id})
             contest = contest.json()
             payload = {
                 'vid': contest.get('support')
             }
             support = requests.get(Config.HUB_URL+'/farer/user/contact', json=payload)
             support = support.json()
+            print(contest)
             if contest is None:
                 return "404"
-
             return render_template('individual-contests.html', contest=contest, dept=dept, support=support)
     else:
         return render_template('contests.html', open=True, cid=cid)
