@@ -21,7 +21,15 @@ def payauth():
                 # 'code':request.form.get('code')
             }
             r = requests.post(Config.HUB_URL+'/pay/receive', json=payload)
-            return ("POSTED TO " + str(r.json()))
+            r = r.json()
+            if r.get('status') == 'success':
+                return redirect(url_for('.success'))
+            elif r.get('status') == 'failed':
+                return redirect(url_for('.fail'))
+            else:
+                return redirect(url_for('.processing'))
+
+            return ("POSTED TO " + str(r))
     except Exception as e:
         return "Exception occured : " + str(e)
     return ("Check localhost")
@@ -53,3 +61,15 @@ def addon_pay():
         }
         return jsonify(responseObject)
     return jsonify(r.json())
+
+@pay.route('/success')
+def success():
+    return render_template('payments/success.html')
+
+@pay.route('/fail')
+def fail():
+    return render_template('payments/fail.html')
+
+@pay.route('/processing')
+def processing():
+    return render_template('payments/processing.html')
