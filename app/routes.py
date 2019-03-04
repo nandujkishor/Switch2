@@ -85,7 +85,10 @@ def workshop_single(wid):
 
     if mode is not None:
         if mode == "1":
-            workshop = requests.get(Config.HUB_URL+'/events/workshops/'+str(wid), headers={'Authorization':current_user.id})
+            if current_user.is_authenticated:
+                workshop = requests.get(Config.HUB_URL+'/events/workshops/'+str(wid), headers={'Authorization':current_user.id})
+            else:
+                workshop = requests.get(Config.HUB_URL+'/events/workshops/'+str(wid))
             workshop = workshop.json()
             payload = {
                 'vid': workshop.get('support')
@@ -104,7 +107,10 @@ def contests_single(cid):
 
     if mode is not None:
         if mode == "1":
-            contest = requests.get(Config.HUB_URL+'/events/contests/'+str(cid), headers={'Authorization':current_user.id})
+            if current_user.is_authenticated:
+                contest = requests.get(Config.HUB_URL+'/events/contests/'+str(cid), headers={'Authorization':current_user.id})
+            else:
+                contest = requests.get(Config.HUB_URL+'/events/contests/'+str(cid))
             contest = contest.json()
             payload = {
                 'vid': contest.get('support')
