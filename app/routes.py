@@ -15,10 +15,10 @@ from flask_login import login_user, current_user, logout_user, login_required
 def unauthorized():
     return render_template('accounts/login.html', link="")
 
-@app.before_request
-def check_for_maintenance(): 
-    if request.path != url_for('maintenance'):
-        return redirect(url_for('maintenance'))
+# @app.before_request
+# def check_for_maintenance(): 
+#     if request.path != url_for('maintenance'):
+#         return redirect(url_for('maintenance'))
 
 @app.route('/maintenance')
 def maintenance():
