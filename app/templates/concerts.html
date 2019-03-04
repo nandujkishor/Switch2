@@ -112,7 +112,7 @@
             align-items: flex-start;
         }
         .payment-popup{
-            padding: 50px;
+            padding: 10px;
             display: grid;
             grid-template-columns: auto;
             grid-template-rows: 30% 70%;
@@ -155,6 +155,9 @@
         @media only screen and (min-width: 1200px) {
             h1{
                 font-size: 50px;
+            }
+            .payment-popup{
+                padding: 50px;
             }
             .intro-grid{
                 display: grid;
@@ -255,25 +258,30 @@
                     Incandescence
                 </div>
             </div>
+            <style>
+                .payment-right p{
+                    font-size: 16px;
+                }
+            </style>
             <div class="payment-right">
                 <div>
-                    <div class="gen" style="margin-bottom: 10px;" id="2">
+                    <div class="gen" style="margin-bottom: 10px; max-width: 600px;" id="2">
                         General<br>
                         &#8377;700 <br>
-                        Some text
+                        <p>Entry to general arena at the concerts and cullturals.</p>
                     </div>
                     <hr>
-                    <div class="vip" style="margin-top: 10px;" id="3">
+                    <div class="vip" style="margin-top: 10px; max-width: 500px;" id="3">
                         VIP (Headbangers)<br>
                         &#8377;900 <br>
-                        Some text
+                        <p>All access to culturals, with VIP lounge at the concerts. Dedicated entry with concierge service, with the opportunity to meet the performers*</p>
                     </div>
-                    <div style="margin-top: 20px; font-size: 14px;">
+                    <div style="margin-top: 20px; font-size: 14px; ">
                         <form method="POST" action="https://payments.acrd.org.in/pay/makethirdpartypayment" style="display: none;">
                             <input type="hidden" value="" name="encdata" id="encdata">
-                            <input type="hidden" value="VIDYUT19TEST" name="code" id="code">
+                            <input type="hidden" value="VIDYUT2019" name="code" id="code">
                             <input type="submit" id="pay" value="Proceed to pay" style="width: 150px;">
-                            <p style="margin-top: 10px;">Due to heavy traffic if you are not redirected to the payment gateway please refresh and try again.</p>
+                            <p style="margin-top: 10px;">If you are not redirected to the payment gateway please refresh and try again.</p>
                         </form>
                     </div>
                 </div>
@@ -342,7 +350,7 @@
             $('.gen, .vip').click(function(){
                 var pid;
                 if($(this).attr('id') == '2'){
-                    pid = 100;
+                    pid = 2;
                     $('.vip').css('background','transparent');
                     $('.gen').css('background','#C9C9C9');
                 }
@@ -360,7 +368,7 @@
                     data: payload,
                     url: "/pay/addon",
                     success: function(data){
-                        // console.log(data);
+                        console.log(data);
                         $('form').css('display','block');
                         $('#encdata').val(data.encdata);  
                     }

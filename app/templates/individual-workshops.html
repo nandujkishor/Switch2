@@ -15,9 +15,9 @@
 			<div style="margin-top: 10px;">
 				<form method="POST" action="https://payments.acrd.org.in/pay/makethirdpartypayment">
 					<input type="hidden" value="" name="encdata" id="encdata">
-					<input type="hidden" value="VIDYUT19TEST" name="code" id="code">
+					<input type="hidden" value="VIDYUT2019" name="code" id="code">
 					<input type="submit" id="pay" value="Proceed to pay" style="width: 150px;">
-					<p style="margin-top: 10px;">Due to heavy traffic if you are not redirected to the payment gateway please refresh and try again.</p>
+					<p style="margin-top: 10px;">If you are not redirected to the payment gateway please refresh and try again.</p>
 				</form>
 			</div>
 		</div>
@@ -157,13 +157,15 @@
 					var eid = "{{ workshop.id }}"
 					payload = {
                     	'cat': 1, 
-                    	'eid':parseInt(eid)
+						'eid':parseInt(eid),
+						'tid':''
 					}
 					$.ajax({
 						type: "POST",
 						data: payload,
 						url: "/events/register",
 						success: function(data){
+							console.log(data)
 							$('#encdata').val(data.encdata);  
 						}
 					});
