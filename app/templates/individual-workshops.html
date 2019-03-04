@@ -160,10 +160,6 @@
 						data: payload,
 						url: "/events/register",
 						success: function(data){
-							if(data.status == 'fail'){
-								$('.reg-workshop-content').empty();
-								$('.reg-workshop-content').append("<h1>User already registered</h1>");
-							}
 							$('#encdata').val(data.encdata);  
 						}
 					});

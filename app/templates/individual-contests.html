@@ -22,9 +22,15 @@
 				<form method="POST" action="https://payments.acrd.org.in/pay/makethirdpartypayment">
 					<input type="hidden" value="" name="encdata" id="encdata">
 					<input type="hidden" value="VIDYUT19TEST" name="code" id="code">
-					<input type="submit" id="pay" value="Proceed to pay" style="width: 150px;">
-					<p style="margin-top: 10px;">Due to heavy traffic if you are not redirected to the payment gateway please refresh and try again.</p>
+					<input type="submit" id="pay" value="Create a team and proceed to pay" style="width: 250px;">
 				</form>
+				<div style="margin-top: 20px;">
+					{% if contest.team_limit > 1 %}
+					<input type="submit" value="Join an existing team" id ="join-team" style="margin-bottom: 10px; width: 250px;">
+					{% endif %}
+					<br>
+					<p">Due to heavy traffic if you are not redirected to the payment gateway please refresh and try again.</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -145,11 +151,6 @@
 	</div>
 
 	<script>
-		$('#register').click(function(){
-			console.log("TESTING");
-			$('.trans-layer').addClass('open');
-			$('.registeration-overlay').addClass('open');
-		});
 
 		$(document).ready(function(){
 
@@ -157,7 +158,7 @@
 			$('.c-name1').css('text-transform','capitalize')
 			$('.c-name2').html($('.c-name2').html().toLowerCase())
 			$('.c-name2').css('text-transform','capitalize')
-			console.log("{{ contest.id }}");
+			// console.log("{{ contest.id }}");
 			$('.left').css('background', 'url("https://devhub.amblygon.org/static/images/contests/{{ contest.id }}a.jpg")');
 			$('.left').css('background-size', "cover");
 			$('.left').css('background-repeat', "no-repeat");
@@ -184,23 +185,79 @@
 					var eid = "{{ contest.id }}"
 					payload = {
                     	'cat': 2, 
-                    	'eid':parseInt(eid)
+						'eid':parseInt(eid),
+						'tid':''
 					}
 					$.ajax({
 						type: "POST",
 						data: payload,
 						url: "/events/register",
 						success: function(data){
-							if(data.status == 'fail'){
-								$('.reg-workshop-content').empty();
-								$('.reg-workshop-content').append("<h1>User already registered</h1>");
-							}
+							// console.log(data);
 							$('#encdata').val(data.encdata);  
 						}
 					});
 				}
 			});
-			
+
+			$('#join-team').click(function(){
+				$('.reg-workshop-content').css('opacity', '0');
+				window.setTimeout(function(){
+					$('.reg-workshop-content').empty();
+					var large = "<div><h2>Enter Team ID</h3><di2>";
+					button = "<div class=\"float-label\"><input id=\"team-id\" name=\"team-id\" autocomplete=\"off\" required type=\"text\"><label for=\"team-id\">Team ID</label></div>";
+					large = large + button;
+					large = large + "<div class=\"error\"></div>";
+					large = large + "<input type=\"submit\" id=\"proceed-team\" value=\"Proceed\"></div></div>";
+					$('.reg-workshop-content').append(large);
+					$('#proceed-team').click(function(){
+						$('.error').css('display', 'none');
+						$('.error').empty();
+						val = $('#team-id').val();
+						if(val == ""){
+							$('.error').append("Enter a team ID");
+							$('.error').css('display', 'block');
+						}
+						else{
+							var eid = "{{ contest.id }}"
+							payload = {
+								'cat': 2,
+								'eid': parseInt(eid),
+								'tid': val
+							}
+							$.ajax({
+								type: "POST",
+								data: payload,
+								url: "/events/register",
+								success: function(data){
+									if(data.status == 'fail'){
+										$('.error').append(data.message);
+										$('.error').css('display', 'block');
+									}
+									else if(data.status == 'success'){
+										$('.reg-workshop-content').css('opacity', '0');
+										window.setTimeout(function(){
+											$('.reg-workshop-content').empty();
+											window.setTimeout(function(){
+												$('.reg-workshop-content').append("<h1>Successfully registered</h1>");
+												$('.reg-workshop-content').css('opacity', '1');
+											}, 200);
+										}, 500);
+									}
+									else{
+										$('.error').append("Some error occured");
+										$('.error').css('display', 'block');
+									}
+								}
+							});
+						}
+					})
+					window.setTimeout(function(){
+						$('.reg-workshop-content').css('opacity','1');
+					}, 200);
+				}, 600);	
+			})
+
 			$('.close').click(function(){
                 $('.full-page-overlay').removeClass('open');    
                 $('body').removeClass('noscroll');

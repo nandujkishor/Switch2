@@ -152,6 +152,8 @@ p {
 .reg-workshop-content{
 	height: 100vh;
 	display: flex;
+	opacity: 1;
+	transition: 0.5s;
 	justify-content: center;
 	align-items: center;
 }
