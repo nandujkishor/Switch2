@@ -166,19 +166,19 @@
                 $(".eventItems").append(large);
             });
 
-            $('.eventdelete').click(function(e){
+            // $('.eventdelete').click(function(e){
 
-                var did = $(this).parent().attr('id');
-                console.log("Processing delete request for " + did);
+            //     var did = $(this).parent().attr('id');
+            //     console.log("Processing delete request for " + did);
                 
-                $.ajax({
-                    type: "DELETE",
-                    url: "/events/data/" + current_page + "/" + did + "/",
-                    success: function(result) {
-                        $('#'+did).remove();
-                    }
-                });
-            });
+            //     $.ajax({
+            //         type: "DELETE",
+            //         url: "/events/data/" + current_page + "/" + did + "/",
+            //         success: function(result) {
+            //             $('#'+did).remove();
+            //         }
+            //     });
+            // });
 
             $('.eventedit').click(function(e){
                 var did = $(this).parent().attr('id');
