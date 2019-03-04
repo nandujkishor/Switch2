@@ -77,6 +77,7 @@ function checkLogin(){
 
     }
     else{
+      console.log(sessionStorage.getItem('origin'))
       origin = sessionStorage.getItem('origin');
 
       if(origin == null)

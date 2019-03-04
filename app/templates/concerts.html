@@ -326,8 +326,15 @@
         $(document).ready(function(){
             
             $('.book').click(function(){
-                $('.full-page-overlay').toggleClass('open');
-                $('body').addClass('noscroll');
+                if (!GoogleAuth.isSignedIn.get()) {
+                    sessionStorage.setItem('origin', "/culturals");
+                    console.log(sessionStorage.getItem("origin"));
+                    GoogleAuth.signIn();
+                }
+                else{
+                    $('.full-page-overlay').toggleClass('open');
+                    $('body').addClass('noscroll');
+                }
             });
 
             $('.gen, .vip').click(function(){
