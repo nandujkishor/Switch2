@@ -31,6 +31,10 @@ def shit():
     print(r.url)
     return "Hello"
 
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
+
 @app.route('/')
 @app.route('/index')
 def index():
