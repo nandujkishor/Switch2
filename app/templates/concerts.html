@@ -284,7 +284,8 @@
                     <div>
                         <h1>Choreonite</h1><br>
                         <p>The stage is set for Vidyut 19&#39;s most anticipated event that brings together some of the most talented and crowd pulling dancers in all of south india. This enchanting and adrenaline filled event includes teams that have participated in national level competitions like &#39;National Hip Hop competition’. These vibrant dancers will be overseen and judged by master choreographers who have conquered the art of dancing. Let’s set the roof on fire!</p>
-                        <!-- <br><br><input type="submit" value="Book Tickets" class="book">     -->
+                        <br><br>
+                        <!-- <input type="submit" value="Book Tickets" class="book">     -->
                     </div>
                 </div>
             </div>
@@ -358,7 +359,7 @@
                     data: payload,
                     url: "/pay/addon",
                     success: function(data){
-                        console.log(data);
+                        // console.log(data);
                         $('form').css('display','block');
                         $('#encdata').val(data.encdata);  
                     }
