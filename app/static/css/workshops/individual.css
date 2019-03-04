@@ -139,11 +139,54 @@ p {
 	padding-bottom: 5px;
 }
 
+.close{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	cursor: pointer;
+}
+.close svg{
+	height: 20px;
+}
+
+.reg-workshop-content{
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.noscroll{
+  position: fixed; 
+  overflow-y: scroll;
+}
+
+.reg-workshop{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.reg-workshop-content h1{
+	font-size: 2em;
+}
+
+.reg-workshop-content{
+	padding: 50px;
+	max-width: 600px;
+}
+
 @media only screen and (min-width: 900px) {
 	.mobile{
 		display: none;
 	}
-
+	
+	.reg-workshop-content h1{
+		font-size: 3em;
+	}
+	.close svg{
+		height: 40px;
+	}
 	.left, .right{
 		margin: 0px;
 		width: 50%;
@@ -199,6 +242,7 @@ p {
 		visibility: visible;
 	}
 }
+
 
 @-moz-keyframes bounce {
 	0%, 20%, 50%, 80%, 100% {
