@@ -111,7 +111,7 @@
 
 			// Image Viewer
 			var viewer = ImageViewer();
-    	$('.poster').click(function () {
+    		$('.poster').click(function () {
 	        var imgSrc = this.src,
 	            highResolutionImage = $(this).data('high-res-img');
 	        viewer.show(imgSrc, highResolutionImage);
@@ -122,24 +122,19 @@
 				window.location.href="/workshops/"
 			});
 
+			$('#register').click(function(){
+				if (!GoogleAuth.isSignedIn.get()) {
+                    var cookie = '/workshops/{{workshop.id}}/'
+					sessionStorage.setItem('origin', cookie);
+					console.log(sessionStorage.getItem('origin'));
+                    GoogleAuth.signIn();
+                }
+			});
+		
 		});
 
 		$(window).bind('popstate', function(){
 			window.location.href="/workshops/"
-		});
-
-		$.getScript("https://apis.google.com/js/client:platform.js", function () {
-
-			init();
-
-			$('#register').click(function(){
-				var cookie = '/workshops/{{workshop.id}}/register'
-				sessionStorage.setItem('origin', cookie);
-				console.log(window.sessionStorage.getItem('origin'));
-				login();
-
-			});
-
 		});
 
 	</script>
