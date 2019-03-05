@@ -102,6 +102,19 @@
 			</div>
 			<br><hr><br>
 			{% endif %}
+			{% if workshop.d1dur or workshop.d2dur or workshop.d3dur %}
+			<div class="w-s-timing">
+				{% if workshop.d1dur %}
+				<span class="d">D1: {{ workshop.d1dur }}</span>
+				{% endif %}
+				{% if workshop.d2dur %}
+				<span class="d">D2: {{ workshop.d2dur }}</span>
+				{% endif %}
+				{% if workshop.d3dur %}
+				<span class="d">D3: {{ workshop.d3dur }}</span>
+				{% endif %}
+			</div>
+			{% endif %}
 			{% if support %}
 			<div class="w-s-sponsor support">
 				For any queries

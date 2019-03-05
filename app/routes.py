@@ -99,6 +99,7 @@ def workshop_single(wid):
             }
             support = requests.get(Config.HUB_URL+'/farer/user/contact', json=payload)
             support = support.json()
+            print(workshop)
             if workshop is None:
                 return "404"
             return render_template('individual-workshops.html', workshop = workshop, dept=dept, support=support)

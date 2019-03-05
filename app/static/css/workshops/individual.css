@@ -117,6 +117,10 @@ h1{
 	font-size: 25px;
 }
 
+.w-s-timing {
+	padding: 0 0 20px;
+}
+ 
 .go-back{
 	position: absolute;
 	top: 25px;

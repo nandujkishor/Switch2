@@ -139,6 +139,20 @@
 			</div>
 			{% endif %}
 			<br><hr><br>
+			{% if contest.d1dur or contest.d2dur or contest.d3dur %}
+			<div class="w-s-timing">
+				{% if contest.d1dur %}
+				<span class="d">Day 1 {{ contest.d1dur }}</span>
+				{% endif %}
+				{% if contest.d2dur %}
+				<span class="d">Day 2 {{ contest.d2dur }}</span>
+				{% endif %}
+				{% if contest.d3dur %}
+				<span class="d">Day 3 {{ contest.d3dur }}</span>
+				{% endif %}
+			</div>
+			<hr>
+			{% endif %}
 			{% if support %}
 			<div class="w-s-sponsor support">
 				<h4>For any queries</h4>
