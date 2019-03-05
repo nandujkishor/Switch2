@@ -18,6 +18,47 @@ body{
     height: 100%;
 }
 
+.main-sponsor{
+    padding-top: 80px;
+    width: 100vw;
+    height: 500px;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 20% 80%;
+    grid-template-areas:
+    "one"
+    "two";
+}
+
+.m-s-one{
+    grid-area: one;
+}
+.m-s-two{
+    grid-area: two;
+}
+
+.m-s-two div{
+    padding: 20px;
+}
+
+.m-s-two img{
+    padding: 10px;
+}
+
+.s-partner img{
+    height: 80px;
+}
+
+.d-partner img{
+    height: 50px;
+}
+
+.m-s-one, .m-s-two{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
 .b4{
     padding-top: 80px;
     font-size: 2em;
@@ -159,12 +200,21 @@ body{
     background-size: 60%;
 }
 @media only screen and (min-width: 768px) {
+    
     .b4{
         grid-template-rows: auto;
         grid-template-columns: 30% 70%;
         grid-template-areas: 
         "one two";
         font-size: 3em;
+    }
+
+    .s-partner img{
+        height: 150px;
+    }
+    
+    .d-partner img{
+        height: 100px;
     }
 
     .item1, .item3, .item4, .item5, .item8, .item9, .item10, .item11, .item12, .item13, .item14, .item15, .item16, .item17, .item18,
