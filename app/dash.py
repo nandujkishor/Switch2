@@ -49,12 +49,12 @@ def mc_toggle_mtnc():
 
 @dash.route('/accounts/')
 @login_required
-@staff_required("web", 4)
+# @staff_required(4)
 def accounts_home():
 
-    user_arr = requests.get(Config.HUB_URL+'/farer/user/list/short')
+    user_arr = requests.get(Config.HUB_URL+'/farer/user/list/short', headers={'Authorization':current_user.id})
     user_arr = user_arr.json()
-
+    
     return render_template('dash/accounts.html', users = user_arr,
                             user=current_user,
                             count = len(user_arr),
