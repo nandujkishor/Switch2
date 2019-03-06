@@ -81,7 +81,7 @@ def broucher():
 
 # Individual pages
 
-dept = ['CSE', 'ECE', 'ME', 'Physics', 'Chemistry', 'English', 'Biotech','BUG', 'Commerce and management', 'Civil', 'EEE', 'Gaming', 'Maths', 'Others']
+dept = ['CSE', 'ECE', 'ME', 'Physics', 'Chemistry', 'English', 'Biotechnology','BUG', 'Commerce and management', 'Civil Engineering', 'EEE', 'Gaming', 'Mathematics', 'Others']
 
 @app.route('/workshops/<int:wid>/')
 def workshop_single(wid):
