@@ -141,21 +141,21 @@
 			<br><hr><br>
 			{% if contest.d1dur or contest.d2dur or contest.d3dur %}
 			<div class="w-s-timing">
-				{% if contest.d1dur %}
-				<span class="d">Day 1 {{ contest.d1dur }}</span><br>
+				{% if contest.d1beg %}
+				<span class="d">Day 1 {{ contest.d1beg }} - {{ contest.d1end }}</span><br>
 				{% endif %}
-				{% if contest.d2dur %}
-				<span class="d">Day 2 {{ contest.d2dur }}</span><br>
+				{% if contest.d2beg %}
+				<span class="d">Day 2 {{ contest.d2beg }} - {{ contest.d2end }}</span><br>
 				{% endif %}
-				{% if contest.d3dur %}
-				<span class="d">Day 3 {{ contest.d3dur }}</span>
+				{% if contest.d3beg %}
+				<span class="d">Day 3 {{ contest.d3beg }} - {{ contest.d3end }}</span>
 				{% endif %}
 			</div>
 			<hr>
 			{% endif %}
 			{% if support %}
 			<div class="w-s-sponsor support">
-				<h4>For any queries</h4>
+				For any queries
 				<h3>
 				<span class="c-name1">{{ support.fname }}</span>
 				<span class="c-name2">{{ support.lname }} </span>

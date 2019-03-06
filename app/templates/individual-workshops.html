@@ -104,14 +104,14 @@
 			{% endif %}
 			{% if workshop.d1dur or workshop.d2dur or workshop.d3dur %}
 			<div class="w-s-timing">
-				{% if workshop.d1dur %}
-				<span class="d">D1: {{ workshop.d1dur }}</span><br>
+				{% if workshop.d1beg %}
+				<span class="d">Day 1 {{ workshop.d1beg }} - {{ workshop.d1end }}</span><br>
 				{% endif %}
-				{% if workshop.d2dur %}
-				<span class="d">D2: {{ workshop.d2dur }}</span><br>
+				{% if workshop.d2beg %}
+				<span class="d">Day 2 {{ workshop.d2beg }} - {{ workshop.d2end }}</span><br>
 				{% endif %}
-				{% if workshop.d3dur %}
-				<span class="d">D3: {{ workshop.d3dur }}</span>
+				{% if workshop.d3beg %}
+				<span class="d">Day 3 {{ workshop.d3beg }} - {{ workshop.d3end }}</span>
 				{% endif %}
 			</div>
 			{% endif %}
