@@ -1,0 +1,40 @@
+<title>Registrations | Vidyut</title>
+{% extends "dash/dash.html" %}
+
+{% block body %}
+
+    <div class="dash-head">
+        <h1 style="text-transform: capitalize;">Registrations count (consolidated)</h1>
+    </div>
+
+    <div class="accounts-container three-column" style="grid-area: body">
+      <div class="listing" style="grid-area: main">
+        <h1>Workshops data</h1>
+        <p>Workshops with 0 sales not displayed</p>
+        {% for i in wdata %}
+        <div class="eventItem2" >
+            <div class="eventmeta">{{  i.get('count') }} </div>
+            <div class ="eventdata">
+                 <span class = "talkHead">{{ i.get('title') }}</span><br>
+                 <span class="meta"> Total income: Rs. {{ i.get('amount') }} </span>
+            </div>
+          </div>
+        {% endfor %}
+        <br>
+        <br>
+        <h1>Competitions data</h1>
+        <p>Competitions with 0 sales not displayed. Amount grouped for teams.</p>
+        {% for i in cdata %}
+        <div class="eventItem2" >
+            <div class="eventmeta">{{  i.get('count') }} </div>
+            <div class ="eventdata">
+                 <span class = "talkHead">{{ i.get('title') }}</span><br>
+                 <span class="meta"> Total income: Rs. {{ i.get('amount') }} </span>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

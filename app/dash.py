@@ -196,6 +196,20 @@ def registrations_home():
     stat = requests.get(Config.HUB_URL+'/events/registration/stats', headers={'Authorization':current_user.id})
     return render_template('dash/regevtstats.html', registrations=registrations.json(), stat=stat.json(), user=current_user)
 
+@dash.route('/registrations/events/')
+@login_required
+@staff_required("all", 4)
+def event_registrations_data():
+    try:
+        data1 = requests.get(Config.HUB_URL+'/events/registration/count', headers={'Authorization':current_user.id})
+    except Exception as e:
+        print(e)
+        return "Error occured: "+str(e)
+    teventsdata = data1.json()
+    wdata = teventsdata.get('wdata')
+    cdata = teventsdata.get('cdata')
+    return render_template('dash/regevents.html', wdata=wdata, cdata=cdata, user=current_user)
+
 @dash.route('/purchases/addons/buy/', methods=['GET', 'POST'])
 @login_required
 @staff_required("registration", 3)
