@@ -24,7 +24,7 @@ def lounge():
     colleges = colleges.json()
     now = datetime.datetime.now().hour
     print(now)
-    notification = "Meeting on the Student of the Year schools edition at N203 this Sunday. All team members are requested to be present."
+    notification = "No notifications."
     if now < 12:
         s = "Morning"
     if now >= 12:
