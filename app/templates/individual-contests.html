@@ -194,29 +194,37 @@
 			}
 
 			$('#register').click(function(){
+
+				var cookie = '/contests/{{contest.id}}/'
+				sessionStorage.setItem('origin', cookie);
+
 				if (!GoogleAuth.isSignedIn.get()) {
-                    var cookie = '/contests/{{contest.id}}/'
-					sessionStorage.setItem('origin', cookie);
 					console.log(sessionStorage.getItem('origin'));
                     GoogleAuth.signIn();
 				}
 				else{
-					$('.full-page-overlay').toggleClass('open');
-					$('body').addClass('noscroll');
-					var eid = "{{ contest.id }}"
-					payload = {
-                    	'cat': 2, 
-						'eid':parseInt(eid),
-						'tid':''
-					}
-					$.ajax({
-						type: "POST",
-						data: payload,
-						url: "/events/register",
-						success: function(data){
-							$('#encdata').val(data.encdata);  
+
+					$.when(data_complete()).done(function() {
+						
+						$('.full-page-overlay').toggleClass('open');
+						$('body').addClass('noscroll');
+						var eid = "{{ contest.id }}"
+						payload = {
+							'cat': 2, 
+							'eid':parseInt(eid),
+							'tid':''
 						}
+						$.ajax({
+							type: "POST",
+							data: payload,
+							url: "/events/register",
+							success: function(data){
+								$('#encdata').val(data.encdata);  
+							}
+						});
+					
 					});
+
 				}
 			});
 

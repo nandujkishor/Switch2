@@ -52,41 +52,51 @@ function setSigninStatus(isSignedIn) {
   });
 }
 
-function checkLogin(){
+function get_data(){
+  
+}
+
+function data_complete(){
+
+  console.log("Inside data complete");
+  var flag = $.Deferred();
 
   $.getJSON("/farer/data/user/", function(data){
 
-    console.log("Details completed? " + data['detailscomp']);
-    console.log("Educational details completed? " + data['educomp']);
-
-    $('.container').css('opacity','0');
-    $('.loading').css('visibility', 'hidden');
+    console.log("Checking for data");
+    console.log("More details? " + data['detailscomp']);
+    console.log("Education details? " + data['educomp']);
 
     if(data['detailscomp'] == null){
-
-      fName = data['fname'];
-      lName = data['lname'];
-
+      console.log("DETAILS COMP");
+      flag.reject();
       window.location.href="/farer/details/"
-
     }
     else if(data['educomp'] == null){
-
-      console.log("Routing to education form");
+      flag.reject();
       window.location.href="/farer/education/"
-
     }
-    else{
-      console.log(sessionStorage.getItem('origin'))
-      origin = sessionStorage.getItem('origin');
+    
+    flag.resolve();
+  
+  });
 
-      if(origin == null)
-        window.location.href="/"
-      else
-        window.location.href=origin;
+  return flag.promise();
+}
 
-    }
+function checkLogin(){
 
+  console.log("Inside check login");
+
+  $.when(data_complete()).done(function(){
+    
+    console.log("Origin = " + sessionStorage.getItem('origin'))
+    origin = sessionStorage.getItem('origin');
+
+    if(origin == null)
+      window.location.href="/"
+    else
+      window.location.href=origin;
   });
 
 }
