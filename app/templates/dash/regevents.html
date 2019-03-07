@@ -10,6 +10,7 @@
     <div class="accounts-container three-column" style="grid-area: body">
       <div class="listing" style="grid-area: main">
         <h1>Workshops data</h1>
+        <h3>Total income: {{ wamt }}</h3>
         <p>Workshops with 0 sales not displayed</p>
         {% for i in wdata %}
         <div class="eventItem2" >
@@ -23,6 +24,7 @@
         <br>
         <br>
         <h1>Competitions data</h1>
+        <h3>Total income: {{ camt }}</h3>
         <p>Competitions with 0 sales not displayed. Amount grouped for teams.</p>
         {% for i in cdata %}
         <div class="eventItem2" >

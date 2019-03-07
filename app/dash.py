@@ -208,7 +208,9 @@ def event_registrations_data():
     teventsdata = data1.json()
     wdata = teventsdata.get('wdata')
     cdata = teventsdata.get('cdata')
-    return render_template('dash/regevents.html', wdata=wdata, cdata=cdata, user=current_user)
+    wamt = teventsdata.get('wamt')
+    camt = teventsdata.get('camt')
+    return render_template('dash/regevents.html', wdata=wdata, cdata=cdata, user=current_user, wamt=wamt, camt=camt)
 
 @dash.route('/purchases/addons/buy/', methods=['GET', 'POST'])
 @login_required
