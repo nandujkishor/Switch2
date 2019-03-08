@@ -136,7 +136,7 @@
 
     var scount, mcount, lcount, xlcount, xxlcount;
     
-    var pricing = ['500','700','900','100','250','750','950','1150']
+    var pricing = ['500','500','900','100','250','750','950','1150']
 
     if(isMobile() == false){
         $(".roll-prefix-dropdown, .product-dropdown").niceScroll({
@@ -267,8 +267,8 @@
         var cnt = parseInt($('#count').val());
         total = 0;
         total = pricing[product - 1] * cnt;
-        if(product == 2 && cnt > 3)
-          total = total - Math.floor(cnt/3) * 100;
+        // if(product == 2 && cnt > 3)
+        //   total = total - Math.floor(cnt/3) * 100;
         $('.pricing').empty();
         if( cnt > 0)
             $('.pricing').append('Total : &#8377;' + total);
