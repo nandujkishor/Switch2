@@ -8,30 +8,34 @@
     </div>
 
     <div class="accounts-container three-column" style="grid-area: body">
-      <div class="listing" style="grid-area: main">
-        <h1>Workshops data</h1>
-        <h3>Total income: {{ wamt }}</h3>
-        <p>Workshops with 0 sales not displayed</p>
+      <div class="listing" style="grid-area: main; margin-top: 40px;">
+        <div class="dash-stats" style="margin-left: 40px; padding-right: 40px;">
+          <h1>Workshops data</h1>
+          <h3>Total income: &#8377;{{ wamt }}</h3>
+          <p>Workshops with 0 sales not displayed</p>
+        </div>
         {% for i in wdata %}
         <div class="eventItem2" >
             <div class="eventmeta">{{  i.get('count') }} </div>
             <div class ="eventdata">
                  <span class = "talkHead">{{ i.get('title') }}</span><br>
-                 <span class="meta"> Total income: Rs. {{ i.get('amount') }} </span>
+                 <span class="meta"> Total income: &#8377;{{ i.get('amount') }} </span>
             </div>
           </div>
         {% endfor %}
         <br>
         <br>
-        <h1>Competitions data</h1>
-        <h3>Total income: {{ camt }}</h3>
-        <p>Competitions with 0 sales not displayed. Amount grouped for teams.</p>
+        <div class="dash-stats" style="margin-left: 40px; padding-right: 40px;">
+          <h1>Competitions data</h1>
+          <h3>Total income: &#8377;{{ camt }}</h3>
+          <p>Competitions with 0 sales not displayed. Amount grouped for teams.</p>
+        </div>
         {% for i in cdata %}
         <div class="eventItem2" >
             <div class="eventmeta">{{  i.get('count') }} </div>
             <div class ="eventdata">
                  <span class = "talkHead">{{ i.get('title') }}</span><br>
-                 <span class="meta"> Total income: Rs. {{ i.get('amount') }} </span>
+                 <span class="meta"> Total income: &#8377;{{ i.get('amount') }} </span>
             </div>
           </div>
         {% endfor %}

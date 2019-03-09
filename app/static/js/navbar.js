@@ -128,13 +128,11 @@ function scroll(){
         if(Math.abs(lastScrollTop - st) <= delta)
             return;
         
-        if(st > lastScrollTop && st > navbarHeight){
+        if(st > lastScrollTop && st > navbarHeight)
             $('.header').addClass('header-up');
-        }else{
-            if(st + $(window).height() < $(document).height()) {
-                console.log("SCROLLED UP");
+        else{
+            if(st + $(window).height() < $(document).height()) 
                 $('.header').removeClass('header-up');
-            }
         }
         
         lastScrollTop = st;

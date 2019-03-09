@@ -63,9 +63,9 @@ function data_complete(){
 
   $.getJSON("/farer/data/user/", function(data){
 
-    console.log("Checking for data");
-    console.log("More details? " + data['detailscomp']);
-    console.log("Education details? " + data['educomp']);
+    // console.log("Checking for data");
+    // console.log("More details? " + data['detailscomp']);
+    // console.log("Education details? " + data['educomp']);
 
     if(data['detailscomp'] == null){
       console.log("DETAILS COMP");
@@ -86,7 +86,7 @@ function data_complete(){
 
 function checkLogin(){
 
-  console.log("Inside check login");
+  // console.log("Inside check login");
 
   $.when(data_complete()).done(function(){
     
