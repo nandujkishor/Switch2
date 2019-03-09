@@ -10,7 +10,6 @@ body{
 
 .contentWrapper{
     z-index: 10;
-    height: 100vh;
     font-family:'Neue Haas Grotesk Text Pro Bold';
 }
 .block{
@@ -20,7 +19,6 @@ body{
 
 .main-sponsor{
     padding-top: 80px;
-    width: 100vw;
     height: 500px;
     display: grid;
     grid-template-columns: auto;
