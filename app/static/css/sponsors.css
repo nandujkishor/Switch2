@@ -53,6 +53,10 @@ body{
     height: 50px;
 }
 
+.h-partner img{
+    height: 150px;
+}
+
 .m-s-one, .m-s-two{
     display: grid;
     justify-content: center;
@@ -215,6 +219,10 @@ body{
     
     .d-partner img{
         height: 100px;
+    }
+
+    .h-partner img{
+        height: 250px;
     }
 
     .item1, .item3, .item4, .item5, .item8, .item9, .item10, .item11, .item12, .item13, .item14, .item15, .item16, .item17, .item18,
