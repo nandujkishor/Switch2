@@ -57,6 +57,10 @@ body{
     height: 150px;
 }
 
+.f-partner img{
+    height: 150px;
+}
+
 .m-s-one, .m-s-two{
     display: grid;
     justify-content: center;
@@ -222,6 +226,10 @@ body{
     }
 
     .h-partner img{
+        height: 250px;
+    }
+
+    .f-partner img{
         height: 250px;
     }
 
