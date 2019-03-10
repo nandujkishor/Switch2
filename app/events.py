@@ -1,4 +1,4 @@
-import datetime, requests
+import datetime, requests, os
 from app import app, login
 from flask import Blueprint, render_template, abort, redirect, request, url_for, jsonify
 from jinja2 import TemplateNotFound
@@ -189,3 +189,39 @@ def events_registered():
     print(events)
 
     return jsonify(events.json())
+
+@events.route('/choreonite/', methods=['GET', 'POST'])
+def choreonite():
+
+    if request.method == 'POST':
+        
+        bonafide = request.files.get('bonafide',False)
+        
+        if bonafide:
+            qimgl = os.path.join(app.instance_path, 'files/cn', secure_filename(str(current_user.data.get('vid'))+ "b"))
+            bonafide.save(qimgl)
+        
+        group = request.files.get('group',False)
+
+        if group:
+            qimgl = os.path.join(app.instance_path, 'files/cn', secure_filename(str(current_user.data.get('vid'))+ "g"))
+            group.save(qimgl)
+
+        return "SUCCESS"
+
+    return render_template('ch.html' , user=current_user.is_authenticated)
+
+@events.route('/incandescence/', methods=['GET', 'POST'])
+def fashion():
+    
+    if request.method == 'POST':
+        
+        bonafide = request.files.get('bonafide',False)
+        
+        if bonafide:
+            qimgl = os.path.join(app.instance_path, 'files/in', secure_filename(str(current_user.data.get('vid'))+ "b"))
+            bonafide.save(qimgl)
+    
+        return "SUCCESS"
+
+    return render_template('fs.html' , user=current_user.is_authenticated)
