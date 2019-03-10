@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+
+    <title>Choreonite | Vidyut</title>
+
+    <meta name="theme-color" content="#000">
+    <meta name="msapplication-navbutton-color" content="#000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://cloud.typenetwork.com/projects/3030/fontface.css/" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/fonts/fonts.css">
+    <link rel="stylesheet" href="/static/css/menu.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/overlays.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/static/js/mobile-check.js"></script>
+    <script src="/static/js/navbar.js"></script>
+    <script src="/static/js/login.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.header').css('background', '#000');
+        })
+    </script>
+    
+    <style>
+        
+        *{
+    		margin: 0;
+    		padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: 'Source Sans Pro';
+        }
+        .social{
+            padding-left: 1.3em;
+        }
+        input[type="submit"]{
+            width: 200px;
+        }
+        .container{
+            padding-top: 60px;
+            background: #000;
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: 100vh auto;
+            grid-template-areas: 
+            "lt" 
+            "rt";
+        }
+        .close{
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .close svg{
+            height: 20px;
+        }
+        .left{
+            grid-area: lt;
+            height: 100%;
+            background: url('/static/images/concerts/CN.jpg');
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            background-position: center;
+        }
+        .right{
+            grid-area: rt;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .right-container{
+            max-width: 90%;
+            padding: 50px;
+        }
+        ol{
+            padding-left: 25px;
+        }
+        li{
+            padding-left: 5px;
+        }
+        .register-overlay-content{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    	@media only screen and (min-width: 768px) {
+            .container{
+                height: 100vh;
+                padding-top: 80px;
+                grid-template-columns: 35% 65%;
+                grid-template-rows: auto;
+                grid-template-areas: "lt rt";
+            }
+            .close svg{
+                height: 40px;
+            }
+        }
+        
+	</style>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+</head>
+<body>
+	{% include 'navbar.html' %}
+    <div class="full-page-overlay">
+        <div class="close">
+            <?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg enable-background="new 0 0 100 100" id="Layer_1" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon fill="#010101" points="77.6,21.1 49.6,49.2 21.5,21.1 19.6,23 47.6,51.1 19.6,79.2 21.5,81.1 49.6,53 77.6,81.1 79.6,79.2   51.5,51.1 79.6,23 "/></svg>
+        </div>
+        <div class="register-overlay-content">
+                <form class="st-form" novalidate>
+                    <h1>Complete your registration</h1>
+                    <span>Please upload the following documents to continue.</span>
+                    <div id="div-group" style="margin-top: 30px;">
+                        Group Photo : <input type = "file" id="group" name="group">
+                    </div>
+                    <div id="div-bonafide" style="margin-top: 10px;">
+                        Bonafide certificate : <input type = "file" id="bonafide" name="bonafide">
+                    </div>
+                    <div class="error" id="error-bonafide"></div>
+                
+                    <div class = "action-button">
+                        <input id="submit" type="submit" name="submit" value="Proceed">
+                        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277bd;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
+                    </div>
+                </form>
+        </div>
+    </div>
+	<div class="container">
+        <div class="left"></div>
+        <div class="right">
+            <div class="right-container">
+                <h1>Rules and regulations</h1>
+                <ol>
+                    <li>Team size: 8 to 30 (including girls & boys).</li>
+                    <li>Duration of each performance: 8  mins + 2 mins (stage set-up)</li>
+                    <li>Multiple teams from the same college can participate.</li>
+                    <li>Registration Fee: Online Registration: &#8377;4000</li>
+                    <li>The registration fee shall not be reimbursed, under any circumstance.</li>
+                    <li>Slots will be alloted on chit - selection basis.</li>
+                    <li>Dance teams should mention the following details in brief:
+                        <ul>
+                            <li>Dance style</li>
+                            <li>A group photo with the costumes must be sent</li>
+                            <li>A scanned copy of the bonafide certificate should be uploaded while registering</li>
+                        </ul>
+                    </li>
+                    <li>All performances are strictly time bound.</li>
+                    <li>Teams should submit their music and videos in pendrives at the reporting time.(Music and videos should not contain any obscenity)</li>
+                    <li>Props are allowed (except fire, oil, water or any other object that could damage the floor).</li>
+                    <li>The competition music must not contain inappropriate, lewd or offensive language.</li>
+                    <li>Costumes that are inappropriate or vulgar will lead to disqualification.</li>
+                    <li>Members must bring their original college ID cards and a bonafide certificate in the institution’s letterhead.</li>
+                    <li>Rules are subject to change and will be conveyed via email.</li>
+                    <li>Thematic dance can be performed but it will not be one of the judging criteria.</li>
+                    <li>Green rooms will be provided, excluding props and accessories (Eg: Mirror)</li>
+                    <li>Accommodation fee: &#8377;100 day (with complimentary breakfast)</li>
+                    <li>Any decision taken by the judges regarding the on-stage performance will be final</li>
+                    <li>Any decision taken by the organisers regarding any rule violation will be finalised.</li>
+                </ol>
+                <br>
+                <input type="submit" value="Agree and Register" id="register">
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+
+            $('#register').click(function(){
+                $('.full-page-overlay').toggleClass('open');
+                $('body').addClass('noscroll');
+            });
+
+            $('.close').click(function(){
+                $('.full-page-overlay').removeClass('open');    
+                $('body').removeClass('noscroll');
+            });
+
+            $('#submit').click(function(e){
+                var Fdata = new FormData($('.st-form')[0]);
+                console.log(Fdata);
+                
+                $.ajax({
+                    type: "POST",
+                    url: "/events/choreonite/",
+                    processData: false,
+                    contentType: false,
+                    data: Fdata,
+                    success: function(){
+                        console.log("SUCCESS")
+                    }   
+                });             
+                e.preventDefault();
+            });
+
+        });
+        $(document).on('keyup',function(evt) {
+            if (evt.keyCode == 27){
+                $('.full-page-overlay').removeClass('open');    
+                $('body').removeClass('noscroll');
+            }
+        });
+    </script>
+</body>
+<script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39906050-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-39906050-7');
+    </script>
+</html>
