@@ -138,6 +138,15 @@
 				<h1>&#8377;{{ contest.prize3 }}</h1>
 			</div>
 			{% endif %}
+			{% if not contest.prize1 and not contest.prize2 and not contest.prize3 %}
+			{% if contest.pworth %}
+			<br>
+			<div class="w-s-sponsor">
+				Prizes worth
+				<h1>&#8377;{{ contest.pworth }}</h1>
+			</div>
+			{% endif %}
+			{% endif %}
 			<br><hr><br>
 			{% if contest.d1dur or contest.d2dur or contest.d3dur %}
 			<div class="w-s-timing">
