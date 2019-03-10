@@ -24,28 +24,77 @@ html, body{
 	align-items: center;
 }
 
-/*.b2, .b5, .b4{
-	display: none;
-}*/
-
 .noscroll{
   position: fixed; 
   overflow-y: scroll;
 }
+
+.b0{
+  height: 100vh;
+}
+
+.b0-container{
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-areas: 50% 50%;
+  grid-template-areas:
+  "b0-two"
+  "b0-one";
+
+  background:url('/static/images/home/bg.jpg');
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center;
+}
+
+.b0-one{
+  grid-area: b0-one;
+}
+
+.b0-two{
+  grid-area: b0-two;
+}
+
+.b0-one img{
+  height: 60%;
+}
+
+.b0-two img{
+  height: 60%;
+}
+
+.b0-two, .b0-one{
+  display: flex;
+  justify-content: center;
+}
+
+.b0-two{
+  align-items: center;
+}
+
+.b0-one{
+  align-items: flex-end;
+}
+
 .b1{
   height: 600vh;
 }
+
 .b1-container{
   font-size: 24px;
 	font-family: 'Neue Haas Grotesk Text Pro Bold';
 	width: 100%;
   color: #fff;
   display: grid;
-  padding-top: 60px;
+  /* padding-top: 60px; */
   grid-template-columns: auto;
-  grid-template-rows: repeat(12, 50vh);
+  grid-template-rows: repeat(11, 30vh);
   grid-template-areas:
-  "main"
   "main"
   "one"
   "three"
@@ -58,13 +107,10 @@ html, body{
   "five"
   "eight";
 }
+.b1 p{
+  font-size: 14px;
+}
 
-.man{
-  height: 55%;
-}
-.logo{
-  height: 60%;
-}
 .grid-one{
   grid-area: one;
   background:url('/static/images/home/70.jpg');
@@ -108,7 +154,14 @@ html, body{
 
 .grid-main{
   grid-area: main;
-  background:url('/static/images/home/bg.jpg');
+  background: #000;
+  justify-content: center;
+  width: 100%;
+  /* background:url('/static/images/home/bg.jpg'); */
+}
+
+.grid-two{
+  display: none;
 }
 
 .grid-main, .grid-one, .grid-two, .grid-three, .grid-four, .grid-five, .grid-six, .grid-seven, .grid-eight, .grid-p1, .grid-p2{
@@ -136,24 +189,6 @@ html, body{
   background-position: center;
 }
 
-.grid-main{
-  display: grid;
-  grid-template-rows: 50% 50%;
-  grid-template-columns: 100%;
-  align-items: center;
-  grid-template-areas:
-  "one"
-  "two";
-}
-
-.div-one{
-  grid-area: two;
-}
-
-.div-two{
-  grid-area: one;
-}
-
 @media only screen and (min-width: 768px) {
   .b1{
     height: 100vh;
@@ -161,26 +196,32 @@ html, body{
   .grid-main, .grid-one, .grid-two, .grid-three, .grid-four, .grid-five, .grid-six, .grid-seven, .grid-eight, .grid-p1, .grid-p2{
     width: 100%;
   }
+  .grid-two{
+    display: block;
+  }
   .grid-main{
     grid-template-columns: 50% 50%;
     grid-template-rows: auto;
     grid-template-areas: "one two";
   }
 
-  .div-one{
-    grid-area: one;
+  .b0-container{
+    grid-template-columns: 50% 50%;
+    grid-template-areas: auto;
+    grid-template-areas:
+    "b0-one b0-two";
   }
-  .div-two{
-    grid-area: two;
+
+  .b0-one img{
+    height: 60%;
   }
-  .man{
-    height: 115%;
+  
+  .b0-two img{
+    height: 60%;
   }
-  .logo{
-    height: 100%;
-  }
+
   .b1-container{
-    padding-top: 80px;
+    /* padding-top: 80px; */
     height: 100vh;
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: repeat(3, 33.3%);

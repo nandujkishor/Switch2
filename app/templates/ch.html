@@ -139,6 +139,7 @@
                         <input id="submit" type="submit" name="submit" value="Proceed">
                         <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" class = "loading" height="35px" viewBox="0 0 100 100"><defs><style>.cls-1{fill:none;stroke:#0277bd;stroke-miterlimit:10;stroke-width:10px;}</style></defs><title>loading-b</title><path class="cls-1" d="M48.13,6.5761A43.4641,43.4641,0,1,1,6.5761,51.87"><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 50 50" to="360 50 50" dur="1s" repeatCount="indefinite"/></path></svg>
                     </div>
+                    <div class="message" style="margin-top: 20px;"></div>
                 </form>
         </div>
     </div>
@@ -202,8 +203,11 @@
                     processData: false,
                     contentType: false,
                     data: Fdata,
-                    success: function(){
-                        console.log("SUCCESS")
+                    success: function(data){
+                        console.log(data);
+                        if(data == "SUCCESS"){
+                            $('.message').html("To complete the registration contact : +91 8943888035")
+                        }
                     }   
                 });             
                 e.preventDefault();
