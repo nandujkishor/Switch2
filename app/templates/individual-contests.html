@@ -173,10 +173,10 @@
 				</h3>
 			</div>
 			{% endif %}
-			<!-- <br><hr><br> -->
-			<!-- <div class="cf" >
-    			<img width="285px" src="https://vidyut.amrita.edu/static/images/contests/{{ contest.id }}a.jpg" data-high-res-src="https://vidyut.amrita.edu/static/images/contests/{{ contest.id }}a.jpg" class="poster">
-			</div> -->
+			<br><hr><br>
+		 <div class="cf" >
+    			<img width="285px" src="http://localhost:5000/static/images/contests/{{ contest.id }}b.jpg" data-high-res-src="http://localhost:5000/static/images/contests/{{ contest.id }}b.jpg" class="poster">
+			</div>
 		</div>
 	</div>
 
@@ -214,12 +214,12 @@
 				else{
 
 					$.when(data_complete()).done(function() {
-						
+
 						$('.full-page-overlay').toggleClass('open');
 						$('body').addClass('noscroll');
 						var eid = "{{ contest.id }}"
 						payload = {
-							'cat': 2, 
+							'cat': 2,
 							'eid':parseInt(eid),
 							'tid':''
 						}
@@ -228,10 +228,10 @@
 							data: payload,
 							url: "/events/register",
 							success: function(data){
-								$('#encdata').val(data.encdata);  
+								$('#encdata').val(data.encdata);
 							}
 						});
-					
+
 					});
 
 				}
@@ -292,17 +292,17 @@
 					window.setTimeout(function(){
 						$('.reg-workshop-content').css('opacity','1');
 					}, 200);
-				}, 600);	
+				}, 600);
 			})
 
 			$('.close').click(function(){
-                $('.full-page-overlay').removeClass('open');    
+                $('.full-page-overlay').removeClass('open');
                 $('body').removeClass('noscroll');
 			});
 
 			$(document).on('keyup',function(evt) {
 				if (evt.keyCode == 27){
-					$('.full-page-overlay').removeClass('open');    
+					$('.full-page-overlay').removeClass('open');
 					$('body').removeClass('noscroll');
 				}
 			});
