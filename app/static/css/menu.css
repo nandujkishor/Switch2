@@ -22,7 +22,7 @@
     position: fixed;
     height: 100%;
     width: 0;
-    z-index: 2;
+    z-index: 100;
     background-color: #fff;
     overflow-x: hidden;
     transition: 0.5s;
@@ -35,7 +35,7 @@
     justify-content: center;
     text-align: left;
     padding-left: 34px;
-    z-index: 2;
+    z-index: 100;
     pointer-events:none;
 }
 .sideNavContents ul{
@@ -50,7 +50,7 @@
     display: none;
     background-size: cover;
     margin-left: 100%;
-    z-index: 4;   
+    z-index: 100;   
 }
 
 .talksBG{
@@ -76,7 +76,7 @@
     display: none;
 }
 .nav{
-    z-index: 2;
+    z-index: 100;
     font-size: 34px;
 }
 .nav a{
@@ -88,7 +88,7 @@
 .nav a span { 
     position: absolute; 
     display: none; 
-    z-index: 2; 
+    z-index: 100; 
 }
 .nav a:hover span {
     display: block;
@@ -149,7 +149,7 @@
     width: 100%;
     height: 60px;
     background-color: transparent;
-    z-index: 3;
+    z-index: 100;
     top: 0;
     transition: top 0.2s;
 }
@@ -163,7 +163,7 @@
     top: 20px;
     left: 30px;
     cursor: pointer;
-    z-index: 2;
+    z-index: 100;
 }
 .menuVidyut{
     top: 14px;
@@ -190,8 +190,9 @@
     top: 20px;
     font-weight: bold;
     color: #fff;
+    border: 3px solid #fff;
     right: 20px;
-    font-size: 18px;
+    font-size: 10px;
     padding: 2px 12px;
     text-transform: uppercase;
     cursor: pointer;
@@ -208,10 +209,10 @@
     width: 0;
     background: #fff;
     transition: all 0.5s;
-    z-index: 6;
+    z-index: 100;
 }
 .load-d{
-    z-index: 5;
+    z-index: 100;
     background: #E81110;
 }
 @media only screen and (min-width: 550px) {
@@ -231,7 +232,7 @@
     .login{
         top: 24px;
         right: 56px;
-        font-size: 22px;
+        font-size: 16px;
         padding: 4px 15px;
     }
     .menu-button, .menuVidyut{

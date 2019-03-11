@@ -38,13 +38,14 @@ def faq():
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html', page="/home?m=1", uchange="", user=current_user.is_authenticated)
+    # return render_template('home.html', user=current_user.is_authenticated)
+    return render_template('index.html', page="/home?m=1", user=current_user.is_authenticated)
 
 @app.route('/home', methods=['GET'])
 def home():
     mode = request.args.get('m')
     print(mode)
-
+    # return render_template('home.html', user=current_user.is_authenticated)
     if mode is not None:
         if mode == "1":
             return render_template('home.html', user=current_user.is_authenticated)
