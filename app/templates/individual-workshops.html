@@ -29,7 +29,7 @@
 	</div>
 </div>
 <div class = "Containter">
-	
+
 	</div>
 	<div class = "left">
 	</div>
@@ -107,16 +107,17 @@
 			{% if workshop.d1dur or workshop.d2dur or workshop.d3dur %}
 			<div class="w-s-timing">
 				{% if workshop.d1beg %}
-				<span class="d">Day 1 {{ workshop.d1beg }} - {{ workshop.d1end }}</span><br>
+				<span class="d"><strong>Day 1 : </strong>{{ workshop.d1beg }} - {{ workshop.d1end }}</span><br>
 				{% endif %}
 				{% if workshop.d2beg %}
-				<span class="d">Day 2 {{ workshop.d2beg }} - {{ workshop.d2end }}</span><br>
+				<span class="d"><strong>Day 2 : </strong>{{ workshop.d2beg }} - {{ workshop.d2end }}</span><br>
 				{% endif %}
 				{% if workshop.d3beg %}
-				<span class="d">Day 3 {{ workshop.d3beg }} - {{ workshop.d3end }}</span>
+				<span class="d"><strong>Day 3 : </strong>{{ workshop.d3beg }} - {{ workshop.d3end }}</span>
 				{% endif %}
 			</div>
 			{% endif %}
+			<hr><br>
 			{% if support %}
 			<div class="w-s-sponsor support">
 				For any queries
@@ -129,9 +130,9 @@
 			</div>
 			{% endif %}
 			<br><hr><br>
-			<!-- <div class="cf" >
-    			<img width="285px" src="https://vidyut.amrita.edu/static/images/workshops/{{ workshop.id }}a.jpg" data-high-res-src="https://vidyut.amrita.edu/static/images/workshops/{{ workshop.id }}a.jpg" class="poster">
-			</div> -->
+			<div class="cf" >
+    			<img width="285px" src="https://vidyut.amrita.edu/static/images/workshops/{{ workshop.id }}b.jpg" data-high-res-src="https://vidyut.amrita.edu/static/images/workshops/{{ workshop.id }}b.jpg" class="poster">
+			</div>
 		</div>
 
 	</div>
@@ -165,7 +166,7 @@
 			});
 
 			$('#register').click(function(){
-				
+
 				var cookie = '/workshops/{{workshop.id}}/';
 				sessionStorage.setItem('origin', cookie);
 
@@ -176,12 +177,12 @@
 				else{
 
 					$.when(data_complete()).done(function() {
-						
+
 						$('.full-page-overlay').toggleClass('open');
 						$('body').addClass('noscroll');
 						var eid = "{{ workshop.id }}"
 						payload = {
-							'cat': 1, 
+							'cat': 1,
 							'eid':parseInt(eid),
 							'tid':''
 						}
@@ -190,28 +191,28 @@
 							data: payload,
 							url: "/events/register",
 							success: function(data){
-								$('#encdata').val(data.encdata);  
+								$('#encdata').val(data.encdata);
 							}
 						});
 					});
-					
+
 				}
 			});
-			
+
 			$('.close').click(function(){
-                $('.full-page-overlay').removeClass('open');    
+                $('.full-page-overlay').removeClass('open');
                 $('body').removeClass('noscroll');
 			});
-			
+
 		});
 
 		$(document).on('keyup',function(evt) {
             if (evt.keyCode == 27){
-                $('.full-page-overlay').removeClass('open');    
+                $('.full-page-overlay').removeClass('open');
                 $('body').removeClass('noscroll');
             }
 		});
-		
+
 		$(window).bind('popstate', function(){
 			window.location.href="/workshops/"
 		});
