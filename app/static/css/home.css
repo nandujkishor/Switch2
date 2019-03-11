@@ -201,6 +201,27 @@ html, body{
   background-position: center;
 }
 
+.grid-one:hover, 
+.grid-two:hover, 
+.grid-three:hover, 
+.grid-four:hover, 
+.grid-five:hover,
+.grid-six:hover,
+.grid-seven:hover,
+.grid-eight:hover,
+.grid-main1:hover,
+.grid-main2:hover,
+.grid-p1:hover,
+.grid-p2:hover{
+  cursor: pointer;
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");  
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: gray;
+  -webkit-transition: all .2s ease-in-out;  
+}
 @media only screen and (min-width: 1000px) {
   .b0{
     padding-top: 0;
