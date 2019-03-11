@@ -198,7 +198,7 @@ def choreonite():
         bonafide = request.files.get('bonafide',False)
         
         if bonafide:
-            qimgl = os.path.join(app.instance_path, 'files/cn', secure_filename(str(current_user.data.get('vid'))+ "b"))
+            qimgl = os.path.join('files/cn', secure_filename(str(current_user.data.get('vid'))+ "b"))
             bonafide.save(qimgl)
         
         group = request.files.get('group',False)
