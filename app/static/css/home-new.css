@@ -45,12 +45,6 @@ html, body{
   "b0-one";
 
   background:url('/static/images/home/mbg.png');
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-position: center;
 }
 
 .b0-one{
@@ -262,6 +256,16 @@ html, body{
     "p1 main1 four five"
     "six seven eight main2";
   } 
+}
+
+.b0-container{
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center;
+}
 }
 /* 
 .counter{
