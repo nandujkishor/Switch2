@@ -30,6 +30,7 @@ html, body{
 }
 
 .b0{
+  padding-top: 60px;
   height: 100vh;
 }
 
@@ -43,13 +44,7 @@ html, body{
   "b0-two"
   "b0-one";
 
-  background:url('/static/images/home/bg.jpg');
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-position: center;
+  background:url('/static/images/home/mbg.png');
 }
 
 .b0-one{
@@ -60,29 +55,40 @@ html, body{
   grid-area: b0-two;
 }
 
-.b0-one img{
-  height: 60%;
+.b0-one-img{
+  /* max-height: 100%; */
+  max-width: 100%;
 }
 
-.b0-two img{
-  height: 60%;
+.b0-two-img{
+  /* max-height: 100%; */
+  max-width: 90%;
 }
 
 .b0-two, .b0-one{
   display: flex;
   justify-content: center;
+  transition: 0.5s; 
 }
 
 .b0-two{
+  display: grid;
+  width: 100%;
   align-items: center;
 }
 
+.b0-two div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
 .b0-one{
   align-items: flex-end;
 }
 
 .b1{
-  height: 600vh;
+  height: 360vh;
 }
 
 .b1-container{
@@ -93,19 +99,20 @@ html, body{
   display: grid;
   /* padding-top: 60px; */
   grid-template-columns: auto;
-  grid-template-rows: repeat(11, 30vh);
+  grid-template-rows: repeat(12, 30vh);
   grid-template-areas:
-  "main"
-  "one"
-  "three"
-  "four"
-  "p1"
+  "one" 
+  "two" 
+  "three" 
   "p2"
-  "six"
-  "seven"
-  "two"
+  "p1" 
+  "main1" 
+  "four" 
   "five"
-  "eight";
+  "six"
+  "seven" 
+  "eight" 
+  "main2";
 }
 .b1 p{
   font-size: 14px;
@@ -151,20 +158,20 @@ html, body{
   grid-area: p2;
   background:url('/static/images/home/work.jpg');
 }
-
-.grid-main{
-  grid-area: main;
-  background: #000;
-  justify-content: center;
-  width: 100%;
-  /* background:url('/static/images/home/bg.jpg'); */
+.grid-main1{
+  grid-area: main1;
+  background:url('/static/images/home/psn.jpg');
+}
+.grid-main2{
+  grid-area: main2;
+  background:url('/static/images/home/ff.jpg');
 }
 
 .grid-two{
   display: none;
 }
 
-.grid-main, .grid-one, .grid-two, .grid-three, .grid-four, .grid-five, .grid-six, .grid-seven, .grid-eight, .grid-p1, .grid-p2{
+.grid-main1, .grid-main2, .grid-one, .grid-two, .grid-three, .grid-four, .grid-five, .grid-six, .grid-seven, .grid-eight, .grid-p1, .grid-p2{
   height: 100%;
   width: 100vw;
   padding: 30px;
@@ -174,7 +181,7 @@ html, body{
 
   overflow-wrap: break-word;
   word-wrap: break-word;
-  word-break: break-word;
+  word-break: break-all;
 
   -ms-hyphens: auto;
   -moz-hyphens: auto;
@@ -189,20 +196,39 @@ html, body{
   background-position: center;
 }
 
-@media only screen and (min-width: 768px) {
+.grid-one:hover, 
+.grid-two:hover, 
+.grid-three:hover, 
+.grid-four:hover, 
+.grid-five:hover,
+.grid-six:hover,
+.grid-seven:hover,
+.grid-eight:hover,
+.grid-main1:hover,
+.grid-main2:hover,
+.grid-p1:hover,
+.grid-p2:hover{
+  cursor: pointer;
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");  
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: gray;
+  -webkit-transition: all .2s ease-in-out;  
+}
+@media only screen and (min-width: 1000px) {
+  .b0{
+    padding-top: 0;
+  }
+  .b0-container{
+    background:url('/static/images/home/bgn.jpg');
+  }
   .b1{
     height: 100vh;
   }
-  .grid-main, .grid-one, .grid-two, .grid-three, .grid-four, .grid-five, .grid-six, .grid-seven, .grid-eight, .grid-p1, .grid-p2{
+  .grid-main1, .grid-main2, .grid-one, .grid-two, .grid-three, .grid-four, .grid-five, .grid-six, .grid-seven, .grid-eight, .grid-p1, .grid-p2{
     width: 100%;
-  }
-  .grid-two{
-    display: block;
-  }
-  .grid-main{
-    grid-template-columns: 50% 50%;
-    grid-template-rows: auto;
-    grid-template-areas: "one two";
   }
 
   .b0-container{
@@ -226,10 +252,19 @@ html, body{
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: repeat(3, 33.3%);
     grid-template-areas:
-    "one main main two"
-    "three p1 p2 four"
-    "five six seven eight";
+    "one two three p2"
+    "p1 main1 four five"
+    "six seven eight main2";
   } 
+}
+
+.b0-container{
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center;
 }
 /* 
 .counter{

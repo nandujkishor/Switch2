@@ -5,18 +5,29 @@
 <div class="b0">
   <div class="b0-container">
       <div class="b0-one">
-          <img class="" src="/static/images/home/man.png">
+          <img class="b0-one-img" src="/static/images/home/mann.png">
       </div>
       <div class="b0-two">
-          <img class="" src="/static/images/home/logo.png">
+          <div>
+            <img class="b0-two-img" src="/static/images/home/hlogon.png">
+          </div>
+          <div>
+            <img class="b0-two-img" src="/static/images/home/havlogo.png">
+          </div>
       </div> 
   </div>
 </div>
 
 <div class = "b1">   
   <div class = "b1-container">
-    <div class="grid-main">
-      MARCH 15 16 17
+    <div class="grid-main1">
+      <div>
+        PROSHOWS<br>
+        <p>WHEN CHAI MET TOAST</p>
+      </div>
+    </div>
+    <div class="grid-main2">
+      25K+ FOOTFALLS
     </div>
     <div class="grid-one">70+ EVENTS</div>
     <div class="grid-two">PRIZES WORTH 15 LAKH</div>
@@ -24,8 +35,7 @@
     <div class="grid-p1">
       <div>
           PROSHOWS<br>
-          <p>HARICHARAN FT. BENNET THE BAND<br>
-          WHEN CHAI MET TOAST</p>
+          <p>HARICHARAN FT. BENNET THE BAND</p>
       </div>
     </div>
     <div class="grid-p2">25+ WORKSHOPS</div>
@@ -42,6 +52,7 @@
     <div class = "b2-left">
         <div class = "description">
           Vidyut, the national multi-fest organized by Amrita  Vishwa Vidyapeetham, Amritapuri campus is an endeavour to provide a symposium for students across the country to showcase and grow. Vidyut delivers bountiful opportunities for students to develop their unique skills by witnessing and partaking in the plethora of workshops, talks and competitions.
+          <br><br><input type="submit" value="Events Brochure" id="br" style="width: 200px;">
         </div>
     </div>
 
@@ -155,7 +166,7 @@
   </div>
 </div>
 <div class="filler">
-  <span>Like. Never. Before.</span>
+  <span>Breaking the stereotypes</span>
 </div>
 <div class = "footer">
   <div class="f-one">
@@ -177,7 +188,21 @@
 
 <script>
   $(document).ready(function(){
-    $('.header').css('background', 'transparent');
+    $('.grid-one').click(function(){
+
+    });
+    $('.grid-three').click(function(){
+      window.location.href = "/contests/"
+    });
+    $('.grid-p2').click(function(){
+      window.location.href = "/workshops/"
+    });
+    $('.grid-p1, .grid-main1, .grid-six, .grid-seven').click(function(){
+      window.location.href = "/culturals/"
+    });
+    $('#br').click(function(){
+      window.location.href = "/brochure/"
+    });
     b1();
   });
 </script>
