@@ -307,6 +307,7 @@ html, body{
 .filler{
   font-family: 'Montserrat', sans-serif;
   width: 100%;
+  padding: 20px;
   height: 500px;
   display: grid;
   color: #fff;
@@ -319,7 +320,7 @@ html, body{
 
 .filler span {
   display: block;
-  font-size: 2em;
+  font-size: 1.5em;
   margin: 0 auto;
 } 
 
@@ -783,7 +784,13 @@ html, body{
 	}
 	.b2-right{
 		font-size: 85px;
-	}
+  }
+  
+  .filler span {
+    display: block;
+    font-size: 2.2em;
+    margin: 0 auto;
+  } 
 
 	.b3{    
     grid-template-columns: repeat(4,1fr);
