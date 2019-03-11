@@ -198,13 +198,13 @@ def choreonite():
         bonafide = request.files.get('bonafide',False)
         
         if bonafide:
-            qimgl = os.path.join(app.instance_path, 'files/cn', secure_filename(str(current_user.data.get('vid'))+ "b"))
+            qimgl = os.path.join('files/cn', secure_filename(str(current_user.data.get('vid'))+ "b"))
             bonafide.save(qimgl)
         
         group = request.files.get('group',False)
 
         if group:
-            qimgl = os.path.join(app.instance_path, 'files/cn', secure_filename(str(current_user.data.get('vid'))+ "g"))
+            qimgl = os.path.join('files/cn', secure_filename(str(current_user.data.get('vid'))+ "g"))
             group.save(qimgl)
 
         return "SUCCESS"
@@ -219,7 +219,7 @@ def fashion():
         bonafide = request.files.get('bonafide',False)
         
         if bonafide:
-            qimgl = os.path.join(app.instance_path, 'files/in', secure_filename(str(current_user.data.get('vid'))+ "b"))
+            qimgl = os.path.join('files/in', secure_filename(str(current_user.data.get('vid'))+ "b"))
             bonafide.save(qimgl)
     
         return "SUCCESS"
