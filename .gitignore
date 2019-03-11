@@ -5,3 +5,4 @@ instance/
 Configs/
 config.py
 .vscode
+app/__init__.pyc
