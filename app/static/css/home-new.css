@@ -74,6 +74,7 @@ html, body{
 .b0-two, .b0-one{
   display: flex;
   justify-content: center;
+  transition: 0.5s; 
 }
 
 .b0-two{
