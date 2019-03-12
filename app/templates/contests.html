@@ -127,10 +127,12 @@
         $.getJSON("/events/data/contests/", function(data){
           
           console.log(data);
-          
+          var arr = [2, 3, 24, 31, 43, 53]
+
           $.each(data, function(key, value) {
             var workshopItem = '<div class = "workshopItem" id = "' + value.id + '"><div style = "background: url(\'https://vidyut.amrita.edu/static/images/contests/'+value.id+'a.jpg\'); background-size: cover; background-position: center;" class = "w-t-image"></div><div class = "w-t-description" style = "padding: 10px 0px 10px"><h1>' + value.title +'</h1><span class = "w-t-d-content">' + value.short +'</span></div></div>';
-            $(".gridContainer").append(workshopItem);
+            if($.inArray(value.id, arr) == -1)
+              $(".gridContainer").append(workshopItem);
           })
           
           clicker();
