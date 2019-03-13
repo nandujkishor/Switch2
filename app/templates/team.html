@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+
+    <title>Team | Vidyut</title>
+    
+    <meta name="theme-color" content="#000">
+    <meta name="msapplication-navbutton-color" content="#000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://cloud.typenetwork.com/projects/3030/fontface.css/" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/fonts/fonts.css">
+    <link rel="stylesheet" href="/static/css/menu.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/overlays.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/static/js/mobile-check.js"></script>
+    <script src="/static/js/navbar.js"></script>
+    <script src="/static/js/login.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.header').css('background', '#000');
+        })
+    </script>
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '948746865211909');
+        fbq('track', 'PageView');
+      </script>
+      <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=948746865211909&ev=PageView&noscript=1"
+    /></noscript>
+    <style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    body {
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    h1{
+        padding-top: 50px;
+        padding-bottom: 20px;
+        font-family: 'Source Code Pro', sans-serif;
+    }
+
+    img {
+        max-width: 150%;
+        margin-top:-10px;
+        image-orientation: from-image;
+        margin-left: -20px;
+        border-radius: 100%;
+    }
+
+    p{
+    font-size:1vw;
+    }
+
+    .half {
+        height: 200px;
+        width: 30%;
+        float:left;
+        margin-bottom: -100%;
+        padding-left: 10px;
+    }
+
+    .column {
+        float: left;
+        width: 30%;
+        padding: 0;
+    }
+
+    .row {
+        margin: 2% 0% 0% 0%;
+        padding-left: 10%;
+        padding-right: 0%;
+        padding-bottom: 3%;
+    }
+
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+
+    .info{
+    text-align:left;
+    line-height: 20px;
+    margin-left: 43%;
+    margin-top: 9%;
+    }
+    .imp{
+    font-weight: bold;
+    }
+    .imp1{
+    font-style: italic;
+    }
+    .card {
+    padding:16px;
+    margin-right:-15px; 
+    margin-bottom: 40px;
+    text-align: center;
+    
+    }
+
+    @media screen and (max-width: 1000px) {
+
+    img{
+        max-width: 100px;
+        margin-left: -80px;
+    }
+
+    .row {
+    margin: 2% 0% 0% 0%;
+    padding-left: 10%;
+    padding-right: 0%;
+    padding-bottom: 0%;
+    margin-bottom: -2%;
+    }
+
+    .column {
+        height: 120px;
+        width: 100%;
+        display: block;
+        margin-bottom: 2%;
+        padding-right:0%;
+        padding-left: 20%;
+    }
+
+    p{
+        font-size:30%;
+    }
+    .info{
+        text-align:left;
+        font-size: 250%;
+        margin-top: -10px;
+        margin-left: 25%;
+    }
+
+    .card{
+        margin-right:7%;
+        margin-top: -20px;
+    }
+    }
+
+    </style>
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        <div style="padding-top: 80px;">
+        <div class="row" >
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/Shankar Ganesh.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Shankar Ganesh</p>
+                <p class="imp1">Chairman</p>
+                <p>9846939690</p>
+                <p>shankarganesh@vidyut.amrita.edu</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/Krishnadev.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Krishnadev A</p>
+                <p class="imp1">President</p>
+                <p>9746469548</p>
+                <p>krishnadev@vidyut.amrita.edu</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/Rohit K.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Rohit K</p>
+                <p class="imp1">Treasurer</p>
+                <p>8089231345</p>
+                <p>rohitk@vidyut.amrita.edu</p>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="row" >
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/Deepu.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Deepu G</p>
+                <p class="imp1">Secretary</p>
+                <p>9746797783</p>
+                <p>deepug@vidyut.amrita.edu</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/rohit.jpeg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Rohit Unnikrishnan </p>
+                <p class="imp1">Vice-President</p>
+                <p>9544162167</p>
+                <p>rohit@vidyut.amrita.edu</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/ashwin ashok.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Ashwin Ashok</p>
+                <p class="imp1">Finance chair</p>
+                <p>7025986458</p>
+                <p>ashwinashok5@gmail.com</p>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="row" >
+            <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/Rohith Nair R.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Rohith Nair R</p>
+                <p class="imp1">Technical Events chair</p>
+                <p>8547884342</p>
+                <p>rohitnair@vidyut.amrita.edu</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/Sreesankari Sreeraj.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Sreesankari V S</p>
+                <p class="imp1">Non-technical Events chair</p>
+                <p>8547515407</p>
+                <p>sreesankarisreeraj@gmail.com</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/Vasudev S Nair.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Vasudev S Nair</p>
+                <p class="imp1">Marketing chair</p>
+                <p>8921398783</p>
+                <p>snairvasudev@gmail.com</p>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="row" >
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/Malavika Dileep N.k.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Malavika Dileep NK</p>
+                <p class="imp1">Publicity & Registration chair</p>
+                <p>8301883859</p>
+                <p>malu011998@gmail.com</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/Akshay V.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Akshay Viswanath</p>
+                <p class="imp1">Publicity & Registration chair</p>
+                <p>9744527264</p>
+                <p>akshayviswanath25@gmail.com</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/anjana.png"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Anjana Narayanan</p>
+                <p class="imp1">Publicity & Registration chair</p>
+                <p>8281791356</p>
+                <p></p>
+            </div>
+            </div>
+        </div>
+        
+        </div>
+
+        <div class="row" >
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/Rahul Nampoothiri.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Rahul R Nampoothiri </p>
+                <p class="imp1">Exhibitions & Stalls chair</p>
+                <p>9099905432</p>
+                <p>rahulnampoothiri13@gmail.com </p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/Aparna S Harilal.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Aparna. S. Harilal</p>
+                <p class="imp1">Exhibitions & Stalls chair</p>
+                <p>8606535291</p>
+                <p>aparnasharilal98@gmail.com</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/Arathi r Varma.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Arathi R Varma</p>
+                <p class="imp1">Creatives & Production chair</p>
+                <p>8589077842</p>
+                <p>arathivarma@vidyut.amrita.edu</p>
+            </div>
+            </div>
+        </div>
+        
+        </div>
+
+        <div class="row" >
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/gokul.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Gokul P S</p>
+                <p class="imp1">Multimedia chair</p>
+                <p>8129747409</p>
+                <p>gokul.ps@vidyut.amrita.edu</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/Arun Raj.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Arun Raj P</p>
+                <p class="imp1">Security chair</p>
+                <p>8547701484</p>
+                <p>arunrajmathira@gmail.com</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/arjun_v.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Arjun Vijaikumar</p>
+                <p class="imp1">Guest relations chair</p>
+                <p>8129916963</p>
+                <p></p>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="row" >
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/default.png"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Yaswanth</p>
+                <p class="imp1">Accomodation chair</p>
+                <p>9182090628</p>
+                <p></p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/sreehari.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Sreehari</p>
+                <p class="imp1">Transportation chair</p>
+                <p>9847308706</p>
+                <p></p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/aishwarya.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Aishwarya</p>
+                <p class="imp1">Flagship events chair</p>
+                <p>8943888035</p>
+                <p></p>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="row" >
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/sub.jpeg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Akshay Subi Suresh </p>
+                <p class="imp1">Event & venue management chair</p>
+                <p>9961978577</p>
+                <p>akshaysubisuresh@gmail.com</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/gopi.jpeg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Gopikrishna CS</p>
+                <p class="imp1">Event & venue management chair</p>
+                <p>7736649189</p>
+                <p></p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/apoorva.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Apoorva Jeyaram</p>
+                <p class="imp1">Communications chair</p>
+                <p>9947214001</p>
+                <p></p>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="row" >
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/Adarsh P.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Adarsh P</p>
+                <p class="imp1">Proshow & Sales chair</p>
+                <p>9447275728</p>
+                <p>adarshpranavam@gmail.com</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/rohith ravikumar.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Rohith R</p>
+                <p class="imp1">Sports Events</p>
+                <p>9496877378</p>
+                <p>rohit3466@gmail.com</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/SAI KRISHNA.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Sai Krishna</p>
+                <p class="imp1">Refreshment chair</p>
+                <p>8136898658</p>
+                <p>ssaikrishna8999@gmail.com</p>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="row" >
+            <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/sanjay.jpeg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Sanjay Krishnan E M</p>
+                <p class="imp1">Crisis chair</p>
+                <p>8281048903</p>
+                <p>sanjay@vidyut.amrita.edu</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/hrishi.jpeg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Hrishikesh Menon</p>
+                <p class="imp1">Crisis chair</p>
+                <p>7594098293</p>
+                <p>hrishikeshgmenon@gmail.com</p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/aya.png"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Ajay Anoop</p>
+                <p class="imp1">Inaugral & Prize chair</p>
+                <p></p>
+                <p></p>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/sharan.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Sharan Ramesh Babu</p>
+                <p class="imp1">Inaugral & Prize chair</p>
+                <p>9677338303</p>
+                <p></p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/kc.jpg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">K S Krishnachandran</p>
+                <p class="imp1">Help desk chair</p>
+                <p>9400735495</p>
+                <p></p>
+            </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+            <div class="half">
+                <center><img src="/static/images/team/sreedev.jpeg"></center>
+            </div>
+            <div class="info">
+                <p class="imp">Sreedev</p>
+                <p class="imp1">Purchase chair</p>
+                <p>7012922550</p>
+                <p>sreedevajaykumar@gmail.com</p>
+            </div>
+            </div>
+        </div>
+        </div>
+    </body>
+</html>

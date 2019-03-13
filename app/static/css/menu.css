@@ -93,6 +93,9 @@
 .nav a:hover span {
     display: block;
 }
+.team{
+    font-size: 24px;
+}
 .social i {
   font-size: 28px;
 }

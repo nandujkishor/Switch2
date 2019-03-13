@@ -60,6 +60,10 @@ def talks():
 def concert():
     return render_template('concerts.html', user=current_user.is_authenticated, check=current_user)
 
+@app.route('/team/')
+def team():
+    return render_template('team.html', user=current_user.is_authenticated, check=current_user)
+
 @app.route('/exhibitions/')
 def exhibitions():
     return render_template('exhibitions.html', user=current_user.is_authenticated)
