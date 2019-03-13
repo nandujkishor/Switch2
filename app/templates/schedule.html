@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+
+    <title>Schedule | Vidyut</title>
+    
+    <meta name="theme-color" content="#000">
+    <meta name="msapplication-navbutton-color" content="#000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://cloud.typenetwork.com/projects/3030/fontface.css/" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/fonts/fonts.css">
+    <link rel="stylesheet" href="/static/css/menu.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/overlays.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/static/js/mobile-check.js"></script>
+    <script src="/static/js/navbar.js"></script>
+    <script src="/static/js/login.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.header').css('background', '#000');
+        })
+    </script>
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '948746865211909');
+        fbq('track', 'PageView');
+      </script>
+      <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=948746865211909&ev=PageView&noscript=1"
+    /></noscript>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+        .main-container{
+            padding: 100px;
+            padding-top: 180px;
+            max-width: 1400px;
+            font-family: 'Source Sans Pro';
+            margin: 0 auto;
+        }
+        .slot{
+            display: grid;
+            width: 100%;
+            color: #202124;
+            grid-template-columns: 20% 80%;
+            grid-template-rows: auto;
+            grid-template-areas: "time events";
+            border-top: 1px solid #EDEDED;
+        }
+        .time{
+            grid-area: time;
+            text-align: left;
+            padding: 30px 30px 30px 20px;
+            font-size: 44px;
+            line-height: 56px;
+            background: none;
+            color: #202124;
+            font-weight: 400;
+            border-bottom: 1px solid #EDEDED;
+        }
+        .events{
+            grid-area: events;
+            font-size: 18px;
+            border-left: 1px solid #EDEDED;
+        }
+        .event-item{
+            padding: 50px;
+            border-bottom: 1px solid #EDEDED;
+        }
+
+    </style>
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        <div class="main-container">
+            
+            <div class="slot">
+                <div class="time">
+                    9:00
+                </div>
+                <div class="events">
+                    <div class="event-item">
+                        Some Event 1
+                        <p>Timings</p>
+                    </div>
+                    <div class="event-item">
+                        Some Event 2
+                        <p>Timings</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slot">
+                    <div class="time">
+                        10:00
+                    </div>
+                    <div class="events">
+                        <div class="event-item">
+                            New Event 1
+                            <p>Timings</p>
+                        </div>
+                        <div class="event-item">
+                            New Event 2
+                            <p>Timings</p>
+                        </div>
+                        <div class="event-item">
+                            New Event 3
+                            <p>Timings</p>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+    </body>
+</html>
