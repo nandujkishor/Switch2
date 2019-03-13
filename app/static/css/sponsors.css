@@ -51,13 +51,10 @@ body{
     height: 50px;
 }
 
-.h-partner img{
+.h-partner img, .f-partner img, .ex-partner img{
     height: 150px;
 }
 
-.f-partner img{
-    height: 150px;
-}
 
 .m-s-one, .m-s-two{
     display: grid;
