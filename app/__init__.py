@@ -4,11 +4,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_restplus import Api
+from flask_qrcode import QRcode
 
 app = Flask(__name__)
 app.config.from_object(Config)
 login = LoginManager(app)
-
+QRcode(app)
 from app import routes, models
 from app.dash import dash
 from app.farer import farer
