@@ -44,6 +44,8 @@ def f_login(request, point="None"):
     if current_user.is_authenticated:
         return jsonify(1)
 
+    print("IDTOKEN = ", request.form['idtoken'])
+
     if request.method == 'POST':
         payload = {
             'idtoken': request.form['idtoken'],
@@ -114,8 +116,8 @@ def loggingIn():
         return "Already authenticated"
     
     if request.method == 'POST':
+        print("TESTING = ", request.form['idtoken'])
         print("PASSING TO F_LOGIN")
-        # print(request.form['idtoken'])
         reply_p = f_login(request).json()
         print("REPLY_P = ", reply_p)
 

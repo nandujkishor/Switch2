@@ -101,6 +101,9 @@
 			<div class="w-s-sponsor">
 				Organiser
 				<h2>{{ workshop.org }}</h2>
+				{% if workshop.id == 40 %}
+					<img src="/static/images/ht.jpg" height="50px;">
+				{% endif %}
 			</div>
 			<br><hr><br>
 			{% endif %}
