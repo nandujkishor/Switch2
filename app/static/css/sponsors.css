@@ -54,7 +54,9 @@ body{
 .h-partner img, .f-partner img, .ex-partner img{
     height: 150px;
 }
-
+.fh-partner img{
+    height: 100px;
+}
 
 .m-s-one, .m-s-two{
     display: grid;
@@ -226,6 +228,10 @@ body{
 
     .f-partner img{
         height: 250px;
+    }
+
+    .fh-partner img{
+        height: 200px;
     }
 
     .item1, .item3, .item4, .item5, .item8, .item9, .item10, .item11, .item12, .item13, .item14, .item15, .item16, .item17, .item18,
