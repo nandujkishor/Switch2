@@ -268,3 +268,22 @@ def dash_attendee():
     workshops = requests.get(Config.HUB_URL+'/events/registration/workshops', headers={'Authorization':current_user.id})
     contests = requests.get(Config.HUB_URL+'/events/registration/contests', headers={'Authorization':current_user.id})
     return render_template('dash/attendee_dash.html', purchases=purchases.json(),user=current_user, workshops=workshops.json(), contests=contests.json())
+
+@dash.route('/delivery')
+@login_required
+# @staff_required("registration", 3)
+def delivery():
+    return render_template('dash/registrations/delivery.html')
+
+@dash.route('/delivery/data/<int:vid>', methods=['GET', 'POST'])
+@login_required
+def delivery_data(vid):
+    
+    if request.method == 'POST':
+        r = requests.post(Config.HUB_URL+'/addons/deliver/'+str(vid), headers={'Authorization':current_user.id})
+        print(r.json().get('status'))
+        return jsonify(r.json().get('status'))
+
+    r = requests.get(Config.HUB_URL+'/addons/deliver/'+str(vid), headers={'Authorization':current_user.id})
+    print(r.json())
+    return(jsonify(r.json()))
