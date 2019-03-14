@@ -455,12 +455,14 @@ svg {
       hour = minute * 60,
       day = hour * 24;
 
-    let countDown = new Date('Mar 15, 2019 00:00:00').getTime(),
+    let countDown = new Date('Mar 15, 2019 09:30:00').getTime(),
         x = setInterval(function() {
 
           let now = new Date().getTime(),
               distance = countDown - now;
-
+              if(distance<0){
+                distance=0;
+              }
           document.getElementById('days').innerText = ("0" + Math.floor(distance / (day))).slice(-2),
           document.getElementById('hours').innerText = ("0" + Math.floor((distance % (day)) / (hour))).slice(-2),
           document.getElementById('minutes').innerText = ("0" + Math.floor((distance % (hour)) / (minute))).slice(-2),
