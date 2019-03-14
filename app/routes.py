@@ -68,6 +68,11 @@ def team():
 def exhibitions():
     return render_template('exhibitions.html', user=current_user.is_authenticated)
 
+@app.route('/schedule/')
+def schedule():
+    return render_template('schedule.html', user=current_user.is_authenticated)
+
+
 @app.route('/contests/')
 def contests():
     return render_template('contests.html', user=current_user.is_authenticated)
