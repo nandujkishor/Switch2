@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+
+    <meta name="theme-color" content="#000">
+    <meta name="msapplication-navbutton-color" content="#000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>Registration | Vidyut</title>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="/static/js/mobile-check.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://cloud.typenetwork.com/projects/3030/fontface.css/" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/css/menu.css">
+    <link rel="stylesheet" href="/static/fonts/fonts.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '948746865211909');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=948746865211909&ev=PageView&noscript=1"
+  /></noscript>
+  
+  </head>
+  <body class="noscroll">
+    <div class = "container">
+
+<link rel="stylesheet" href="/static/css/education.css">
+
+<div class ="form-container-full" style="height: 100vh;">
+  
+  <form class="st-form" novalidate>
+
+    <h1>Delivery Dashboard</h1>
+    
+    <div class="float-label" id="div-level">
+      <input id="vid" name="vid" autocomplete="off" required type="text">
+      <label for="vid">VID of student</label>
+    </div>
+    <style>
+        .item{
+            margin: 20px;
+        }
+    </style>
+    <div class="vid-meta"></div>
+    <div class = "items" style="margin-top: 20px;">
+        <div class="item" id ="1">
+            One<br><br>
+            <input type="submit" value="delivered">
+        </div>
+        <div class="item" id ="2">
+            Two<br><br>
+            <input type="submit" value="delivered">
+        </div>
+    </div>
+
+  </form>
+
+</div>
+<style>
+  #div-event{
+    display: none;
+  }
+  .cat-dropdown{
+    height: 84px;
+    max-width: 450px; 
+  }
+  .event-dropdown{
+    margin-top: 62px;
+    margin-left: -2px;
+    width: 450px;
+    max-width: 500px;
+  }
+</style>
+
+<script>
+  
+  $(document).ready(function(){
+
+    var product = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE', 'SIX', 'SEVEN', 'EIGHT']
+    $('#vid').focusout(function(){
+      var vid = parseInt($('#vid').val());
+      
+      $.getJSON("/farer/meta/user?m="+vid, function(data) {
+        $('.vid-meta').empty();
+        if(data.message != "Internal Server Error")
+          $('.vid-meta').append('<b><p>'+data.fname+' '+data.lname+'</p><p>'+data.email+'</p></b>')
+        else
+          $('.vid-meta').append('<b><p>User not found</p></b>')
+      });
+
+      $.getJSON("/dash/delivery/data/"+vid, function(data) {
+        // console.log(data);
+        $.each(data, function(key, value) {
+            console.log(value);
+            $(".items").append("TEST");
+        });
+      });
+    });
+
+  });
+
+</script>
+</body>
+</html>
