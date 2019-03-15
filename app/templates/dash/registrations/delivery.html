@@ -42,7 +42,7 @@
   /></noscript>
   
   </head>
-  <body class="noscroll">
+  <body>
     <div class = "container">
 
 <link rel="stylesheet" href="/static/css/education.css">
@@ -64,14 +64,14 @@
     </style>
     <div class="vid-meta"></div>
     <div class = "items" style="margin-top: 20px;">
-        <div class="item" id ="1">
+        <!-- <div class="item" id ="1">
             One<br><br>
             <input type="submit" value="delivered">
         </div>
         <div class="item" id ="2">
             Two<br><br>
             <input type="submit" value="delivered">
-        </div>
+        </div> -->
     </div>
 
   </form>
@@ -97,12 +97,11 @@
   
   $(document).ready(function(){
 
-    var product = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE', 'SIX', 'SEVEN', 'EIGHT']
+    var product = ['Amritapuri: Proshow + Fashionshow + Choreonite', 'Outstation: Proshow + Fashionshow + Choreonite', 'General: Headbangers + Choreonite + Fashionshow', 'Choreonite + Fashionshow', 'T-Shirt', 'Amritapuri: All Tickets + T-Shirt', 'Outstation: All Tickets + T-Shirt', 'General: Headbangers + Choreonite + Fashionshow + T-Shirt']
     $('#vid').focusout(function(){
       var vid = parseInt($('#vid').val());
-      
+      $('.vid-meta, .items').empty(); 
       $.getJSON("/farer/meta/user?m="+vid, function(data) {
-        $('.vid-meta').empty();
         if(data.message != "Internal Server Error")
           $('.vid-meta').append('<b><p>'+data.fname+' '+data.lname+'</p><p>'+data.email+'</p></b>')
         else
@@ -113,7 +112,8 @@
         // console.log(data);
         $.each(data, function(key, value) {
             console.log(value);
-            $(".items").append("TEST");
+            large = '<div class="items" id="'+value.pid+'">' + product[value.pid - 1] +' ('+value.qty+')<br><br>T-Shirts: <br>S Count = '+ value.scount +'<br>M Count = '+ value.mcount +'<br>L Count = '+value.lcount+'<br>XL Count = '+value.xlcount +'<br>XXL Count = '+value.xxlcount+'<br><br><input type="submit" value="Delivery T-Shirts" class="d-tshirts" style="width: 200px"> <input type="submit" style="width: 200px" value="Delivery Tickets" class="d-tickets"></div>';
+            $(".items").append(large);
         });
       });
     });
