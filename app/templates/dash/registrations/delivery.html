@@ -121,7 +121,10 @@
             success: function(result) {
               console.log(result);
               st = '.status' + did;
-              $(st).append(result.message);
+              if(result.status == 'success')
+                $(st).append('<b style="color: green">'+result.message +'</b>');
+              else
+                $(st).append('<b style="color: red">'+result.message +'</b>');
             }
           });
           e.preventDefault();
