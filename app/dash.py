@@ -287,3 +287,26 @@ def delivery_data(vid):
     r = requests.get(Config.HUB_URL+'/addons/deliver/'+str(vid), headers={'Authorization':current_user.id})
     print(r.json())
     return(jsonify(r.json()))
+
+@dash.route('/delivery/shirt/<int:vid>', methods=['POST'])
+@login_required
+def delivery_shirt(vid):
+    data = request.get_json()
+    payload = {
+        'purid': request.form.get('purid')
+    }
+    r = requests.post(Config.HUB_URL+'/addons/deliver/shirt/'+str(vid), json=payload, headers={'Authorization':current_user.id})
+    print(r.json().get('status'))
+    return jsonify(r.json().get('status'))
+
+@dash.route('/delivery/ticket/<int:vid>', methods=['POST'])
+@login_required
+def delivery_ticket(vid):
+
+    payload = {
+        'purid': request.form.get('purid')
+    }
+
+    r = requests.post(Config.HUB_URL+'/addons/deliver/ticket/'+str(vid),json=payload, headers={'Authorization':current_user.id})
+    print(r.json().get('status'))
+    return jsonify(r.json().get('status'))
