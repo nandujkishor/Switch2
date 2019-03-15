@@ -25,7 +25,11 @@
 				<form method="POST" action="https://payments.acrd.org.in/pay/makethirdpartypayment">
 					<input type="hidden" value="" name="encdata" id="encdata">
 					<input type="hidden" value="VIDYUT2019" name="code" id="code">
+					{% if contest.regclosed == False %}
 					<input type="submit" id="pay" value="Create a team and proceed to pay" style="width: 250px;">
+					{% else %}
+					New registrations are closed.
+					{% endif %}
 				</form>
 				<div style="margin-top: 20px;">
 					{% if contest.team_limit > 1 %}
@@ -92,12 +96,10 @@
 
 		<div class="w-m-sidebar">
 			<div class="registeration">
-				{% if contest.registered == False and contest.regclosed == False %}
+				{% if contest.registered == False %}
 				<input id="register" type="submit" name="register" style="width: 100%; margin-bottom: 20px" value="Register">
-				{% elif contest.registered == True %}
-				<p>Already registered</p>
 				{% else %}
-				<p>Registration closed.</p>
+				<p>Already registered</p>
 				{% endif %}
 				{% if contest.team_limit > 1 %}
 				Maximum {{contest.team_limit}} member(s) in a team
