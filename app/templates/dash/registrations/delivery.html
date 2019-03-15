@@ -104,58 +104,31 @@
         console.log(data);
         $.each(data, function(key, value) {
             console.log(value);
-            large = '<br><div class="items" id="'+value.purid+'">' + product[value.pid - 1] +' ('+value.qty+')';
-            
-            if(value.pid >= 5 && value.shirtdelivered == false)
-              large = large + '<br><br>T-Shirts: <br>S Count = '+ value.scount +'<br>M Count = '+ value.mcount +'<br>L Count = '+value.lcount+'<br>XL Count = '+value.xlcount +'<br>XXL Count = '+value.xxlcount+'<br><br><input type="submit" value="Delivery T-Shirts" class="d-tshirts" style="width: 200px">';
-            else
-              large = large + '<br><br>'
-            console.log(value.ticketdelivered);
-            if(value.ticketdelivered == false)
-              large = large + '  <input type="submit" style="width: 200px" value="Delivery Tickets" class="d-tickets"></div>';
-            
-            if(value.ticketdelivered == false && value.shirtdelivered == false)
-              $(".items").append(large);
-
-            $('.d-tshirts').click(function(e){
-              var did = $(this).parent().attr('id');
-              console.log("Processing delete request for " + did);
-              $.ajax({
-                type: "POST",
-                data: {
-                  purid: did
-                },
-                url: "/dash/delivery/shirt/"+vid,
-                success: function(result) {
-                  console.log("TESTING");
-                    // $('#'+did).remove();
-                }
-              });
-              e.preventDefault();
-            });
-
-            $('.d-tickets').click(function(e){
-              var did = $(this).parent().attr('id');
-              console.log("Processing delete request for " + did);
-              $.ajax({
-                type: "POST",
-                data: {
-                  purid: did
-                },
-                url: "/dash/delivery/ticket/"+vid,
-                success: function(result) {
-                  console.log(result);
-                    // $('#'+did).remove();
-                }
-              });
-              e.preventDefault();
-            });
-
+            large = '<br><div class="item" id="'+value.purid+'">' + product[value.pid - 1] +' ('+value.qty+')<br><br> <input type="submit" style="width: 200px" value="Deliver" class="d-tickets"></div>';
+            large = large + '<div class="status'+value.purid+'"></div>'
+            $(".items").append(large);
         });
-      });
+
+        $('.d-tickets').click(function(e){
+          var did = $(this).parent().attr('id');
+          console.log("Processing delete request for " + did);
+          $.ajax({
+            type: "POST",
+            data: {
+              purid: did
+            },
+            url: "/dash/delivery/all/"+vid,
+            success: function(result) {
+              console.log(result);
+              st = '.status' + did;
+              $(st).append(result.message);
+            }
+          });
+          e.preventDefault();
+        });
 
     });
-
+  });
   });
 
 </script>
