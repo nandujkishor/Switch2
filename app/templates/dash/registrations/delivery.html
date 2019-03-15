@@ -104,8 +104,10 @@
         console.log(data);
         $.each(data, function(key, value) {
             console.log(value);
-            large = '<br><div class="item" id="'+value.purid+'">' + product[value.pid - 1] +' ('+value.qty+')<br><br> <input type="submit" style="width: 200px" value="Deliver" class="d-tickets"></div>';
-            large = large + '<div class="status'+value.purid+'"></div>'
+            large = '<br><div class="item" id="'+value.purid+'">' + product[value.pid - 1] +' ('+value.qty+')';
+            shirt = '<br>S Count = ' + value.scount + "<br> M count = " + value.mcount + "<br> L Count = " + value.lcount + "<br> XL Count = " + value.xlcount + "<br> XXL Count = " +value.xxlcount+ "<br>";
+            button = '<br><br> <input type="submit" style="width: 200px" value="Deliver" class="d-tickets"></div>';
+            large = large + shirt + button + '<div class="status'+value.purid+'"></div>'
             $(".items").append(large);
         });
 
