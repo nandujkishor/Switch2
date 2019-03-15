@@ -330,6 +330,12 @@ svg {
 .slide__text-link:hover{
   color: #000;
 }
+.schedule{
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
 {% include 'navbar.html' %}
 <div class="slider-container">
@@ -396,7 +402,9 @@ svg {
       </div>
     </div>
   </div>
-
+<div class="schedule">
+  <input type="submit" value="Schedule" id="schedule">
+</div>
 <div class = "b1">   
   <div class = "b1-container">
     <div class="grid-main1">
@@ -708,5 +716,8 @@ svg {
     changeSlides();
   });
 
+    $('#schedule').click(function(){
+      window.location.href = "/static/images/sc.jpg"
+    });
   });
 </script>
