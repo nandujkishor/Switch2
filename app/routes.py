@@ -72,6 +72,9 @@ def exhibitions():
 def schedule():
     return render_template('schedule.html', user=current_user.is_authenticated)
 
+@app.route('/delivery/')
+def delivery():
+    return render_template('dash/registrations/delivery.html', user=current_user.is_authenticated)
 
 @app.route('/contests/')
 def contests():
