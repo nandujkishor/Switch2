@@ -40,6 +40,13 @@ def lounge():
                             title="Switch Lounge"
                             )
 
+# @dash.route('/attendee/stat')
+# @login_required
+# @staff_required("all", 5)
+# def attendeestat():
+#     r = requests.get(Config.HUB_URL+'/attend/proshow/stats')
+#     return 
+
 @dash.route('/mc/maintenance/toggle/')
 @login_required
 @staff_required(5)

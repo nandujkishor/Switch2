@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+
+    <meta name="theme-color" content="#000">
+    <meta name="msapplication-navbutton-color" content="#000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="/static/fonts/fonts.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Source+Sans+Pro" rel="stylesheet">
+
+    <title>Vidyut 2020</title>
+
+    <style>
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #000;
+        }
+
+        .center-of-universe {
+            position: relative;
+            height: 100%;
+            -webkit-animation: rotation 50s infinite linear;
+            -moz-animation: rotation 50s infinite linear;
+            -ms-animation: rotation 50s infinite linear;
+            -o-animation: rotation 50s infinite linear;
+            animation: rotation 50s infinite linear;
+        }
+
+        .earth {
+            background: #303030;
+            width: 25vh;
+            height: 25vh;
+            -webkit-border-radius: 12.5vh;
+            -moz-border-radius: 12.5vh;
+            -ms-border-radius: 12.5vh;
+            -o-border-radius: 12.5vh;
+            border-radius: 12.5vh;
+            margin-top: -12.5vh;
+            margin-left: -12.5vh;
+            left: 50vw;
+            top: 50vh;
+            position: absolute;
+            -webkit-animation: zIndex 5s infinite linear;
+            -moz-animation: zIndex 5s infinite linear;
+            -ms-animation: zIndex 5s infinite linear;
+            -o-animation: zIndex 5s infinite linear;
+            animation: zIndex 5s infinite linear;
+        }
+
+        .moon {
+            background: #fff;
+            content: "";
+            display: block;
+            width: 6.25vh;
+            height: 6.25vh;
+            -webkit-border-radius: 3.125vh;
+            -moz-border-radius: 3.125vh;
+            -ms-border-radius: 3.125vh;
+            -o-border-radius: 3.125vh;
+            border-radius: 3.125vh;
+            margin-top: -3.125vh;
+            margin-left: -3.125vh;
+            position: absolute;
+            left: 50vw;
+            top: 50vh;
+            -webkit-animation: orbits 5s infinite;
+            -moz-animation: orbits 5s infinite;
+            -ms-animation: orbits 5s infinite;
+            -o-animation: orbits 5s infinite;
+            animation: orbits 5s infinite;
+        }
+
+        @-webkit-keyframes zIndex {
+            24% {
+                z-index: 0;
+            }
+            25% {
+                z-index: 1;
+            }
+            75% {
+                z-index: 1;
+            }
+            76% {
+                z-index: 0;
+            }
+        }
+        @-moz-keyframes zIndex {
+            24% {
+                z-index: 0;
+            }
+            25% {
+                z-index: 1;
+            }
+            75% {
+                z-index: 1;
+            }
+            76% {
+                z-index: 0;
+            }
+        }
+        @-ms-keyframes zIndex {
+            24% {
+                z-index: 0;
+            }
+            25% {
+                z-index: 1;
+            }
+            75% {
+                z-index: 1;
+            }
+            76% {
+                z-index: 0;
+            }
+        }
+        @-o-keyframes zIndex {
+            24% {
+                z-index: 0;
+            }
+            25% {
+                z-index: 1;
+            }
+            75% {
+                z-index: 1;
+            }
+            76% {
+                z-index: 0;
+            }
+        }
+        @keyframes zIndex {
+            24% {
+                z-index: 0;
+            }
+            25% {
+                z-index: 1;
+            }
+            75% {
+                z-index: 1;
+            }
+            76% {
+                z-index: 0;
+            }
+        }
+        @-webkit-keyframes orbits {
+            0% {
+                margin-left: -4.125vh;
+                margin-top: -4.125vh;
+                width: 8.25vh;
+                height: 8.25vh;
+                -webkit-border-radius: 4.125vh;
+                -moz-border-radius: 4.125vh;
+                -ms-border-radius: 4.125vh;
+                -o-border-radius: 4.125vh;
+                border-radius: 4.125vh;
+                animation-timing-function: ease-out;
+                background: #fff;
+            }
+            25% {
+                margin-left: 15.625vh;
+                animation-timing-function: ease-in;
+            }
+            50% {
+                margin-left: -2.125vh;
+                margin-top: -2.125vh;
+                width: 4.25vh;
+                height: 4.25vh;
+                -webkit-border-radius: 2.125vh;
+                -moz-border-radius: 2.125vh;
+                -ms-border-radius: 2.125vh;
+                -o-border-radius: 2.125vh;
+                border-radius: 2.125vh;
+                animation-timing-function: ease-out;
+                background: #303030;
+            }
+            75% {
+                margin-left: -21.875vh;
+                animation-timing-function: ease-in;
+            }
+            100% {
+                margin-left: -4.125vh;
+                margin-top: -4.125vh;
+                width: 8.25vh;
+                height: 8.25vh;
+                -webkit-border-radius: 4.125vh;
+                -moz-border-radius: 4.125vh;
+                -ms-border-radius: 4.125vh;
+                -o-border-radius: 4.125vh;
+                border-radius: 4.125vh;
+                animation-timing-function: ease-out;
+                background: #fff;
+            }
+        }
+        @-moz-keyframes orbits {
+            0% {
+                margin-left: -4.125vh;
+                margin-top: -4.125vh;
+                width: 8.25vh;
+                height: 8.25vh;
+                -webkit-border-radius: 4.125vh;
+                -moz-border-radius: 4.125vh;
+                -ms-border-radius: 4.125vh;
+                -o-border-radius: 4.125vh;
+                border-radius: 4.125vh;
+                animation-timing-function: ease-out;
+                background: #fff;
+            }
+            25% {
+                margin-left: 15.625vh;
+                animation-timing-function: ease-in;
+            }
+            50% {
+                margin-left: -2.125vh;
+                margin-top: -2.125vh;
+                width: 4.25vh;
+                height: 4.25vh;
+                -webkit-border-radius: 2.125vh;
+                -moz-border-radius: 2.125vh;
+                -ms-border-radius: 2.125vh;
+                -o-border-radius: 2.125vh;
+                border-radius: 2.125vh;
+                animation-timing-function: ease-out;
+                background: #303030;
+            }
+            75% {
+                margin-left: -21.875vh;
+                animation-timing-function: ease-in;
+            }
+            100% {
+                margin-left: -4.125vh;
+                margin-top: -4.125vh;
+                width: 8.25vh;
+                height: 8.25vh;
+                -webkit-border-radius: 4.125vh;
+                -moz-border-radius: 4.125vh;
+                -ms-border-radius: 4.125vh;
+                -o-border-radius: 4.125vh;
+                border-radius: 4.125vh;
+                animation-timing-function: ease-out;
+                background: #fff;
+            }
+        }
+        @-ms-keyframes orbits {
+            0% {
+                margin-left: -4.125vh;
+                margin-top: -4.125vh;
+                width: 8.25vh;
+                height: 8.25vh;
+                -webkit-border-radius: 4.125vh;
+                -moz-border-radius: 4.125vh;
+                -ms-border-radius: 4.125vh;
+                -o-border-radius: 4.125vh;
+                border-radius: 4.125vh;
+                animation-timing-function: ease-out;
+                background: #fff;
+            }
+            25% {
+                margin-left: 15.625vh;
+                animation-timing-function: ease-in;
+            }
+            50% {
+                margin-left: -2.125vh;
+                margin-top: -2.125vh;
+                width: 4.25vh;
+                height: 4.25vh;
+                -webkit-border-radius: 2.125vh;
+                -moz-border-radius: 2.125vh;
+                -ms-border-radius: 2.125vh;
+                -o-border-radius: 2.125vh;
+                border-radius: 2.125vh;
+                animation-timing-function: ease-out;
+                background: #303030;
+            }
+            75% {
+                margin-left: -21.875vh;
+                animation-timing-function: ease-in;
+            }
+            100% {
+                margin-left: -4.125vh;
+                margin-top: -4.125vh;
+                width: 8.25vh;
+                height: 8.25vh;
+                -webkit-border-radius: 4.125vh;
+                -moz-border-radius: 4.125vh;
+                -ms-border-radius: 4.125vh;
+                -o-border-radius: 4.125vh;
+                border-radius: 4.125vh;
+                animation-timing-function: ease-out;
+                background: #fff;
+            }
+        }
+        @-o-keyframes orbits {
+            0% {
+                margin-left: -4.125vh;
+                margin-top: -4.125vh;
+                width: 8.25vh;
+                height: 8.25vh;
+                -webkit-border-radius: 4.125vh;
+                -moz-border-radius: 4.125vh;
+                -ms-border-radius: 4.125vh;
+                -o-border-radius: 4.125vh;
+                border-radius: 4.125vh;
+                animation-timing-function: ease-out;
+                background: #fff;
+            }
+            25% {
+                margin-left: 15.625vh;
+                animation-timing-function: ease-in;
+            }
+            50% {
+                margin-left: -2.125vh;
+                margin-top: -2.125vh;
+                width: 4.25vh;
+                0d47a1                height: 4.25vh;
+                -webkit-border-radius: 2.125vh;
+                -moz-border-radius: 2.125vh;
+                -ms-border-radius: 2.125vh;
+                -o-border-radius: 2.125vh;
+                border-radius: 2.125vh;
+                animation-timing-function: ease-out;
+                background: #303030;
+            }
+            75% {
+                margin-left: -21.875vh;
+                animation-timing-function: ease-in;
+            }
+            100% {
+                margin-left: -4.125vh;
+                margin-top: -4.125vh;
+                width: 8.25vh;
+                height: 8.25vh;
+                -webkit-border-radius: 4.125vh;
+                -moz-border-radius: 4.125vh;
+                -ms-border-radius: 4.125vh;
+                -o-border-radius: 4.125vh;
+                border-radius: 4.125vh;
+                animation-timing-function: ease-out;
+                background: #fff;
+            }
+        }
+        @keyframes orbits {
+            0% {
+                margin-left: -4.125vh;
+                margin-top: -4.125vh;
+                width: 8.25vh;
+                height: 8.25vh;
+                -webkit-border-radius: 4.125vh;
+                -moz-border-radius: 4.125vh;
+                -ms-border-radius: 4.125vh;
+                -o-border-radius: 4.125vh;
+                border-radius: 4.125vh;
+                animation-timing-function: ease-out;
+                background: #fff;
+            }
+            25% {
+                margin-left: 15.625vh;
+                animation-timing-function: ease-in;
+            }
+            50% {
+                margin-left: -2.125vh;
+                margin-top: -2.125vh;
+                width: 4.25vh;
+                height: 4.25vh;
+                -webkit-border-radius: 2.125vh;
+                -moz-border-radius: 2.125vh;
+                -ms-border-radius: 2.125vh;
+                -o-border-radius: 2.125vh;
+                border-radius: 2.125vh;
+                animation-timing-function: ease-out;
+                background: #303030;
+            }
+            75% {
+                margin-left: -21.875vh;
+                animation-timing-function: ease-in;
+            }
+            100% {
+                margin-left: -4.125vh;
+                margin-top: -4.125vh;
+                width: 8.25vh;
+                height: 8.25vh;
+                -webkit-border-radius: 4.125vh;
+                -moz-border-radius: 4.125vh;
+                -ms-border-radius: 4.125vh;
+                -o-border-radius: 4.125vh;
+                border-radius: 4.125vh;
+                animation-timing-function: ease-out;
+                background: #fff;
+            }
+        }
+        @-webkit-keyframes rotation {
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        @-moz-keyframes rotation {
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        @-ms-keyframes rotation {
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        @-o-keyframes rotation {
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes rotation {
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        
+        .center{
+            position: absolute;
+            top: 70%;
+            left: 0;
+            font-size: 1.5em;
+            color: #fff;
+            font-family: 'Source Sans Pro';
+        }
+        .center div{
+            display: flex;
+            width: 100vw;
+            justify-content: center;
+        }
+        .center span{
+            /* margin-right: 5px; */
+            font-family: 'Frontage Bold';
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="center-of-universe">
+        <div class="earth"></div>
+        <div class="moon"></div>
+    </div>   
+    <div class="center">
+        <div>
+            <span>VIDYUT 2020 </span>
+        </div>
+    </div> 
+</body>
+</html>

@@ -15,10 +15,14 @@ from flask_login import login_user, current_user, logout_user, login_required
 def unauthorized():
     return render_template('accounts/login.html', link="")
 
-# @app.before_request
-# def check_for_maintenance(): 
-#     if request.path != url_for('maintenance'):
-#         return redirect(url_for('maintenance'))
+@app.before_request
+def check_for_maintenance(): 
+    if request.path != url_for('maintenance'):
+        return redirect(url_for('maintenance'))
+
+@app.route('/')
+def coming_soon():
+    return render_template('cm.html')
 
 @app.route('/maintenance')
 def maintenance():
@@ -35,7 +39,7 @@ def shit():
 def faq():
     return render_template('faq.html')
 
-@app.route('/')
+# @app.route('/')
 @app.route('/index')
 def index():
     # return render_template('home.html', user=current_user.is_authenticated)
